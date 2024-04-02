@@ -836,13 +836,7 @@ if ($user->isLoggedIn()) {
                                                     <th>Name</th>
                                                     <th>Study Id</th>
                                                     <th>Age</th>
-                                                    <th>Sex</th>
-                                                    <?php
-                                                    if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                                    ?>
-                                                        <th>Interview Type</th>
-                                                        <th>Site</th>
-                                                    <?php } ?>
+                                                    <th>Gender</th>
                                                     <th>Status</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
@@ -885,46 +879,26 @@ if ($user->isLoggedIn()) {
                                                             <?= $value['firstname'] . '  ' . $value['middlename'] . ' ' . $value['lastname']; ?>
                                                         </td>
                                                         <td class="table-user">
-                                                            <?= $value['study_id']; ?>
+                                                            <?= $value['art_no']; ?>
                                                         </td>
                                                         <td class="table-user">
                                                             <?= $value['age']; ?>
                                                         </td>
-                                                        <?php if ($value['sex'] == 1) { ?>
+                                                        <?php if ($value['gender'] == 1) { ?>
                                                             <td class="table-user">
                                                                 Male
                                                             </td>
-                                                        <?php } elseif ($value['sex'] == 2) { ?>
+                                                        <?php } elseif ($value['gender'] == 2) { ?>
                                                             <td class="table-user">
                                                                 Female
                                                             </td>
                                                         <?php } ?>
-                                                        <?php
-                                                        if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                                        ?>
-                                                            <?php if ($value['interview_type'] == 1) { ?>
-                                                                <td class="table-user">
-                                                                    Kap & Screening
-                                                                </td>
-                                                            <?php } elseif ($value['interview_type'] == 2) { ?>
-                                                                <td class="table-user">
-                                                                    Health Care Worker
-                                                                </td>
-                                                            <?php } else { ?>
-                                                                <td class="table-user">
-                                                                    None
-                                                                </td>
-                                                            <?php } ?>
 
-                                                            <td class="table-user">
-                                                                <?= $sites['name']; ?>
-                                                            </td>
-                                                        <?php } ?>
-                                                        <?php if ($value['age'] >= 18) { ?>
+                                                        <?php if ($value['age'] >= 10 && $value['age'] <= 24) { ?>
                                                             <td class="text-center">
                                                                 <a href="#" class="btn btn-success">
                                                                     <i class="ri-edit-box-line">
-                                                                    </i><?php if ($value['age'] >= 45 & $value['age'] <= 80) {  ?>Eligible for KAP & History Screening <?php } else { ?>Eligible for KAP ONLY <?php } ?>
+                                                                    </i><?php if ($value['age'] >= 10 & $value['age'] <= 24) {  ?>Eligible for Screening <?php } ?>
                                                                 </a>
                                                             </td>
                                                         <?php  } else { ?>
@@ -934,29 +908,17 @@ if ($user->isLoggedIn()) {
                                                         <?php } ?>
                                                         <td class="text-center">
                                                             <?php if ($_GET['status'] == 7) { ?>
-                                                                <a href="add.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-info"> <i class="ri-edit-box-line"></i>Update</a>&nbsp;&nbsp;<br>
+                                                                <a href="add.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-info"> <i class="ri-edit-box-line"></i>Update Client</a>&nbsp;&nbsp;<br>
                                                             <?php } ?>
                                                             <br>
-                                                            <?php if ($value['interview_type'] == 1) { ?>
-                                                                <?php if ($value['age'] >= 18) { ?>
-                                                                    <?php if ($kap && $history && $results1 && $results2 && $classification1 && $classification2 && $economic1 && $economic2 && $outcome1 && $outcome2) { ?>
-                                                                        <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i>Update CRF's</a>&nbsp;&nbsp;<br>
-                                                                    <?php   } else { ?>
-                                                                        <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i>Add CRF's</a>&nbsp;&nbsp;<br>
-                                                                    <?php   } ?>
+                                                            <?php if ($value['age'] >= 10 && $value['age'] <= 24) { ?>
+                                                                <?php if ($hiv_history_and_medication && $eligibility_form && $risk_factors && $chronic_illnesses_specify && $laboratory_results && $radiological_investigations && $study_termination) { ?>
+                                                                    <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i>Update CRF's</a>&nbsp;&nbsp;<br>
+                                                                <?php   } else { ?>
+                                                                    <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i>Add CRF's</a>&nbsp;&nbsp;<br>
                                                                 <?php   } ?>
                                                             <?php   } ?>
                                                             <br>
-
-                                                            <?php if ($value['interview_type'] == 2) { ?>
-                                                                <?php if ($value['age'] >= 18) { ?>
-                                                                    <?php if ($health_care_kap) { ?>
-                                                                        <a href="add.php?id=11&cid=<?= $value['id'] ?>&study_id=<?= $_GET['study_id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i>Update Health Care Kap</a>&nbsp;&nbsp;<br>
-                                                                    <?php   } else { ?>
-                                                                        <a href="add.php?id=11&cid=<?= $value['id'] ?>&study_id=<?= $_GET['study_id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i>Add Health Care Kap</a>&nbsp;&nbsp;<br>
-                                                                    <?php   } ?>
-                                                                <?php   } ?>
-                                                            <?php   } ?>
 
                                                         </td>
                                                     </tr>
@@ -969,13 +931,7 @@ if ($user->isLoggedIn()) {
                                                     <th>Name</th>
                                                     <th>Study Id</th>
                                                     <th>Age</th>
-                                                    <th>Sex</th>
-                                                    <?php
-                                                    if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                                    ?>
-                                                        <th>Interview Type</th>
-                                                        <th>Site</th>
-                                                    <?php } ?>
+                                                    <th>Gender</th>
                                                     <th>Status</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
@@ -1025,13 +981,13 @@ if ($user->isLoggedIn()) {
                                         $patient = $override->get('clients', 'id', $_GET['cid'])[0];
                                         $cat = '';
 
-                                        if ($patient['interview_type'] == 1) {
-                                            $cat = 'Kap & Screening';
-                                        } elseif ($patient['interview_type'] == 2) {
-                                            $cat = 'Health Care Worker';
-                                        } else {
-                                            $cat = 'Not Screened';
-                                        }
+                                        // if ($patient['interview_type'] == 1) {
+                                        //     $cat = 'Kap & Screening';
+                                        // } elseif ($patient['interview_type'] == 2) {
+                                        //     $cat = 'Health Care Worker';
+                                        // } else {
+                                        //     $cat = 'Not Screened';
+                                        // }
 
 
                                         if ($patient['sex'] == 1) {
@@ -1043,7 +999,7 @@ if ($user->isLoggedIn()) {
                                         $name = 'Name: ' . $patient['firstname'] . ' ' . $patient['lastname'];
                                         $age =  'Age:  ' . $patient['age'];
                                         $gender =  'Gender: ' . $gender;
-                                        $cat =  'Type: ' . $cat;
+                                        // $cat =  'Type: ' . $cat;
                                         ?>
 
 
@@ -1053,7 +1009,7 @@ if ($user->isLoggedIn()) {
                                                 <h4><?= $name ?></h4>
                                                 <h4><?= $age ?></h4>
                                                 <h4><?= $gender ?></h4>
-                                                <h4><?= $cat ?></h4>
+                                                <!-- <h4><?= $cat ?></h4> -->
                                             </div>
                                             <div class="col-sm-6">
                                                 <ol class="breadcrumb float-sm-right">
@@ -1076,11 +1032,6 @@ if ($user->isLoggedIn()) {
                                                     <th>Visit Day</th>
                                                     <th>Expected Date</th>
                                                     <th>Visit Date</th>
-                                                    <?php
-                                                    if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                                    ?>
-                                                        <th>SITE</th>
-                                                    <?php } ?>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -1089,32 +1040,25 @@ if ($user->isLoggedIn()) {
                                                 <?php $x = 1;
                                                 foreach ($override->get('visit', 'patient_id', $_GET['cid']) as $visit) {
                                                     $clients = $override->get('clients', 'id', $_GET['cid'])[0];
-                                                    $site = $override->get('sites', 'id', $visit['site_id'])[0];
-                                                    $kap = $override->get('kap', 'patient_id', $_GET['cid']);
-                                                    $history = $override->get('history', 'patient_id', $_GET['cid']);
+                                                    $hiv_history_and_medication = $override->get('hiv_history_and_medication', 'patient_id', $_GET['cid']);
+                                                    $eligibility = $override->get('eligibility', 'patient_id', $_GET['cid']);
                                                 ?>
                                                     <tr>
                                                         <td> <?= $visit['visit_name'] ?></td>
                                                         <td> <?= $visit['expected_date'] ?></td>
                                                         <td> <?= $visit['visit_date'] ?> </td>
-
-                                                        <?php
-                                                        if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                                        ?>
-                                                            <td> <?= $site['name'] ?> </td>
-                                                        <?php } ?>
                                                         <td>
                                                             <?php if ($visit['visit_status'] == 1) { ?>
                                                                 <a href="#editVisit<?= $visit['id'] ?>" role="button" class="btn btn-success" data-toggle="modal">
-                                                                    Done <?php if ($clients['eligible'] == 1) {  ?> & ELigible for Tests <?php } else { ?>& <p style="color:#FF0000" ;>&nbsp;&nbsp;Not ELigible for Tests</p> <?php } ?>
+                                                                    Done <?php if ($clients['eligible'] == 1) {  ?> & ELigible for Screening <?php } else { ?>& <p style="color:#FF0000" ;>&nbsp;&nbsp;Not ELigible for Enrollment</p> <?php } ?>
                                                                 </a>
                                                             <?php } elseif ($visit['visit_status'] == 2) { ?>
                                                                 <a href="#editVisit<?= $visit['id'] ?>" role="button" class="btn btn-warning" data-toggle="modal">
-                                                                    Missed <?php if ($clients['eligible'] == 1) {  ?> & ELigible for Tests <?php } else { ?>& <p style="color:#FF0000" ;>&nbsp;&nbsp; Not ELigible for Tests </p><?php } ?>
+                                                                    Missed <?php if ($clients['eligible'] == 1) {  ?> & ELigible for Screening <?php } else { ?>& <p style="color:#FF0000" ;>&nbsp;&nbsp; Not ELigible for Enrollment </p><?php } ?>
                                                                 </a>
                                                             <?php } elseif ($visit['visit_status'] == 0) { ?>
                                                                 <a href="#editVisit<?= $visit['id'] ?>" role="button" class="btn btn-warning" data-toggle="modal">
-                                                                    Pending <?php if ($clients['eligible'] == 1) {  ?> & ELigible for Tests <?php } else { ?>& <p style="color:#FF0000" ;>&nbsp;&nbsp; Not ELigible for Tests </p><?php } ?>
+                                                                    Pending <?php if ($clients['eligible'] == 1) {  ?> & ELigible for Screening <?php } else { ?>& <p style="color:#FF0000" ;>&nbsp;&nbsp; Not ELigible for Enrollment </p><?php } ?>
                                                                 </a>
                                                             <?php } ?>
                                                         </td>
@@ -1122,20 +1066,20 @@ if ($user->isLoggedIn()) {
                                                         <td>
                                                             <?php if ($visit['visit_status'] == 1) { ?>
                                                                 <?php if ($visit['sequence'] == 0) { ?>
-                                                                    <?php if ($kap) { ?>
-                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update KAP </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php if ($hiv_history_and_medication) { ?>
+                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update HIV History And Medication Form</a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add KAP </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add HIV History And Medication Form</a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
-                                                                    <?php if ($clients['age'] >= 45 && $clients['age'] <= 80) { ?>
-                                                                        <?php if ($history) { ?>
-                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update History </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php if ($clients['age'] >= 10 && $clients['age'] <= 24) { ?>
+                                                                        <?php if ($eligibility) { ?>
+                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Eligibility Form </a>&nbsp;&nbsp; <br><br>
 
                                                                         <?php } else { ?>
-                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add History </a>&nbsp;&nbsp; <br><br>
+                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Eligibility Form </a>&nbsp;&nbsp; <br><br>
 
                                                                         <?php } ?>
                                                                     <?php } ?>
@@ -1144,7 +1088,7 @@ if ($user->isLoggedIn()) {
 
                                                             <?php if ($visit['visit_status'] == 1) { ?>
                                                                 <?php if ($visit['sequence'] == 1) { ?>
-                                                                    <?php if ($clients['age'] >= 45 && $clients['age'] <= 80) { ?>
+                                                                    <?php if ($clients['age'] >= 10 && $clients['age'] <= 24) { ?>
                                                                         <?php if ($history[0]['eligible'] == 1) { ?>
                                                                             <?php if ($override->getNews('results', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
                                                                                 <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Results </a>&nbsp;&nbsp; <br><br>
@@ -1181,48 +1125,6 @@ if ($user->isLoggedIn()) {
                                                                     <?php } ?>
                                                                 <?php } ?>
                                                             <?php } ?>
-
-                                                            <?php if ($visit['visit_status'] == 1) { ?>
-                                                                <?php if ($visit['sequence'] == 2) { ?>
-                                                                    <?php if ($clients['age'] >= 45 && $clients['age'] <= 80) { ?>
-                                                                        <?php if ($history[0]['eligible'] == 1) { ?>
-                                                                            <?php if ($override->getNews('results', 'patient_id', $_GET['cid'], 'sequence', 2)) { ?>
-                                                                                <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Results </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } else { ?>
-                                                                                <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Results </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } ?>
-
-
-                                                                            <?php if ($override->getNews('classification', 'patient_id', $_GET['cid'], 'sequence', 2)) { ?>
-                                                                                <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Classification </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } else { ?>
-                                                                                <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Classification </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } ?>
-
-                                                                            <?php if ($override->getNews('outcome', 'patient_id', $_GET['cid'], 'sequence', 2)) { ?>
-                                                                                <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Outcome </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } else { ?>
-                                                                                <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Outcome </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } ?>
-
-                                                                            <?php if ($override->getNews('economic', 'patient_id', $_GET['cid'], 'sequence', 2)) { ?>
-                                                                                <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Economic </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } else { ?>
-                                                                                <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Economic </a>&nbsp;&nbsp; <br><br>
-
-                                                                            <?php } ?>
-                                                                        <?php } ?>
-                                                                    <?php } ?>
-                                                                <?php } ?>
-                                                            <?php } ?>
-
                                                         </td>
                                                     </tr>
 
@@ -1305,11 +1207,6 @@ if ($user->isLoggedIn()) {
                                                     <th>Visit Day</th>
                                                     <th>Expected Date</th>
                                                     <th>Visit Date</th>
-                                                    <?php
-                                                    if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                                    ?>
-                                                        <th>SITE</th>
-                                                    <?php } ?>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -2785,7 +2682,7 @@ if ($user->isLoggedIn()) {
                                                         <select name="name" id="name" class="form-control" required>
                                                             <option value="">Select Table</option>
                                                             <?php foreach ($AllTables as $tables) {
-                                                                if ($tables['Tables_in_lungcancer'] == 'clients' || $tables['Tables_in_lungcancer'] == 'kap' || $tables['Tables_in_lungcancer'] == 'history' || $tables['Tables_in_lungcancer'] == 'results' || $tables['Tables_in_lungcancer'] == 'classification' || $tables['Tables_in_lungcancer'] == 'outcome'|| $tables['Tables_in_lungcancer'] == 'economic' || $tables['Tables_in_lungcancer'] == 'visit') { ?> ?>
+                                                                if ($tables['Tables_in_lungcancer'] == 'clients' || $tables['Tables_in_lungcancer'] == 'kap' || $tables['Tables_in_lungcancer'] == 'history' || $tables['Tables_in_lungcancer'] == 'results' || $tables['Tables_in_lungcancer'] == 'classification' || $tables['Tables_in_lungcancer'] == 'outcome' || $tables['Tables_in_lungcancer'] == 'economic' || $tables['Tables_in_lungcancer'] == 'visit') { ?> ?>
                                                                     <option value="<?= $tables['Tables_in_lungcancer'] ?>"><?= $tables['Tables_in_lungcancer'] ?></option>
                                                             <?php }
                                                             } ?>
@@ -2883,14 +2780,6 @@ if ($user->isLoggedIn()) {
             </div>
             <!-- /.content-wrapper -->
         <?php  } ?>
-    </div>
-    <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
