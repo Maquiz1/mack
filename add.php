@@ -644,108 +644,54 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
-        } elseif (Input::get('add_classification')) {
+        } elseif (Input::get('add_chronic_illnesses')) {
             $validate = $validate->check($_POST, array(
-                'classification_date' => array(
+                'visit_date' => array(
                     'required' => true,
                 ),
             ));
 
             if ($validate->passed()) {
-                if (count(Input::get('category')) == 1) {
-                    foreach (Input::get('category') as $value) {
-                        $visit_code = '';
-                        $visit_name = '';
+                $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
 
-                        if ($value == 1) {
-                            $visit_code = 'M12';
-                            $visit_name = 'Month 12';
-                            $expected_date = date('Y-m-d', strtotime('+12 month', strtotime(Input::get('classification_date'))));
-                        } elseif ($value == 2) {
-                            $visit_code = 'M12';
-                            $visit_name = 'Month 12';
-                            $expected_date = date('Y-m-d', strtotime('+12 month', strtotime(Input::get('classification_date'))));
-                        } elseif ($value == 3) {
-                            $visit_code = 'M06';
-                            $visit_name = 'Month 6';
-                            $expected_date = date('Y-m-d', strtotime('+6 month', strtotime(Input::get('classification_date'))));
-                        } elseif ($value == 4) {
-                            $visit_code = 'M03';
-                            $visit_name = 'Month 3';
-                            $expected_date = date('Y-m-d', strtotime('+3 month', strtotime(Input::get('classification_date'))));
-                        } elseif ($value == 5) {
-                            $visit_code = 'RFT';
-                            $visit_name = 'Referred';
-                            $expected_date = date('Y-m-d', strtotime('+2 month', strtotime(Input::get('classification_date'))));
-                        }
-                    }
+                $chronic_illnesses = $override->get3('chronic_illnesses', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
 
-                    $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
-
-                    $classification = $override->get3('classification', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
-
-                    if ($classification) {
-                        $user->updateRecord('classification', array(
-                            'classification_date' => Input::get('classification_date'),
-                            'category' => $value,
-                            'update_on' => date('Y-m-d H:i:s'),
-                            'update_id' => $user->data()->id,
-                        ), $classification[0]['id']);
-                        $successMessage = 'Classification  Successful Updated';
-                    } else {
-                        $user->createRecord('classification', array(
-                            'classification_date' => Input::get('classification_date'),
-                            'visit_code' => $_GET['visit_code'],
-                            'study_id' => $_GET['study_id'],
-                            'sequence' => $_GET['sequence'],
-                            'category' => $value,
-                            'status' => 1,
-                            'patient_id' => $_GET['cid'],
-                            'create_on' => date('Y-m-d H:i:s'),
-                            'staff_id' => $user->data()->id,
-                            'update_on' => date('Y-m-d H:i:s'),
-                            'update_id' => $user->data()->id,
-                            'site_id' => $clients['site_id'],
-                        ));
-
-
-                        $successMessage = 'Classification  Successful Added';
-                    }
-
-                    if ($_GET['sequence'] == 1) {
-                        $visit_id = $override->getNews('visit', 'patient_id', $_GET['cid'], 'sequence', 2);
-                        if ($visit_id) {
-                            $user->updateRecord('visit', array(
-                                'expected_date' => $expected_date,
-                                'visit_code' => $visit_code,
-                                'visit_name' => $visit_name,
-                                'update_on' => date('Y-m-d H:i:s'),
-                                'update_id' => $user->data()->id,
-                            ), $visit_id[0]['id']);
-                        } else {
-                            $user->createRecord('visit', array(
-                                'expected_date' => $expected_date,
-                                'visit_date' => '',
-                                'visit_code' => $visit_code,
-                                'visit_name' => $visit_name,
-                                'study_id' => $_GET['study_id'],
-                                'sequence' => 2,
-                                'visit_status' => 0,
-                                'status' => 1,
-                                'patient_id' => $_GET['cid'],
-                                'create_on' => date('Y-m-d H:i:s'),
-                                'staff_id' => $user->data()->id,
-                                'update_on' => date('Y-m-d H:i:s'),
-                                'update_id' => $user->data()->id,
-                                'site_id' => $clients['site_id'],
-                            ));
-                        }
-                    }
-
-                    Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status']);
+                if ($classification) {
+                    $user->updateRecord('chronic_illnesses', array(
+                        'visit_date' => Input::get('visit_date'),
+                        'ncd_screening' => Input::get('ncd_screening'),
+                        'chronic_illness_type' => Input::get('chronic_illness_type'),
+                        'start_date_chronic' => Input::get('start_date_chronic'),
+                        'chronic_illnesses_specify_complete' => Input::get('chronic_illnesses_specify_complete'),
+                        'update_on' => date('Y-m-d H:i:s'),
+                        'update_id' => $user->data()->id,
+                    ), $classification[0]['id']);
+                    $successMessage = 'Chronic Illnesses  Successful Updated';
                 } else {
-                    $errorMessage = 'Please chose only one Classification!';
+                    $user->createRecord('chronic_illnesses', array(
+                        'sequence' => 1,
+                        'visit_code' => 'EV',
+                        'study_id' => $_GET['study_id'],
+                        'pid' => $_GET['study_id'],
+                        'visit_date' => Input::get('visit_date'),
+                        'ncd_screening' => Input::get('ncd_screening'),
+                        'chronic_illness_type' => Input::get('chronic_illness_type'),
+                        'start_date_chronic' => Input::get('start_date_chronic'),
+                        'chronic_illnesses_specify_complete' => Input::get('chronic_illnesses_specify_complete'),
+                        'status' => 1,
+                        'patient_id' => $_GET['cid'],
+                        'create_on' => date('Y-m-d H:i:s'),
+                        'staff_id' => $user->data()->id,
+                        'update_on' => date('Y-m-d H:i:s'),
+                        'update_id' => $user->data()->id,
+                        'site' => $user->data()->site_id,
+                    ));
+
+
+                    $successMessage = 'Chronic Illnesses  Successful Added';
                 }
+
+                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg=' . $successMessage);
             } else {
                 $pageError = $validate->errors();
             }
@@ -3518,7 +3464,7 @@ if ($user->isLoggedIn()) {
                                         <div class="card-body">
                                             <hr>
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-2">
                                                     <div class="mb-2">
                                                         <label for="visit_date" class="form-label">Visit Date</label>
                                                         <input type="date" value="<?php if ($chronic_illnesses['visit_date']) {
@@ -3527,7 +3473,7 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <label>4.1 Have you ever been screened for non-communicable
                                                         diseases?</label>
                                                     <!-- radio -->
@@ -3545,64 +3491,58 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="mb-2">
-                                                            <input type="checkbox" name="category[]" value="2" <?php if ($classification['category'] == 2) {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
-                                                            <label for="ldct_results" class="form-label">Category 2</label><br>
-                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 2) as $cat) { ?>
-                                                                - <label><?= $cat['name'] ?></label> <br>
-                                                            <?php } ?>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="chronic_illness_type" class="form-label">Name of chronic illness</label>
+                                                        <input type="text" value="<?php if ($chronic_illnesses['chronic_illness_type']) {
+                                                                                        print_r($chronic_illnesses['chronic_illness_type']);
+                                                                                    } ?>" id="chronic_illness_type" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="start_date_chronic" class="form-label">Start date</label>
+                                                        <input type="date" value="<?php if ($chronic_illnesses['start_date_chronic']) {
+                                                                                        print_r($chronic_illnesses['start_date_chronic']);
+                                                                                    } ?>" id="start_date_chronic" name="start_date_chronic" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="row-form clearfix">
+                                                        <!-- select -->
+                                                        <div class="form-group">
+                                                            <label>Complete?</label>
+                                                            <select id="chronic_illnesses_specify_complete" name="chronic_illnesses_specify_complete" class="form-control" required>
+                                                                <option value="<?= $chronic_illnesses['chronic_illnesses_specify_complete'] ?>">
+                                                                    <?php if ($chronic_illnesses['chronic_illnesses_specify_complete']) {
+                                                                        if ($chronic_illnesses['chronic_illnesses_specify_complete'] == 0) {
+                                                                            echo 'Incomplete';
+                                                                        } elseif ($chronic_illnesses['chronic_illnesses_specify_complete'] == 1) {
+                                                                            echo 'Unverified';
+                                                                        } elseif ($chronic_illnesses['chronic_illnesses_specify_complete'] == 2) {
+                                                                            echo 'Complete';
+                                                                        }
+                                                                    } else {
+                                                                        echo 'Select';
+                                                                    } ?>
+                                                                </option>
+                                                                <option value="0">Incomplete</option>
+                                                                <option value="1">Unverified</option>
+                                                                <option value="2">Complete</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="mb-2">
-                                                            <input type="checkbox" name="category[]" value="3" <?php if ($classification['category'] == 3) {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
-                                                            <label for="ldct_results" class="form-label">4.1 Have you ever been screened for non-communicable
-                                                                diseases?</label><br>
-                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 3) as $cat) { ?>
-                                                                - <label><?= $cat['name'] ?></label> <br>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-4">
-                                                        <div class="mb-2">
-                                                            <input type="checkbox" name="category[]" value="4" <?php if ($classification['category'] == 4) {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
-                                                            <label for="ldct_results" class="form-label">Category 4A</label><br>
-                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 4) as $cat) { ?>
-                                                                - <label><?= $cat['name'] ?></label> <br>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <div class="mb-2">
-                                                            <input type="checkbox" name="category[]" value="5" <?php if ($classification['category'] == 5) {
-                                                                                                                    echo 'checked';
-                                                                                                                } ?>>
-                                                            <label for="ldct_results" class="form-label">Category 4B</label><br>
-                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 5) as $cat) { ?>
-                                                                - <label><?= $cat['name'] ?></label> <br>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
                                             </div>
-                                            <!-- /.card-body -->
-                                            <div class="card-footer">
-                                                <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
-                                                <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                                <input type="submit" name="add_classification" value="Submit" class="btn btn-primary">
-                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+                                            <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
+                                            <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
+                                            <input type="submit" name="add_chronic_illnesses" value="Submit" class="btn btn-primary">
+                                        </div>
                                     </form>
                                 </div>
                                 <!-- /.card -->
@@ -3618,7 +3558,7 @@ if ($user->isLoggedIn()) {
 
         <?php } elseif ($_GET['id'] == 9) { ?>
             <?php
-            $economic = $override->get3('economic', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
+            $laboratory_results = $override->get3('laboratory_results', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
             ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -3627,10 +3567,10 @@ if ($user->isLoggedIn()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <?php if ($history) { ?>
-                                    <h1>Add New CRF3</h1>
+                                <?php if ($laboratory_results) { ?>
+                                    <h1>Add New Laboratory Results</h1>
                                 <?php } else { ?>
-                                    <h1>Update CRF3</h1>
+                                    <h1>Update Laboratory Results</h1>
                                 <?php } ?>
                             </div>
                             <div class="col-sm-6">
@@ -3642,10 +3582,10 @@ if ($user->isLoggedIn()) {
                                     <li class="breadcrumb-item"><a href="info.php?id=3&status=<?= $_GET['status']; ?>">
                                             Go to screening list > </a>
                                     </li>&nbsp;&nbsp;
-                                    <?php if ($history) { ?>
-                                        <li class="breadcrumb-item active">Add New CRF3</li>
+                                    <?php if ($laboratory_results) { ?>
+                                        <li class="breadcrumb-item active">Add New Laboratory Results</li>
                                     <?php } else { ?>
-                                        <li class="breadcrumb-item active">Update CRF3</li>
+                                        <li class="breadcrumb-item active">Update Laboratory Results</li>
                                     <?php } ?>
                                 </ol>
                             </div>
@@ -3662,286 +3602,90 @@ if ($user->isLoggedIn()) {
                                 <!-- general form elements disabled -->
                                 <div class="card card-warning">
                                     <div class="card-header">
-                                        <h3 class="card-title">CRF3: Taarifa za kiuchumi (Wakati wa screening)</h3>
+                                        <h3 class="card-title">HAEMATOLOGY</h3>
                                     </div>
                                     <!-- /.card-header -->
-                                    <form id="economic" enctype="multipart/form-data" method="post" autocomplete="off">
+                                    <form id="validation" enctype="multipart/form-data" method="post" autocomplete="off">
                                         <div class="card-body">
+                                            <hr>
                                             <div class="row">
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="visit_date" class="form-label">Visit Date</label>
+                                                        <input type="date" value="<?php if ($laboratory_results['visit_date']) {
+                                                                                        print_r($laboratory_results['visit_date']);
+                                                                                    } ?>" id="visit_date" name="visit_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Has haematology been done today?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="hema_done" id="hema_done<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['hema_done'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="economic_date" class="form-label">Tarehe</label>
-                                                        <input type="date" value="<?php if ($economic['economic_date']) {
-                                                                                        print_r($economic['economic_date']);
-                                                                                    } ?>" max="<?= date('Y-m-d'); ?>" id="economic_date" name="economic_date" class="form-control" placeholder="Enter economic date" required />
+                                                        <label for="chronic_illness_type" class="form-label">Name of chronic illness</label>
+                                                        <input type="text" value="<?php if ($laboratory_results['chronic_illness_type']) {
+                                                                                        print_r($laboratory_results['chronic_illness_type']);
+                                                                                    } ?>" id="chronic_illness_type" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
-                                                    <label>Chanzo kikuu cha kipato cha mkuu wa kaya?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household1" value="1" <?php if ($economic['income_household'] == 1) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Msharaha kwa mwezi</label>
-                                                            </div>
-
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household2" value="2" <?php if ($economic['income_household'] == 2) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Posho kwa siku</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household3" value="3" <?php if ($economic['income_household'] == 3) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Pato kutokana na mauzo ya biashara</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household4" value="4" <?php if ($economic['income_household'] == 4) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Pato kutokana na mauzo ya mazao au mifugo</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household5" value="5" <?php if ($economic['income_household'] == 5) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Hana kipato</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household6" value="6" <?php if ($economic['income_household'] == 6) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Mstaafu</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_household" id="income_household96" value="96" <?php if ($economic['income_household'] == 96) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
-                                                                <label class="form-check-label">Nyingine, Taja</label>
-                                                            </div>
-                                                            <textarea class="form-control" name="income_household_other" id="income_household_other" rows="2" placeholder="Type other here...">
-                                                                <?php if ($economic['income_household_other']) {
-                                                                    print_r($economic['income_household_other']);
-                                                                }  ?>
-                                                            </textarea>
-                                                        </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="lab_date_hema" class="form-label">Date of sampling</label>
+                                                        <input type="date" value="<?php if ($laboratory_results['lab_date_hema']) {
+                                                                                        print_r($laboratory_results['lab_date_hema']);
+                                                                                    } ?>" id="lab_date_hema" name="lab_date_hema" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-4">
-                                                    <label>Chanzo kikuu cha mapato cha mgonjwa?</label>
-                                                    <!-- radio -->
+                                                <div class="col-sm-2">
                                                     <div class="row-form clearfix">
+                                                        <!-- select -->
                                                         <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient1" value="1" <?php if ($economic['income_patient'] == 1) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Msharaha kwa mwezi</label>
-                                                            </div>
-
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient2" value="2" <?php if ($economic['income_patient'] == 2) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Posho kwa siku</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient3" value="3" <?php if ($economic['income_patient'] == 3) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Pato kutokana na mauzo ya biashara</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient4" value="4" <?php if ($economic['income_patient'] == 4) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Pato kutokana na mauzo ya mazao au mifugo</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient5" value="5" <?php if ($economic['income_patient'] == 5) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Hana kipato</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient6" value="6" <?php if ($economic['income_patient'] == 6) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Mstaafu</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="income_patient" id="income_patient96" value="96" <?php if ($economic['income_patient'] == 96) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Nyingine, Taja</label>
-                                                            </div>
-                                                            <textarea class="form-control" name="income_patient_other" id="income_patient_other" rows="2" placeholder="Type other here...">
-                                                            <?php if ($economic['income_patient_other']) {
-                                                                print_r($economic['income_patient_other']);
-                                                            }  ?>
-                                                            </textarea>
+                                                            <label>Complete?</label>
+                                                            <select id="laboratory_results_complete" name="laboratory_results_complete" class="form-control" required>
+                                                                <option value="<?= $laboratory_results['laboratory_results_complete'] ?>">
+                                                                    <?php if ($laboratory_results['laboratory_results_complete']) {
+                                                                        if ($laboratory_results['laboratory_results_complete'] == 0) {
+                                                                            echo 'Incomplete';
+                                                                        } elseif ($laboratory_results['laboratory_results_complete'] == 1) {
+                                                                            echo 'Unverified';
+                                                                        } elseif ($laboratory_results['laboratory_results_complete'] == 2) {
+                                                                            echo 'Complete';
+                                                                        }
+                                                                    } else {
+                                                                        echo 'Select';
+                                                                    } ?>
+                                                                </option>
+                                                                <option value="0">Incomplete</option>
+                                                                <option value="1">Unverified</option>
+                                                                <option value="2">Complete</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <hr>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="monthly_earn" class="form-label">Je, unaingiza shilingi ngapi kwa mwezi kutoka kwenye vyanzo vyako vyote vya fedha? <br> ( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['monthly_earn']) {
-                                                                                        print_r($economic['monthly_earn']);
-                                                                                    } ?>" min="0" max="100000000" id="monthly_earn" name="monthly_earn" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="member_earn" class="form-label">Kwa mwezi, ni kiasi gani wanakaya wenzako wanaingiza kutoka kwenye vyanzo vyote vya fedha? (kwa ujumla)?<br> ( TSHS ) </label>
-                                                        <input type="text" value="<?php if ($economic['member_earn']) {
-                                                                                        print_r($economic['member_earn']);
-                                                                                    } ?>" min="0" max="100000000" id="member_earn" name="member_earn" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="transport" class="form-label">Ulilipa kiasi gani kwa ajili ya usafiri ulipoenda hospitali kwa ajili ya kufanyiwa uchunguzi wa saratani ya mapafu? <br> ( TSHS ) </label>
-                                                        <input type="text" value="<?php if ($economic['transport']) {
-                                                                                        print_r($economic['transport']);
-                                                                                    } ?>" min="0" max="100000000" id="transport" name="transport" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <hr>
-                                            <div class="row">
-
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="support_earn" class="form-label">Kama ulisindikizwa, alilipa fedha kiasi gani kwa ajili ya usafiri? <br>( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['support_earn']) {
-                                                                                        print_r($economic['support_earn']);
-                                                                                    } ?>" min="0" max="100000000" id="support_earn" name="support_earn" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="food_drinks" class="form-label">Ulilipa fedha kiasi gani kwa ajili ya chakula na vinywaji? <br>( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['food_drinks']) {
-                                                                                        print_r($economic['food_drinks']);
-                                                                                    } ?>" min="0" max="100000000" id="food_drinks" name="food_drinks" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="other_cost" class="form-label">Je, kuna gharama yoyote ambayo ulilipa tofauti na hizo ulizotaja hapo, kama ndio, ni shilingi ngapi? ( TSHS ) </label>
-                                                        <input type="text" value="<?php if ($economic['other_cost']) {
-                                                                                        print_r($economic['other_cost']);
-                                                                                    } ?>" min="0" max="100000000" id="other_cost" name="other_cost" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <hr>
-
-                                            <div class="card card-warning">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">Je, kwa mwezi, unapoteza muda kiasi gani unapotembelea kliniki?</h3>
-                                                </div>
-                                            </div>
-
-
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="mb-3">
-                                                        <label for="days" class="form-label">Siku</label>
-                                                        <input type="text" value="<?php if ($economic['days']) {
-                                                                                        print_r($economic['days']);
-                                                                                    } ?>" min="0" max="100" id="days" name="days" class="form-control" placeholder="Enter days" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="mb-3">
-                                                        <label for="hours" class="form-label">Masaa</label>
-                                                        <input type="text" value="<?php if ($economic['hours']) {
-                                                                                        print_r($economic['hours']);
-                                                                                    } ?>" min="0" max="100" id="hours" name="hours" class="form-control" placeholder="Enter hours" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <hr>
-                                            <div class="card card-warning">
-                                                <div class="card-header">
-                                                    <h3 class="card-title"> Je, ulilipa gharama kiasi gani kwa huduma zifuatazo?
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <div class="mb-3">
-                                                        <label for="registration" class="form-label">Usajili <br> ( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['registration']) {
-                                                                                        print_r($economic['registration']);
-                                                                                    } ?>" min="0" max="100000000" id="registration" name="registration" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="mb-3">
-                                                        <label for="consultation" class="form-label">Kumuona daktari (Consultation) ( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['consultation']) {
-                                                                                        print_r($economic['consultation']);
-                                                                                    } ?>" min="0" max="100000000" id="consultation" name="consultation" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-2">
-                                                    <div class="mb-3">
-                                                        <label for="diagnostic" class="form-label">Vipimo (Diagnostic tests) ( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['diagnostic']) {
-                                                                                        print_r($economic['diagnostic']);
-                                                                                    } ?>" min="0" max="100000000" id="diagnostic" name="diagnostic" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="mb-3">
-                                                        <label for="medications" class="form-label">Dawa (Medications) <br>( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['medications']) {
-                                                                                        print_r($economic['medications']);
-                                                                                    } ?>" min="0" max="100000000" id="medications" name="medications" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-4">
-                                                    <div class="mb-3">
-                                                        <label for="other_medical_cost" class="form-label">Gharama zingine za ziada kwa ajili ya matibabu (Any other direct medical costs) ( TSHS )</label>
-                                                        <input type="text" value="<?php if ($economic['other_medical_cost']) {
-                                                                                        print_r($economic['other_medical_cost']);
-                                                                                    } ?>" min="0" max="100000000" id="other_medical_cost" name="other_medical_cost" class="form-control" placeholder="Enter TSHS" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$" title="Please enter numbers only" required />
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer">
                                             <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
                                             <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                            <input type="submit" name="add_economic" value="Submit" class="btn btn-primary">
+                                            <input type="submit" name="add_chronic_illnesses" value="Submit" class="btn btn-primary">
                                         </div>
                                     </form>
                                 </div>
