@@ -3821,7 +3821,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="heart_rate_ecg" class="form-label">1. Heart Rate</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['heart_rate_ecg']) {
                                                                                         print_r($radiological_investigations['heart_rate_ecg']);
-                                                                                    } ?>" id="heart_rate_ecg" name="heart_rate_ecg" min="0" class="form-control" placeholder="Enter Time" />
+                                                                                    } ?>" id="heart_rate_ecg" name="heart_rate_ecg" min="0" class="form-control" placeholder="Enter here" />
                                                         <span>bpm (Quatitative)</span>
                                                     </div>
                                                 </div>
@@ -3831,11 +3831,11 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="row-form clearfix">
                                                             <div class="form-group">
-                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                <?php foreach ($override->get('qualitative', 'status', 1) as $value) { ?>
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
-                                                                                                                                                                                                                echo 'checked';
-                                                                                                                                                                                                            } ?>>
+                                                                        <input class="form-check-input" type="radio" name="qualitative_ecg" id="qualitative_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qualitative_ecg'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
@@ -3844,22 +3844,12 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    <label>Regularity</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
-                                                                                                                                                                                                                echo 'checked';
-                                                                                                                                                                                                            } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="regularity_ecg" class="form-label">Regularity</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['regularity_ecg']) {
+                                                                                        print_r($radiological_investigations['regularity_ecg']);
+                                                                                    } ?>" id="regularity_ecg" name="regularity_ecg" min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -3868,9 +3858,551 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="row-form clearfix">
                                                             <div class="form-group">
-                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                <?php foreach ($override->get('rhythm', 'status', 1) as $value) { ?>
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                        <input class="form-check-input" type="radio" name="heart_rythm_ecg" id="heart_rythm_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['heart_rythm_ecg'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <label for="other_heart_rhythm_ecg" class="form-label">Other heart Rhythm</label>
+                                                                <input type="text" value="<?php if ($radiological_investigations['other_heart_rhythm_ecg']) {
+                                                                                                print_r($radiological_investigations['other_heart_rhythm_ecg']);
+                                                                                            } ?>" id="other_heart_rhythm_ecg" name="other_heart_rhythm_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>5. QRS Axis is;</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('axis', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="qrs_axis_state_ecg" id="qrs_axis_state_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qrs_axis_state_ecg'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>state whether QRS axis is normal or not</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="qrs_axis_no_ecg" class="form-label">5. Specify number </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['qrs_axis_no_ecg']) {
+                                                                                        print_r($radiological_investigations['qrs_axis_no_ecg']);
+                                                                                    } ?>" id="qrs_axis_no_ecg" name="qrs_axis_no_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="pr_interval_ecg" class="form-label">6. PR interval </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['pr_interval_ecg']) {
+                                                                                        print_r($radiological_investigations['pr_interval_ecg']);
+                                                                                    } ?>" id="pr_interval_ecg" name="pr_interval_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>6. PR interval specify;</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('intervals', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="pr_inter_specify_ecg" id="pr_inter_specify_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['pr_inter_specify_ecg'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>state whether QRS axis is normal or not</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="qtc_interval_ecg" class="form-label">Qtc Interval </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['qtc_interval_ecg']) {
+                                                                                        print_r($radiological_investigations['qtc_interval_ecg']);
+                                                                                    } ?>" id="qtc_interval_ecg" name="qtc_interval_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Qtc Interval specify</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('intervals', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="qtc_inter_specify_ecg" id="qtc_inter_specify_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qtc_inter_specify_ecg'] == $value['id']) {
+                                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="abnormal_waves_ecg" class="form-label">7. Abnomalities of waves noted:assess P, QRS, T-waves,
+                                                            Q-waves and report any abnormalities, if any, of the waves
+                                                            eg tall p-waves; wide QRS complex; RBBB/LBBB pattern </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['abnormal_waves_ecg']) {
+                                                                                        print_r($radiological_investigations['abnormal_waves_ecg']);
+                                                                                    } ?>" id="abnormal_waves_ecg" name="abnormal_waves_ecg" min="0" class="form-control" placeholder="Enter Here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="repolarizatn_abno_ecg" class="form-label">8.Repolarization abnormalities if any eg ST-segment depression, elevation, etc</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['repolarizatn_abno_ecg']) {
+                                                                                        print_r($radiological_investigations['repolarizatn_abno_ecg']);
+                                                                                    } ?>" id="repolarizatn_abno_ecg" name="repolarizatn_abno_ecg" min="0" class="form-control" placeholder="Enter Here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Summary statement: In conclusion the ECG is?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="conclusion_ecg" id="conclusion_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['conclusion_ecg'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>state whether QRS axis is normal or not</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="abno_o_borderl_specify" class="form-label">if abnormal or borderline specify </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['abno_o_borderl_specify']) {
+                                                                                        print_r($radiological_investigations['abno_o_borderl_specify']);
+                                                                                    } ?>" id="abno_o_borderl_specify" name="abno_o_borderl_specify" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Echocardiogram</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label>Echocardiogram;</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="echocardiogram" id="echocardiogram<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['echocardiogram'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>Remarks</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label>What is quality of the Image?;</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_of_image_echo" id="quality_of_image_echo<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_of_image_echo'] == $value['id']) {
+                                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="brief_exp_subopt_echo" class="form-label">Brief explanation why suboptimal </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['brief_exp_subopt_echo']) {
+                                                                                        print_r($radiological_investigations['brief_exp_subopt_echo']);
+                                                                                    } ?>" id="brief_exp_subopt_echo" name="brief_exp_subopt_echo" min="0" class="form-control" placeholder="Enter Time" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label>Situs;</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('situs', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="situs_echo" id="situs_echo<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['situs_echo'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label>Cardiac axis</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('cardiac_axis', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="cardiac_axis_echo" id="cardiac_axis_echo<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['cardiac_axis_echo'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label>Systemic veinous connections</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normal_abnamal', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="syst_vein_connect_echo" id="syst_vein_connect_echo<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['syst_vein_connect_echo'] == $value['id']) {
+                                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="specify_ab_sysvein_con" class="form-label">Specify abnormal Systemic veinous connections </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['specify_ab_sysvein_con']) {
+                                                                                        print_r($radiological_investigations['specify_ab_sysvein_con']);
+                                                                                    } ?>" id="specify_ab_sysvein_con" name="specify_ab_sysvein_con" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Pulmonary venous connections;</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normal_abnamal', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="pulmo_ven_conn_echo" id="pulmo_ven_conn_echo<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['pulmo_ven_conn_echo'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="specfy_ab_pulven_con" class="form-label">Specify abnormal Pulmonary venous connections </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['specfy_ab_pulven_con']) {
+                                                                                        print_r($radiological_investigations['specfy_ab_pulven_con']);
+                                                                                    } ?>" id="specfy_ab_pulven_con" name="specfy_ab_pulven_con" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Atrioventricular connections</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('connections', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="atrioven_connec" id="atrioven_connec<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['atrioven_connec'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Ventricular looping</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('looping', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="ventricular_loop" id="ventricular_loop<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['ventricular_loop'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Ventriculoarterial connections</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('connections', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="ventriculoart_conn" id="ventriculoart_conn<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['ventriculoart_conn'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Arrangement of great arteries</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('arrangement', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="arrange_grt_arteries" id="arrange_grt_arteries<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['arrange_grt_arteries'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Structural lesions [ASD, VSD, PDA]</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('seen_not_seen', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="structural_lesions" id="structural_lesions<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['structural_lesions'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="state_struc_lession" class="form-label">State structural lesion </label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['state_struc_lession']) {
+                                                                                        print_r($radiological_investigations['state_struc_lession']);
+                                                                                    } ?>" id="state_struc_lession" name="state_struc_lession" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="size" class="form-label">Size of structural lesion</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['size']) {
+                                                                                        print_r($radiological_investigations['size']);
+                                                                                    } ?>" id="size" name="size" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="site_struc_lesion" class="form-label">Site of structural lesion</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['site_struc_lesion']) {
+                                                                                        print_r($radiological_investigations['site_struc_lesion']);
+                                                                                    } ?>" id="site_struc_lesion" name="site_struc_lesion" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="hemodynamics_stru_lesio" class="form-label">Hemodynamics of structural lesions</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['hemodynamics_stru_lesio']) {
+                                                                                        print_r($radiological_investigations['hemodynamics_stru_lesio']);
+                                                                                    } ?>" id="hemodynamics_stru_lesio" name="hemodynamics_stru_lesio" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Valve Function</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="aortic_valve" class="form-label">Aortic valve</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['aortic_valve']) {
+                                                                                        print_r($radiological_investigations['aortic_valve']);
+                                                                                    } ?>" id="aortic_valve" name="aortic_valve" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="mitral_vavlve" class="form-label">Mitral Valve</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['mitral_vavlve']) {
+                                                                                        print_r($radiological_investigations['mitral_vavlve']);
+                                                                                    } ?>" id="mitral_vavlve" name="mitral_vavlve" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="tricuspid_valve" class="form-label">Tricuspid Valve</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['tricuspid_valve']) {
+                                                                                        print_r($radiological_investigations['tricuspid_valve']);
+                                                                                    } ?>" id="tricuspid_valve" name="tricuspid_valve" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Pericardial effusion</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('none_present', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="pericardial_effusion" id="pericardial_effusion<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['pericardial_effusion'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="measure_deep_pool" class="form-label">measurement of Pericardial effusion (measure deepest
+                                                            pool)</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['measure_deep_pool']) {
+                                                                                        print_r($radiological_investigations['measure_deep_pool']);
+                                                                                    } ?>" id="measure_deep_pool" name="measure_deep_pool" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Chamber Dimesnions</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Left Atrium</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="left_atrium" id="left_atrium<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['left_atrium'] == $value['id']) {
                                                                                                                                                                                                                 echo 'checked';
                                                                                                                                                                                                             } ?>>
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
@@ -3880,15 +4412,48 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lf_atriu_parasternal" class="form-label">2D LA parasternal long axis anteroposterior dimension</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lf_atriu_parasternal']) {
+                                                                                        print_r($radiological_investigations['lf_atriu_parasternal']);
+                                                                                    } ?>" id="lf_atriu_parasternal" name="lf_atriu_parasternal" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lf_atrium_4chamb_long" class="form-label">2D LA apical 4-chamber long axis dimension</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_long']) {
+                                                                                        print_r($radiological_investigations['lf_atrium_4chamb_long']);
+                                                                                    } ?>" id="lf_atrium_4chamb_long" name="lf_atrium_4chamb_long" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lf_atrium_4chamb_minor" class="form-label">2D LA apical 4-chamber minor axis (transverse) dimension</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_minor']) {
+                                                                                        print_r($radiological_investigations['lf_atrium_4chamb_minor']);
+                                                                                    } ?>" id="lf_atrium_4chamb_minor" name="lf_atrium_4chamb_minor" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
                                                 <div class="col-sm-3">
-                                                    <label>Other heart Rhythm</label>
+                                                    <label>Right Atrium</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="row-form clearfix">
                                                             <div class="form-group">
-                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                        <input class="form-check-input" type="radio" name="right_atrium" id="right_atrium<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['right_atrium'] == $value['id']) {
                                                                                                                                                                                                                 echo 'checked';
                                                                                                                                                                                                             } ?>>
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
@@ -3897,6 +4462,722 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="rt_4chamb_long" class="form-label">2D RA apical 4-chamber long axis dimension</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rt_4chamb_long']) {
+                                                                                        print_r($radiological_investigations['rt_4chamb_long']);
+                                                                                    } ?>" id="rt_4chamb_long" name="rt_4chamb_long" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="rt_4chamb_transverse" class="form-label">2D RA apical 4-chamber transverse dimension</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rt_4chamb_transverse']) {
+                                                                                        print_r($radiological_investigations['rt_4chamb_transverse']);
+                                                                                    } ?>" id="rt_4chamb_transverse" name="rt_4chamb_transverse" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lf_atrium_4chamb_minor" class="form-label">2D LA apical 4-chamber minor axis (transverse) dimension</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_minor']) {
+                                                                                        print_r($radiological_investigations['lf_atrium_4chamb_minor']);
+                                                                                    } ?>" id="lf_atrium_4chamb_minor" name="lf_atrium_4chamb_minor" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Left ventricle M-Mode (LV dimensions obtained from PLAX
+                                                        view)</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="left_ventrical_mmode" id="left_ventrical_mmode<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['left_ventrical_mmode'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="free_wall_thickness" class="form-label">MM LV end-diastolic free wall thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['free_wall_thickness']) {
+                                                                                        print_r($radiological_investigations['free_wall_thickness']);
+                                                                                    } ?>" id="free_wall_thickness" name="free_wall_thickness" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="septal_thickness" class="form-label">MM LV end-diastolic septal thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['septal_thickness']) {
+                                                                                        print_r($radiological_investigations['septal_thickness']);
+                                                                                    } ?>" id="septal_thickness" name="septal_thickness" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="free_wall_thickness_2" class="form-label">MM LV end-diastolic free wall thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['free_wall_thickness_2']) {
+                                                                                        print_r($radiological_investigations['free_wall_thickness_2']);
+                                                                                    } ?>" id="free_wall_thickness_2" name="free_wall_thickness_2" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Left ventricle 2D dimensions obtained from PLAX view</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="lt_2d_plax_view" id="lt_2d_plax_view<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['lt_2d_plax_view'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="d_freewall_thick_plax" class="form-label">2D LV end-diastolic free wall thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['d_freewall_thick_plax']) {
+                                                                                        print_r($radiological_investigations['d_freewall_thick_plax']);
+                                                                                    } ?>" id="d_freewall_thick_plax" name="d_freewall_thick_plax" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="d_septal_thick_plax" class="form-label">2D LV end-diastolic septal thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['d_septal_thick_plax']) {
+                                                                                        print_r($radiological_investigations['d_septal_thick_plax']);
+                                                                                    } ?>" id="d_septal_thick_plax" name="d_septal_thick_plax" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="d_freewall_thick_plax2" class="form-label">2D LV end-diastolic free wall thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['d_freewall_thick_plax2']) {
+                                                                                        print_r($radiological_investigations['d_freewall_thick_plax2']);
+                                                                                    } ?>" id="d_freewall_thick_plax2" name="d_freewall_thick_plax2" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label>Right ventricle chamber size measurement obtained from
+                                                        a number of views</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="right_ven_chamber" id="right_ven_chamber<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['right_ven_chamber'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="rvot_plax_dia" class="form-label">RVOT PLAX diameter</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rvot_plax_dia']) {
+                                                                                        print_r($radiological_investigations['rvot_plax_dia']);
+                                                                                    } ?>" id="rvot_plax_dia" name="rvot_plax_dia" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="rvot_prox_dia" class="form-label">RVOT proximal diameter</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rvot_prox_dia']) {
+                                                                                        print_r($radiological_investigations['rvot_prox_dia']);
+                                                                                    } ?>" id="rvot_prox_dia" name="rvot_prox_dia" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="rvot_distal_dia" class="form-label">RVOT distal diameter</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rvot_distal_dia']) {
+                                                                                        print_r($radiological_investigations['rvot_distal_dia']);
+                                                                                    } ?>" id="rvot_distal_dia" name="rvot_distal_dia" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="rv_wall_thickness" class="form-label">RV wall thickness</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rv_wall_thickness']) {
+                                                                                        print_r($radiological_investigations['rv_wall_thickness']);
+                                                                                    } ?>" id="rv_wall_thickness" name="rv_wall_thickness" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Systolic Function</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>LV systolic function as assessed using ejection fraction (EF)
+                                                        and shortening fraction (SF) obtained from M-mode
+                                                        measurement</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="lv_sys_func" id="lv_sys_func<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['lv_sys_func'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="ef_echo" class="form-label">EF</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['ef_echo']) {
+                                                                                        print_r($radiological_investigations['ef_echo']);
+                                                                                    } ?>" id="ef_echo" name="ef_echo" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>%</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="fs_echo" class="form-label">FS</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['fs_echo']) {
+                                                                                        print_r($radiological_investigations['fs_echo']);
+                                                                                    } ?>" id="fs_echo" name="fs_echo" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>%</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="rv_sys_func" class="form-label">RV systolic function as assessed by measuring RV fractional area change (FAC) and TAPSE (tricuspid annular plane systolic excursion)</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rv_sys_func']) {
+                                                                                        print_r($radiological_investigations['rv_sys_func']);
+                                                                                    } ?>" id="rv_sys_func" name="rv_sys_func" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="tapse_echo" class="form-label">Tapse</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['tapse_echo']) {
+                                                                                        print_r($radiological_investigations['tapse_echo']);
+                                                                                    } ?>" id="tapse_echo" name="tapse_echo" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Other Measurements</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Estimated RV systolic pressure should be reported when a
+                                                        complete TR jet is present</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="esti_rv_sbp" id="esti_rv_sbp<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['lv_sys_func'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="estimate_rv_sbp" class="form-label">Estimated RV systolic pressure</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['estimate_rv_sbp']) {
+                                                                                        print_r($radiological_investigations['estimate_rv_sbp']);
+                                                                                    } ?>" id="estimate_rv_sbp" name="estimate_rv_sbp" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mmHg</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Inferior vena cava (IVC) dimension and collapsibility to
+                                                        estimate right atrial pressure in adults for whom RV
+                                                        pressure is measured</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('done_not_done', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="ivc_dimen_n_collapsi" id="ivc_dimen_n_collapsi<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['ivc_dimen_n_collapsi'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="mb-2">
+                                                        <label for="inferior_venacava" class="form-label">Inferior vena cava (IVC)</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['inferior_venacava']) {
+                                                                                        print_r($radiological_investigations['inferior_venacava']);
+                                                                                    } ?>" id="inferior_venacava" name="inferior_venacava" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm/Hg</span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label>Qualitative assessment of valvar regurgitation</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('assessment', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quali_asses_valvar_regurgi" id="quali_asses_valvar_regurgi<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quali_asses_valvar_regurgi'] == $value['id']) {
+                                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Summary statement: In conclusion the Echo findings
+                                                        are? (if abnormal specify)</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>Cardiac Anatomy</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normal_abnamal', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="cardiac_anatomy" id="cardiac_anatomy<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['cardiac_anatomy'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="abnorm_cardiac_anatom" class="form-label">Specify why cardiac anatomy is abnormal</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['abnorm_cardiac_anatom']) {
+                                                                                        print_r($radiological_investigations['abnorm_cardiac_anatom']);
+                                                                                    } ?>" id="abnorm_cardiac_anatom" name="abnorm_cardiac_anatom" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Cardiac Function</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normal_abnamal', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="cardiac_function" id="cardiac_function<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['cardiac_function'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="abnorm_cardia_func" class="form-label">Specify why cardiac function is abnormal</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['abnorm_cardia_func']) {
+                                                                                        print_r($radiological_investigations['abnorm_cardia_func']);
+                                                                                    } ?>" id="abnorm_cardia_func" name="abnorm_cardia_func" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Renal Function</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>Renal Ultrasound</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="renal_ultrasound" id="renal_ultrasound<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['renal_ultrasound'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>Remarks</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label>What is the quality of Renal u/s?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_renal" id="quality_renal<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_renal'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>Note: If scan quality is assessed as poor quality, then do not proceed to
+                                                                report on it.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Kidney sizes; length of each kidney.</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="rt_kidney_length" class="form-label">Right Kidney length</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rt_kidney_length']) {
+                                                                                        print_r($radiological_investigations['rt_kidney_length']);
+                                                                                    } ?>" id="rt_kidney_length" name="rt_kidney_length" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="rt_kidney_width" class="form-label">Right Kidney length</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['rt_kidney_width']) {
+                                                                                        print_r($radiological_investigations['rt_kidney_width']);
+                                                                                    } ?>" id="rt_kidney_width" name="rt_kidney_width" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Right kidney echogenicity</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normal_abnamal', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="rt_kidney_echoge" id="rt_kidney_echoge<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['rt_kidney_echoge'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>mm</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lt_kidney_length" class="form-label">Left Kidney length</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lt_kidney_length']) {
+                                                                                        print_r($radiological_investigations['lt_kidney_length']);
+                                                                                    } ?>" id="lt_kidney_length" name="lt_kidney_length" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lt_kidney_length" class="form-label">Left kidney width</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lt_kidney_length']) {
+                                                                                        print_r($radiological_investigations['lt_kidney_length']);
+                                                                                    } ?>" id="lt_kidney_length" name="lt_kidney_length" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Left kidney echogenicity</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normal_abnamal', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="lt_kidney_echoge" id="lt_kidney_echoge<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['lt_kidney_echoge'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Is hydronephrosis present?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="hydronephrosis" id="hydronephrosis<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['hydronephrosis'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="yes_hydronephrosis" class="form-label">If yes, provide details and measurements.</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['yes_hydronephrosis']) {
+                                                                                        print_r($radiological_investigations['yes_hydronephrosis']);
+                                                                                    } ?>" id="yes_hydronephrosis" name="yes_hydronephrosis" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mm</span>
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+
+
+                                                <div class="col-sm-3">
+                                                    <label>Presence of Kidney stones?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="kidney_stones" id="kidney_stones<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['kidney_stones'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="detail_kidneystones" class="form-label">If yes, provide details:</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['detail_kidneystones']) {
+                                                                                        print_r($radiological_investigations['detail_kidneystones']);
+                                                                                    } ?>" id="detail_kidneystones" name="detail_kidneystones" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Presence of other structural anomalies?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="structural_anomalies" id="structural_anomalies<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['structural_anomalies'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="details_structural_anomali" class="form-label">If yes, provide details:</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['details_structural_anomali']) {
+                                                                                        print_r($radiological_investigations['details_structural_anomali']);
+                                                                                    } ?>" id="details_structural_anomali" name="details_structural_anomali" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="comment_bladders" class="form-label">Comment on the bladder</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['comment_bladders']) {
+                                                                                        print_r($radiological_investigations['comment_bladders']);
+                                                                                    } ?>" id="comment_bladders" name="comment_bladders" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="incidental_findings" class="form-label">Other incidental findings</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['incidental_findings']) {
+                                                                                        print_r($radiological_investigations['incidental_findings']);
+                                                                                    } ?>" id="incidental_findings" name="incidental_findings" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Summary statement: In conclusion the scan is?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('normality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="conclusion_renal" id="conclusion_renal<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['conclusion_renal'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="abnor_o_border_renal" class="form-label">If abnormal or borderline specify</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['abnor_o_border_renal']) {
+                                                                                        print_r($radiological_investigations['abnor_o_border_renal']);
+                                                                                    } ?>" id="abnor_o_border_renal" name="abnor_o_border_renal" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Form Status.</h3>
                                                 </div>
                                             </div>
 
@@ -3930,6 +5211,7 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <hr>
                                         </div>
                                         <!-- /.card-body -->

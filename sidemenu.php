@@ -38,48 +38,48 @@ if ($user->isLoggedIn()) {
 
     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
         if ($_GET['site_id'] != null) {
-            $kap = $override->getCount1('kap', 'status', 1, 'site_id', $_GET['site_id']);
-            $histroy = $override->getCount1('history', 'status', 1, 'site_id', $_GET['site_id']);
-            $results = $override->getCount1('results', 'status', 1, 'site_id', $_GET['site_id']);
-            $classification = $override->getCount1('classification', 'status', 1, 'site_id', $_GET['site_id']);
-            $outcome = $override->getCount1('outcome', 'status', 1, 'site_id', $_GET['site_id']);
-            $economic = $override->getCount1('economic', 'status', 1, 'site_id', $_GET['site_id']);
-            $visit = $override->getCount1('visit', 'status', 1, 'site_id', $_GET['site_id']);
+            // $kap = $override->getCount1('kap', 'status', 1, 'site_id', $_GET['site_id']);
+            // $histroy = $override->getCount1('history', 'status', 1, 'site_id', $_GET['site_id']);
+            // $results = $override->getCount1('results', 'status', 1, 'site_id', $_GET['site_id']);
+            // $classification = $override->getCount1('classification', 'status', 1, 'site_id', $_GET['site_id']);
+            // $outcome = $override->getCount1('outcome', 'status', 1, 'site_id', $_GET['site_id']);
+            // $economic = $override->getCount1('economic', 'status', 1, 'site_id', $_GET['site_id']);
+            // $visit = $override->getCount1('visit', 'status', 1, 'site_id', $_GET['site_id']);
 
             $registered = $override->getCount1('clients', 'status', 1, 'site_id', $_GET['site_id']);
-            $screened = $override->getCount1('history', 'status', 1, 'site_id', $_GET['site_id']);
-            $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $_GET['site_id']);
-            $enrolled = $override->getCount1('results', 'status', 1, 'site_id', $_GET['site_id']);
-            $end = $override->getCount1('clients', 'status', 0, 'site_id', $_GET['site_id']);
+            // $screened = $override->getCount1('history', 'status', 1, 'site_id', $_GET['site_id']);
+            // $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $_GET['site_id']);
+            // $enrolled = $override->getCount1('results', 'status', 1, 'site_id', $_GET['site_id']);
+            // $end = $override->getCount1('clients', 'status', 0, 'site_id', $_GET['site_id']);
         } else {
-            $kap = $override->getCount('kap', 'status', 1);
-            $history = $override->getCount('history', 'status', 1);
-            $results = $override->getCount('results', 'status', 1);
-            $classification = $override->getCount('classification', 'status', 1);
-            $outcome = $override->getCount('outcome', 'status', 1);
-            $economic = $override->getCount('economic', 'status', 1);
-            $visit = $override->getCount('visit', 'status', 1);
+            // $kap = $override->getCount('kap', 'status', 1);
+            // $history = $override->getCount('history', 'status', 1);
+            // $results = $override->getCount('results', 'status', 1);
+            // $classification = $override->getCount('classification', 'status', 1);
+            // $outcome = $override->getCount('outcome', 'status', 1);
+            // $economic = $override->getCount('economic', 'status', 1);
+            // $visit = $override->getCount('visit', 'status', 1);
 
             $registered = $override->getCount('clients', 'status', 1);
-            $screened = $override->getCount('history', 'status', 1);
-            $eligible = $override->getCount('history', 'eligible', 1);
-            $enrolled = $override->getCount('results', 'status', 1);
-            $end = $override->getCount('clients', 'status', 0);
+            // $screened = $override->getCount('history', 'status', 1);
+            // $eligible = $override->getCount('history', 'eligible', 1);
+            // $enrolled = $override->getCount('results', 'status', 1);
+            // $end = $override->getCount('clients', 'status', 0);
         }
     } else {
-        $kap = $override->getCount1('kap', 'status', 1, 'site_id', $user->data()->site_id);
-        $histroy = $override->getCount1('history', 'status', 1, 'site_id', $user->data()->site_id);
-        $results = $override->getCount1('results', 'status', 1, 'site_id', $user->data()->site_id);
-        $classification = $override->getCount1('classification', 'status', 1, 'site_id', $user->data()->site_id);
-        $outcome = $override->getCount1('outcome', 'status', 1, 'site_id', $user->data()->site_id);
-        $economic = $override->getCount1('economic', 'status', 1, 'site_id', $user->data()->site_id);
-        $visit = $override->getCount1('visit', 'status', 1, 'site_id', $user->data()->site_id);
+        // $kap = $override->getCount1('kap', 'status', 1, 'site_id', $user->data()->site_id);
+        // $histroy = $override->getCount1('history', 'status', 1, 'site_id', $user->data()->site_id);
+        // $results = $override->getCount1('results', 'status', 1, 'site_id', $user->data()->site_id);
+        // $classification = $override->getCount1('classification', 'status', 1, 'site_id', $user->data()->site_id);
+        // $outcome = $override->getCount1('outcome', 'status', 1, 'site_id', $user->data()->site_id);
+        // $economic = $override->getCount1('economic', 'status', 1, 'site_id', $user->data()->site_id);
+        // $visit = $override->getCount1('visit', 'status', 1, 'site_id', $user->data()->site_id);
 
         $registered = $override->getCount1('clients', 'status', 1, 'site_id', $user->data()->site_id);
-        $screened = $override->getCount1('history', 'status', 1, 'site_id', $user->data()->site_id);
-        $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $user->data()->site_id);
-        $enrolled = $override->getCount1('results', 'status', 1, 'site_id', $user->data()->site_id);
-        $end = $override->getCount1('clients', 'status', 0, 'site_id', $user->data()->site_id);
+        // $screened = $override->getCount1('history', 'status', 1, 'site_id', $user->data()->site_id);
+        // $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $user->data()->site_id);
+        // $enrolled = $override->getCount1('results', 'status', 1, 'site_id', $user->data()->site_id);
+        // $end = $override->getCount1('clients', 'status', 0, 'site_id', $user->data()->site_id);
     }
 } else {
     Redirect::to('index.php');
