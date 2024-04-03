@@ -3467,7 +3467,7 @@ if ($user->isLoggedIn()) {
 
         <?php } elseif ($_GET['id'] == 8) { ?>
             <?php
-            $classification = $override->get3('classification', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
+            $chronic_illnesses = $override->get3('chronic_illnesses', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
             ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -3476,10 +3476,10 @@ if ($user->isLoggedIn()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <?php if ($classification) { ?>
-                                    <h1>Add New LUNG- RADS CLASSIFICATION</h1>
+                                <?php if ($chronic_illnesses) { ?>
+                                    <h1>Add New Chronic Illnesses</h1>
                                 <?php } else { ?>
-                                    <h1>Update LUNG- RADS CLASSIFICATION</h1>
+                                    <h1>Update Chronic Illnesses</h1>
                                 <?php } ?>
                             </div>
                             <div class="col-sm-6">
@@ -3491,10 +3491,10 @@ if ($user->isLoggedIn()) {
                                     <li class="breadcrumb-item"><a href="info.php?id=3&status=<?= $_GET['status']; ?>">
                                             Go to screening list > </a>
                                     </li>&nbsp;&nbsp;
-                                    <?php if ($classification) { ?>
-                                        <li class="breadcrumb-item active">Add New LUNG- RADS CLASSIFICATION</li>
+                                    <?php if ($chronic_illnesses) { ?>
+                                        <li class="breadcrumb-item active">Add New Chronic Illnesses</li>
                                     <?php } else { ?>
-                                        <li class="breadcrumb-item active">Update LUNG- RADS CLASSIFICATION</li>
+                                        <li class="breadcrumb-item active">Update Chronic Illnesses</li>
                                     <?php } ?>
                                 </ol>
                             </div>
@@ -3511,7 +3511,7 @@ if ($user->isLoggedIn()) {
                                 <!-- general form elements disabled -->
                                 <div class="card card-warning">
                                     <div class="card-header">
-                                        <h3 class="card-title">LUNG- RADS CLASSIFICATION</h3>
+                                        <h3 class="card-title">Chronic Illnesses</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <form id="validation" enctype="multipart/form-data" method="post" autocomplete="off">
@@ -3520,81 +3520,89 @@ if ($user->isLoggedIn()) {
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="mb-2">
-                                                        <label for="classification_date" class="form-label">Clasification Date</label>
-                                                        <input type="date" value="<?php if ($classification) {
-                                                                                        print_r($classification['classification_date']);
-                                                                                    } ?>" id="classification_date" name="classification_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter classification date" required />
+                                                        <label for="visit_date" class="form-label">Visit Date</label>
+                                                        <input type="date" value="<?php if ($chronic_illnesses['visit_date']) {
+                                                                                        print_r($chronic_illnesses['visit_date']);
+                                                                                    } ?>" id="visit_date" name="visit_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <input type="checkbox" name="category[]" value="1" <?php if ($classification['category'] == 1) {
-                                                                                                                echo 'checked';
-                                                                                                            } ?>>
-                                                        <label for="ldct_results" class="form-label">Category 1</label><br>
-                                                        <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 1) as $cat) { ?>
-                                                            - <label><?= $cat['name'] ?></label> <br>
-                                                        <?php } ?>
+                                                <div class="col-sm-4">
+                                                    <label>4.1 Have you ever been screened for non-communicable
+                                                        diseases?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="ncd_screening" id="ncd_screening<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($chronic_illnesses['ncd_screening'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <input type="checkbox" name="category[]" value="2" <?php if ($classification['category'] == 2) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                            <label for="ldct_results" class="form-label">Category 2</label><br>
+                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 2) as $cat) { ?>
+                                                                - <label><?= $cat['name'] ?></label> <br>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <input type="checkbox" name="category[]" value="2" <?php if ($classification['category'] == 2) {
-                                                                                                                echo 'checked';
-                                                                                                            } ?>>
-                                                        <label for="ldct_results" class="form-label">Category 2</label><br>
-                                                        <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 2) as $cat) { ?>
-                                                            - <label><?= $cat['name'] ?></label> <br>
-                                                        <?php } ?>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <input type="checkbox" name="category[]" value="3" <?php if ($classification['category'] == 3) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                            <label for="ldct_results" class="form-label">4.1 Have you ever been screened for non-communicable
+                                                                diseases?</label><br>
+                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 3) as $cat) { ?>
+                                                                - <label><?= $cat['name'] ?></label> <br>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <input type="checkbox" name="category[]" value="3" <?php if ($classification['category'] == 3) {
-                                                                                                                echo 'checked';
-                                                                                                            } ?>>
-                                                        <label for="ldct_results" class="form-label">Category 3</label><br>
-                                                        <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 3) as $cat) { ?>
-                                                            - <label><?= $cat['name'] ?></label> <br>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <input type="checkbox" name="category[]" value="4" <?php if ($classification['category'] == 4) {
-                                                                                                                echo 'checked';
-                                                                                                            } ?>>
-                                                        <label for="ldct_results" class="form-label">Category 4A</label><br>
-                                                        <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 4) as $cat) { ?>
-                                                            - <label><?= $cat['name'] ?></label> <br>
-                                                        <?php } ?>
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <input type="checkbox" name="category[]" value="4" <?php if ($classification['category'] == 4) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                            <label for="ldct_results" class="form-label">Category 4A</label><br>
+                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 4) as $cat) { ?>
+                                                                - <label><?= $cat['name'] ?></label> <br>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <input type="checkbox" name="category[]" value="5" <?php if ($classification['category'] == 5) {
+                                                                                                                    echo 'checked';
+                                                                                                                } ?>>
+                                                            <label for="ldct_results" class="form-label">Category 4B</label><br>
+                                                            <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 5) as $cat) { ?>
+                                                                - <label><?= $cat['name'] ?></label> <br>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <input type="checkbox" name="category[]" value="5" <?php if ($classification['category'] == 5) {
-                                                                                                                echo 'checked';
-                                                                                                            } ?>>
-                                                        <label for="ldct_results" class="form-label">Category 4B</label><br>
-                                                        <?php foreach ($override->getNews('lung_rads', 'status', 1, 'category', 5) as $cat) { ?>
-                                                            - <label><?= $cat['name'] ?></label> <br>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
+                                                <hr>
                                             </div>
-                                            <hr>
-                                        </div>
-                                        <!-- /.card-body -->
-                                        <div class="card-footer">
-                                            <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
-                                            <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                            <input type="submit" name="add_classification" value="Submit" class="btn btn-primary">
-                                        </div>
+                                            <!-- /.card-body -->
+                                            <div class="card-footer">
+                                                <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
+                                                <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
+                                                <input type="submit" name="add_classification" value="Submit" class="btn btn-primary">
+                                            </div>
                                     </form>
                                 </div>
                                 <!-- /.card -->

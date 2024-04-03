@@ -1087,38 +1087,36 @@ if ($user->isLoggedIn()) {
 
 
                                                                 <?php if ($visit['sequence'] == 1) { ?>
-                                                                    <?php if ($clients['eligible'] == 1) { ?>
-                                                                        <?php if ($override->getNews('risk_factors', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                            <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Risk Factors </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php if ($override->getNews('risk_factors', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
+                                                                        <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Risk Factors </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } else { ?>
-                                                                            <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Risk Factors </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php } else { ?>
+                                                                        <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Risk Factors </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } ?>
+                                                                    <?php } ?>
 
-                                                                        <?php if ($override->getNews('chronic_illnesses', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                            <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php if ($override->getNews('chronic_illnesses', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
+                                                                        <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } else { ?>
-                                                                            <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php } else { ?>
+                                                                        <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } ?>
+                                                                    <?php } ?>
 
-                                                                        <?php if ($override->getNews('laboratory_results', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                            <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Laboratory Results </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php if ($override->getNews('laboratory_results', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
+                                                                        <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Laboratory Results </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } else { ?>
-                                                                            <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Laboratory Results </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php } else { ?>
+                                                                        <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Laboratory Results </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } ?>
+                                                                    <?php } ?>
 
-                                                                        <?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                            <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Radiological Investigations </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
+                                                                        <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Radiological Investigations </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } else { ?>
-                                                                            <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Radiological Investigations </a>&nbsp;&nbsp; <br><br>
+                                                                    <?php } else { ?>
+                                                                        <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Radiological Investigations </a>&nbsp;&nbsp; <br><br>
 
-                                                                        <?php } ?>
                                                                     <?php } ?>
                                                                 <?php } ?>
                                                             <?php } ?>
