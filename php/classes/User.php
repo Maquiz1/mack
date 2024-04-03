@@ -269,8 +269,9 @@ class User
                     'sequence' => 1,
                     'expected_date' => $screening_date,
                     'visit_date' => '',
-                    'visit_code' => 'M0',
-                    'visit_name' => 'Month 0',
+                    'visit_code' => 'EV',
+                    'visit_name' => 'Enrollment',
+                    'pid' => $study_id,
                     'study_id' => $study_id,
                     'visit_status' => 0,
                     'status' => 1,
@@ -279,7 +280,7 @@ class User
                     'staff_id' => $staff_id,
                     'update_on' => date('Y-m-d H:i:s'),
                     'update_id' => $staff_id,
-                    'site_id' => $site_id,
+                    'site' => $site_id,
                 ));
             }
         } else {

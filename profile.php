@@ -50,7 +50,7 @@ if($user->isLoggedIn()) {
 <html lang="en">
 
 <head>
-    <title> Profile - PenPlus </title>
+    <title> Profile - Mack </title>
     <?php include "head.php";?>
 </head>
 <body>

@@ -190,10 +190,10 @@ if ($user->isLoggedIn()) {
                 'gender' => array(
                     'required' => true,
                 ),
-                'ctc' => array(
-                    'required' => true,
-                    // 'unique' => 'clients'
-                ),
+                // 'ctc' => array(
+                //     'required' => true,
+                //     // 'unique' => 'clients'
+                // ),
                 'informed_consent' => array(
                     'required' => true,
                 ),
@@ -215,8 +215,6 @@ if ($user->isLoggedIn()) {
                             'firstname' => Input::get('firstname'),
                             'middlename' => Input::get('middlename'),
                             'lastname' => Input::get('lastname'),
-                            'study_id' => $std_id['study_id'],
-                            'pid' => $std_id['study_id'],
                             'art_no' => Input::get('art_no'),
                             'date_of_visit' => Input::get('date_of_visit'),
                             'gender' => Input::get('gender'),
@@ -318,8 +316,9 @@ if ($user->isLoggedIn()) {
                         $user->createRecord('visit', array(
                             'sequence' => 0,
                             'study_id' => $std_id['study_id'],
+                            'pid' => $std_id['study_id'],
                             'visit_code' => 'RS',
-                            'visit_name' => 'Registration',
+                            'visit_name' => 'Registration & Screening',
                             'expected_date' => Input::get('date_of_visit'),
                             'visit_date' => '',
                             'visit_status' => 0,
@@ -329,7 +328,7 @@ if ($user->isLoggedIn()) {
                             'staff_id' => $user->data()->id,
                             'update_on' => date('Y-m-d H:i:s'),
                             'update_id' => $user->data()->id,
-                            'site_id' => 2,
+                            'site' => $user->data()->site_id,
                         ));
 
                         $successMessage = 'Client  Added Successful';
@@ -352,7 +351,6 @@ if ($user->isLoggedIn()) {
                 ),
             ));
             if ($validate->passed()) {
-                print_r($_GET['cid']);
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
                 $hiv_history_and_medicationap = $override->getNews('hiv_history_and_medication', 'status', 1, 'patient_id', $_GET['cid']);
                 if ($hiv_history_and_medicationap) {
@@ -433,55 +431,14 @@ if ($user->isLoggedIn()) {
             if ($validate->passed()) {
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
                 $eligibility = $override->getNews('eligibility', 'status', 1, 'patient_id', $_GET['cid']);
-                $eligible = 0;
-
-
-                if ((Input::get('hiv_infection') == 1 && Input::get('hart_treatmentiv_infection') == 1 && Input::get('participant_age') == 1 && Input::get('understand_icf') == 1) && (Input::get('another_study') == 2 && Input::get('newly_diagnosed') == 2 && Input::get('medical_condtn') == 2)) {
+                $eligible = '';
+                if ((Input::get('hiv_infection') == 1 && Input::get('art_treatment') == 1 && Input::get('participant_age') == 1 && Input::get('understand_icf') == 1) && (Input::get('another_study') == 2 && Input::get('newly_diagnosed') == 2 && Input::get('medical_condtn') == 2)) {
                     $eligible = 1;
+                } else {
+                    $eligible = 2;
                 }
 
-                if (!$eligibility) {
-
-                    $user->createRecord('eligibility', array(
-                        'visit_date' => Input::get('visit_date'),
-                        'hiv_infection' => Input::get('hiv_infection'),
-                        'study_id' => $_GET['study_id'],
-                        'pid' => Input::get('pid'),
-                        'art_treatment' => Input::get('art_treatment'),
-                        'participant_age' => Input::get('participant_age'),
-                        'understand_icf' => Input::get('understand_icf'),
-                        'another_study' => Input::get('another_study'),
-                        'newly_diagnosed' => Input::get('newly_diagnosed'),
-                        'medical_condtn' => Input::get('medical_condtn'),
-                        'enrolled_part' => Input::get('enrolled_part'),
-                        'participant_id' => Input::get('participant_id'),
-                        'screen_failure' => Input::get('screen_failure'),
-                        'form_completd_by' => Input::get('form_completd_by'),
-                        'date_form_comptn' => Input::get('date_form_comptn'),
-                        'eligibility_form_complete' => Input::get('eligibility_form_complete'),
-                        'eligible' => $eligibility,
-                        'status' => 1,
-                        'patient_id' => $_GET['cid'],
-                        'create_on' => date('Y-m-d H:i:s'),
-                        'staff_id' => $user->data()->id,
-                        'update_on' => date('Y-m-d H:i:s'),
-                        'update_id' => $user->data()->id,
-                        'site' => $user->data()->site_id,
-                    ));
-
-                    // if ($eligible) {
-                    //     $user->visit_delete1($_GET['cid'], Input::get('screening_date'), $_GET['study_id'], $user->data()->id, $clients['site_id'], 1);
-                    // } else {
-                    //     $user->visit_delete1($_GET['cid'], Input::get('screening_date'), $_GET['study_id'], $user->data()->id, $clients['site_id'], 0);
-                    // }
-
-                    $user->updateRecord('clients', array(
-                        'screened' => 1,
-                        'eligible' => $eligible,
-                    ), $_GET['cid']);
-
-                    $successMessage = 'Eligibility Form  Successful Added';
-                } else {
+                if ($eligibility) {
                     $user->updateRecord('eligibility', array(
                         'visit_date' => Input::get('visit_date'),
                         'hiv_infection' => Input::get('hiv_infection'),
@@ -492,7 +449,6 @@ if ($user->isLoggedIn()) {
                         'newly_diagnosed' => Input::get('newly_diagnosed'),
                         'medical_condtn' => Input::get('medical_condtn'),
                         'enrolled_part' => $eligible,
-                        'participant_id' => Input::get('participant_id'),
                         'screen_failure' => Input::get('screen_failure'),
                         'form_completd_by' => Input::get('form_completd_by'),
                         'date_form_comptn' => Input::get('date_form_comptn'),
@@ -502,11 +458,51 @@ if ($user->isLoggedIn()) {
                         'update_id' => $user->data()->id,
                     ), $eligibility[0]['id']);
 
-                    // if ($eligible) {
-                    //     $user->visit_delete1($_GET['cid'], Input::get('screening_date'), $_GET['study_id'], $user->data()->id, $clients['site_id'], 1);
-                    // } else {
-                    //     $user->visit_delete1($_GET['cid'], Input::get('screening_date'), $_GET['study_id'], $user->data()->id, $clients['site_id'], 0);
-                    // }
+                    if ($eligible) {
+                        $user->visit_delete1($_GET['cid'], Input::get('visit_date'), $_GET['study_id'], $user->data()->id, $clients['site'], 1);
+                    } else {
+                        $user->visit_delete1($_GET['cid'], Input::get('visit_date'), $_GET['study_id'], $user->data()->id, $clients['site'], 0);
+                    }
+
+                    $user->updateRecord('clients', array(
+                        'screened' => 1,
+                        'eligible' => $eligible,
+                    ), $_GET['cid']);
+
+                    $successMessage = 'Eligibility Form  Successful Added';
+                } else {
+                    $user->createRecord('eligibility', array(
+                        'visit_date' => Input::get('visit_date'),
+                        'study_id' => $_GET['study_id'],
+                        'pid' => $_GET['study_id'],
+                        'hiv_infection' => Input::get('hiv_infection'),
+                        'art_treatment' => Input::get('art_treatment'),
+                        'participant_age' => Input::get('participant_age'),
+                        'understand_icf' => Input::get('understand_icf'),
+                        'another_study' => Input::get('another_study'),
+                        'newly_diagnosed' => Input::get('newly_diagnosed'),
+                        'medical_condtn' => Input::get('medical_condtn'),
+                        'enrolled_part' => $eligible,
+                        'participant_id' => $_GET['study_id'],
+                        'screen_failure' => Input::get('screen_failure'),
+                        'form_completd_by' => Input::get('form_completd_by'),
+                        'date_form_comptn' => Input::get('date_form_comptn'),
+                        'eligibility_form_complete' => Input::get('eligibility_form_complete'),
+                        'eligible' => $eligible,
+                        'status' => 1,
+                        'patient_id' => $_GET['cid'],
+                        'create_on' => date('Y-m-d H:i:s'),
+                        'staff_id' => $user->data()->id,
+                        'update_on' => date('Y-m-d H:i:s'),
+                        'update_id' => $user->data()->id,
+                        'site' => $user->data()->site_id,
+                    ));
+
+                    if ($eligible) {
+                        $user->visit_delete1($_GET['cid'], Input::get('visit_date'), $_GET['study_id'], $user->data()->id, $clients['site'], 1);
+                    } else {
+                        $user->visit_delete1($_GET['cid'], Input::get('visit_date'), $_GET['study_id'], $user->data()->id, $clients['site'], 0);
+                    }
                 }
 
                 $user->updateRecord('clients', array(
@@ -516,71 +512,135 @@ if ($user->isLoggedIn()) {
 
                 $successMessage = 'Eligibility Form  Successful Updated';
 
-                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg=' . $successMessage);
-
+                // Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg=' . $successMessage);
             } else {
                 $pageError = $validate->errors();
             }
-        } elseif (Input::get('add_results')) {
+        } elseif (Input::get('add_risk_factors')) {
             $validate = $validate->check($_POST, array(
-                'test_date' => array(
+                'visit_date' => array(
                     'required' => true,
                 ),
-                'results_date' => array(
+                'smoke_stat' => array(
                     'required' => true,
                 ),
-                'ldct_results' => array(
+                'alcohol' => array(
                     'required' => true,
                 ),
-                'rad_score' => array(
-                    'required' => true,
-                ),
-                'findings' => array(
+                'risk_factors_complete' => array(
                     'required' => true,
                 ),
             ));
             if ($validate->passed()) {
+                print_r($_POST);
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
-                $results = $override->get3('results', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
+                $risk_factors = $override->get3('risk_factors', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
+                $smoking_yes = implode(',', Input::get('smoking_yes'));
 
-                if ($results) {
-                    $user->updateRecord('results', array(
-                        'test_date' => Input::get('test_date'),
-                        'results_date' => Input::get('results_date'),
-                        'ldct_results' => Input::get('ldct_results'),
-                        'rad_score' => Input::get('rad_score'),
-                        'findings' => Input::get('findings'),
+
+                if ($risk_factors) {
+                    $user->updateRecord('risk_factors', array(
+                        'visit_date' => Input::get('visit_date'),
+                        'smoke_stat' => Input::get('smoke_stat'),
+                        'smoking_yes' => $smoking_yes,
+                        'duration_smokeless' => Input::get('duration_smokeless'),
+                        'frequence_smokeless' => Input::get('frequence_smokeless'),
+                        'quantity_smokeless' => Input::get('quantity_smokeless'),
+                        'duration_smoking' => Input::get('duration_smoking'),
+                        'frequence_smoking' => Input::get('frequence_smoking'),
+                        'quantity_smoking' => Input::get('quantity_smoking'),
+                        'duration_ecigarette' => Input::get('duration_ecigarette'),
+                        'frequence_ecigarette' => Input::get('frequence_ecigarette'),
+                        'quantity_ecigarette' => Input::get('quantity_ecigarette'),
+                        'other_tobacco' => Input::get('other_tobacco'),
+                        'duration_other' => Input::get('duration_other'),
+                        'frequence_other' => Input::get('frequence_other'),
+                        'quantity_other' => Input::get('quantity_other'),
+                        'physically_active' => Input::get('physically_active'),
+                        'activity_grade' => Input::get('activity_grade'),
+                        'alcohol' => Input::get('alcohol'),
+                        'drink_cont_alcoh' => Input::get('drink_cont_alcoh'),
+                        'total_1only' => Input::get('total_1only'),
+                        'howmany_drinks' => Input::get('howmany_drinks'),
+                        'drink_often' => Input::get('drink_often'),
+                        'cant_stop_drink' => Input::get('cant_stop_drink'),
+                        'failed_todo_normal' => Input::get('failed_todo_normal'),
+                        'first_drink_morning' => Input::get('first_drink_morning'),
+                        'remorse_after_drink' => Input::get('remorse_after_drink'),
+                        'cant_remember' => Input::get('cant_remember'),
+                        'injure_someone' => Input::get('injure_someone'),
+                        'concern_about_drink' => Input::get('concern_about_drink'),
+                        'overall_total_never' => Input::get('overall_total_never'),
+                        'overtotal' => Input::get('overtotal'),
+                        'covid19' => Input::get('covid19'),
+                        'vaccine_covid19' => Input::get('vaccine_covid19'),
+                        'treated_tb' => Input::get('treated_tb'),
+                        'date_treated_tb' => Input::get('date_treated_tb'),
+                        'risk_factors_complete' => Input::get('risk_factors_complete'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                    ), $results[0]['id']);
-                    $successMessage = 'Results  Successful Updated';
+                    ), $risk_factors[0]['id']);
+                    $successMessage = 'Risk Factors  Successful Updated';
                 } else {
-                    $user->createRecord('results', array(
-                        'test_date' => Input::get('test_date'),
-                        'results_date' => Input::get('results_date'),
-                        'visit_code' => $_GET['visit_code'],
+                    $user->createRecord('risk_factors', array(
+                        'sequence' => 1,
+                        'pid' => $_GET['study_id'],
                         'study_id' => $_GET['study_id'],
-                        'sequence' => $_GET['sequence'],
-                        'ldct_results' => Input::get('ldct_results'),
-                        'rad_score' => Input::get('rad_score'),
-                        'findings' => Input::get('findings'),
+                        'visit_code' => 'EV',
+                        'visit_date' => Input::get('visit_date'),
+                        'smoke_stat' => Input::get('smoke_stat'),
+                        'smoking_yes' => $smoking_yes,
+                        'duration_smokeless' => Input::get('duration_smokeless'),
+                        'frequence_smokeless' => Input::get('frequence_smokeless'),
+                        'quantity_smokeless' => Input::get('quantity_smokeless'),
+                        'duration_smoking' => Input::get('duration_smoking'),
+                        'frequence_smoking' => Input::get('frequence_smoking'),
+                        'quantity_smoking' => Input::get('quantity_smoking'),
+                        'duration_ecigarette' => Input::get('duration_ecigarette'),
+                        'frequence_ecigarette' => Input::get('frequence_ecigarette'),
+                        'quantity_ecigarette' => Input::get('quantity_ecigarette'),
+                        'other_tobacco' => Input::get('other_tobacco'),
+                        'duration_other' => Input::get('duration_other'),
+                        'frequence_other' => Input::get('frequence_other'),
+                        'quantity_other' => Input::get('quantity_other'),
+                        'physically_active' => Input::get('physically_active'),
+                        'activity_grade' => Input::get('activity_grade'),
+                        'alcohol' => Input::get('alcohol'),
+                        'drink_cont_alcoh' => Input::get('drink_cont_alcoh'),
+                        'total_1only' => Input::get('total_1only'),
+                        'howmany_drinks' => Input::get('howmany_drinks'),
+                        'drink_often' => Input::get('drink_often'),
+                        'cant_stop_drink' => Input::get('cant_stop_drink'),
+                        'failed_todo_normal' => Input::get('failed_todo_normal'),
+                        'first_drink_morning' => Input::get('first_drink_morning'),
+                        'remorse_after_drink' => Input::get('remorse_after_drink'),
+                        'cant_remember' => Input::get('cant_remember'),
+                        'injure_someone' => Input::get('injure_someone'),
+                        'concern_about_drink' => Input::get('concern_about_drink'),
+                        'overall_total_never' => Input::get('overall_total_never'),
+                        'overtotal' => Input::get('overtotal'),
+                        'covid19' => Input::get('covid19'),
+                        'vaccine_covid19' => Input::get('vaccine_covid19'),
+                        'treated_tb' => Input::get('treated_tb'),
+                        'date_treated_tb' => Input::get('date_treated_tb'),
+                        'risk_factors_complete' => Input::get('risk_factors_complete'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
                         'staff_id' => $user->data()->id,
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                        'site_id' => $clients['site_id'],
+                        'site' => $user->data()->site_id,
                     ));
 
                     $user->updateRecord('clients', array(
                         'enrolled' => 1,
                     ), $_GET['cid']);
 
-                    $successMessage = 'Results  Successful Added';
+                    $successMessage = 'Risk Factors  Successful Added';
                 }
 
-                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status']);
+                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg=' . $successMessage);
             } else {
                 $pageError = $validate->errors();
             }
@@ -1375,6 +1435,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
@@ -1386,24 +1447,34 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
-                                                            <label>ART No</label>
+                                                            <label>ART No ( CTC ID )</label>
                                                             <input class="form-control" type="text" minlength="14" maxlength="14" size="14" pattern=[0]{1}[0-9]{13} name="art_no" id="art_no" placeholder="Type art_ no..." value="<?php if ($clients['art_no']) {
                                                                                                                                                                                                                                         print_r($clients['art_no']);
                                                                                                                                                                                                                                     }  ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-sm-3">
                                                     <div class="row-form clearfix">
+                                                        <label>Gender</label>
                                                         <div class="form-group">
-                                                            <label>CTC ID </label>
-                                                            <input class="form-control" type="text" minlength="14" maxlength="14" size="14" pattern=[0]{1}[0-9]{13} name="ctc" id="ctc" placeholder="Type CTC ID..." value="<?php if ($clients['ctc']) {
-                                                                                                                                                                                                                                print_r($clients['ctc']);
-                                                                                                                                                                                                                            }  ?>" required />
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="gender" id="gender1" value="1" <?php if ($clients['gender'] == 1) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?> required>
+                                                                <label class="form-check-label">Male</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="gender" id="gender2" value="2" <?php if ($clients['gender'] == 2) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">Female</label>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1433,27 +1504,7 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-2">
-                                                    <div class="row-form clearfix">
-                                                        <label>Gender</label>
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="gender" id="gender1" value="1" <?php if ($clients['gender'] == 1) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?> required>
-                                                                <label class="form-check-label">Male</label>
-                                                            </div>
-
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="gender" id="gender2" value="2" <?php if ($clients['gender'] == 2) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Female</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <label>1.1 Did the Participant give informed consent ?</label>
                                                         <div class="form-group">
@@ -1473,7 +1524,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -1718,20 +1769,20 @@ if ($user->isLoggedIn()) {
                                                                     <label class="form-check-label"><?= $occupation['name'] ?></label>
                                                                 </div>
                                                             <?php } ?>
-                                                            <label>specify why unskilled:</label>
-                                                            <textarea class="form-control" name="unskilled" rows="3" placeholder="Type reasons here...">
+                                                            <label id="unskilled1">specify why unskilled:</label>
+                                                            <textarea class="form-control" name="unskilled" id="unskilled" rows="3" placeholder="Type reasons here...">
                                                                 <?php if ($clients['unskilled']) {
                                                                     print_r($clients['unskilled']);
                                                                 }  ?>
                                                             </textarea>
-                                                            <label>specify professional worker:</label>
-                                                            <textarea class="form-control" name="profesional_worker" rows="3" placeholder="Type other professional worker here...">
+                                                            <label id="profesional_worker1">specify professional worker:</label>
+                                                            <textarea class="form-control" name="profesional_worker" id="profesional_worker" rows="3" placeholder="Type other professional worker here...">
                                                                 <?php if ($clients['profesional_worker']) {
                                                                     print_r($clients['profesional_worker']);
                                                                 }  ?>
                                                             </textarea>
-                                                            <label>specify other occupation</label>
-                                                            <textarea class="form-control" name="other_occupation" rows="3" placeholder="Type other here...">
+                                                            <label id="other_occupation1">specify other occupation</label>
+                                                            <textarea class="form-control" name="other_occupation" id="other_occupation" rows="3" placeholder="Type other here...">
                                                                 <?php if ($clients['other_occupation']) {
                                                                     print_r($clients['other_occupation']);
                                                                 }  ?>
@@ -2017,7 +2068,7 @@ if ($user->isLoggedIn()) {
                                                         </textarea>
                                                 </div>
 
-                                                <div class="col-4">
+                                                <div class="col-4" id="first_line">
                                                     <label>3.3 What are the specific drugs in the partipant's current regimen?</label>
                                                     <!-- checkbox -->
                                                     <div class="row-form clearfix">
@@ -2098,7 +2149,7 @@ if ($user->isLoggedIn()) {
                                                     </textarea>
                                                 </div>
 
-                                                <div class="col-4">
+                                                <div class="col-4" id="second_line">
                                                     <label>Second Line</label>
                                                     <!-- checkbox -->
                                                     <div class="row-form clearfix">
@@ -2142,7 +2193,7 @@ if ($user->isLoggedIn()) {
                                                         }  ?>
                                                     </textarea>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-4" id="third_line">
                                                     <label>Third line</label>
                                                     <!-- checkbox -->
                                                     <div class="row-form clearfix">
@@ -2314,7 +2365,7 @@ if ($user->isLoggedIn()) {
             <!-- /.content-wrapper -->
         <?php } elseif ($_GET['id'] == 6) { ?>
             <?php
-            $history = $override->getNews('history', 'status', 1, 'patient_id', $_GET['cid'])[0];
+            $eligibility = $override->getNews('eligibility', 'status', 1, 'patient_id', $_GET['cid'])[0];
             ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -2323,7 +2374,7 @@ if ($user->isLoggedIn()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <?php if (!$history) { ?>
+                                <?php if (!$eligibility) { ?>
                                     <h1>Add New Eligibility Form</h1>
                                 <?php } else { ?>
                                     <h1>Update Eligibility Form</h1>
@@ -2338,7 +2389,7 @@ if ($user->isLoggedIn()) {
                                     <li class="breadcrumb-item"><a href="info.php?id=3&status=<?= $_GET['status']; ?>">
                                             Go to screening list > </a>
                                     </li>&nbsp;&nbsp;
-                                    <?php if (!$history) { ?>
+                                    <?php if (!$eligibility) { ?>
                                         <li class="breadcrumb-item active">Add New Eligibility Form</li>
                                     <?php } else { ?>
                                         <li class="breadcrumb-item active">Update Eligibility Form</li>
@@ -2366,29 +2417,29 @@ if ($user->isLoggedIn()) {
                                         <div class="card-body">
                                             <hr>
                                             <div class="row">
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <div class="mb-2">
-                                                        <label for="screening_date" class="form-label">Visit date</label>
-                                                        <input type="date" value="<?php if ($history['screening_date']) {
-                                                                                        print_r($history['screening_date']);
-                                                                                    } ?>" id="screening_date" name="screening_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter screening date" required />
+                                                        <label for="visit_date" class="form-label">Visit date</label>
+                                                        <input type="date" value="<?php if ($eligibility['visit_date']) {
+                                                                                        print_r($eligibility['visit_date']);
+                                                                                    } ?>" id="visit_date" name="visit_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-2">
                                                     <label>Confirmed and Documented HIV Infection?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="hiv_infection" id="hiv_infection1" value="1" <?php if ($history['hiv_infection'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="hiv_infection" id="hiv_infection1" value="1" <?php if ($eligibility['hiv_infection'] == 1) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?> required>
                                                                 <label class=" form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="hiv_infection" id="hiv_infection2" value="2" <?php if ($history['hiv_infection'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="hiv_infection" id="hiv_infection2" value="2" <?php if ($eligibility['hiv_infection'] == 2) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2404,14 +2455,14 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="art_treatment" id="art_treatment1" value="1" <?php if ($history['art_treatment'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="art_treatment" id="art_treatment1" value="1" <?php if ($eligibility['art_treatment'] == 1) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?> required>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="art_treatment" id="art_treatment2" value="2" <?php if ($history['art_treatment'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="art_treatment" id="art_treatment2" value="2" <?php if ($eligibility['art_treatment'] == 2) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2419,20 +2470,20 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3" id="currently_smoking">
+                                                <div class="col-sm-2" id="currently_smoking">
                                                     <label>Is the Participant aged between 10 - 24?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="participant_age" id="participant_age1" value="1" <?php if ($history['participant_age'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="participant_age" id="participant_age1" value="1" <?php if ($eligibility['participant_age'] == 1) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?> required>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="participant_age" id="participant_age2" value="2" <?php if ($history['participant_age'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="participant_age" id="participant_age2" value="2" <?php if ($eligibility['participant_age'] == 2) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2441,20 +2492,20 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3" id="currently_smoking">
-                                                    <label>s the Participant able to understand and willing to sign the
+                                                    <label>Is the Participant able to understand and willing to sign the
                                                         informed consent document?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="understand_icf" id="understand_icf1" value="1" <?php if ($history['understand_icf'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="understand_icf" id="understand_icf1" value="1" <?php if ($eligibility['understand_icf'] == 1) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?> required>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="understand_icf" id="understand_icf2" value="2" <?php if ($history['understand_icf'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="understand_icf" id="understand_icf2" value="2" <?php if ($eligibility['understand_icf'] == 2) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2481,14 +2532,14 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="another_study" id="another_study1" value="1" <?php if ($history['another_study'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="another_study" id="another_study1" value="1" <?php if ($eligibility['another_study'] == 1) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?> required>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="another_study" id="another_study2" value="2" <?php if ($history['another_study'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="another_study" id="another_study2" value="2" <?php if ($eligibility['another_study'] == 2) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2502,14 +2553,14 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="newly_diagnosed" id="newly_diagnosed1" value="1" <?php if ($history['newly_diagnosed'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="newly_diagnosed" id="newly_diagnosed1" value="1" <?php if ($eligibility['newly_diagnosed'] == 1) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?> required>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="newly_diagnosed" id="newly_diagnosed2" value="2" <?php if ($history['newly_diagnosed'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="newly_diagnosed" id="newly_diagnosed2" value="2" <?php if ($eligibility['newly_diagnosed'] == 2) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2525,14 +2576,14 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="medical_condtn" id="medical_condtn1" value="1" <?php if ($history['medical_condtn'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="medical_condtn" id="medical_condtn1" value="1" <?php if ($eligibility['medical_condtn'] == 1) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?> required>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="medical_condtn" id="medical_condtn2" value="2" <?php if ($history['medical_condtn'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="medical_condtn" id="medical_condtn2" value="2" <?php if ($eligibility['medical_condtn'] == 2) {
                                                                                                                                                                         echo 'checked';
                                                                                                                                                                     } ?>>
                                                                 <label class="form-check-label">No</label>
@@ -2540,22 +2591,22 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3" id="currently_smoking">
+                                                <div class="col-sm-3">
                                                     <label>Is the volunteer eligible to be enrolled?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part1" value="1" <?php if ($history['enrolled_part'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part1" value="1" <?php if ($eligibility['enrolled_part'] == 1) {
                                                                                                                                                                     echo 'checked';
-                                                                                                                                                                } ?> required>
+                                                                                                                                                                } ?> disabled>
                                                                 <label class="form-check-label">Yes</label>
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part2" value="2" <?php if ($history['enrolled_part'] == 2) {
+                                                                <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part2" value="2" <?php if ($eligibility['enrolled_part'] == 2) {
                                                                                                                                                                     echo 'checked';
-                                                                                                                                                                } ?>>
+                                                                                                                                                                } ?> disabled>
                                                                 <label class="form-check-label">No</label>
                                                             </div>
                                                         </div>
@@ -2566,14 +2617,14 @@ if ($user->isLoggedIn()) {
                                             <hr>
 
                                             <div class="row">
-                                                <div class="col-sm-3" id="currently_smoking">
+                                                <div class="col-sm-3" id="participant_id">
                                                     <label>If YES, indicate the Participant ID:</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" name="participant_id" id="participant_id" rows="2" placeholder="Type other here...">
-                                                                <?php if ($hiv_history_and_medication['participant_id']) {
-                                                                    print_r($hiv_history_and_medication['participant_id']);
+                                                            <textarea class="form-control" name="participant_id" rows="2" placeholder="Type other here...">
+                                                                <?php if ($eligibility['participant_id']) {
+                                                                    print_r($eligibility['participant_id']);
                                                                 }  ?>
                                                             </textarea>
                                                         </div>
@@ -2584,9 +2635,9 @@ if ($user->isLoggedIn()) {
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" name="screen_failure" id="screen_failure" rows="2" placeholder="Type other here...">
-                                                                <?php if ($hiv_history_and_medication['screen_failure']) {
-                                                                    print_r($hiv_history_and_medication['screen_failure']);
+                                                            <textarea class="form-control" name="screen_failure" rows="2" placeholder="Type other here...">
+                                                                <?php if ($eligibility['screen_failure']) {
+                                                                    print_r($eligibility['screen_failure']);
                                                                 }  ?>
                                                             </textarea>
                                                         </div>
@@ -2595,8 +2646,8 @@ if ($user->isLoggedIn()) {
                                                 <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="form_completd_by" class="form-label">Form completed by:</label>
-                                                        <input type="text" value="<?php if ($history['form_completd_by']) {
-                                                                                        print_r($history['form_completd_by']);
+                                                        <input type="text" value="<?php if ($eligibility['form_completd_by']) {
+                                                                                        print_r($eligibility['form_completd_by']);
                                                                                     } ?>" id="form_completd_by" name="form_completd_by" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
                                                     </div>
                                                     <span>initials</span>
@@ -2604,8 +2655,8 @@ if ($user->isLoggedIn()) {
                                                 <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="date_form_comptn" class="form-label">Date of form completion</label>
-                                                        <input type="date" value="<?php if ($history['date_form_comptn']) {
-                                                                                        print_r($history['date_form_comptn']);
+                                                        <input type="date" value="<?php if ($eligibility['date_form_comptn']) {
+                                                                                        print_r($eligibility['date_form_comptn']);
                                                                                     } ?>" id="date_form_comptn" name="date_form_comptn" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
                                                     </div>
                                                     <span>dd /mmm/ yyyy</span>
@@ -2616,13 +2667,13 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Complete?</label>
                                                             <select id="eligibility_form_complete" name="eligibility_form_complete" class="form-control" required>
-                                                                <option value="<?= $hiv_history_and_medication['eligibility_form_complete'] ?>">
-                                                                    <?php if ($hiv_history_and_medication['eligibility_form_complete']) {
-                                                                        if ($hiv_history_and_medication['eligibility_form_complete'] == 0) {
+                                                                <option value="<?= $eligibility['eligibility_form_complete'] ?>">
+                                                                    <?php if ($eligibility['eligibility_form_complete']) {
+                                                                        if ($eligibility['eligibility_form_complete'] == 0) {
                                                                             echo 'Incomplete';
-                                                                        } elseif ($hiv_history_and_medication['eligibility_form_complete'] == 1) {
+                                                                        } elseif ($eligibility['eligibility_form_complete'] == 1) {
                                                                             echo 'Unverified';
-                                                                        } elseif ($hiv_history_and_medication['eligibility_form_complete'] == 2) {
+                                                                        } elseif ($eligibility['eligibility_form_complete'] == 2) {
                                                                             echo 'Complete';
                                                                         }
                                                                     } else {
@@ -2659,7 +2710,7 @@ if ($user->isLoggedIn()) {
             <!-- /.content-wrapper -->
         <?php } elseif ($_GET['id'] == 7) { ?>
             <?php
-            $results = $override->get3('results', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
+            $risk_factors = $override->get3('risk_factors', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
             ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -2668,10 +2719,10 @@ if ($user->isLoggedIn()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <?php if ($results) { ?>
-                                    <h1>Add New test results</h1>
+                                <?php if ($risk_factors) { ?>
+                                    <h1>Add New Risk Factors</h1>
                                 <?php } else { ?>
-                                    <h1>Update test results</h1>
+                                    <h1>Update Risk Factors</h1>
                                 <?php } ?>
                             </div>
                             <div class="col-sm-6">
@@ -2688,9 +2739,9 @@ if ($user->isLoggedIn()) {
                                             Go to screening list > </a>
                                     </li>&nbsp;&nbsp;
                                     <?php if ($results) { ?>
-                                        <li class="breadcrumb-item active">Add New test results</li>
+                                        <li class="breadcrumb-item active">Add New Risk Factors</li>
                                     <?php } else { ?>
-                                        <li class="breadcrumb-item active">Update test results</li>
+                                        <li class="breadcrumb-item active">Update Risk Factors</li>
                                     <?php } ?>
                                 </ol>
                             </div>
@@ -2707,54 +2758,690 @@ if ($user->isLoggedIn()) {
                                 <!-- general form elements disabled -->
                                 <div class="card card-warning">
                                     <div class="card-header">
-                                        <h3 class="card-title">CRF2: Screeing test results using LDCT</h3>
+                                        <h3 class="card-title">Smoking History</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <form id="validation" enctype="multipart/form-data" method="post" autocomplete="off">
                                         <div class="card-body">
+                                            <hr>
                                             <div class="row">
-                                                <div class="col-2">
+                                                <div class="col-4">
                                                     <div class="mb-2">
-                                                        <label for="test_date" class="form-label">Date of Test</label>
-                                                        <input type="date" value="<?php if ($results) {
-                                                                                        print_r($results['test_date']);
-                                                                                    } ?>" id="test_date" name="test_date" class="form-control" placeholder="Enter test date" required />
+                                                        <label for="test_date" class="form-label">Date of Visit</label>
+                                                        <input type="date" value="<?php if ($risk_factors) {
+                                                                                        print_r($risk_factors['visit_date']);
+                                                                                    } ?>" id="visit_date" name="visit_date" class="form-control" placeholder="Enter date" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-sm-4">
+                                                    <label>1.13 Do you Smoke?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="smoke_stat" id="smoke_stat1" value="1" <?php if ($risk_factors['smoke_stat'] == 1) {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                                                <label class=" form-check-label">Yes (within past 12months)</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="smoke_stat" id="smoke_stat2" value="2" <?php if ($risk_factors['smoke_stat'] == 0) {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                                                <label class="form-check-label">Never smoked</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="smoke_stat" id="smoke_stat2" value="2" <?php if ($risk_factors['smoke_stat'] == 2) {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                                                <label class="form-check-label">Former smoker (more than 12 months ago)</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label>If yes to smoking?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="smoking_yes[]" id="smoking_yes1" value="1" <?php foreach (explode(',', $risk_factors['smoking_yes']) as $value) {
+                                                                                                                                                                        if ($value == 1) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        }
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">Smokeless</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="smoking_yes[]" id="smoking_yes2" value="2" <?php foreach (explode(',', $risk_factors['smoking_yes']) as $value) {
+                                                                                                                                                                        if ($value == 2) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        }
+                                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">Smoking</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="smoking_yes[]" id="smoking_yes3" value="3" <?php foreach (explode(',', $risk_factors['smoking_yes']) as $value) {
+                                                                                                                                                                        if ($value == 3) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        }
+                                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">E-Cigarette</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" name="smoking_yes[]" id="smoking_yes4" value="4" <?php foreach (explode(',', $risk_factors['smoking_yes']) as $value) {
+                                                                                                                                                                        if ($value == 4) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        }
+                                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">Other forms of tobacco</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Smokeless</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-4">
                                                     <div class="mb-2">
-                                                        <label for="results_date" class="form-label">Date of Results</label>
-                                                        <input type="date" value="<?php if ($results) {
-                                                                                        print_r($results['results_date']);
-                                                                                    } ?>" id="results_date" name="results_date" class="form-control" placeholder="Enter results date" required />
+                                                        <label for="duration_smokeless" class="form-label">Duration (smokeless)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['duration_smokeless']) {
+                                                                                        print_r($risk_factors['duration_smokeless']);
+                                                                                    } ?>" id="duration_smokeless" name="duration_smokeless" min="0" class="form-control" placeholder="Enter Duration" />
+                                                    </div>
+                                                    <span>months</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="frequence_smokeless" class="form-label">Frequency (smokeless)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['frequence_smokeless']) {
+                                                                                        print_r($risk_factors['frequence_smokeless']);
+                                                                                    } ?>" id="frequence_smokeless" name="frequence_smokeless" min="0" class="form-control" placeholder="Enter Frequence" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="quantity_smokeless" class="form-label">Quantity (smokeless)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['quantity_smokeless']) {
+                                                                                        print_r($risk_factors['quantity_smokeless']);
+                                                                                    } ?>" id="quantity_smokeless" name="quantity_smokeless" min="0" class="form-control" placeholder="Enter Quantity" />
+                                                    </div>
+                                                    <span>number per day</span>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Smoking</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="duration_smoking" class="form-label">Duration (smoking)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['duration_smoking']) {
+                                                                                        print_r($risk_factors['duration_smoking']);
+                                                                                    } ?>" id="duration_smoking" name="duration_smoking" min="0" class="form-control" placeholder="Enter Duration" />
+                                                    </div>
+                                                    <span>months</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="frequence_smoking" class="form-label">Frequency (smoking)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['frequence_smoking']) {
+                                                                                        print_r($risk_factors['frequence_smoking']);
+                                                                                    } ?>" id="frequence_smoking" name="frequence_smoking" min="0" class="form-control" placeholder="Enter Frequence" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="quantity_smoking" class="form-label">Quantity (smoking)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['quantity_smoking']) {
+                                                                                        print_r($risk_factors['quantity_smoking']);
+                                                                                    } ?>" id="quantity_smoking" name="quantity_smoking" min="0" class="form-control" placeholder="Enter Quantity" />
+                                                    </div>
+                                                    <span>number per day</span>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">E-cigarette</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="duration_ecigarette" class="form-label">Duration (E-cigarette)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['duration_ecigarette']) {
+                                                                                        print_r($risk_factors['duration_ecigarette']);
+                                                                                    } ?>" id="duration_ecigarette" name="duration_ecigarette" min="0" class="form-control" placeholder="Enter Duration" />
+                                                    </div>
+                                                    <span>months</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="frequence_ecigarette" class="form-label">Frequency (E-cigarette)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['frequence_ecigarette']) {
+                                                                                        print_r($risk_factors['frequence_ecigarette']);
+                                                                                    } ?>" id="frequence_ecigarette" name="frequence_ecigarette" min="0" class="form-control" placeholder="Enter Frequence" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="quantity_ecigarette" class="form-label">Quantity (E-cigarette)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['quantity_ecigarette']) {
+                                                                                        print_r($risk_factors['quantity_ecigarette']);
+                                                                                    } ?>" id="quantity_ecigarette" name="quantity_ecigarette" min="0" class="form-control" placeholder="Enter Quantity" />
+                                                    </div>
+                                                    <span>number per day</span>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Other Forms of Tobacco</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="other_tobacco" class="form-label">Other forms of tobacco, specify</label>
+                                                        <input type="text" value="<?php if ($risk_factors['other_tobacco']) {
+                                                                                        print_r($risk_factors['other_tobacco']);
+                                                                                    } ?>" id="other_tobacco" name="other_tobacco" min="0" class="form-control" placeholder="Enter Duration" />
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="ldct_results" class="form-label">LDCT RESULTS</label>
-                                                        <textarea class="form-control" name="ldct_results" id="ldct_results" rows="4" placeholder="Enter LDCT results" required>
-                                                            <?php if ($results) {
-                                                                print_r($results['ldct_results']);
-                                                            } ?>
-                                                        </textarea>
+                                                        <label for="duration_other" class="form-label">Duration (other forms of tobacco)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['duration_other']) {
+                                                                                        print_r($risk_factors['duration_other']);
+                                                                                    } ?>" id="duration_other" name="duration_other" min="0" class="form-control" placeholder="Enter Duration" />
                                                     </div>
+                                                    <span>months</span>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="rad_score" class="form-label">RAD SCORE</label>
-                                                        <input type="number" value="<?php if ($results) {
-                                                                                        print_r($results['rad_score']);
-                                                                                    } ?>" id="rad_score" name="rad_score" min="0" class="form-control" placeholder="Enter RAD score" required />
+                                                        <label for="frequence_other" class="form-label">Frequency (other forms of tobacco)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['frequence_other']) {
+                                                                                        print_r($risk_factors['frequence_other']);
+                                                                                    } ?>" id="frequence_other" name="frequence_other" min="0" class="form-control" placeholder="Enter Frequence" />
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="findings" class="form-label">FINDINGS:</label>
-                                                        <textarea class="form-control" name="findings" id="findings" rows="4" placeholder="Enter findings" required>
-                                                                                            <?php if ($results) {
-                                                                                                print_r($results['findings']);
-                                                                                            } ?>
-                                                                                            </textarea>
+                                                        <label for="quantity_other" class="form-label">Quantity (other forms of tobacco)</label>
+                                                        <input type="number" value="<?php if ($risk_factors['quantity_other']) {
+                                                                                        print_r($risk_factors['quantity_other']);
+                                                                                    } ?>" id="quantity_other" name="quantity_other" min="0" class="form-control" placeholder="Enter Quantity" />
+                                                    </div>
+                                                    <span>number per day</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Alcohol</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>1.14 Are you Physically active?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="physically_active" id="physically_active1" value="1" <?php if ($risk_factors['physically_active'] == 1) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?> required>
+                                                                <label class=" form-check-label">Yes</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="physically_active" id="physically_active2" value="2" <?php if ($risk_factors['physically_active'] == 2) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                                                <label class="form-check-label">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>If Yes, What is your grade?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="activity_grade" id="activity_grade1" value="1" <?php if ($risk_factors['activity_grade'] == 1) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">High activity: Vigorous activity 3 times a week or
+                                                                    more</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="activity_grade" id="activity_grade2" value="2" <?php if ($risk_factors['activity_grade'] == 2) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">Medium activity:vigorous 1-2 times per week</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="activity_grade" id="activity_grade3" value="3" <?php if ($risk_factors['activity_grade'] == 3) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">Low activity: moderate exercise 3 or more times
+                                                                    per week with no regular weekly vigorous
+                                                                    exercise</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="activity_grade" id="activity_grade4" value="4" <?php if ($risk_factors['activity_grade'] == 4) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">Sedentary-moderate exercise less than 3 times
+                                                                    per week with no regular vigorous exercise</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Do you Take Alcohol?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="alcohol" id="alcohol1" value="1" <?php if ($risk_factors['alcohol'] == 1) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?> required>
+                                                                <label class=" form-check-label">Yes</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="alcohol" id="alcohol2" value="2" <?php if ($risk_factors['alcohol'] == 2) {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
+                                                                <label class="form-check-label">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>1.How often do you have a drink containing alcohol?
+                                                        skip to question 9-10 if Never</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh1" value="1" <?php if ($risk_factors['drink_cont_alcoh'] == 1) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?> required>
+                                                                <label class=" form-check-label">Never</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh2" value="2" <?php if ($risk_factors['drink_cont_alcoh'] == 2) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                                                <label class="form-check-label">Monthly or less</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh3" value="3" <?php if ($risk_factors['drink_cont_alcoh'] == 3) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                                                <label class="form-check-label">2 to 4 times a month</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh4" value="4" <?php if ($risk_factors['drink_cont_alcoh'] == 4) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                                                <label class="form-check-label">2 to 3 times a week</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh5" value="5" <?php if ($risk_factors['drink_cont_alcoh'] == 5) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                                                <label class="form-check-label">4 or more times a week</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="total_1only" class="form-label">Total for 1</label>
+                                                        <input type="number" value="<?php if ($risk_factors['total_1only']) {
+                                                                                        print_r($risk_factors['total_1only']);
+                                                                                    } ?>" id="total_1only" name="total_1only" min="0" class="form-control" placeholder="Enter Total" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>2. How many drinks containing alcohol do you have on a
+                                                        typical day when you are drinking?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks1" value="1" <?php if ($risk_factors['howmany_drinks'] == 1) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">1 or 2</label>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks2" value="2" <?php if ($risk_factors['howmany_drinks'] == 2) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">3 or 4</label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks3" value="3" <?php if ($risk_factors['howmany_drinks'] == 3) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">5 or 6</label>
+
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks4" value="4" <?php if ($risk_factors['howmany_drinks'] == 4) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">7,8 or 9</label>
+
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks5" value="5" <?php if ($risk_factors['howmany_drinks'] == 5) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?>>
+                                                                <label class=" form-check-label">10 or More</label>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>3. How often do you have six or more drinks on one
+                                                        occassion?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="drink_often" id="drink_often<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['drink_often'] == $occassion['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>4. How often during the last year have you found that you
+                                                        were not able to stop drinking once you had started?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="cant_stop_drink" id="cant_stop_drink<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['cant_stop_drink'] == $occassion['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>5. How often during the last year have you failed to do
+                                                        what was normally expected from you because of
+                                                        drinking?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="failed_todo_normal" id="failed_todo_normal<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['failed_todo_normal'] == $occassion['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>6. How often during the last year have you needed a first
+                                                        drink in the morning to get yourself going after a heavy
+                                                        drinking session?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="first_drink_morning" id="first_drink_morning<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['first_drink_morning'] == $occassion['id']) {
+                                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                                } ?>>
+                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>7. How often during the last year have you had a feeling of
+                                                        guilt or remorse after drinking?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="remorse_after_drink" id="remorse_after_drink<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['remorse_after_drink'] == $occassion['id']) {
+                                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                                } ?>>
+                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label>8. How often during the last year have you been unable to
+                                                        remember what happened the night before because you
+                                                        had been drinking?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="cant_remember" id="cant_remember<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['cant_remember'] == $occassion['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label>9. Have you or someone else been injured as a result of
+                                                        your drinking?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('yes_no_but', 'status', 1) as $value) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="injure_someone" id="injure_someone<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['injure_someone'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>10. Has a relative or friend or a doctor or another health
+                                                        worker been concerned about your drinking or suggested
+                                                        you cut down</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('yes_no_but', 'status', 1) as $value) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="concern_about_drink" id="concern_about_drink<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['concern_about_drink'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="mb-2">
+                                                                <label for="overall_total_never" class="form-label">Overall total 1</label>
+                                                                <input type="number" value="<?php if ($risk_factors['overall_total_never']) {
+                                                                                                print_r($risk_factors['overall_total_never']);
+                                                                                            } ?>" id="overall_total_never" name="overall_total_never" min="0" class="form-control" placeholder="Enter Total" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="mb-2">
+                                                                <label for="overtotal" class="form-label">Overall total 2</label>
+                                                                <input type="number" value="<?php if ($risk_factors['overtotal']) {
+                                                                                                print_r($risk_factors['overtotal']);
+                                                                                            } ?>" id="overtotal" name="overtotal" min="0" class="form-control" placeholder="Enter Total" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">COVID 19 & TB</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
+                                                    <label>1.16 Have you ever suffered from COVID-19?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="covid19" id="covid19<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['covid19'] == $value['id']) {
+                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                } ?>>
+                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>1.17 Were you vaccinated against COVID_19?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="vaccine_covid19" id="vaccine_covid19<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['vaccine_covid19'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label>1.18 Have you ever been treated for TB?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="treated_tb" id="treated_tb<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['treated_tb'] == $value['id']) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
+                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="mb-2">
+                                                                <label for="date_treated_tb" class="form-label">If yes when was it?</label>
+                                                                <input type="number" value="<?php if ($risk_factors['date_treated_tb']) {
+                                                                                                print_r($risk_factors['date_treated_tb']);
+                                                                                            } ?>" id="date_treated_tb" name="date_treated_tb" min="0" class="form-control" placeholder="Enter Year" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <div class="row-form clearfix">
+                                                        <!-- select -->
+                                                        <div class="form-group">
+                                                            <label>Complete?</label>
+                                                            <select id="risk_factors_complete" name="risk_factors_complete" class="form-control" required>
+                                                                <option value="<?= $risk_factors['risk_factors_complete'] ?>">
+                                                                    <?php if ($risk_factors['risk_factors_complete']) {
+                                                                        if ($risk_factors['risk_factors_complete'] == 0) {
+                                                                            echo 'Incomplete';
+                                                                        } elseif ($risk_factors['risk_factors_complete'] == 1) {
+                                                                            echo 'Unverified';
+                                                                        } elseif ($risk_factors['risk_factors_complete'] == 2) {
+                                                                            echo 'Complete';
+                                                                        }
+                                                                    } else {
+                                                                        echo 'Select';
+                                                                    } ?>
+                                                                </option>
+                                                                <option value="0">Incomplete</option>
+                                                                <option value="1">Unverified</option>
+                                                                <option value="2">Complete</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2763,7 +3450,7 @@ if ($user->isLoggedIn()) {
                                         <div class="card-footer">
                                             <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
                                             <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                            <input type="submit" name="add_results" value="Submit" class="btn btn-primary">
+                                            <input type="submit" name="add_risk_factors" value="Submit" class="btn btn-primary">
                                         </div>
                                     </form>
                                 </div>
@@ -3481,8 +4168,8 @@ if ($user->isLoggedIn()) {
 
 
     <!-- clients Js -->
-    <!-- <script src="myjs/add/clients/insurance.js"></script>
-    <script src="myjs/add/clients/insurance_name.js"></script>
+    <script src="myjs/add/clients/occupation.js"></script>
+    <!--  <script src="myjs/add/clients/insurance_name.js"></script>
     <script src="myjs/add/clients/relation_patient.js"></script>
     <script src="myjs/add/clients/validate_hidden_with_values.js"></script>
     <script src="myjs/add/clients/validate_required_attribute.js"></script>
@@ -3511,9 +4198,9 @@ if ($user->isLoggedIn()) {
 
 
     <!-- HISTORY Js -->
-    <!-- <script src="myjs/add/history/currently_smoking.js"></script>
-    <script src="myjs/add/history/ever_smoked.js"></script>
-    <script src="myjs/add/history/type_smoked.js"></script> -->
+    <!-- <script src="myjs/add/history/currently_smoking.js"></script> -->
+    <script src="myjs/add/history/art_regimen.js"></script>
+    <script src="myjs/add/history/enrolled_part.js"></script>
 
     <!-- economics Js -->
     <!-- <script src="myjs/add/economics/household.js"></script>

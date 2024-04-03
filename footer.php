@@ -1,6 +1,6 @@
     <!-- Main Footer -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2024 <a href="#">Lung Cancer Database</a>.</strong>
+        <strong>Copyright &copy; 2024 <a href="#">Mack Database</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1.1.0
