@@ -796,55 +796,89 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
-        } elseif (Input::get('add_outcome')) {
+        } elseif (Input::get('add_radiological_investigations')) {
             $validate = $validate->check($_POST, array(
                 'visit_date' => array(
                     'required' => true,
                 ),
-                'diagnosis' => array(
+                'ecg' => array(
                     'required' => true,
                 ),
-                'outcome' => array(
-                    'required' => true,
-                ),
+                // 'outcome' => array(
+                //     'required' => true,
+                // ),
             ));
 
             if ($validate->passed()) {
+                print_r($_POST);
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
 
-                $outcome = $override->get3('outcome', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
+                $radiological_investigations = $override->get3('radiological_investigations', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', 1);
 
-                if ($outcome) {
-                    $user->updateRecord('outcome', array(
+                if ($radiological_investigations) {
+                    $user->updateRecord('radiological_investigations', array(
                         'visit_date' => Input::get('visit_date'),
-                        'diagnosis' => Input::get('diagnosis'),
-                        'outcome' => Input::get('outcome'),
-                        'outcome_date' => Input::get('outcome_date'),
+                        'ecg' => Input::get('ecg'),
+                        'ecg_date' => Input::get('ecg_date'),
+                        'quality_ecg' => Input::get('quality_ecg'),
+                        'heart_rate_ecg' => Input::get('heart_rate_ecg'),
+                        'qualitative_ecg' => Input::get('qualitative_ecg'),
+                        'regularity_ecg' => Input::get('regularity_ecg'),
+                        'heart_rythm_ecg' => Input::get('heart_rythm_ecg'),
+                        'other_heart_rhythm_ecg' => Input::get('other_heart_rhythm_ecg'),
+                        'qrs_axis_state_ecg' => Input::get('qrs_axis_state_ecg'),
+                        'qrs_axis_no_ecg' => Input::get('qrs_axis_no_ecg'),
+                        'pr_interval_ecg' => Input::get('pr_interval_ecg'),
+                        'pr_inter_specify_ecg' => Input::get('pr_inter_specify_ecg'),
+                        'qtc_interval_ecg' => Input::get('qtc_interval_ecg'),
+                        'qtc_inter_specify_ecg' => Input::get('qtc_inter_specify_ecg'),
+                        'abnormal_waves_ecg' => Input::get('abnormal_waves_ecg'),
+                        'repolarizatn_abno_ecg' => Input::get('repolarizatn_abno_ecg'),
+                        'conclusion_ecg' => Input::get('conclusion_ecg'),
+                        'abno_o_borderl_specify' => Input::get('abno_o_borderl_specify'),
+                        'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                    ), $outcome[0]['id']);
+                    ), $radiological_investigations[0]['id']);
 
-                    $successMessage = 'Outcome  Successful Updated';
+                    $successMessage = 'Radiological Investigations  Successful Updated';
                 } else {
-                    $user->createRecord('outcome', array(
-                        'visit_date' => Input::get('visit_date'),
-                        'visit_code' => $_GET['visit_code'],
+                    $user->createRecord('radiological_investigations', array(
+                        'sequence' => 1,
+                        'visit_code' => 'EV',
                         'study_id' => $_GET['study_id'],
-                        'sequence' => $_GET['sequence'],
-                        'diagnosis' => Input::get('diagnosis'),
-                        'outcome' => Input::get('outcome'),
-                        'outcome_date' => Input::get('outcome_date'),
+                        'pid' => $_GET['study_id'],
+                        'visit_date' => Input::get('visit_date'),
+                        'ecg' => Input::get('ecg'),
+                        'ecg_date' => Input::get('ecg_date'),
+                        'quality_ecg' => Input::get('quality_ecg'),
+                        'heart_rate_ecg' => Input::get('heart_rate_ecg'),
+                        'qualitative_ecg' => Input::get('qualitative_ecg'),
+                        'regularity_ecg' => Input::get('regularity_ecg'),
+                        'heart_rythm_ecg' => Input::get('heart_rythm_ecg'),
+                        'other_heart_rhythm_ecg' => Input::get('other_heart_rhythm_ecg'),
+                        'qrs_axis_state_ecg' => Input::get('qrs_axis_state_ecg'),
+                        'qrs_axis_no_ecg' => Input::get('qrs_axis_no_ecg'),
+                        'pr_interval_ecg' => Input::get('pr_interval_ecg'),
+                        'pr_inter_specify_ecg' => Input::get('pr_inter_specify_ecg'),
+                        'qtc_interval_ecg' => Input::get('qtc_interval_ecg'),
+                        'qtc_inter_specify_ecg' => Input::get('qtc_inter_specify_ecg'),
+                        'abnormal_waves_ecg' => Input::get('abnormal_waves_ecg'),
+                        'repolarizatn_abno_ecg' => Input::get('repolarizatn_abno_ecg'),
+                        'conclusion_ecg' => Input::get('conclusion_ecg'),
+                        'abno_o_borderl_specify' => Input::get('abno_o_borderl_specify'),
+                        'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
                         'staff_id' => $user->data()->id,
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                        'site_id' => $clients['site_id'],
+                        'site' => $user->data()->site_id,
                     ));
-                    $successMessage = 'Outcome  Successful Added';
+                    $successMessage = 'Radiological Investigations  Successful Added';
                 }
-                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status']);
+                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'].'&msg='. $successMessage);
             } else {
                 $pageError = $validate->errors();
             }
@@ -5218,7 +5252,7 @@ if ($user->isLoggedIn()) {
                                         <div class="card-footer">
                                             <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
                                             <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                            <input type="submit" name="add_chronic_illnesses" value="Submit" class="btn btn-primary">
+                                            <input type="submit" name="add_radiological_investigations" value="Submit" class="btn btn-primary">
                                         </div>
                                     </form>
                                 </div>
