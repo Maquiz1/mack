@@ -3638,10 +3638,10 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="chronic_illness_type" class="form-label">Name of chronic illness</label>
-                                                        <input type="text" value="<?php if ($laboratory_results['chronic_illness_type']) {
-                                                                                        print_r($laboratory_results['chronic_illness_type']);
-                                                                                    } ?>" id="chronic_illness_type" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
+                                                        <label for="lab_time_hema" class="form-label">Time of sampling</label>
+                                                        <input type="text" value="<?php if ($laboratory_results['lab_time_hema']) {
+                                                                                        print_r($laboratory_results['lab_time_hema']);
+                                                                                    } ?>" id="lab_time_hema" name="lab_time_hema" min="0" class="form-control" placeholder="Enter Time" />
                                                     </div>
                                                 </div>
                                                 <div class="col-2">
@@ -3701,7 +3701,7 @@ if ($user->isLoggedIn()) {
             <!-- /.content-wrapper -->
         <?php } elseif ($_GET['id'] == 10) { ?>
             <?php
-            $outcome = $override->get3('outcome', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
+            $radiological_investigations = $override->get3('radiological_investigations', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
             ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -3710,10 +3710,10 @@ if ($user->isLoggedIn()) {
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <?php if ($outcome) { ?>
-                                    <h1>Add New outcome results</h1>
+                                <?php if ($radiological_investigations) { ?>
+                                    <h1>Add New Radiological Investigations</h1>
                                 <?php } else { ?>
-                                    <h1>Update outcome results</h1>
+                                    <h1>Update Radiological Investigations</h1>
                                 <?php } ?>
                             </div>
                             <div class="col-sm-6">
@@ -3725,10 +3725,10 @@ if ($user->isLoggedIn()) {
                                     <li class="breadcrumb-item"><a href="info.php?id=3&status=<?= $_GET['status']; ?>">
                                             Go to screening list > </a>
                                     </li>&nbsp;&nbsp;
-                                    <?php if ($results) { ?>
-                                        <li class="breadcrumb-item active">Add New outcome results</li>
+                                    <?php if ($radiological_investigations) { ?>
+                                        <li class="breadcrumb-item active">Add New Radiological Investigations</li>
                                     <?php } else { ?>
-                                        <li class="breadcrumb-item active">Update outcome results</li>
+                                        <li class="breadcrumb-item active">Update Radiological Investigations</li>
                                     <?php } ?>
                                 </ol>
                             </div>
@@ -3745,91 +3745,198 @@ if ($user->isLoggedIn()) {
                                 <!-- general form elements disabled -->
                                 <div class="card card-warning">
                                     <div class="card-header">
-                                        <h3 class="card-title">CRF 3: FOLLOW UP ( PATIENT OUTCOME AFTER SCREENING )</h3>
+                                        <h3 class="card-title">Electrocardiogram</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <form id="validation" enctype="multipart/form-data" method="post" autocomplete="off">
                                         <div class="card-body">
+
+                                            <hr>
+
                                             <div class="row">
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="visit_date" class="form-label">Entry Date</label>
-                                                        <input type="date" value="<?php if ($outcome) {
-                                                                                        print_r($outcome['visit_date']);
-                                                                                    } ?>" id="visit_date" name="visit_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter visit date" required />
+                                                        <label for="visit_date" class="form-label">Visit Date</label>
+                                                        <input type="date" value="<?php if ($radiological_investigations['visit_date']) {
+                                                                                        print_r($radiological_investigations['visit_date']);
+                                                                                    } ?>" id="visit_date" name="visit_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="mb-2">
-                                                        <div class="row-form clearfix">
-                                                            <!-- select -->
-                                                            <div class="form-group">
-                                                                <label>Patient Diagnosis if was scored Lung- RAD 4B</label>
-                                                                <textarea class="form-control" name="diagnosis" rows="3" placeholder="Type diagnosis here...">
-                                                                        <?php if ($outcome['diagnosis']) {
-                                                                            print_r($outcome['diagnosis']);
-                                                                        }  ?>
-                                                                </textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label>Outcome</label>
+
+                                                <div class="col-sm-3">
+                                                    <label>Electrocardiogram (ECG)</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="outcome" id="outcome1" value="1" <?php if ($outcome['outcome'] == 1) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Await another screening</label>
-                                                            </div>
-
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="outcome" id="outcome2" value="2" <?php if ($outcome['outcome'] == 2) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">On treatment</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="outcome" id="outcome3" value="3" <?php if ($outcome['outcome'] == 3) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Recovered</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="outcome" id="outcome4" value="4" <?php if ($outcome['outcome'] == 4) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Died</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="outcome" id="outcome5" value="5" <?php if ($outcome['outcome'] == 5) {
-                                                                                                                                                        echo 'checked';
-                                                                                                                                                    } ?>>
-                                                                <label class="form-check-label">Unknown/Loss to follow up</label>
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="ecg" id="ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['ecg'] == $value['id']) {
+                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <span>Remarks</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-2" id="outcome_date">
+                                                <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="died" id="died" class="form-label">Date of Death</label>
-                                                        <label for="ltf" id="ltf" class="form-label">Date Last known to be alive</label>
-                                                        <input type="date" value="<?php if ($outcome) {
-                                                                                        print_r($outcome['outcome_date']);
-                                                                                    } ?>" name="outcome_date" class="form-control" max="<?= date('Y-m-d') ?>" placeholder="Enter outcome date" />
+                                                        <label for="ecg_date" class="form-label">Date of ECG</label>
+                                                        <input type="date" value="<?php if ($radiological_investigations['ecg_date']) {
+                                                                                        print_r($radiological_investigations['ecg_date']);
+                                                                                    } ?>" id="ecg_date" name="ecg_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>What is the Quality of ECG?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>NOTE:if ECG quality is assessed as poor quality/not acceptable, then dont report on it.</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="heart_rate_ecg" class="form-label">1. Heart Rate</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['heart_rate_ecg']) {
+                                                                                        print_r($radiological_investigations['heart_rate_ecg']);
+                                                                                    } ?>" id="heart_rate_ecg" name="heart_rate_ecg" min="0" class="form-control" placeholder="Enter Time" />
+                                                        <span>bpm (Quatitative)</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Qualitative</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <span>Based on reference</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Regularity</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Heart Rhythm</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Other heart Rhythm</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('ecg_quality', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="quality_ecg" id="quality_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['quality_ecg'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="row-form clearfix">
+                                                        <!-- select -->
+                                                        <div class="form-group">
+                                                            <label>Complete?</label>
+                                                            <select id="radiological_investigations_complete" name="radiological_investigations_complete" class="form-control" required>
+                                                                <option value="<?= $radiological_investigations['radiological_investigations_complete'] ?>">
+                                                                    <?php if ($radiological_investigations['radiological_investigations_complete']) {
+                                                                        if ($radiological_investigations['radiological_investigations_complete'] == 0) {
+                                                                            echo 'Incomplete';
+                                                                        } elseif ($radiological_investigations['radiological_investigations_complete'] == 1) {
+                                                                            echo 'Unverified';
+                                                                        } elseif ($radiological_investigations['radiological_investigations_complete'] == 2) {
+                                                                            echo 'Complete';
+                                                                        }
+                                                                    } else {
+                                                                        echo 'Select';
+                                                                    } ?>
+                                                                </option>
+                                                                <option value="0">Incomplete</option>
+                                                                <option value="1">Unverified</option>
+                                                                <option value="2">Complete</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer">
                                             <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
                                             <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                            <input type="submit" name="add_outcome" value="Submit" class="btn btn-primary">
+                                            <input type="submit" name="add_chronic_illnesses" value="Submit" class="btn btn-primary">
                                         </div>
                                     </form>
                                 </div>
