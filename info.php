@@ -903,7 +903,7 @@ if ($user->isLoggedIn()) {
                                                             <?php } ?>
                                                             <br>
                                                             <?php if (($value['age'] >= 10 && $value['age'] <= 24) && ($value['informed_consent'] == 1)) { ?>
-                                                                <?php if ($hiv_history_and_medication && $eligibility_form && $risk_factors && $chronic_illnesses && $laboratory_results && $radiological_investigations) { ?>
+                                                                <?php if ($hiv_history_and_medication && $eligibility && $risk_factors && $chronic_illnesses && $laboratory_results && $radiological_investigations) { ?>
                                                                     <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i>Update CRF's</a>&nbsp;&nbsp;<br>
                                                                 <?php   } else { ?>
                                                                     <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i>Add CRF's</a>&nbsp;&nbsp;<br>
@@ -2078,6 +2078,7 @@ if ($user->isLoggedIn()) {
         <?php } elseif ($_GET['id'] == 10) { ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
+
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <div class="container-fluid">
@@ -2236,7 +2237,8 @@ if ($user->isLoggedIn()) {
                             <!--/.col (right) -->
                         </div>
                         <!-- /.row -->
-                    </div><!-- /.container-fluid -->
+                    </div>
+                    <!-- /.container-fluid -->
                 </section>
                 <!-- /.content -->
             </div>
@@ -2765,7 +2767,7 @@ if ($user->isLoggedIn()) {
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
-        <?php  } ?>
+        <?php } ?>
     </div>
     <!-- /.content-wrapper -->
 
