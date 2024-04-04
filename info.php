@@ -654,21 +654,21 @@ if ($user->isLoggedIn()) {
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
                                         if ($_GET['site_id'] != null) {
                                             if ($_GET['status'] == 1) {
-                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site_id', $_GET['site_id'], 'id');
+                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site', $_GET['site_id'], 'id');
                                             } elseif ($_GET['status'] == 2) {
-                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'eligible', 1, 'site_id', $_GET['site_id'], 'id');
+                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'eligible', 1, 'site', $_GET['site_id'], 'id');
                                             } elseif ($_GET['status'] == 3) {
-                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'enrolled', 1, 'site_id', $_GET['site_id'], 'id');
+                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'enrolled', 1, 'site', $_GET['site_id'], 'id');
                                             } elseif ($_GET['status'] == 4) {
-                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'end_study', 1, 'site_id', $_GET['site_id'], 'id');
+                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'end_study', 1, 'site', $_GET['site_id'], 'id');
                                             } elseif ($_GET['status'] == 5) {
-                                                $clients = $override->getDataDesc2('clients', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                                $clients = $override->getDataDesc2('clients', 'status', 1, 'site', $_GET['site_id'],  'id');
                                             } elseif ($_GET['status'] == 6) {
-                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site_id', $_GET['site_id'], 'id');
+                                                $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site', $_GET['site_id'], 'id');
                                             } elseif ($_GET['status'] == 7) {
-                                                $clients = $override->getDataDesc1('clients', 'site_id', $_GET['site_id'], 'id');
+                                                $clients = $override->getDataDesc1('clients', 'site', $_GET['site_id'], 'id');
                                             } elseif ($_GET['status'] == 8) {
-                                                $clients = $override->getDataDesc2('clients', 'status', 0, 'site_id', $_GET['site_id'],  'id');
+                                                $clients = $override->getDataDesc2('clients', 'status', 0, 'site', $_GET['site_id'],  'id');
                                             }
                                         } else {
 
@@ -693,21 +693,21 @@ if ($user->isLoggedIn()) {
                                     } else {
 
                                         if ($_GET['status'] == 1) {
-                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site_id', $user->data()->site_id, 'id');
+                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site', $user->data()->site_id, 'id');
                                         } elseif ($_GET['status'] == 2) {
-                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'eligible', 1, 'site_id', $user->data()->site_id, 'id');
+                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'eligible', 1, 'site', $user->data()->site_id, 'id');
                                         } elseif ($_GET['status'] == 3) {
-                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'enrolled', 1, 'site_id', $user->data()->site_id, 'id');
+                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'enrolled', 1, 'site', $user->data()->site_id, 'id');
                                         } elseif ($_GET['status'] == 4) {
-                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'end_study', 1, 'site_id', $user->data()->site_id, 'id');
+                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'end_study', 1, 'site', $user->data()->site_id, 'id');
                                         } elseif ($_GET['status'] == 5) {
-                                            $clients = $override->getDataDesc2('clients', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                            $clients = $override->getDataDesc2('clients', 'status', 1, 'site', $user->data()->site_id,  'id');
                                         } elseif ($_GET['status'] == 6) {
-                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site_id', $user->data()->site_id, 'id');
+                                            $clients = $override->getDataDesc3('clients', 'status', 1, 'screened', 1, 'site', $user->data()->site_id, 'id');
                                         } elseif ($_GET['status'] == 7) {
-                                            $clients = $override->getDataDesc1('clients', 'site_id', $user->data()->site_id, 'id');
+                                            $clients = $override->getDataDesc1('clients', 'site', $user->data()->site_id, 'id');
                                         } elseif ($_GET['status'] == 8) {
-                                            $clients = $override->getDataDesc2('clients', 'status', 0, 'site_id', $user->data()->site_id,  'id');
+                                            $clients = $override->getDataDesc2('clients', 'status', 0, 'site', $user->data()->site_id,  'id');
                                         }
                                     } ?>
                                     <?php

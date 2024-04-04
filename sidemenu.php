@@ -46,7 +46,7 @@ if ($user->isLoggedIn()) {
             // $economic = $override->getCount1('economic', 'status', 1, 'site_id', $_GET['site_id']);
             // $visit = $override->getCount1('visit', 'status', 1, 'site_id', $_GET['site_id']);
 
-            $registered = $override->getCount1('clients', 'status', 1, 'site_id', $_GET['site_id']);
+            $registered = $override->getCount1('clients', 'status', 1, 'site', $_GET['site_id']);
             // $screened = $override->getCount1('history', 'status', 1, 'site_id', $_GET['site_id']);
             // $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $_GET['site_id']);
             // $enrolled = $override->getCount1('results', 'status', 1, 'site_id', $_GET['site_id']);
@@ -75,7 +75,7 @@ if ($user->isLoggedIn()) {
         // $economic = $override->getCount1('economic', 'status', 1, 'site_id', $user->data()->site_id);
         // $visit = $override->getCount1('visit', 'status', 1, 'site_id', $user->data()->site_id);
 
-        $registered = $override->getCount1('clients', 'status', 1, 'site_id', $user->data()->site_id);
+        $registered = $override->getCount1('clients', 'status', 1, 'site', $user->data()->site_id);
         // $screened = $override->getCount1('history', 'status', 1, 'site_id', $user->data()->site_id);
         // $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $user->data()->site_id);
         // $enrolled = $override->getCount1('results', 'status', 1, 'site_id', $user->data()->site_id);
@@ -239,7 +239,7 @@ if ($user->isLoggedIn()) {
                 <?php
                 if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
                 ?>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
@@ -305,8 +305,8 @@ if ($user->isLoggedIn()) {
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
@@ -322,15 +322,15 @@ if ($user->isLoggedIn()) {
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
-                        <a href="info.php?id=15" class="nav-link">
+                        <!-- <a href="info.php?id=15" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Unset Study ID <i class="fas fa-angle-left right"></i>
 
                             </p>
-                        </a>
+                        </a> -->
                         <!-- <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="info.php?id=15" class="nav-link">
