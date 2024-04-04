@@ -267,7 +267,7 @@ if ($user->isLoggedIn()) {
             // $economic = $override->getCount1('economic', 'status', 1, 'site_id', $_GET['site_id']);
             // $visit = $override->getCount1('visit', 'status', 1, 'site_id', $_GET['site_id']);
 
-            $registered = $override->getCount1('clients', 'status', 1, 'site_id', $_GET['site_id']);
+            $registered = $override->getCount1('clients', 'status', 1, 'site', $_GET['site_id']);
             // $screened = $override->getCount1('history', 'status', 1, 'site_id', $_GET['site_id']);
             // $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $_GET['site_id']);
             // $enrolled = $override->getCount1('history', 'eligible', 1, 'site_id', $_GET['site_id']);
@@ -296,7 +296,7 @@ if ($user->isLoggedIn()) {
         // $economic = $override->getCount1('economic', 'status', 1, 'site_id', $user->data()->site_id);
         // $visit = $override->getCount1('visit', 'status', 1, 'site_id', $user->data()->site_id);
 
-        $registered = $override->getCount1('clients', 'status', 1, 'site_id', $user->data()->site_id);
+        $registered = $override->getCount1('clients', 'status', 1, 'site', $user->data()->site_id);
         // $screened = $override->getCount1('history', 'status', 1, 'site_id', $user->data()->site_id);
         // $eligible = $override->getCount1('history', 'eligible', 1, 'site_id', $user->data()->site_id);
         // $enrolled = $override->getCount1('history', 'eligible', 1, 'site_id', $user->data()->site_id);
@@ -833,7 +833,7 @@ if ($user->isLoggedIn()) {
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
+                                                    <!-- <th>Name</th> -->
                                                     <th>Study Id</th>
                                                     <th>Age</th>
                                                     <th>Gender</th>
@@ -862,13 +862,13 @@ if ($user->isLoggedIn()) {
                                                     $risk_factors = $override->get3('risk_factors', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
                                                     $chronic_illnesses = $override->get3('chronic_illnesses', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
                                                     $laboratory_results = $override->get3('laboratory_results', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
-                                                    $radiological_investigations = $override->get3('outcome', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
+                                                    $radiological_investigations = $override->get3('radiological_investigations', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
                                                     $sites = $override->getNews('sites', 'status', 1, 'id', $value['site_id'])[0];
                                                 ?>
                                                     <tr>
-                                                        <td class="table-user">
+                                                        <!-- <td class="table-user">
                                                             <?= $value['firstname'] . '  ' . $value['middlename'] . ' ' . $value['lastname']; ?>
-                                                        </td>
+                                                        </td> -->
                                                         <td class="table-user">
                                                             <?= $value['study_id']; ?>
                                                         </td>
@@ -919,7 +919,7 @@ if ($user->isLoggedIn()) {
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Name</th>
+                                                    <!-- <th>Name</th> -->
                                                     <th>Study Id</th>
                                                     <th>Age</th>
                                                     <th>Gender</th>
@@ -997,7 +997,7 @@ if ($user->isLoggedIn()) {
                                         <div class="row mb-2">
                                             <div class="col-sm-6">
                                                 <h1>Study ID: <?= $patient['study_id'] ?></h1>
-                                                <h4><?= $name ?></h4>
+                                                <!-- <h4><?= $name ?></h4> -->
                                                 <h4><?= $age ?></h4>
                                                 <h4><?= $gender ?></h4>
                                                 <!-- <h4><?= $cat ?></h4> -->

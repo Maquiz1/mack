@@ -96,10 +96,8 @@ if ($user->isLoggedIn()) {
                             'email_address' => Input::get('email_address'),
                             'sex' => Input::get('sex'),
                             'position' => Input::get('position'),
-                            'accessLevel' => $accessLevel,
+                            'accessLevel' => Input::get('accessLevel'),
                             'power' => Input::get('power'),
-                            'password' => Hash::make($password, $salt),
-                            'salt' => $salt,
                             'site_id' => Input::get('site_id'),
                         ), $_GET['staff_id']);
 
@@ -115,7 +113,7 @@ if ($user->isLoggedIn()) {
                             'email_address' => Input::get('email_address'),
                             'sex' => Input::get('sex'),
                             'position' => Input::get('position'),
-                            'accessLevel' => $accessLevel,
+                            'accessLevel' => Input::get('accessLevel'),
                             'power' => Input::get('power'),
                             'password' => Hash::make($password, $salt),
                             'salt' => $salt,
@@ -175,16 +173,16 @@ if ($user->isLoggedIn()) {
             }
         } elseif (Input::get('add_client')) {
             $validate = $validate->check($_POST, array(
-                'firstname' => array(
-                    'required' => true,
-                ),
-                'middlename' => array(
-                    'required' => true,
-                ),
-                'lastname' => array(
-                    'required' => true,
-                ),
-                'lastname' => array(
+                // 'firstname' => array(
+                //     'required' => true,
+                // ),
+                // 'middlename' => array(
+                //     'required' => true,
+                // ),
+                // 'lastname' => array(
+                //     'required' => true,
+                // ),
+                'age' => array(
                     'required' => true,
                 ),
                 'gender' => array(
@@ -202,7 +200,6 @@ if ($user->isLoggedIn()) {
                 ),
             ));
             if ($validate->passed()) {
-                // print_r($_POST);
                 // $date = date('Y-m-d', strtotime('+1 month', strtotime('2015-01-01')));
                 try {
 
@@ -220,6 +217,7 @@ if ($user->isLoggedIn()) {
                             'gender' => Input::get('gender'),
                             'date_of_birth' => Input::get('date_of_birth'),
                             'age' => $age,
+                            'age2' => Input::get('age'),
                             'informed_consent' => Input::get('informed_consent'),
                             'date_informed_consent' => Input::get('date_informed_consent'),
                             'phone' => Input::get('phone'),
@@ -268,6 +266,7 @@ if ($user->isLoggedIn()) {
                             'gender' => Input::get('gender'),
                             'date_of_birth' => Input::get('date_of_birth'),
                             'age' => $age,
+                            'age2' => Input::get('age'),
                             'informed_consent' => Input::get('informed_consent'),
                             'date_informed_consent' => Input::get('date_informed_consent'),
                             'phone' => Input::get('phone'),
@@ -863,9 +862,9 @@ if ($user->isLoggedIn()) {
                 'ecg' => array(
                     'required' => true,
                 ),
-                // 'outcome' => array(
-                //     'required' => true,
-                // ),
+                'echocardiogram' => array(
+                    'required' => true,
+                ),
             ));
 
             if ($validate->passed()) {
@@ -1323,7 +1322,7 @@ if ($user->isLoggedIn()) {
                                                                                                         echo 'Select';
                                                                                                     } ?>
                                                                 </option>
-                                                                <?php foreach ($override->getData('sites') as $site) { ?>
+                                                                <?php foreach ($override->get('sites','status',1) as $site) { ?>
                                                                     <option value="<?= $site['id'] ?>"><?= $site['name'] ?></option>
                                                                 <?php } ?>
                                                             </select>
@@ -1510,13 +1509,24 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3">
+                                                <!-- <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <label>Age</label>
                                                             <input class="form-control" type="number" value="<?php if ($clients['age']) {
                                                                                                                     print_r($clients['age']);
                                                                                                                 }  ?>" readonly />
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
+                                                <div class="col-sm-3">
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <label>Age</label>
+                                                            <input class="form-control" type="number" name="age" id="age" min="0" value="<?php if ($clients['age']) {
+                                                                                                                                            print_r($clients['age']);
+                                                                                                                                        }  ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
