@@ -857,21 +857,12 @@ if ($user->isLoggedIn()) {
                                                 $x = 1;
                                                 foreach ($clients as $value) {
                                                     $yes_no = $override->get('yes_no', 'status', 1)[0];
-                                                    $kap = $override->getNews('kap', 'status', 1, 'patient_id', $value['id']);
-                                                    $history = $override->getNews('history', 'status', 1, 'patient_id', $value['id']);
-
-                                                    $results1 = $override->get3('results', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
-                                                    $results2 = $override->get3('results', 'status', 1, 'patient_id', $value['id'], 'sequence', 2);
-
-                                                    $classification1 = $override->get3('classification', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
-                                                    $classification2 = $override->get3('classification', 'status', 1, 'patient_id', $value['id'], 'sequence', 2);
-
-                                                    $economic1 = $override->get3('economic', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
-                                                    $economic2 = $override->get3('economic', 'status', 1, 'patient_id', $value['id'], 'sequence', 2);
-
-                                                    $outcome1 = $override->get3('outcome', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
-                                                    $outcome2 = $override->get3('outcome', 'status', 1, 'patient_id', $value['id'], 'sequence', 2);
-
+                                                    $hiv_history_and_medication = $override->getNews('hiv_history_and_medication', 'status', 1, 'patient_id', $value['id']);
+                                                    $eligibility = $override->getNews('eligibility', 'status', 1, 'patient_id', $value['id']);
+                                                    $risk_factors = $override->get3('risk_factors', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
+                                                    $chronic_illnesses = $override->get3('chronic_illnesses', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
+                                                    $laboratory_results = $override->get3('laboratory_results', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
+                                                    $radiological_investigations = $override->get3('outcome', 'status', 1, 'patient_id', $value['id'], 'sequence', 1);
                                                     $sites = $override->getNews('sites', 'status', 1, 'id', $value['site_id'])[0];
                                                 ?>
                                                     <tr>
@@ -912,7 +903,7 @@ if ($user->isLoggedIn()) {
                                                             <?php } ?>
                                                             <br>
                                                             <?php if (($value['age'] >= 10 && $value['age'] <= 24) && ($value['informed_consent'] == 1)) { ?>
-                                                                <?php if ($hiv_history_and_medication && $eligibility_form && $risk_factors && $chronic_illnesses_specify && $laboratory_results && $radiological_investigations && $study_termination) { ?>
+                                                                <?php if ($hiv_history_and_medication && $eligibility_form && $risk_factors && $chronic_illnesses && $laboratory_results && $radiological_investigations) { ?>
                                                                     <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i>Update CRF's</a>&nbsp;&nbsp;<br>
                                                                 <?php   } else { ?>
                                                                     <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i>Add CRF's</a>&nbsp;&nbsp;<br>
@@ -1428,13 +1419,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                        if ($_GET['site_id'] != null) {
-                                            $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                        } else {
-                                            $clients = $override->getDataDesc1('kap', 'status', 1, 'id');
-                                        }
-                                    } else {
-                                        $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                    //     if ($_GET['site_id'] != null) {
+                                    //         $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                    //     } else {
+                                    //         $clients = $override->getDataDesc1('kap', 'status', 1, 'id');
+                                    //     }
+                                    // } else {
+                                    //     $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     Kap
                                 </h1>
@@ -1594,13 +1585,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                        if ($_GET['site_id'] != null) {
-                                            $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                        } else {
-                                            $clients = $override->getDataDesc1('history', 'status', 1, 'id');
-                                        }
-                                    } else {
-                                        $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                    //     if ($_GET['site_id'] != null) {
+                                    //         $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                    //     } else {
+                                    //         $clients = $override->getDataDesc1('history', 'status', 1, 'id');
+                                    //     }
+                                    // } else {
+                                    //     $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     history
                                 </h1>
@@ -1761,13 +1752,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                        if ($_GET['site_id'] != null) {
-                                            $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                        } else {
-                                            $clients = $override->getDataDesc1('results', 'status', 1, 'id');
-                                        }
-                                    } else {
-                                        $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                    //     if ($_GET['site_id'] != null) {
+                                    //         $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                    //     } else {
+                                    //         $clients = $override->getDataDesc1('results', 'status', 1, 'id');
+                                    //     }
+                                    // } else {
+                                    //     $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     results
                                 </h1>
@@ -1928,13 +1919,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                        if ($_GET['site_id'] != null) {
-                                            $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                        } else {
-                                            $clients = $override->getDataDesc1('classification', 'status', 1, 'id');
-                                        }
-                                    } else {
-                                        $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                    //     if ($_GET['site_id'] != null) {
+                                    //         $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                    //     } else {
+                                    //         $clients = $override->getDataDesc1('classification', 'status', 1, 'id');
+                                    //     }
+                                    // } else {
+                                    //     $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     classification
                                 </h1>
@@ -2095,13 +2086,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                        if ($_GET['site_id'] != null) {
-                                            $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                        } else {
-                                            $clients = $override->getDataDesc1('outcome', 'status', 1, 'id');
-                                        }
-                                    } else {
-                                        $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                    //     if ($_GET['site_id'] != null) {
+                                    //         $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                    //     } else {
+                                    //         $clients = $override->getDataDesc1('outcome', 'status', 1, 'id');
+                                    //     }
+                                    // } else {
+                                    //     $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     outcome
                                 </h1>
@@ -2261,13 +2252,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                        if ($_GET['site_id'] != null) {
-                                            $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                        } else {
-                                            $clients = $override->getDataDesc1('economic', 'status', 1, 'id');
-                                        }
-                                    } else {
-                                        $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                    //     if ($_GET['site_id'] != null) {
+                                    //         $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                    //     } else {
+                                    //         $clients = $override->getDataDesc1('economic', 'status', 1, 'id');
+                                    //     }
+                                    // } else {
+                                    //     $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     }
                                     ?>
                                     eonomic

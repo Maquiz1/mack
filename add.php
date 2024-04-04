@@ -717,82 +717,141 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
-        } elseif (Input::get('add_economic')) {
+        } elseif (Input::get('add_laboratory_results')) {
             $validate = $validate->check($_POST, array(
-                'economic_date' => array(
+                'visit_date' => array(
                     'required' => true,
                 ),
-                'income_household' => array(
+                'hema_done' => array(
                     'required' => true,
                 ),
-                'income_patient' => array(
+                'biochem_done' => array(
+                    'required' => true,
+                ),
+                'urine_done' => array(
                     'required' => true,
                 ),
             ));
             if ($validate->passed()) {
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
 
-                $economic = $override->get3('economic', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
+                $laboratory_results = $override->get3('laboratory_results', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
 
-                if ($economic) {
-                    $user->updateRecord('economic', array(
-                        'economic_date' => Input::get('economic_date'),
-                        'income_household' => Input::get('income_household'),
-                        'income_household_other' => Input::get('income_household_other'),
-                        'income_patient' => Input::get('income_patient'),
-                        'income_patient_other' => Input::get('income_patient_other'),
-                        'monthly_earn' => Input::get('monthly_earn'),
-                        'member_earn' => Input::get('member_earn'),
-                        'transport' => Input::get('transport'),
-                        'support_earn' => Input::get('support_earn'),
-                        'food_drinks' => Input::get('food_drinks'),
-                        'other_cost' => Input::get('other_cost'),
-                        'days' => Input::get('days'),
-                        'hours' => Input::get('hours'),
-                        'registration' => Input::get('registration'),
-                        'consultation' => Input::get('consultation'),
-                        'diagnostic' => Input::get('diagnostic'),
-                        'medications' => Input::get('medications'),
-                        'other_medical_cost' => Input::get('other_medical_cost'),
+                if ($laboratory_results) {
+                    $user->updateRecord('laboratory_results', array(
+                        'hema_done' => Input::get('hema_done'),
+                        'lab_date_hema' => Input::get('lab_date_hema'),
+                        'lab_time_hema' => Input::get('lab_time_hema'),
+                        'hemo' => Input::get('hemo'),
+                        'hemo_type' => Input::get('hemo_type'),
+                        'wbc' => Input::get('wbc'),
+                        'wbc_type' => Input::get('wbc_type'),
+                        'lymph' => Input::get('lymph'),
+                        'neutro_count' => Input::get('neutro_count'),
+                        'hematocrit' => Input::get('hematocrit'),
+                        'platelettes' => Input::get('platelettes'),
+                        'platelets_type' => Input::get('platelets_type'),
+                        'biochem_done' => Input::get('biochem_done'),
+                        'lab_date_bio' => Input::get('lab_date_bio'),
+                        'lab_time_bio' => Input::get('lab_time_bio'),
+                        'bun' => Input::get('bun'),
+                        'bun_type' => Input::get('bun_type'),
+                        'creat' => Input::get('creat'),
+                        'creat_type' => Input::get('creat_type'),
+                        'sodium' => Input::get('sodium'),
+                        'sod_type' => Input::get('sod_type'),
+                        'potass' => Input::get('potass'),
+                        'potas_type' => Input::get('potas_type'),
+                        'tot_choles' => Input::get('tot_choles'),
+                        'trigly' => Input::get('trigly'),
+                        'hdl' => Input::get('hdl'),
+                        'ldl' => Input::get('ldl'),
+                        'vldl' => Input::get('vldl'),
+                        'coronary_risk' => Input::get('coronary_risk'),
+                        'urine_done' => Input::get('urine_done'),
+                        'lab_date_bio_2' => Input::get('lab_date_bio_2'),
+                        'lab_time_bio_2' => Input::get('lab_time_bio_2'),
+                        'color' => Input::get('color'),
+                        'appearance' => Input::get('appearance'),
+                        'labs_glucose' => Input::get('labs_glucose'),
+                        'bilirubin' => Input::get('bilirubin'),
+                        'ketone' => Input::get('ketone'),
+                        'spec_grav' => Input::get('spec_grav'),
+                        'urine_blood' => Input::get('urine_blood'),
+                        'urine_ph' => Input::get('urine_ph'),
+                        'urine_protein' => Input::get('urine_protein'),
+                        'urobilonogen' => Input::get('urobilonogen'),
+                        'nitrite' => Input::get('nitrite'),
+                        'leukocytes' => Input::get('leukocytes'),
+                        'laboratory_results_complete' => Input::get('laboratory_results_complete'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                    ), $economic[0]['id']);
-                    $successMessage = 'Economic  Successful Updated';
+                    ), $laboratory_results[0]['id']);
+                    $successMessage = 'Laboratory Results  Successful Updated';
                 } else {
-                    $user->createRecord('economic', array(
-                        'economic_date' => Input::get('economic_date'),
-                        'visit_code' => $_GET['visit_code'],
+                    $user->createRecord('laboratory_results', array(
+                        'sequence' => 1,
+                        'visit_code' => 'EV',
                         'study_id' => $_GET['study_id'],
-                        'sequence' => $_GET['sequence'],
-                        'income_household' => Input::get('income_household'),
-                        'income_household_other' => Input::get('income_household_other'),
-                        'income_patient' => Input::get('income_patient'),
-                        'income_patient_other' => Input::get('income_patient_other'),
-                        'monthly_earn' => Input::get('monthly_earn'),
-                        'member_earn' => Input::get('member_earn'),
-                        'transport' => Input::get('transport'),
-                        'support_earn' => Input::get('support_earn'),
-                        'food_drinks' => Input::get('food_drinks'),
-                        'other_cost' => Input::get('other_cost'),
-                        'days' => Input::get('days'),
-                        'hours' => Input::get('hours'),
-                        'registration' => Input::get('registration'),
-                        'consultation' => Input::get('consultation'),
-                        'diagnostic' => Input::get('diagnostic'),
-                        'medications' => Input::get('medications'),
-                        'other_medical_cost' => Input::get('other_medical_cost'),
+                        'pid' => $_GET['study_id'],
+                        'visit_date' => Input::get('visit_date'),
+                        'hema_done' => Input::get('hema_done'),
+                        'lab_date_hema' => Input::get('lab_date_hema'),
+                        'lab_time_hema' => Input::get('lab_time_hema'),
+                        'hemo' => Input::get('hemo'),
+                        'hemo_type' => Input::get('hemo_type'),
+                        'wbc' => Input::get('wbc'),
+                        'wbc_type' => Input::get('wbc_type'),
+                        'lymph' => Input::get('lymph'),
+                        'neutro_count' => Input::get('neutro_count'),
+                        'hematocrit' => Input::get('hematocrit'),
+                        'platelettes' => Input::get('platelettes'),
+                        'platelets_type' => Input::get('platelets_type'),
+                        'biochem_done' => Input::get('biochem_done'),
+                        'lab_date_bio' => Input::get('lab_date_bio'),
+                        'lab_time_bio' => Input::get('lab_time_bio'),
+                        'bun' => Input::get('bun'),
+                        'bun_type' => Input::get('bun_type'),
+                        'creat' => Input::get('creat'),
+                        'creat_type' => Input::get('creat_type'),
+                        'sodium' => Input::get('sodium'),
+                        'sod_type' => Input::get('sod_type'),
+                        'potass' => Input::get('potass'),
+                        'potas_type' => Input::get('potas_type'),
+                        'tot_choles' => Input::get('tot_choles'),
+                        'trigly' => Input::get('trigly'),
+                        'hdl' => Input::get('hdl'),
+                        'ldl' => Input::get('ldl'),
+                        'vldl' => Input::get('vldl'),
+                        'coronary_risk' => Input::get('coronary_risk'),
+                        'urine_done' => Input::get('urine_done'),
+                        'lab_date_bio_2' => Input::get('lab_date_bio_2'),
+                        'lab_time_bio_2' => Input::get('lab_time_bio_2'),
+                        'color' => Input::get('color'),
+                        'appearance' => Input::get('appearance'),
+                        'labs_glucose' => Input::get('labs_glucose'),
+                        'bilirubin' => Input::get('bilirubin'),
+                        'ketone' => Input::get('ketone'),
+                        'spec_grav' => Input::get('spec_grav'),
+                        'urine_blood' => Input::get('urine_blood'),
+                        'urine_ph' => Input::get('urine_ph'),
+                        'urine_protein' => Input::get('urine_protein'),
+                        'urobilonogen' => Input::get('urobilonogen'),
+                        'nitrite' => Input::get('nitrite'),
+                        'leukocytes' => Input::get('leukocytes'),
+                        'laboratory_results_complete' => Input::get('laboratory_results_complete'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
                         'staff_id' => $user->data()->id,
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                        'site_id' => $clients['site_id'],
+                        'site' => $user->data()->site_id,
                     ));
-                    $successMessage = 'Economic  Successful Added';
+                    $successMessage = 'Laboratory Results  Successful Added';
                 }
 
-                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status']);
+                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg= ' . $successMessage);
             } else {
                 $pageError = $validate->errors();
             }
@@ -810,7 +869,6 @@ if ($user->isLoggedIn()) {
             ));
 
             if ($validate->passed()) {
-                print_r($_POST);
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
 
                 $radiological_investigations = $override->get3('radiological_investigations', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', 1);
@@ -836,7 +894,25 @@ if ($user->isLoggedIn()) {
                         'repolarizatn_abno_ecg' => Input::get('repolarizatn_abno_ecg'),
                         'conclusion_ecg' => Input::get('conclusion_ecg'),
                         'abno_o_borderl_specify' => Input::get('abno_o_borderl_specify'),
-                        'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
+                        'echocardiogram' => Input::get('echocardiogram'),
+                        'quality_of_image_echo' => Input::get('quality_of_image_echo'),
+                        'brief_exp_subopt_echo' => Input::get('brief_exp_subopt_echo'),
+                        'situs_echo' => Input::get('situs_echo'),
+                        'cardiac_axis_echo' => Input::get('cardiac_axis_echo'),
+                        'syst_vein_connect_echo' => Input::get('syst_vein_connect_echo'),
+                        'specify_ab_sysvein_con' => Input::get('specify_ab_sysvein_con'),
+                        'pulmo_ven_conn_echo' => Input::get('pulmo_ven_conn_echo'),
+                        'specfy_ab_pulven_con' => Input::get('specfy_ab_pulven_con'),
+                        'atrioven_connec' => Input::get('atrioven_connec'),
+                        'ventricular_loop' => Input::get('ventricular_loop'),
+                        'ventriculoart_conn' => Input::get('ventriculoart_conn'),
+                        'arrange_grt_arteries' => Input::get('arrange_grt_arteries'),
+                        'structural_lesions' => Input::get('structural_lesions'),
+                        'state_struc_lession' => Input::get('state_struc_lession'),
+                        'size' => Input::get('size'),
+                        'site_struc_lesion' => Input::get('site_struc_lesion'),
+                        'hemodynamics_stru_lesio' => Input::get('hemodynamics_stru_lesio'),
+                        'radiological_investigations_complete' => Input::get('hemodynamics_stru_lesio'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
                     ), $radiological_investigations[0]['id']);
@@ -867,6 +943,24 @@ if ($user->isLoggedIn()) {
                         'repolarizatn_abno_ecg' => Input::get('repolarizatn_abno_ecg'),
                         'conclusion_ecg' => Input::get('conclusion_ecg'),
                         'abno_o_borderl_specify' => Input::get('abno_o_borderl_specify'),
+                        'echocardiogram' => Input::get('echocardiogram'),
+                        'quality_of_image_echo' => Input::get('quality_of_image_echo'),
+                        'brief_exp_subopt_echo' => Input::get('brief_exp_subopt_echo'),
+                        'situs_echo' => Input::get('situs_echo'),
+                        'cardiac_axis_echo' => Input::get('cardiac_axis_echo'),
+                        'syst_vein_connect_echo' => Input::get('syst_vein_connect_echo'),
+                        'specify_ab_sysvein_con' => Input::get('specify_ab_sysvein_con'),
+                        'pulmo_ven_conn_echo' => Input::get('pulmo_ven_conn_echo'),
+                        'specfy_ab_pulven_con' => Input::get('specfy_ab_pulven_con'),
+                        'atrioven_connec' => Input::get('atrioven_connec'),
+                        'ventricular_loop' => Input::get('ventricular_loop'),
+                        'ventriculoart_conn' => Input::get('ventriculoart_conn'),
+                        'arrange_grt_arteries' => Input::get('arrange_grt_arteries'),
+                        'structural_lesions' => Input::get('structural_lesions'),
+                        'state_struc_lession' => Input::get('state_struc_lession'),
+                        'size' => Input::get('size'),
+                        'site_struc_lesion' => Input::get('site_struc_lesion'),
+                        'hemodynamics_stru_lesio' => Input::get('hemodynamics_stru_lesio'),
                         'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
@@ -878,7 +972,7 @@ if ($user->isLoggedIn()) {
                     ));
                     $successMessage = 'Radiological Investigations  Successful Added';
                 }
-                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'].'&msg='. $successMessage);
+                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg=' . $successMessage);
             } else {
                 $pageError = $validate->errors();
             }
@@ -3643,7 +3737,7 @@ if ($user->isLoggedIn()) {
                                         <div class="card-body">
                                             <hr>
                                             <div class="row">
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="visit_date" class="form-label">Visit Date</label>
                                                         <input type="date" value="<?php if ($laboratory_results['visit_date']) {
@@ -3672,21 +3766,653 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="lab_time_hema" class="form-label">Time of sampling</label>
-                                                        <input type="text" value="<?php if ($laboratory_results['lab_time_hema']) {
-                                                                                        print_r($laboratory_results['lab_time_hema']);
-                                                                                    } ?>" id="lab_time_hema" name="lab_time_hema" min="0" class="form-control" placeholder="Enter Time" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="mb-2">
                                                         <label for="lab_date_hema" class="form-label">Date of sampling</label>
                                                         <input type="date" value="<?php if ($laboratory_results['lab_date_hema']) {
                                                                                         print_r($laboratory_results['lab_date_hema']);
                                                                                     } ?>" id="lab_date_hema" name="lab_date_hema" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="lab_time_hema" class="form-label">Time of sampling</label>
+                                                        <input type="text" value="<?php if ($laboratory_results['lab_time_hema']) {
+                                                                                        print_r($laboratory_results['lab_time_hema']);
+                                                                                    } ?>" id="lab_time_hema" name="lab_time_hema" min="0" class="form-control" placeholder="Enter Time" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="hemo" class="form-label">Haemoglobin</label>
+                                                        <input type="number" min="0" value="<?php if ($laboratory_results['hemo']) {
+                                                                                                print_r($laboratory_results['hemo']);
+                                                                                            } ?>" id="hemo" name="hemo" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Haemoglobin Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('gl_gdl', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="hemo_type" id="hemo_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['hemo_type'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="wbc" class="form-label">WBC count</label>
+                                                        <input type="number" min="0" value="<?php if ($laboratory_results['wbc']) {
+                                                                                                print_r($laboratory_results['wbc']);
+                                                                                            } ?>" id="wbc" name="wbc" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Wbc Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('_109_103', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="wbc_type" id="wbc_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['wbc_type'] == $value['id']) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <div class="mb-2">
+                                                        <label for="lymph" class="form-label">Lymphocyte count</label>
+                                                        <input type="number" min="0" value="<?php if ($laboratory_results['lymph']) {
+                                                                                                print_r($laboratory_results['lymph']);
+                                                                                            } ?>" id="lymph" name="lymph" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>cells/uL</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="mb-2">
+                                                        <label for="neutro_count" class="form-label">Neutrophil count</label>
+                                                        <input type="number" min="0" value="<?php if ($laboratory_results['neutro_count']) {
+                                                                                                print_r($laboratory_results['neutro_count']);
+                                                                                            } ?>" id="neutro_count" name="neutro_count" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>cells/uL</span>
+                                                </div>
                                                 <div class="col-sm-2">
+                                                    <div class="mb-2">
+                                                        <label for="hematocrit" class="form-label">Hematocrit</label>
+                                                        <input type="number" min="0" value="<?php if ($laboratory_results['hematocrit']) {
+                                                                                                print_r($laboratory_results['hematocrit']);
+                                                                                            } ?>" id="hematocrit" name="hematocrit" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>%</span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="mb-2">
+                                                        <label for="platelettes" class="form-label">Platelets</label>
+                                                        <input type="number" min="0" value="<?php if ($laboratory_results['platelettes']) {
+                                                                                                print_r($laboratory_results['platelettes']);
+                                                                                            } ?>" id="platelettes" name="platelettes" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label>Platelets Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('_109_103', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="platelets_type" id="platelets_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['platelets_type'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">BIOCHEMISTRY</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-4">
+                                                    <label>Has biochemistry tests been done today?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="biochem_done" id="biochem_done<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['biochem_done'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="lab_date_bio" class="form-label">Date of sampling</label>
+                                                        <input type="date" value="<?php if ($laboratory_results['lab_date_bio']) {
+                                                                                        print_r($laboratory_results['lab_date_bio']);
+                                                                                    } ?>" id="lab_date_bio" name="lab_date_bio" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="lab_time_bio" class="form-label">Time of sampling</label>
+                                                        <input type="text" value="<?php if ($laboratory_results['lab_time_bio']) {
+                                                                                        print_r($laboratory_results['lab_time_bio']);
+                                                                                    } ?>" id="lab_time_bio" name="lab_time_bio" min="0" class="form-control" placeholder="Enter Time" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="bun" class="form-label">Blood Urea Nitrogen (urea)</label>
+                                                        <input type="text" value="<?php if ($laboratory_results['bun']) {
+                                                                                        print_r($laboratory_results['bun']);
+                                                                                    } ?>" id="bun" name="bun" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Bun Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('mmol_l_mg_dL', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="bun_type" id="bun_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['bun_type'] == $value['id']) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="creat" class="form-label">Creatinine</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['creat']) {
+                                                                                                    print_r($laboratory_results['creat']);
+                                                                                                } ?>" id="creat" name="creat" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Creatinine Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('umol_l_mg_dL', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="creat_type" id="creat_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['creat_type'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="sodium" class="form-label">Sodium</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['sodium']) {
+                                                                                                    print_r($laboratory_results['sodium']);
+                                                                                                } ?>" id="sodium" name="sodium" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Sodium Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('mmol_l_meq_dL', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="sod_type" id="sod_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['sod_type'] == $value['id']) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="potass" class="form-label">Potassium</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['potass']) {
+                                                                                                    print_r($laboratory_results['potass']);
+                                                                                                } ?>" id="potass" name="potass" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Potassium Type</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('mmol_l_meq_dL', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="potas_type" id="potas_type<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['potas_type'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="tot_choles" class="form-label">Total Cholesterol</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['tot_choles']) {
+                                                                                                    print_r($laboratory_results['tot_choles']);
+                                                                                                } ?>" id="tot_choles" name="tot_choles" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mmol/L</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="trigly" class="form-label">Triglycerides</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['trigly']) {
+                                                                                                    print_r($laboratory_results['trigly']);
+                                                                                                } ?>" id="trigly" name="trigly" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mmol/L</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="hdl" class="form-label">HDL</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['hdl']) {
+                                                                                                    print_r($laboratory_results['hdl']);
+                                                                                                } ?>" id="hdl" name="hdl" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mmol/L</span>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="ldl" class="form-label">LDL</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['ldl']) {
+                                                                                                    print_r($laboratory_results['ldl']);
+                                                                                                } ?>" id="ldl" name="ldl" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mmol/L</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="vldl" class="form-label">VLDL</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['vldl']) {
+                                                                                                    print_r($laboratory_results['vldl']);
+                                                                                                } ?>" id="vldl" name="vldl" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>mmol/L</span>
+                                                </div>
+
+
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="coronary_risk" class="form-label">Coronary Risk</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['coronary_risk']) {
+                                                                                                    print_r($laboratory_results['coronary_risk']);
+                                                                                                } ?>" id="coronary_risk" name="coronary_risk" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>number</span>
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Urine R/E</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-4">
+                                                    <label>Has urine R/E been done today?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="urine_done" id="urine_done<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['urine_done'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="lab_date_bio_2" class="form-label">Date of sampling</label>
+                                                        <input type="date" value="<?php if ($laboratory_results['lab_date_bio_2']) {
+                                                                                        print_r($laboratory_results['lab_date_bio_2']);
+                                                                                    } ?>" id="lab_date_bio_2" name="lab_date_bio_2" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="lab_time_bio_2" class="form-label">Time of sampling</label>
+                                                        <input type="text" value="<?php if ($laboratory_results['lab_time_bio_2']) {
+                                                                                        print_r($laboratory_results['lab_time_bio_2']);
+                                                                                    } ?>" id="lab_time_bio_2" name="lab_time_bio_2" min="0" class="form-control" placeholder="Enter Time" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
+                                                    <label>Color</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('color', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="color" id="color<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['color'] == $value['id']) {
+                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Appearance</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('appearance', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="appearance" id="appearance<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['appearance'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Glucose</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="labs_glucose" id="labs_glucose<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['labs_glucose'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Bilirubin</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="bilirubin" id="bilirubin<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['bilirubin'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
+                                                    <label>Ketone</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="ketone" id="ketone<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['ketone'] == $value['id']) {
+                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="spec_grav" class="form-label">Specific Gravity</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['spec_grav']) {
+                                                                                                    print_r($laboratory_results['spec_grav']);
+                                                                                                } ?>" id="spec_grav" name="spec_grav" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>number</span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Blood</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="urine_blood" id="urine_blood<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['urine_blood'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="mb-2">
+                                                        <label for="urine_ph" class="form-label">pH</label>
+                                                        <input type="number" step="any" value="<?php if ($laboratory_results['urine_ph']) {
+                                                                                                    print_r($laboratory_results['urine_ph']);
+                                                                                                } ?>" id="urine_ph" name="urine_ph" min="0" class="form-control" placeholder="Enter here" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
+                                                    <label>Protein</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="urine_protein" id="urine_protein<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['urine_protein'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label>Urobilinogen</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="urobilonogen" id="urobilonogen<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['urobilonogen'] == $value['id']) {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Nitrite</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="nitrite" id="nitrite<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['nitrite'] == $value['id']) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label>Leukocytes</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('positive_negative', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="leukocytes" id="leukocytes<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($laboratory_results['leukocytes'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Form Status</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -3719,7 +4445,7 @@ if ($user->isLoggedIn()) {
                                         <div class="card-footer">
                                             <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
                                             <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
-                                            <input type="submit" name="add_chronic_illnesses" value="Submit" class="btn btn-primary">
+                                            <input type="submit" name="add_laboratory_results" value="Submit" class="btn btn-primary">
                                         </div>
                                     </form>
                                 </div>
