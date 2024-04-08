@@ -182,9 +182,9 @@ if ($user->isLoggedIn()) {
                 // 'lastname' => array(
                 //     'required' => true,
                 // ),
-                'age' => array(
-                    'required' => true,
-                ),
+                // 'age' => array(
+                //     'required' => true,
+                // ),
                 'gender' => array(
                     'required' => true,
                 ),
@@ -912,63 +912,63 @@ if ($user->isLoggedIn()) {
                         'site_struc_lesion' => Input::get('site_struc_lesion'),
                         'hemodynamics_stru_lesio' => Input::get('hemodynamics_stru_lesio'),
 
-                        // 'aortic_valve' => Input::get('aortic_valve'),
-                        // 'mitral_vavlve' => Input::get('mitral_vavlve'),
-                        // 'tricuspid_valve' => Input::get('tricuspid_valve'),
-                        // 'pericardial_effusion' => Input::get('pericardial_effusion'),
-                        // 'measure_deep_pool' => Input::get('measure_deep_pool'),
-                        // 'left_atrium' => Input::get('left_atrium'),
-                        // 'lf_atriu_parasternal' => Input::get('lf_atriu_parasternal'),
-                        // 'lf_atrium_4chamb_long' => Input::get('lf_atrium_4chamb_long'),
-                        // 'lf_atrium_4chamb_minor' => Input::get('lf_atrium_4chamb_minor'),
-                        // 'right_atrium' => Input::get('right_atrium'),
-                        // 'rt_4chamb_long' => Input::get('rt_4chamb_long'),
-                        // 'rt_4chamb_transverse' => Input::get('rt_4chamb_transverse'),
-                        // 'left_ventrical_mmode' => Input::get('left_ventrical_mmode'),
-                        // 'free_wall_thickness' => Input::get('free_wall_thickness'),
-                        // 'septal_thickness' => Input::get('septal_thickness'),
-                        // 'free_wall_thickness_2' => Input::get('free_wall_thickness_2'),
-                        // 'lt_2d_plax_view' => Input::get('lt_2d_plax_view'),
-                        // 'd_freewall_thick_plax' => Input::get('d_freewall_thick_plax'),
-                        // 'd_septal_thick_plax' => Input::get('d_septal_thick_plax'),
-                        // 'd_freewall_thick_plax2' => Input::get('d_freewall_thick_plax2'),
-                        // 'right_ven_chamber' => Input::get('right_ven_chamber'),
-                        // 'rvot_plax_dia' => Input::get('rvot_plax_dia'),
-                        // 'rvot_prox_dia' => Input::get('rvot_prox_dia'),
-                        // 'rvot_distal_dia' => Input::get('rvot_distal_dia'),
-                        // 'rv_wall_thickness' => Input::get('rv_wall_thickness'),
-                        // 'lv_sys_func' => Input::get('lv_sys_func'),
-                        // 'ef_echo' => Input::get('ef_echo'),
-                        // 'fs_echo' => Input::get('fs_echo'),
-                        // 'rv_sys_func' => Input::get('rv_sys_func'),
-                        // 'tapse_echo' => Input::get('tapse_echo'),
-                        // 'esti_rv_sbp' => Input::get('esti_rv_sbp'),
-                        // 'estimate_rv_sbp' => Input::get('estimate_rv_sbp'),
-                        // 'ivc_dimen_n_collapsi' => Input::get('ivc_dimen_n_collapsi'),
-                        // 'inferior_venacava' => Input::get('inferior_venacava'),
-                        // 'quali_asses_valvar_regurgi' => Input::get('quali_asses_valvar_regurgi'),
-                        // 'cardiac_anatomy' => Input::get('cardiac_anatomy'),
-                        // 'abnorm_cardiac_anatom' => Input::get('abnorm_cardiac_anatom'),
-                        // 'cardiac_function' => Input::get('cardiac_function'),
-                        // 'abnorm_cardia_func' => Input::get('abnorm_cardia_func'),
-                        // 'renal_ultrasound' => Input::get('renal_ultrasound'),
-                        // 'quality_renal' => Input::get('quality_renal'),
-                        // 'rt_kidney_length' => Input::get('rt_kidney_length'),
-                        // 'rt_kidney_width' => Input::get('rt_kidney_width'),
-                        // 'rt_kidney_echoge' => Input::get('rt_kidney_echoge'),
-                        // 'lt_kidney_length' => Input::get('lt_kidney_length'),
-                        // 'lt_kidney_width' => Input::get('lt_kidney_width'),
-                        // 'lt_kidney_echoge' => Input::get('lt_kidney_echoge'),
-                        // 'hydronephrosis' => Input::get('hydronephrosis'),
-                        // 'yes_hydronephrosis' => Input::get('yes_hydronephrosis'),
-                        // 'kidney_stones' => Input::get('kidney_stones'),
-                        // 'detail_kidneystones' => Input::get('detail_kidneystones'),
-                        // 'structural_anomalies' => Input::get('structural_anomalies'),
-                        // 'details_structural_anomali' => Input::get('details_structural_anomali'),
-                        // 'comment_bladders' => Input::get('comment_bladders'),
-                        // 'incidental_findings' => Input::get('incidental_findings'),
-                        // 'conclusion_renal' => Input::get('conclusion_renal'),
-                        // 'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
+                        'aortic_valve' => Input::get('aortic_valve'),
+                        'mitral_vavlve' => Input::get('mitral_vavlve'),
+                        'tricuspid_valve' => Input::get('tricuspid_valve'),
+                        'pericardial_effusion' => Input::get('pericardial_effusion'),
+                        'measure_deep_pool' => Input::get('measure_deep_pool'),
+                        'left_atrium' => Input::get('left_atrium'),
+                        'lf_atriu_parasternal' => Input::get('lf_atriu_parasternal'),
+                        'lf_atrium_4chamb_long' => Input::get('lf_atrium_4chamb_long'),
+                        'lf_atrium_4chamb_minor' => Input::get('lf_atrium_4chamb_minor'),
+                        'right_atrium' => Input::get('right_atrium'),
+                        'rt_4chamb_long' => Input::get('rt_4chamb_long'),
+                        'rt_4chamb_transverse' => Input::get('rt_4chamb_transverse'),
+                        'left_ventrical_mmode' => Input::get('left_ventrical_mmode'),
+                        'free_wall_thickness' => Input::get('free_wall_thickness'),
+                        'septal_thickness' => Input::get('septal_thickness'),
+                        'free_wall_thickness_2' => Input::get('free_wall_thickness_2'),
+                        'lt_2d_plax_view' => Input::get('lt_2d_plax_view'),
+                        'd_freewall_thick_plax' => Input::get('d_freewall_thick_plax'),
+                        'd_septal_thick_plax' => Input::get('d_septal_thick_plax'),
+                        'd_freewall_thick_plax2' => Input::get('d_freewall_thick_plax2'),
+                        'right_ven_chamber' => Input::get('right_ven_chamber'),
+                        'rvot_plax_dia' => Input::get('rvot_plax_dia'),
+                        'rvot_prox_dia' => Input::get('rvot_prox_dia'),
+                        'rvot_distal_dia' => Input::get('rvot_distal_dia'),
+                        'rv_wall_thickness' => Input::get('rv_wall_thickness'),
+                        'lv_sys_func' => Input::get('lv_sys_func'),
+                        'ef_echo' => Input::get('ef_echo'),
+                        'fs_echo' => Input::get('fs_echo'),
+                        'rv_sys_func' => Input::get('rv_sys_func'),
+                        'tapse_echo' => Input::get('tapse_echo'),
+                        'esti_rv_sbp' => Input::get('esti_rv_sbp'),
+                        'estimate_rv_sbp' => Input::get('estimate_rv_sbp'),
+                        'ivc_dimen_n_collapsi' => Input::get('ivc_dimen_n_collapsi'),
+                        'inferior_venacava' => Input::get('inferior_venacava'),
+                        'quali_asses_valvar_regurgi' => Input::get('quali_asses_valvar_regurgi'),
+                        'cardiac_anatomy' => Input::get('cardiac_anatomy'),
+                        'abnorm_cardiac_anatom' => Input::get('abnorm_cardiac_anatom'),
+                        'cardiac_function' => Input::get('cardiac_function'),
+                        'abnorm_cardia_func' => Input::get('abnorm_cardia_func'),
+                        'renal_ultrasound' => Input::get('renal_ultrasound'),
+                        'quality_renal' => Input::get('quality_renal'),
+                        'rt_kidney_length' => Input::get('rt_kidney_length'),
+                        'rt_kidney_width' => Input::get('rt_kidney_width'),
+                        'rt_kidney_echoge' => Input::get('rt_kidney_echoge'),
+                        'lt_kidney_length' => Input::get('lt_kidney_length'),
+                        'lt_kidney_width' => Input::get('lt_kidney_width'),
+                        'lt_kidney_echoge' => Input::get('lt_kidney_echoge'),
+                        'hydronephrosis' => Input::get('hydronephrosis'),
+                        'yes_hydronephrosis' => Input::get('yes_hydronephrosis'),
+                        'kidney_stones' => Input::get('kidney_stones'),
+                        'detail_kidneystones' => Input::get('detail_kidneystones'),
+                        'structural_anomalies' => Input::get('structural_anomalies'),
+                        'details_structural_anomali' => Input::get('details_structural_anomali'),
+                        'comment_bladders' => Input::get('comment_bladders'),
+                        'incidental_findings' => Input::get('incidental_findings'),
+                        'conclusion_renal' => Input::get('conclusion_renal'),
+                        'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
 
                         'radiological_investigations_complete' => Input::get('hemodynamics_stru_lesio'),
                         'update_on' => date('Y-m-d H:i:s'),
@@ -1017,66 +1017,66 @@ if ($user->isLoggedIn()) {
                         'structural_lesions' => Input::get('structural_lesions'),
                         'state_struc_lession' => Input::get('state_struc_lession'),
                         'size' => Input::get('size'),
-                        'site_struc_lesion' => Input::get('site_struc_lesion'),                        
+                        'site_struc_lesion' => Input::get('site_struc_lesion'),
                         'hemodynamics_stru_lesio' => Input::get('hemodynamics_stru_lesio'),
 
-                        // 'aortic_valve' => Input::get('aortic_valve'),
-                        // 'mitral_vavlve' => Input::get('mitral_vavlve'),
-                        // 'tricuspid_valve' => Input::get('tricuspid_valve'),
-                        // 'pericardial_effusion' => Input::get('pericardial_effusion'),
-                        // 'measure_deep_pool' => Input::get('measure_deep_pool'),
-                        // 'left_atrium' => Input::get('left_atrium'),
-                        // 'lf_atriu_parasternal' => Input::get('lf_atriu_parasternal'),
-                        // 'lf_atrium_4chamb_long' => Input::get('lf_atrium_4chamb_long'),
-                        // 'lf_atrium_4chamb_minor' => Input::get('lf_atrium_4chamb_minor'),
-                        // 'right_atrium' => Input::get('right_atrium'),
-                        // 'rt_4chamb_long' => Input::get('rt_4chamb_long'),
-                        // 'rt_4chamb_transverse' => Input::get('rt_4chamb_transverse'),
-                        // 'left_ventrical_mmode' => Input::get('left_ventrical_mmode'),
-                        // 'free_wall_thickness' => Input::get('free_wall_thickness'),
-                        // 'septal_thickness' => Input::get('septal_thickness'),
-                        // 'free_wall_thickness_2' => Input::get('free_wall_thickness_2'),
-                        // 'lt_2d_plax_view' => Input::get('lt_2d_plax_view'),
-                        // 'd_freewall_thick_plax' => Input::get('d_freewall_thick_plax'),
-                        // 'd_septal_thick_plax' => Input::get('d_septal_thick_plax'),
-                        // 'd_freewall_thick_plax2' => Input::get('d_freewall_thick_plax2'),
-                        // 'right_ven_chamber' => Input::get('right_ven_chamber'),
-                        // 'rvot_plax_dia' => Input::get('rvot_plax_dia'),
-                        // 'rvot_prox_dia' => Input::get('rvot_prox_dia'),
-                        // 'rvot_distal_dia' => Input::get('rvot_distal_dia'),
-                        // 'rv_wall_thickness' => Input::get('rv_wall_thickness'),
-                        // 'lv_sys_func' => Input::get('lv_sys_func'),
-                        // 'ef_echo' => Input::get('ef_echo'),
-                        // 'fs_echo' => Input::get('fs_echo'),
-                        // 'rv_sys_func' => Input::get('rv_sys_func'),
-                        // 'tapse_echo' => Input::get('tapse_echo'),
-                        // 'esti_rv_sbp' => Input::get('esti_rv_sbp'),
-                        // 'estimate_rv_sbp' => Input::get('estimate_rv_sbp'),
-                        // 'ivc_dimen_n_collapsi' => Input::get('ivc_dimen_n_collapsi'),
-                        // 'inferior_venacava' => Input::get('inferior_venacava'),
-                        // 'quali_asses_valvar_regurgi' => Input::get('quali_asses_valvar_regurgi'),
-                        // 'cardiac_anatomy' => Input::get('cardiac_anatomy'),
-                        // 'abnorm_cardiac_anatom' => Input::get('abnorm_cardiac_anatom'),
-                        // 'cardiac_function' => Input::get('cardiac_function'),
-                        // 'abnorm_cardia_func' => Input::get('abnorm_cardia_func'),
-                        // 'renal_ultrasound' => Input::get('renal_ultrasound'),
-                        // 'quality_renal' => Input::get('quality_renal'),
-                        // 'rt_kidney_length' => Input::get('rt_kidney_length'),
-                        // 'rt_kidney_width' => Input::get('rt_kidney_width'),
-                        // 'rt_kidney_echoge' => Input::get('rt_kidney_echoge'),
-                        // 'lt_kidney_length' => Input::get('lt_kidney_length'),
-                        // 'lt_kidney_width' => Input::get('lt_kidney_width'),
-                        // 'lt_kidney_echoge' => Input::get('lt_kidney_echoge'),
-                        // 'hydronephrosis' => Input::get('hydronephrosis'),
-                        // 'yes_hydronephrosis' => Input::get('yes_hydronephrosis'),
-                        // 'kidney_stones' => Input::get('kidney_stones'),
-                        // 'detail_kidneystones' => Input::get('detail_kidneystones'),
-                        // 'structural_anomalies' => Input::get('structural_anomalies'),
-                        // 'details_structural_anomali' => Input::get('details_structural_anomali'),
-                        // 'comment_bladders' => Input::get('comment_bladders'),
-                        // 'incidental_findings' => Input::get('incidental_findings'),
-                        // 'conclusion_renal' => Input::get('conclusion_renal'),
-                        // 'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
+                        'aortic_valve' => Input::get('aortic_valve'),
+                        'mitral_vavlve' => Input::get('mitral_vavlve'),
+                        'tricuspid_valve' => Input::get('tricuspid_valve'),
+                        'pericardial_effusion' => Input::get('pericardial_effusion'),
+                        'measure_deep_pool' => Input::get('measure_deep_pool'),
+                        'left_atrium' => Input::get('left_atrium'),
+                        'lf_atriu_parasternal' => Input::get('lf_atriu_parasternal'),
+                        'lf_atrium_4chamb_long' => Input::get('lf_atrium_4chamb_long'),
+                        'lf_atrium_4chamb_minor' => Input::get('lf_atrium_4chamb_minor'),
+                        'right_atrium' => Input::get('right_atrium'),
+                        'rt_4chamb_long' => Input::get('rt_4chamb_long'),
+                        'rt_4chamb_transverse' => Input::get('rt_4chamb_transverse'),
+                        'left_ventrical_mmode' => Input::get('left_ventrical_mmode'),
+                        'free_wall_thickness' => Input::get('free_wall_thickness'),
+                        'septal_thickness' => Input::get('septal_thickness'),
+                        'free_wall_thickness_2' => Input::get('free_wall_thickness_2'),
+                        'lt_2d_plax_view' => Input::get('lt_2d_plax_view'),
+                        'd_freewall_thick_plax' => Input::get('d_freewall_thick_plax'),
+                        'd_septal_thick_plax' => Input::get('d_septal_thick_plax'),
+                        'd_freewall_thick_plax2' => Input::get('d_freewall_thick_plax2'),
+                        'right_ven_chamber' => Input::get('right_ven_chamber'),
+                        'rvot_plax_dia' => Input::get('rvot_plax_dia'),
+                        'rvot_prox_dia' => Input::get('rvot_prox_dia'),
+                        'rvot_distal_dia' => Input::get('rvot_distal_dia'),
+                        'rv_wall_thickness' => Input::get('rv_wall_thickness'),
+                        'lv_sys_func' => Input::get('lv_sys_func'),
+                        'ef_echo' => Input::get('ef_echo'),
+                        'fs_echo' => Input::get('fs_echo'),
+                        'rv_sys_func' => Input::get('rv_sys_func'),
+                        'tapse_echo' => Input::get('tapse_echo'),
+                        'esti_rv_sbp' => Input::get('esti_rv_sbp'),
+                        'estimate_rv_sbp' => Input::get('estimate_rv_sbp'),
+                        'ivc_dimen_n_collapsi' => Input::get('ivc_dimen_n_collapsi'),
+                        'inferior_venacava' => Input::get('inferior_venacava'),
+                        'quali_asses_valvar_regurgi' => Input::get('quali_asses_valvar_regurgi'),
+                        'cardiac_anatomy' => Input::get('cardiac_anatomy'),
+                        'abnorm_cardiac_anatom' => Input::get('abnorm_cardiac_anatom'),
+                        'cardiac_function' => Input::get('cardiac_function'),
+                        'abnorm_cardia_func' => Input::get('abnorm_cardia_func'),
+                        'renal_ultrasound' => Input::get('renal_ultrasound'),
+                        'quality_renal' => Input::get('quality_renal'),
+                        'rt_kidney_length' => Input::get('rt_kidney_length'),
+                        'rt_kidney_width' => Input::get('rt_kidney_width'),
+                        'rt_kidney_echoge' => Input::get('rt_kidney_echoge'),
+                        'lt_kidney_length' => Input::get('lt_kidney_length'),
+                        'lt_kidney_width' => Input::get('lt_kidney_width'),
+                        'lt_kidney_echoge' => Input::get('lt_kidney_echoge'),
+                        'hydronephrosis' => Input::get('hydronephrosis'),
+                        'yes_hydronephrosis' => Input::get('yes_hydronephrosis'),
+                        'kidney_stones' => Input::get('kidney_stones'),
+                        'detail_kidneystones' => Input::get('detail_kidneystones'),
+                        'structural_anomalies' => Input::get('structural_anomalies'),
+                        'details_structural_anomali' => Input::get('details_structural_anomali'),
+                        'comment_bladders' => Input::get('comment_bladders'),
+                        'incidental_findings' => Input::get('incidental_findings'),
+                        'conclusion_renal' => Input::get('conclusion_renal'),
+                        'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
 
                         'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
                         'status' => 1,
@@ -1440,7 +1440,7 @@ if ($user->isLoggedIn()) {
                                                                                                         echo 'Select';
                                                                                                     } ?>
                                                                 </option>
-                                                                <?php foreach ($override->get('sites','status',1) as $site) { ?>
+                                                                <?php foreach ($override->get('sites', 'status', 1) as $site) { ?>
                                                                     <option value="<?= $site['id'] ?>"><?= $site['name'] ?></option>
                                                                 <?php } ?>
                                                             </select>
@@ -1643,8 +1643,8 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Age</label>
                                                             <input class="form-control" type="number" name="age" id="age" min="0" value="<?php if ($clients['age']) {
-                                                                                                                                            print_r($clients['age']);
-                                                                                                                                        }  ?>" required />
+                                                                                                                                                print_r($clients['age']);
+                                                                                                                                            }  ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2039,7 +2039,7 @@ if ($user->isLoggedIn()) {
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-12">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -2052,6 +2052,19 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">FORM STATUS</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            
+                                            <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
@@ -2508,7 +2521,7 @@ if ($user->isLoggedIn()) {
                                             </div>
                                             <hr>
                                             <div class="row">
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-12">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -2520,6 +2533,16 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">FORM STATUS</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
@@ -2547,6 +2570,7 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <hr>
                                         </div>
                                         <!-- /.card-body -->
                                         <div class="card-footer">
@@ -2819,7 +2843,7 @@ if ($user->isLoggedIn()) {
                                             <hr>
 
                                             <div class="row">
-                                                <div class="col-sm-3" id="participant_id">
+                                                <div class="col-sm-4" id="participant_id">
                                                     <label>If YES, indicate the Participant ID:</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -2832,7 +2856,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3" id="screen_failure">
+                                                <div class="col-sm-4" id="screen_failure">
                                                     <label>If NO, give reason for screening failure?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -2845,7 +2869,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="form_completd_by" class="form-label">Form completed by:</label>
                                                         <input type="text" value="<?php if ($eligibility['form_completd_by']) {
@@ -2854,7 +2878,7 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <span>initials</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="date_form_comptn" class="form-label">Date of form completion</label>
                                                         <input type="date" value="<?php if ($eligibility['date_form_comptn']) {
@@ -2863,6 +2887,16 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <span>dd /mmm/ yyyy</span>
                                                 </div>
+
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">FORM STATUS</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
@@ -3591,7 +3625,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <label>1.18 Have you ever been treated for TB?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -3607,7 +3641,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="mb-2">
@@ -3620,7 +3654,20 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-2">
+                                            </div>
+                                            <hr>
+
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Form Status</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -3720,7 +3767,7 @@ if ($user->isLoggedIn()) {
                                         <div class="card-body">
                                             <hr>
                                             <div class="row">
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="visit_date" class="form-label">Visit Date</label>
                                                         <input type="date" value="<?php if ($chronic_illnesses['visit_date']) {
@@ -3756,7 +3803,7 @@ if ($user->isLoggedIn()) {
                                                                                     } ?>" id="chronic_illness_type" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="start_date_chronic" class="form-label">Start date</label>
                                                         <input type="date" value="<?php if ($chronic_illnesses['start_date_chronic']) {
@@ -3764,7 +3811,21 @@ if ($user->isLoggedIn()) {
                                                                                     } ?>" id="start_date_chronic" name="start_date_chronic" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2">
+                                            </div>
+
+                                            <hr>
+
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Form Status</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -5846,7 +5907,7 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="rt_kidney_width" class="form-label">Right Kidney length</label>
+                                                        <label for="rt_kidney_width" class="form-label">Right Kidney width</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_kidney_width']) {
                                                                                         print_r($radiological_investigations['rt_kidney_width']);
                                                                                     } ?>" id="rt_kidney_width" name="rt_kidney_width" min="0" class="form-control" placeholder="Enter here" />
@@ -5882,22 +5943,21 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-
                                             </div>
 
                                             <hr>
 
                                             <div class="row">
-
                                                 <div class="col-3">
                                                     <div class="mb-2">
-                                                        <label for="lt_kidney_length" class="form-label">Left kidney width</label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['lt_kidney_length']) {
-                                                                                        print_r($radiological_investigations['lt_kidney_length']);
-                                                                                    } ?>" id="lt_kidney_length" name="lt_kidney_length" min="0" class="form-control" placeholder="Enter here" />
+                                                        <label for="lt_kidney_width" class="form-label">Left kidney width</label>
+                                                        <input type="text" value="<?php if ($radiological_investigations['lt_kidney_width']) {
+                                                                                        print_r($radiological_investigations['lt_kidney_width']);
+                                                                                    } ?>" id="lt_kidney_width" name="lt_kidney_width" min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
+
                                                 <div class="col-sm-3">
                                                     <label>Left kidney echogenicity</label>
                                                     <!-- radio -->
@@ -5950,9 +6010,6 @@ if ($user->isLoggedIn()) {
                                             <hr>
 
                                             <div class="row">
-
-
-
                                                 <div class="col-sm-3">
                                                     <label>Presence of Kidney stones?</label>
                                                     <!-- radio -->
@@ -6013,7 +6070,6 @@ if ($user->isLoggedIn()) {
                                             <hr>
 
                                             <div class="row">
-
                                                 <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="comment_bladders" class="form-label">Comment on the bladder</label>
