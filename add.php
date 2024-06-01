@@ -1223,9 +1223,7 @@ if ($user->isLoggedIn()) {
                 $pageError = $validate->errors();
             }
         } elseif (Input::get('delete_ward')) {
-            $validate = $validate->check($_POST, array(
-
-            ));
+            $validate = $validate->check($_POST, array());
             if ($validate->passed()) {
                 try {
                     $user->updateRecord('wards', array(
@@ -7366,6 +7364,51 @@ if ($user->isLoggedIn()) {
             $("input[data-bootstrap-switch]").each(function() {
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             })
+
+            $('#regions_id').change(function() {
+                var region_id = $(this).val();
+                $.ajax({
+                    url: "process.php?content=region_id",
+                    method: "GET",
+                    data: {
+                        region_id: region_id
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $('#districts_id').html(data);
+                    }
+                });
+            });
+
+            $('#region').change(function() {
+                var region = $(this).val();
+                $.ajax({
+                    url: "process.php?content=region_id",
+                    method: "GET",
+                    data: {
+                        region_id: region
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $('#district').html(data);
+                    }
+                });
+            });
+
+            $('#district').change(function() {
+                var district_id = $(this).val();
+                $.ajax({
+                    url: "process.php?content=district_id",
+                    method: "GET",
+                    data: {
+                        district_id: district_id
+                    },
+                    dataType: "text",
+                    success: function(data) {
+                        $('#ward').html(data);
+                    }
+                });
+            });
 
         })
 
