@@ -146,6 +146,47 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
+        } elseif (Input::get('add_file')) {
+            // Check if the form was submitted
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Check if file was uploaded without errors
+                if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
+                    $allowed = ['pdf', 'doc', 'docx', 'jpg', 'png','jpeg', 'gif']; // Allowed file types
+                    $filename = $_FILES['file']['name'];
+                    $filetype = $_FILES['file']['type'];
+                    $filesize = $_FILES['file']['size'];
+
+                    // Verify file extension
+                    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                    if (!in_array(strtolower($ext), $allowed)) {
+                        $successMessage = "Error: Please upload a valid file format.";
+                        exit;
+                    }
+
+                    // Verify file size - 5MB maximum
+                    if ($filesize > 5 * 1024 * 1024) {
+                        $errorMessage = 'Error: File size is larger than the allowed limit.';
+                        exit;
+                    }
+
+                    // Verify MIME type of the file
+                    if (in_array($filetype, ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'image/gif'])) {
+                        // Check whether file exists before uploading it
+                        if (file_exists('upload/' . $filename)) {
+                            $errorMessage = $filename . " already exists.";
+                        } else {
+                            move_uploaded_file($_FILES['file']['tmp_name'], 'upload/' . $filename);
+                            $successMessage = 'Your file was uploaded successfully.';
+                        }
+                    } else {
+                        $errorMessage = 'Error: There was a problem uploading your file. Please try again.';
+                    }
+                } else {
+                    echo "Error: " . $_FILES['file']['error'];
+                }
+            } else {
+                echo "No file uploaded.";
+            }
         }
 
 
@@ -353,6 +394,11 @@ if ($user->isLoggedIn()) {
             <div class="alert alert-success text-center">
                 <h4>Success!</h4>
                 <?= $_GET['msg'] ?>
+            </div>
+        <?php } elseif ($successMessage) { ?>
+            <div class="alert alert-success text-center">
+                <h4>Success!</h4>
+                <?= $successMessage ?>
             </div>
         <?php } ?>
 
@@ -1104,6 +1150,11 @@ if ($user->isLoggedIn()) {
 
                                                                     <?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
                                                                         <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Radiological Investigations </a>&nbsp;&nbsp; <br><br>
+                                                                        <form method="post" enctype="multipart/form-data">
+                                                                            <input type="file" name="file" id="file">
+                                                                            <br><br>
+                                                                            <input type="submit" name="add_file" value="Upload">
+                                                                        </form>
 
                                                                     <?php } else { ?>
                                                                         <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Radiological Investigations </a>&nbsp;&nbsp; <br><br>
@@ -1419,13 +1470,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                    //     if ($_GET['site_id'] != null) {
-                                    //         $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                    //     } else {
-                                    //         $clients = $override->getDataDesc1('kap', 'status', 1, 'id');
-                                    //     }
-                                    // } else {
-                                    //     $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                        //     if ($_GET['site_id'] != null) {
+                                        //         $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                        //     } else {
+                                        //         $clients = $override->getDataDesc1('kap', 'status', 1, 'id');
+                                        //     }
+                                        // } else {
+                                        //     $clients = $override->getDataDesc2('kap', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     Kap
                                 </h1>
@@ -1585,13 +1636,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                    //     if ($_GET['site_id'] != null) {
-                                    //         $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                    //     } else {
-                                    //         $clients = $override->getDataDesc1('history', 'status', 1, 'id');
-                                    //     }
-                                    // } else {
-                                    //     $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                        //     if ($_GET['site_id'] != null) {
+                                        //         $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                        //     } else {
+                                        //         $clients = $override->getDataDesc1('history', 'status', 1, 'id');
+                                        //     }
+                                        // } else {
+                                        //     $clients = $override->getDataDesc2('history', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     history
                                 </h1>
@@ -1752,13 +1803,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                    //     if ($_GET['site_id'] != null) {
-                                    //         $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                    //     } else {
-                                    //         $clients = $override->getDataDesc1('results', 'status', 1, 'id');
-                                    //     }
-                                    // } else {
-                                    //     $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                        //     if ($_GET['site_id'] != null) {
+                                        //         $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                        //     } else {
+                                        //         $clients = $override->getDataDesc1('results', 'status', 1, 'id');
+                                        //     }
+                                        // } else {
+                                        //     $clients = $override->getDataDesc2('results', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     results
                                 </h1>
@@ -1919,13 +1970,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                    //     if ($_GET['site_id'] != null) {
-                                    //         $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                    //     } else {
-                                    //         $clients = $override->getDataDesc1('classification', 'status', 1, 'id');
-                                    //     }
-                                    // } else {
-                                    //     $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                        //     if ($_GET['site_id'] != null) {
+                                        //         $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                        //     } else {
+                                        //         $clients = $override->getDataDesc1('classification', 'status', 1, 'id');
+                                        //     }
+                                        // } else {
+                                        //     $clients = $override->getDataDesc2('classification', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     classification
                                 </h1>
@@ -2087,13 +2138,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                    //     if ($_GET['site_id'] != null) {
-                                    //         $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                    //     } else {
-                                    //         $clients = $override->getDataDesc1('outcome', 'status', 1, 'id');
-                                    //     }
-                                    // } else {
-                                    //     $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                        //     if ($_GET['site_id'] != null) {
+                                        //         $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                        //     } else {
+                                        //         $clients = $override->getDataDesc1('outcome', 'status', 1, 'id');
+                                        //     }
+                                        // } else {
+                                        //     $clients = $override->getDataDesc2('outcome', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     } ?>
                                     outcome
                                 </h1>
@@ -2254,13 +2305,13 @@ if ($user->isLoggedIn()) {
                                 <h1>
                                     <?php
                                     if ($user->data()->power == 1 || $user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) {
-                                    //     if ($_GET['site_id'] != null) {
-                                    //         $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $_GET['site_id'],  'id');
-                                    //     } else {
-                                    //         $clients = $override->getDataDesc1('economic', 'status', 1, 'id');
-                                    //     }
-                                    // } else {
-                                    //     $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $user->data()->site_id,  'id');
+                                        //     if ($_GET['site_id'] != null) {
+                                        //         $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $_GET['site_id'],  'id');
+                                        //     } else {
+                                        //         $clients = $override->getDataDesc1('economic', 'status', 1, 'id');
+                                        //     }
+                                        // } else {
+                                        //     $clients = $override->getDataDesc2('economic', 'status', 1, 'site_id', $user->data()->site_id,  'id');
                                     }
                                     ?>
                                     eonomic
