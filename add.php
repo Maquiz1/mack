@@ -969,6 +969,7 @@ if ($user->isLoggedIn()) {
                         'incidental_findings' => Input::get('incidental_findings'),
                         'conclusion_renal' => Input::get('conclusion_renal'),
                         'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
+                        // 'uploads' => Input::get('uploads'),
 
                         'radiological_investigations_complete' => Input::get('hemodynamics_stru_lesio'),
                         'update_on' => date('Y-m-d H:i:s'),
@@ -1077,8 +1078,9 @@ if ($user->isLoggedIn()) {
                         'incidental_findings' => Input::get('incidental_findings'),
                         'conclusion_renal' => Input::get('conclusion_renal'),
                         'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
+                        'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
 
-                        'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
+                        // 'uploads' => Input::get('uploads'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
