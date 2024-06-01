@@ -9,6 +9,9 @@ $validate = new validate();
 $successMessage = null;
 $pageError = null;
 $errorMessage = null;
+
+    $numRec = 12;
+
 if ($user->isLoggedIn()) {
     if (Input::exists('post')) {
         $validate = new validate();
@@ -2725,8 +2728,8 @@ if ($user->isLoggedIn()) {
                                                         <select name="name" id="name" class="form-control" required>
                                                             <option value="">Select Table</option>
                                                             <?php foreach ($AllTables as $tables) {
-                                                                if ($tables['Tables_in_lungcancer'] == 'clients' || $tables['Tables_in_lungcancer'] == 'kap' || $tables['Tables_in_lungcancer'] == 'history' || $tables['Tables_in_lungcancer'] == 'results' || $tables['Tables_in_lungcancer'] == 'classification' || $tables['Tables_in_lungcancer'] == 'outcome' || $tables['Tables_in_lungcancer'] == 'economic' || $tables['Tables_in_lungcancer'] == 'visit') { ?> ?>
-                                                                    <option value="<?= $tables['Tables_in_lungcancer'] ?>"><?= $tables['Tables_in_lungcancer'] ?></option>
+                                                                if ($tables['Tables_in_mack'] == 'clients' || $tables['Tables_in_mack'] == 'hiv_history_and_medication' || $tables['Tables_in_mack'] == 'eligibility' || $tables['Tables_in_mack'] == 'risk_factors' || $tables['Tables_in_mack'] == 'chronic_illnesses' || $tables['Tables_in_mack'] == 'laboratory_results' || $tables['Tables_in_mack'] == 'radiological_investigations' || $tables['Tables_in_mack'] == 'visit') { ?> ?>
+                                                                    <option value="<?= $tables['Tables_in_mack'] ?>"><?= $tables['Tables_in_mack'] ?></option>
                                                             <?php }
                                                             } ?>
                                                         </select>
