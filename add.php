@@ -10,7 +10,7 @@ $successMessage = null;
 $pageError = null;
 $errorMessage = null;
 
-        $numRec = 12;
+$numRec = 12;
 
 if ($user->isLoggedIn()) {
     if (Input::exists('post')) {
@@ -1125,6 +1125,20 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
+        } elseif (Input::get('delete_region')) {
+            $validate = $validate->check($_POST, array());
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('regions', array(
+                        'status' => 0,
+                    ), Input::get('id'));
+                    $successMessage = 'Region Successful Deeleted';
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
+            }
         } elseif (Input::get('add_district')) {
             $validate = $validate->check($_POST, array(
                 'region_id' => array(
@@ -1151,6 +1165,20 @@ if ($user->isLoggedIn()) {
                         ));
                         $successMessage = 'District Successful Added';
                     }
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
+            }
+        } elseif (Input::get('delete_district')) {
+            $validate = $validate->check($_POST, array());
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('districts', array(
+                        'status' => 0,
+                    ), Input::get('id'));
+                    $successMessage = 'district Successful Deeleted';
                 } catch (Exception $e) {
                     die($e->getMessage());
                 }
@@ -1188,6 +1216,22 @@ if ($user->isLoggedIn()) {
                         ));
                         $successMessage = 'Ward Successful Added';
                     }
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+            } else {
+                $pageError = $validate->errors();
+            }
+        } elseif (Input::get('delete_ward')) {
+            $validate = $validate->check($_POST, array(
+
+            ));
+            if ($validate->passed()) {
+                try {
+                    $user->updateRecord('wards', array(
+                        'status' => 0,
+                    ), Input::get('id'));
+                    $successMessage = 'Ward Successful Deeleted';
                 } catch (Exception $e) {
                     die($e->getMessage());
                 }
@@ -6448,12 +6492,12 @@ if ($user->isLoggedIn()) {
                                                         <td>
                                                             <a href="add.php?id=24&region_id=<?= $value['id'] ?>" class="btn btn-info">Update</a>
                                                             <?php if ($user->data()->power == 1) { ?>
-                                                                <a href="#delete<?= $staff['id'] ?>" role="button" class="btn btn-danger" data-toggle="modal">Delete</a>
-                                                                <a href="#restore<?= $staff['id'] ?>" role="button" class="btn btn-secondary" data-toggle="modal">Restore</a>
+                                                                <a href="#delete<?= $value['id'] ?>" role="button" class="btn btn-danger" data-toggle="modal">Delete</a>
+                                                                <a href="#restore<?= $value['id'] ?>" role="button" class="btn btn-secondary" data-toggle="modal">Restore</a>
                                                             <?php } ?>
                                                         </td>
                                                     </tr>
-                                                    <div class="modal fade" id="delete<?= $staff['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="delete<?= $value['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <form method="post">
                                                                 <div class="modal-content">
@@ -6467,15 +6511,15 @@ if ($user->isLoggedIn()) {
                                                                         </strong>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <input type="hidden" name="id" value="<?= $staff['id'] ?>">
-                                                                        <input type="submit" name="delete_staff" value="Delete" class="btn btn-danger">
+                                                                        <input type="hidden" name="id" value="<?= $value['id'] ?>">
+                                                                        <input type="submit" name="delete_region" value="Delete" class="btn btn-danger">
                                                                         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
                                                                     </div>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <div class="modal fade" id="restore<?= $staff['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="restore<?= $value['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <form method="post">
                                                                 <div class="modal-content">
@@ -6489,8 +6533,8 @@ if ($user->isLoggedIn()) {
                                                                         </strong>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <input type="hidden" name="id" value="<?= $staff['id'] ?>">
-                                                                        <input type="submit" name="restore_staff" value="Restore" class="btn btn-success">
+                                                                        <input type="hidden" name="id" value="<?= $value['id'] ?>">
+                                                                        <input type="submit" name="restore_region" value="Restore" class="btn btn-success">
                                                                         <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
                                                                     </div>
                                                                 </div>
