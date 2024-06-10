@@ -972,9 +972,7 @@ if ($user->isLoggedIn()) {
                         'incidental_findings' => Input::get('incidental_findings'),
                         'conclusion_renal' => Input::get('conclusion_renal'),
                         'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
-                        // 'uploads' => Input::get('uploads'),
-
-                        'radiological_investigations_complete' => Input::get('hemodynamics_stru_lesio'),
+                        'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
                     ), $radiological_investigations[0]['id']);
@@ -1081,9 +1079,7 @@ if ($user->isLoggedIn()) {
                         'incidental_findings' => Input::get('incidental_findings'),
                         'conclusion_renal' => Input::get('conclusion_renal'),
                         'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
-                        'radiological_investigations_complete' => 1,
-
-                        'uploads' => Input::get('uploads'),
+                        'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
@@ -5459,7 +5455,7 @@ if ($user->isLoggedIn()) {
                                                 <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="aortic_valve" class="form-label">Aortic valve</label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['aortic_valve']) {
+                                                        <input type="number" step="any" value="<?php if ($radiological_investigations['aortic_valve']) {
                                                                                         print_r($radiological_investigations['aortic_valve']);
                                                                                     } ?>" id="aortic_valve" name="aortic_valve" min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
