@@ -10,7 +10,7 @@ $successMessage = null;
 $pageError = null;
 $errorMessage = null;
 
-    $numRec = 12;
+$numRec = 12;
 
 if ($user->isLoggedIn()) {
     if (Input::exists('post')) {
@@ -176,10 +176,10 @@ if ($user->isLoggedIn()) {
                     // Verify MIME type of the file
                     if (in_array($filetype, ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png', 'image/gif'])) {
                         // Check whether file exists before uploading it
-                        if (file_exists('upload/' . $filename . '_' . $fileid)) {
+                        if (file_exists('uploads/' . $filename . '_' . $fileid)) {
                             $errorMessage = $filename  . '_' . $fileid . " already exists.";
                         } else {
-                            move_uploaded_file($_FILES['file']['tmp_name'], 'upload/' . $filename . '_' . $fileid);
+                            move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $filename . '_' . $fileid);
                             $successMessage = 'Your file was uploaded successfully.';
                         }
                     } else {
@@ -1155,6 +1155,9 @@ if ($user->isLoggedIn()) {
                                                                     <?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
                                                                         <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Radiological Investigations </a>&nbsp;&nbsp; <br><br>
 
+
+
+
                                                                     <?php } else { ?>
                                                                         <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Radiological Investigations </a>&nbsp;&nbsp; <br><br>
 
@@ -1163,12 +1166,14 @@ if ($user->isLoggedIn()) {
                                                                         <input type="hidden" name="file_id" id="file_id" value="<?= $patient['study_id'] ?>">
                                                                         <input type="file" name="file" id="file" value="<?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['uploads']) {
                                                                                                                             print_r($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['uploads']);
-                                                                                                                            } ?>">
+                                                                                                                        } ?>">
                                                                         <br><br>
                                                                         <input type="submit" name="add_file" value="Upload">
                                                                     </form>
+
                                                                 <?php } ?>
                                                             <?php } ?>
+
                                                         </td>
                                                     </tr>
 
