@@ -149,7 +149,7 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
-        } elseif (Input::get('add_file')) {
+        } elseif (Input::get('add_filessss')) {
             // Check if the form was submitted
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Check if file was uploaded without errors
@@ -184,7 +184,6 @@ if ($user->isLoggedIn()) {
                             $user->updateRecord('radiological_investigations', array(
                                 'uploads' => 'uploads/' . $filename . '_' . $fileid,
                             ), Input::get('id'));
-                            print_r('uploads/' . $filename . '_' . $fileid,);
                             $successMessage = 'Your file was uploaded successfully.';
                         }
                     } else {
@@ -1159,9 +1158,10 @@ if ($user->isLoggedIn()) {
 
                                                                     <?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
                                                                         <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Radiological Investigations </a>&nbsp;&nbsp; <br><br>
-                                                                        <form method="post" enctype="multipart/form-data">
+                                                                        <form id="uploadForm" enctype="multipart/form-data">
                                                                             <input type="hidden" name="id" id="id" value="<?= $override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['id'] ?>">
                                                                             <input type="hidden" name="cid" id="cid" value="<?= $_GET['cid'] ?>">
+                                                                            <label for="file" id="fileLabel">Choose file to upload:</label>
                                                                             <input type="hidden" name="file_id" id="file_id" value="<?= $patient['study_id'] ?>">
                                                                             <input type="file" name="file" id="file" value="<?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['uploads']) {
                                                                                                                                 print_r($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['uploads']);
@@ -1169,6 +1169,8 @@ if ($user->isLoggedIn()) {
                                                                             <br><br>
                                                                             <input type="submit" name="add_file" value="Upload">
                                                                         </form>
+                                                                        <p id="message"></p>
+                                                                        <div id="uploaded-file"></div>
                                                                     <?php } else { ?>
                                                                         <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Radiological Investigations </a>&nbsp;&nbsp; <br><br>
 
@@ -2888,6 +2890,52 @@ if ($user->isLoggedIn()) {
         //         "responsive": true,
         //     });
         // });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Function to check for session-stored file link on page load
+            function checkForUploadedFile() {
+                $.ajax({
+                    url: 'check_file.php',
+                    type: 'GET',
+                    success: function(response) {
+                        if (response.filename) {
+                            $('#uploaded-file').html('<a href="uploads/' + response.filename + '" target="_blank">View File</a>');
+                        }
+                    }
+                });
+            }
+
+            checkForUploadedFile(); // Check for file link on page load
+
+            $('#uploadForm').on('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: 'upload.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        $('#message').html(response.message);
+                        if (response.success) {
+                            $('#fileLabel').text(response.filename);
+                            $('#uploaded-file').html('<a href="uploads/' + response.filename + '" target="_blank">View File</a>');
+                        }
+                    },
+                    error: function() {
+                        $('#message').html("An error occurred while uploading the file.");
+                    }
+                });
+            });
+
+            $('#file').on('change', function() {
+                var filename = $(this).val().split('\\').pop();
+                $('#fileLabel').text(filename);
+            });
+        });
     </script>
 </body>
 

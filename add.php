@@ -7253,6 +7253,8 @@ if ($user->isLoggedIn()) {
     <!-- <script src="../../dist/js/demo.js"></script> -->
     <!-- Page specific script -->
 
+   
+
 
     <!-- clients Js -->
     <script src="myjs/add/clients/occupation.js"></script>
