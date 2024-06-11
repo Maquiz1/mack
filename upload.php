@@ -22,11 +22,12 @@ $response = array(
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['file'])) {
         if ($_FILES['file']['error'] == 0) {
-            $allowed = ['pdf', 'doc', 'docx', 'jpg', 'png', 'gif'];
+            $allowed = ['pdf', 'doc', 'docx', 'jpg', 'png', 'jpeg', 'gif']; // Allowed file types
             $filename = $_FILES['file']['name'];
             $filetype = $_FILES['file']['type'];
             $filesize = $_FILES['file']['size'];
             $fileid = $_POST['file_id'];
+
 
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
             if (!in_array(strtolower($ext), $allowed)) {
@@ -46,20 +47,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 mkdir($upload_dir, 0755, true);
             }
 
-            $filename = $_FILES['file']['name'] . $fileid;
+            // Append the current date and time to the filename
+            $date = date("Ymd_His");
+            $new_filename = pathinfo($filename, PATHINFO_FILENAME) . "_" . $date . "_" . $fileid . "." . $ext;
 
-            if (file_exists($upload_dir . $filename)) {
-                $response['message'] = "Error: " . htmlspecialchars($filename) . " already exists.";
+            if (file_exists($upload_dir . $new_filename)) {
+                $response['message'] = "Error: " . htmlspecialchars($new_filename) . " already exists.";
             } else {
-                if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_dir . $filename)) {
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_dir . $new_filename)) {
+                    $_SESSION['uploaded_file'] = $new_filename; // Store the file name in session
                     $id = $override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['id'];
                     $user->updateRecord('radiological_investigations', array(
                         'uploads' => $upload_dir . '_' . $filename,
                     ), $id);
-                    $_SESSION['uploaded_file'] = $filename; // Store the file name in session
                     $response['success'] = true;
-                    $response['message'] = "Your file (" . htmlspecialchars($filename) . ") was uploaded successfully.";
-                    $response['filename'] = htmlspecialchars($filename);
+                    $response['message'] = "Your file (" . htmlspecialchars($new_filename) . ") was uploaded successfully.";
+                    $response['filename'] = htmlspecialchars($new_filename);
                 } else {
                     $response['message'] = "Error: There was a problem uploading your file. Please check folder permissions.";
                 }
