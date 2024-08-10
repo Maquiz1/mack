@@ -376,6 +376,7 @@ if ($user->isLoggedIn()) {
                         'what_health_problem' => Input::get('what_health_problem'),
                         'comments' => Input::get('comments'),
                         'hiv_history_and_medication_complete' => Input::get('hiv_history_and_medication_complete'),
+                        'hiv_history_and_medication_complete_date' => Input::get('hiv_history_and_medication_complete_date'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
                     ), $hiv_history_and_medicationap[0]['id']);
@@ -404,6 +405,7 @@ if ($user->isLoggedIn()) {
                         'what_health_problem' => Input::get('what_health_problem'),
                         'comments' => Input::get('comments'),
                         'hiv_history_and_medication_complete' => Input::get('hiv_history_and_medication_complete'),
+                        'hiv_history_and_medication_complete_date' => Input::get('hiv_history_and_medication_complete_date'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
@@ -534,7 +536,7 @@ if ($user->isLoggedIn()) {
                 ),
             ));
             if ($validate->passed()) {
-                print_r($_POST);
+                // print_r($_POST);
                 $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
                 $risk_factors = $override->get3('risk_factors', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
                 $smoking_yes = implode(',', Input::get('smoking_yes'));
@@ -578,7 +580,9 @@ if ($user->isLoggedIn()) {
                         'vaccine_covid19' => Input::get('vaccine_covid19'),
                         'treated_tb' => Input::get('treated_tb'),
                         'date_treated_tb' => Input::get('date_treated_tb'),
+                        'month_treated_tb' => Input::get('month_treated_tb'),
                         'risk_factors_complete' => Input::get('risk_factors_complete'),
+                        'risk_factors_complete_date' => Input::get('risk_factors_complete_date'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
                     ), $risk_factors[0]['id']);
@@ -625,7 +629,9 @@ if ($user->isLoggedIn()) {
                         'vaccine_covid19' => Input::get('vaccine_covid19'),
                         'treated_tb' => Input::get('treated_tb'),
                         'date_treated_tb' => Input::get('date_treated_tb'),
+                        'month_treated_tb' => Input::get('month_treated_tb'),
                         'risk_factors_complete' => Input::get('risk_factors_complete'),
+                        'risk_factors_complete_date' => Input::get('risk_factors_complete_date'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
@@ -646,6 +652,70 @@ if ($user->isLoggedIn()) {
             } else {
                 $pageError = $validate->errors();
             }
+        } elseif (Input::get('add_medications')) {
+            $validate = $validate->check($_POST, array(
+                'visit_date' => array(
+                    'required' => true,
+                ),
+            ));
+
+            if ($validate->passed()) {
+                $clients = $override->getNews('clients', 'status', 1, 'id', $_GET['cid'])[0];
+
+                $medications = $override->get3('medications', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
+
+                if ($medications) {
+                    $user->updateRecord('medications', array(
+                        'visit_date' => Input::get('visit_date'),
+                        'illness' => Input::get('illness'),
+                        'illness_specify' => Input::get('illness_specify'),
+                        'sick' => Input::get('sick'),
+                        'sick_specify' => Input::get('sick_specify'),
+                        'medicines' => Input::get('medicines'),
+                        'medicines_specify' => Input::get('medicines_specify'),
+                        'medicines_years' => Input::get('medicines_years'),
+                        'medicines_months' => Input::get('medicines_months'),
+                        'medicines_days' => Input::get('medicines_days'),
+                        'medication_complete_date' => Input::get('medication_complete_date'),
+                        'medications_complete' => Input::get('medications_complete'),
+                        'update_on' => date('Y-m-d H:i:s'),
+                        'update_id' => $user->data()->id,
+                    ), $medications[0]['id']);
+                    $successMessage = 'Medications  Successful Updated';
+                } else {
+                    $user->createRecord('medications', array(
+                        'sequence' => 1,
+                        'visit_code' => 'EV',
+                        'study_id' => $_GET['study_id'],
+                        'pid' => $_GET['study_id'],
+                        'visit_date' => Input::get('visit_date'),
+                        'illness' => Input::get('illness'),
+                        'illness_specify' => Input::get('illness_specify'),
+                        'sick' => Input::get('sick'),
+                        'sick_specify' => Input::get('sick_specify'),
+                        'medicines' => Input::get('medicines'),
+                        'medicines_specify' => Input::get('medicines_specify'),
+                        'medicines_years' => Input::get('medicines_years'),
+                        'medicines_months' => Input::get('medicines_months'),
+                        'medicines_days' => Input::get('medicines_days'),
+                        'medication_complete_date' => Input::get('medication_complete_date'),
+                        'medications_complete' => Input::get('medications_complete'),
+                        'status' => 1,
+                        'patient_id' => $_GET['cid'],
+                        'create_on' => date('Y-m-d H:i:s'),
+                        'staff_id' => $user->data()->id,
+                        'update_on' => date('Y-m-d H:i:s'),
+                        'update_id' => $user->data()->id,
+                        'site' => $user->data()->site_id,
+                    ));
+
+                    $successMessage = 'Medications  Successful Added';
+                }
+
+                Redirect::to('info.php?id=4&cid=' . $_GET['cid'] . '&sequence=' . $_GET['sequence'] . '&visit_code=' . $_GET['visit_code'] . '&study_id=' . $_GET['study_id'] . '&status=' . $_GET['status'] . '&msg=' . $successMessage);
+            } else {
+                $pageError = $validate->errors();
+            }
         } elseif (Input::get('add_chronic_illnesses')) {
             $validate = $validate->check($_POST, array(
                 'visit_date' => array(
@@ -658,16 +728,17 @@ if ($user->isLoggedIn()) {
 
                 $chronic_illnesses = $override->get3('chronic_illnesses', 'status', 1, 'patient_id', $_GET['cid'], 'sequence', $_GET['sequence']);
 
-                if ($classification) {
+                if ($chronic_illnesses) {
                     $user->updateRecord('chronic_illnesses', array(
                         'visit_date' => Input::get('visit_date'),
                         'ncd_screening' => Input::get('ncd_screening'),
                         'chronic_illness_type' => Input::get('chronic_illness_type'),
                         'start_date_chronic' => Input::get('start_date_chronic'),
                         'chronic_illnesses_specify_complete' => Input::get('chronic_illnesses_specify_complete'),
+                        'chronic_illnesses_specify_complete_date' => Input::get('chronic_illnesses_specify_complete_date'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
-                    ), $classification[0]['id']);
+                    ), $chronic_illnesses[0]['id']);
                     $successMessage = 'Chronic Illnesses  Successful Updated';
                 } else {
                     $user->createRecord('chronic_illnesses', array(
@@ -680,6 +751,7 @@ if ($user->isLoggedIn()) {
                         'chronic_illness_type' => Input::get('chronic_illness_type'),
                         'start_date_chronic' => Input::get('start_date_chronic'),
                         'chronic_illnesses_specify_complete' => Input::get('chronic_illnesses_specify_complete'),
+                        'chronic_illnesses_specify_complete_date' => Input::get('chronic_illnesses_specify_complete_date'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
@@ -786,6 +858,7 @@ if ($user->isLoggedIn()) {
                         'nitrite' => Input::get('nitrite'),
                         'leukocytes' => Input::get('leukocytes'),
                         'laboratory_results_complete' => Input::get('laboratory_results_complete'),
+                        'laboratory_results_complete_date' => Input::get('laboratory_results_complete_date'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
                     ), $laboratory_results[0]['id']);
@@ -842,6 +915,7 @@ if ($user->isLoggedIn()) {
                         'nitrite' => Input::get('nitrite'),
                         'leukocytes' => Input::get('leukocytes'),
                         'laboratory_results_complete' => Input::get('laboratory_results_complete'),
+                        'laboratory_results_complete_date' => Input::get('laboratory_results_complete_date'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
@@ -973,6 +1047,7 @@ if ($user->isLoggedIn()) {
                         'conclusion_renal' => Input::get('conclusion_renal'),
                         'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
                         'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
+                        'radiological_investigations_complete_date' => Input::get('radiological_investigations_complete_date'),
                         'update_on' => date('Y-m-d H:i:s'),
                         'update_id' => $user->data()->id,
                     ), $radiological_investigations[0]['id']);
@@ -1080,6 +1155,7 @@ if ($user->isLoggedIn()) {
                         'conclusion_renal' => Input::get('conclusion_renal'),
                         'abnor_o_border_renal' => Input::get('abnor_o_border_renal'),
                         'radiological_investigations_complete' => Input::get('radiological_investigations_complete'),
+                        'radiological_investigations_complete_date' => Input::get('radiological_investigations_complete_date'),
                         'status' => 1,
                         'patient_id' => $_GET['cid'],
                         'create_on' => date('Y-m-d H:i:s'),
@@ -2724,7 +2800,7 @@ if ($user->isLoggedIn()) {
                                             </div>
                                             <hr>
                                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -2748,6 +2824,14 @@ if ($user->isLoggedIn()) {
                                                                 <option value="2">Complete</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="hiv_history_and_medication_complete_date" class="form-label">Date Form Completed</label>
+                                                        <input type="date" value="<?php if ($hiv_history_and_medication['hiv_history_and_medication_complete_date']) {
+                                                                                        print_r($hiv_history_and_medication['hiv_history_and_medication_complete_date']);
+                                                                                    } ?>" id="hiv_history_and_medication_complete_date" name="hiv_history_and_medication_complete_date" class="form-control" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -3024,7 +3108,7 @@ if ($user->isLoggedIn()) {
                                             <hr>
 
                                             <div class="row">
-                                                <div class="col-sm-4" id="participant_id">
+                                                <div class="col-sm-12" id="participant_id">
                                                     <label>If YES, indicate the Participant ID:</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -3037,7 +3121,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4" id="screen_failure">
+                                                <div class="col-sm-12" id="screen_failure">
                                                     <label>If NO, give reason for screening failure?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -3050,24 +3134,6 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <label for="form_completd_by" class="form-label">Form completed by:</label>
-                                                        <input type="text" value="<?php if ($eligibility['form_completd_by']) {
-                                                                                        print_r($eligibility['form_completd_by']);
-                                                                                    } ?>" id="form_completd_by" name="form_completd_by" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
-                                                    </div>
-                                                    <span>initials</span>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <label for="date_form_comptn" class="form-label">Date of form completion</label>
-                                                        <input type="date" value="<?php if ($eligibility['date_form_comptn']) {
-                                                                                        print_r($eligibility['date_form_comptn']);
-                                                                                    } ?>" id="date_form_comptn" name="date_form_comptn" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
-                                                    </div>
-                                                    <span>dd /mmm/ yyyy</span>
-                                                </div>
 
                                             </div>
                                             <hr>
@@ -3078,7 +3144,7 @@ if ($user->isLoggedIn()) {
                                             </div>
                                             <hr>
                                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-4">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -3103,6 +3169,24 @@ if ($user->isLoggedIn()) {
                                                             </select>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="form_completd_by" class="form-label">Form completed by:</label>
+                                                        <input type="text" value="<?php if ($eligibility['form_completd_by']) {
+                                                                                        print_r($eligibility['form_completd_by']);
+                                                                                    } ?>" id="form_completd_by" name="form_completd_by" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
+                                                    </div>
+                                                    <span>initials</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="date_form_comptn" class="form-label">Date of form completion</label>
+                                                        <input type="date" value="<?php if ($eligibility['date_form_comptn']) {
+                                                                                        print_r($eligibility['date_form_comptn']);
+                                                                                    } ?>" id="date_form_comptn" name="date_form_comptn" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
+                                                    </div>
+                                                    <span>dd /mmm/ yyyy</span>
                                                 </div>
                                             </div>
 
@@ -3768,13 +3852,12 @@ if ($user->isLoggedIn()) {
                                             <hr>
                                             <div class="card card-warning">
                                                 <div class="card-header">
-                                                    <h3 class="card-title">COVID 19 & TB</h3>
+                                                    <h3 class="card-title">COVID 19</h3>
                                                 </div>
                                             </div>
                                             <hr>
                                             <div class="row">
-
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <label>1.16 Have you ever suffered from COVID-19?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -3790,7 +3873,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <label>1.17 Were you vaccinated against COVID_19?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -3806,8 +3889,17 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    <label>1.18 Have you ever been treated for TB?</label>
+                                            </div>
+                                            <hr>
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">TB</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label>1.15 Have you ever been treated for TB?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
@@ -3822,19 +3914,32 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-4">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="mb-2">
-                                                                <label for="date_treated_tb" class="form-label">If yes when was it?</label>
+                                                                <label for="date_treated_tb" class="form-label">1.15 If yes when was it ( Year )?</label>
                                                                 <input type="number" value="<?php if ($risk_factors['date_treated_tb']) {
                                                                                                 print_r($risk_factors['date_treated_tb']);
-                                                                                            } ?>" id="date_treated_tb" name="date_treated_tb" min="0" class="form-control" placeholder="Enter Year" />
+                                                                                            } ?>" id="date_treated_tb" name="date_treated_tb" min="1900" max="2024" class="form-control" placeholder="Enter Year" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
+                                                <div class="col-sm-4">
+                                                    <div class="row-form clearfix">
+                                                        <div class="form-group">
+                                                            <div class="mb-2">
+                                                                <label for="month_treated_tb" class="form-label">1.15 If yes when was it ( Month ) ?</label>
+                                                                <input type="number" value="<?php if ($risk_factors['month_treated_tb']) {
+                                                                                                print_r($risk_factors['month_treated_tb']);
+                                                                                            } ?>" id="month_treated_tb" name="month_treated_tb" min="0" max="99" class="form-control" placeholder="Enter Month" />
+                                                            </div>
+                                                            <span>(If Don’t remember month put ‘99’)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <hr>
 
@@ -3848,7 +3953,7 @@ if ($user->isLoggedIn()) {
                                             <hr>
                                             <div class="row">
 
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -3872,6 +3977,15 @@ if ($user->isLoggedIn()) {
                                                                 <option value="2">Complete</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="risk_factors_complete_date" class="form-label">Date Form Completed</label>
+                                                        <input type="date" value="<?php if ($risk_factors['risk_factors_complete_date']) {
+                                                                                        print_r($risk_factors['risk_factors_complete_date']);
+                                                                                    } ?>" id="risk_factors_complete_date" name="risk_factors_complete_date" class="form-control" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4005,8 +4119,7 @@ if ($user->isLoggedIn()) {
 
                                             <hr>
                                             <div class="row">
-
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -4030,6 +4143,15 @@ if ($user->isLoggedIn()) {
                                                                 <option value="2">Complete</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="chronic_illnesses_specify_complete_date" class="form-label">Date Form Completed</label>
+                                                        <input type="date" value="<?php if ($chronic_illnesses['chronic_illnesses_specify_complete_date']) {
+                                                                                        print_r($chronic_illnesses['chronic_illnesses_specify_complete_date']);
+                                                                                    } ?>" id="chronic_illnesses_specify_complete_date" name="chronic_illnesses_specify_complete_date" class="form-control" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4782,7 +4904,7 @@ if ($user->isLoggedIn()) {
 
                                             <div class="row">
 
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -4806,6 +4928,15 @@ if ($user->isLoggedIn()) {
                                                                 <option value="2">Complete</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="laboratory_results_complete_date" class="form-label">Date Form Completed</label>
+                                                        <input type="date" value="<?php if ($laboratory_results['laboratory_results_complete_date']) {
+                                                                                        print_r($laboratory_results['laboratory_results_complete_date']);
+                                                                                    } ?>" id="laboratory_results_complete_date" name="laboratory_results_complete_date" class="form-control" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -6309,7 +6440,7 @@ if ($user->isLoggedIn()) {
                                             <hr>
 
                                             <div class="row">
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-6">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -6333,6 +6464,15 @@ if ($user->isLoggedIn()) {
                                                                 <option value="2">Complete</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="radiological_investigations_complete_date" class="form-label">Date Form Completed</label>
+                                                        <input type="date" value="<?php if ($radiological_investigations['radiological_investigations_complete_date']) {
+                                                                                        print_r($radiological_investigations['radiological_investigations_complete_date']);
+                                                                                    } ?>" id="radiological_investigations_complete_date" name="radiological_investigations_complete_date" class="form-control" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -6359,6 +6499,261 @@ if ($user->isLoggedIn()) {
             <!-- /.content-wrapper -->
 
         <?php } elseif ($_GET['id'] == 11) { ?>
+            <?php
+            $medications = $override->get3('medications', 'status', 1, 'sequence', $_GET['sequence'], 'patient_id', $_GET['cid'])[0];
+            ?>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <?php if ($medications) { ?>
+                                    <h1>Add New medications</h1>
+                                <?php } else { ?>
+                                    <h1>Update medications</h1>
+                                <?php } ?>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>">
+                                            < Back</a>
+                                    </li>&nbsp;&nbsp;
+                                    <li class="breadcrumb-item"><a href="index1.php">Home</a></li>&nbsp;&nbsp;
+                                    <li class="breadcrumb-item"><a href="info.php?id=3&status=<?= $_GET['status']; ?>">
+                                            Go to screening list > </a>
+                                    </li>&nbsp;&nbsp;
+                                    <?php if ($medications) { ?>
+                                        <li class="breadcrumb-item active">Add New medications</li>
+                                    <?php } else { ?>
+                                        <li class="breadcrumb-item active">Update medications</li>
+                                    <?php } ?>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- right column -->
+                            <div class="col-md-12">
+                                <!-- general form elements disabled -->
+                                <div class="card card-warning">
+                                    <div class="card-header">
+                                        <h3 class="card-title">4.0 Medications / Short-term illness</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <form id="validation" enctype="multipart/form-data" method="post" autocomplete="off">
+                                        <div class="card-body">
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="visit_date" class="form-label">Visit Date</label>
+                                                        <input type="date" value="<?php if ($medications['visit_date']) {
+                                                                                        print_r($medications['visit_date']);
+                                                                                    } ?>" id="visit_date" name="visit_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" required />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <label>4.1 Have you had any illness in the past three months ?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="illness" id="illness<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($medications['illness'] == $value['id']) {
+                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="illness_specify" class="form-label">If Yes, mention</label>
+                                                        <input type="text" value="<?php if ($medications['illness_specify']) {
+                                                                                        print_r($medications['illness_specify']);
+                                                                                    } ?>" id="illness_specify" name="illness_specify" class="form-control" placeholder="Enter name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>4.2 Can you name what you were sick during that period ?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="sick" id="sick<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($medications['sick'] == $value['id']) {
+                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="sick_specify" class="form-label">If Yes, mention</label>
+                                                        <input type="text" value="<?php if ($medications['sick_specify']) {
+                                                                                        print_r($medications['sick_specify']);
+                                                                                    } ?>" id="sick_specify" name="sick_specify" class="form-control" placeholder="Enter name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label>4.3 Are there any other medicines you used apart form ART ?</label>
+                                                    <!-- radio -->
+                                                    <div class="row-form clearfix">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="medicines" id="medicines<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($medications['medicines'] == $value['id']) {
+                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="medicines_specify" class="form-label">If Yes, mention</label>
+                                                        <input type="text" value="<?php if ($medications['medicines_specify']) {
+                                                                                        print_r($medications['medicines_specify']);
+                                                                                    } ?>" id="medicines_specify" name="medicines_specify" class="form-control" placeholder="Enter name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <label>4.4 How long have you used those medicine?</label>
+                                            <hr>
+
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="medicines_years" class="form-label">Years</label>
+                                                        <input type="text" value="<?php if ($medications['medicines_years']) {
+                                                                                        print_r($medications['medicines_years']);
+                                                                                    } ?>" id="medicines_years" name="medicines_years" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>If Only Months And Days Put '0'</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="medicines_months" class="form-label">Months</label>
+                                                        <input type="text" value="<?php if ($medications['medicines_months']) {
+                                                                                        print_r($medications['medicines_months']);
+                                                                                    } ?>" id="medicines_months" name="medicines_months" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>If Only Years And Days Put '0'</span>
+
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-2">
+                                                        <label for="medicines_days" class="form-label">Days</label>
+                                                        <input type="text" value="<?php if ($medications['medicines_days']) {
+                                                                                        print_r($medications['medicines_days']);
+                                                                                    } ?>" id="medicines_days" name="medicines_days" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                    </div>
+                                                    <span>If Only Years and Months Put '0'</span>
+
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="card card-warning">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Form Status</h3>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            <div class="row">
+
+                                                <div class="col-sm-6">
+                                                    <div class="row-form clearfix">
+                                                        <!-- select -->
+                                                        <div class="form-group">
+                                                            <label>Complete?</label>
+                                                            <select id="medications_complete" name="medications_complete" class="form-control" required>
+                                                                <option value="<?= $medications['medications_complete'] ?>">
+                                                                    <?php if ($medications['medications_complete']) {
+                                                                        if ($medications['medications_complete'] == 0) {
+                                                                            echo 'Incomplete';
+                                                                        } elseif ($medications['medications_complete'] == 1) {
+                                                                            echo 'Unverified';
+                                                                        } elseif ($medications['medications_complete'] == 2) {
+                                                                            echo 'Complete';
+                                                                        }
+                                                                    } else {
+                                                                        echo 'Select';
+                                                                    } ?>
+                                                                </option>
+                                                                <option value="0">Incomplete</option>
+                                                                <option value="1">Unverified</option>
+                                                                <option value="2">Complete</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="mb-2">
+                                                        <label for="medication_complete_date" class="form-label">Date Form Completed</label>
+                                                        <input type="date" value="<?php if ($medications['medication_complete_date']) {
+                                                                                        print_r($medications['medication_complete_date']);
+                                                                                    } ?>" id="medication_complete_date" name="medication_complete_date" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+                                            <a href="info.php?id=4&cid=<?= $_GET['cid']; ?>&status=<?= $_GET['status']; ?>" class="btn btn-default">Back</a>
+                                            <input type="hidden" name="cid" value="<?= $_GET['cid'] ?>">
+                                            <input type="submit" name="add_medications" value="Submit" class="btn btn-primary">
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!--/.col (right) -->
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
 
         <?php } elseif ($_GET['id'] == 12) { ?>
 
@@ -7253,7 +7648,7 @@ if ($user->isLoggedIn()) {
     <!-- <script src="../../dist/js/demo.js"></script> -->
     <!-- Page specific script -->
 
-   
+
 
 
     <!-- clients Js -->

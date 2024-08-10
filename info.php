@@ -1140,6 +1140,14 @@ if ($user->isLoggedIn()) {
 
                                                                     <?php } ?>
 
+                                                                    <?php if ($override->getNews('medications', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
+                                                                        <a href="add.php?id=11&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Medications / Short-term illness </a>&nbsp;&nbsp; <br><br>
+
+                                                                    <?php } else { ?>
+                                                                        <a href="add.php?id=11&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Medications / Short-term illness</a>&nbsp;&nbsp; <br><br>
+
+                                                                    <?php } ?>
+
                                                                     <?php if ($override->getNews('chronic_illnesses', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
                                                                         <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
 
