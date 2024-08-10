@@ -897,15 +897,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table1 t1
             LEFT JOIN 
@@ -949,15 +949,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table2 t2
             LEFT JOIN 
@@ -1001,15 +1001,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table3 t3
             LEFT JOIN 
@@ -1053,15 +1053,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table4 t4
             LEFT JOIN 
@@ -1105,15 +1105,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table5 t5
             LEFT JOIN 
@@ -1157,15 +1157,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table6 t6
             LEFT JOIN 
@@ -1209,15 +1209,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table7 t7
             LEFT JOIN 
@@ -1261,15 +1261,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table8 t8
             LEFT JOIN 
@@ -1313,15 +1313,15 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 ) as month,
-                COUNT(t1.$where1) as count1,
-                COUNT(t2.$where1) as count2,
-                COUNT(t3.$where1) as count3,
-                COUNT(t4.$where1) as count4,
-                COUNT(t5.$where1) as count5,
-                COUNT(t6.$where1) as count6,
-                COUNT(t7.$where1) as count7,
-                COUNT(t8.$where1) as count8,
-                COUNT(t9.$where1) as count9
+                COUNT(DISTINCT t1.$where1) as count1,
+                COUNT(DISTINCT t2.$where1) as count2,
+                COUNT(DISTINCT t3.$where1) as count3,
+                COUNT(DISTINCT t4.$where1) as count4,
+                COUNT(DISTINCT t5.$where1) as count5,
+                COUNT(DISTINCT t6.$where1) as count6,
+                COUNT(DISTINCT t7.$where1) as count7,
+                COUNT(DISTINCT t8.$where1) as count8,
+                COUNT(DISTINCT t9.$where1) as count9
             FROM 
                 $table9 t9
             LEFT JOIN 
