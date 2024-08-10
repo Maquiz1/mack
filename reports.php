@@ -50,8 +50,8 @@ $output = ' ';
                             <tr>
                                 <th rowspan="1">No</th>
                                 <th rowspan="1">PERIOD</th>
-                                <th rowspan="1">Eligibility </th>
                                 <th rowspan="1">HIV History And Medication</th>
+                                <th rowspan="1">Eligibility </th>
                                 <th rowspan="1">Risk Factors</th>
                                 <th rowspan="1">Medications / Short-term illness</th>
                                 <th rowspan="1">Chronic Illnesses</th>
@@ -63,7 +63,6 @@ $output = ' ';
     // Load HTML content into dompdf
     $x = 1;
     foreach ($ListByMonthAllTables as $row) {
-        // $enrolled = $override->countData1('clients', 'status', 1, 'enrolled', 1, 'create_on', $row['create_on']);
         $crf2 = $override->getCount('hiv_history_and_medication', 'status', 1);        
         $crf4 = $override->getCount('eligibility', 'status',1);
         $crf5 = $override->getCount('risk_factors', 'status', 1);
@@ -71,18 +70,6 @@ $output = ' ';
         $crf7 = $override->getCount('chronic_illnesses', 'status', 1);
         $crf8 = $override->getCount('laboratory_results', 'status', 1);
         $crf9 = $override->getCount('radiological_investigations', 'status', 1);
-        // $crf2 = $override->countData('hiv_history_and_medication', 'status', 1, 'site_id', $row['id']);
-        // $crf2_Total = $override->getCount('hiv_history_and_medication', 'status', 1);
-        // $crf3 = $override->countData('risk_factors', 'status', 1, 'site_id', $row['id']);
-        // $crf3_Total = $override->getCount('risk_factors', 'status', 1);
-        // $crf4 = $override->countData('medications', 'status', 1, 'site_id', $row['id']);
-        // $crf4_Total = $override->getCount('medications', 'status', 1);
-        // $crf5 = $override->countData('chronic_illnesses', 'status', 1, 'site_id', $row['id']);
-        // $crf5_Total = $override->getCount('chronic_illnesses', 'status', 1);
-        // $crf6 = $override->countData('laboratory_results', 'status', 1, 'site_id', $row['id']);
-        // $crf6_Total = $override->getCount('laboratory_results', 'status', 1);
-        // $crf7 = $override->countData('radiological_investigations', 'status', 1, 'site_id', $row['id']);
-        // $crf7_Total = $override->getCount('radiological_investigations', 'status', 1);
 
         $output .= '
                 <tr>
@@ -104,13 +91,13 @@ $output = ' ';
     $output .= '
                 <tr>
                     <td align="right" colspan="2"><b>Total</b></td>
-                    <td align="right"><b>' . $crf2 . '</b></td>
-                    <td align="right"><b>' . $crf4 . '</b></td>
-                    <td align="right"><b>' . $crf5 . '</b></td>
-                    <td align="right"><b>' . $crf6 . '</b></td>
-                    <td align="right"><b>' . $crf7 . '</b></td>
-                    <td align="right"><b>' . $crf8 . '</b></td>
-                    <td align="right"><b>' . $crf9 . '</b></td>
+                    <td align="center"><b>' . $crf2 . '</b></td>
+                    <td align="center"><b>' . $crf4 . '</b></td>
+                    <td align="center"><b>' . $crf5 . '</b></td>
+                    <td align="center"><b>' . $crf6 . '</b></td>
+                    <td align="center"><b>' . $crf7 . '</b></td>
+                    <td align="center"><b>' . $crf8 . '</b></td>
+                    <td align="center"><b>' . $crf9 . '</b></td>
                 </tr>              
 ';
 
