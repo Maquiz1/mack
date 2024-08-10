@@ -26,8 +26,12 @@ if ($user->isLoggedIn()) {
         // $site_data = $override->get('eligibility','status',1);
         $screened1 = $override->ListByMonth('eligibility','create_on');
         $screened2 = $override->CountByMonth('eligibility', 'create_on');
-        $hiv_history_and_medication1 = $override->ListByMonth('hiv_history_and_medication', 'create_on');
-        $hiv_history_and_medication2 = $override->CountByMonth('hiv_history_and_medication', 'create_on');      
+        // $hiv_history_and_medication1 = $override->ListByMonth('hiv_history_and_medication', 'create_on');
+        // $hiv_history_and_medication2 = $override->CountByMonth('hiv_history_and_medication', 'create_on');
+        // $ListByMonthAll = $override->ListByMonthAll('eligibility', 'hiv_history_and_medication', 'create_on');
+        $ListByMonthAllTables = $override->ListByMonthAllTables('clients', 'hiv_history_and_medication', 'eligibility', 'enrollments', 'risk_factors', 'medications', 'chronic_illnesses', 'laboratory_results', 'radiological_investigations', 'create_on');
+
+    
         // $screened = $override->CountByMonth('eligibility', 'status', 1, 'create_on');
         // $enrolled = $override->CountByMonth('eligibility', 'status', 1, 'create_on');
         // $enrolled_Total = $override->getCount1('clients', 'status', 1, 'enrolled', 1);
@@ -68,7 +72,7 @@ $file_name = $title . '.pdf';
 $output = ' ';
 
 // if ($_GET['group'] == 2) {
-if ($screened1) {
+if ($ListByMonthAllTables) {
 
     $output .= '
             <table width="100%" border="1" cellpadding="5" cellspacing="0">
@@ -111,7 +115,7 @@ if ($screened1) {
 
     // Load HTML content into dompdf
     $x = 1;
-    foreach ($screened1 as $row) {
+    foreach ($ListByMonthAllTables as $row) {
         // $enrolled = $override->countData1('clients', 'status', 1, 'enrolled', 1, 'create_on', $row['create_on']);
         // $crf1 = $override->countData('eligibility', 'status', 1, 'site_id', $row['id']);
         // $crf1_Total = $override->getCount('eligibility', 'status', 1);
@@ -132,16 +136,16 @@ if ($screened1) {
                 <tr>
                     <td>' . $x . '</td>
                     <td>' . $row['month']  . '</td>
-                    <td>' . $row['count']  . '</td>
-                    <td>' . $crf1 . '</td>
-                    <td align="right">' . $crf3 . '</td>
+                    <td>' . $row['count2']  . '</td>
+                    <td>' . $row['count3']  . '</td>
+                    <td>' . $row['count4']  . '</td>
+                    <td>' . $row['count5']  . '</td>
+                    <td>' . $row['count6']  . '</td>
+                    <td>' . $row['count7']  . '</td>
+                    <td>' . $row['count8']  . '</td>
+                    <td>' . $row['count9']  . '</td>
                     <td align="right">' . $enrolled . '</td>
-                    <td align="right">' . $crf4 . '</td>
-                    <td align="right">' . $enrolled . '</td>
-                    <td align="right">' . $crf5 . '</td>
-                    <td align="right">' . $enrolled . '</td>
-                    <td align="right">' . $crf6 . '</td>
-                    <td align="right">' . $enrolled . '</td>
+                    <td>' . $row['count9']  . '</td>
                     <td align="right">' . $crf7 . '</td>
                     <td align="right">' . $crf7 . '</td>
                     <td align="right">' . $crf7 . '</td>
