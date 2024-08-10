@@ -58,9 +58,9 @@ if ($_GET['group'] == 1) {
 }
 
 
-$span0 = 18;
+$span0 = 9;
 $span1 = 9;
-$span2 = 10;
+$span2 = 9;
 
 $title = 'MACK-STUDY SUMMARY REPORT_' . date('Y-m-d');
 
@@ -83,7 +83,7 @@ if ($ListByMonthAllTables) {
                 </tr>
                 <tr>
                     <td colspan="' . $span0 . '" align="center" style="font-size: 18px">
-                        <b>Total Screened ( ' . $screened . ' ):  Total Enrolled( ' . $enrolled . ' )</b>
+                        <b>Total Screened ( ' . $screened1 . ' ):  Total Enrolled( ' . $enrolled . ' )</b>
                     </td>
                 </tr>
                 <tr>
@@ -91,15 +91,15 @@ if ($ListByMonthAllTables) {
                         <br />
                         <table width="100%" border="1" cellpadding="5" cellspacing="0">
                             <tr>
-                                <th rowspan="2">No</th>
-                                <th rowspan="2">PERIOD</th>
-                                <th rowspan="2">Screening - ( Eligibility )</th>
-                                <th rowspan="2">HIV History And Medication</th>
-                                <th rowspan="2">Risk Factors</th>
-                                <th rowspan="2">Medications / Short-term illness</th>
-                                <th rowspan="2">Chronic Illnesses</th>
-                                <th colspan="2">Laboratory Results</th>
-                                <th rowspan="2">Radiological Investigations</th>
+                                <th rowspan="1">No</th>
+                                <th rowspan="1">PERIOD</th>
+                                <th rowspan="1">Screening - ( Eligibility )</th>
+                                <th rowspan="1">HIV History And Medication</th>
+                                <th rowspan="1">Risk Factors</th>
+                                <th rowspan="1">Medications / Short-term illness</th>
+                                <th rowspan="1">Chronic Illnesses</th>
+                                <th rowspan="1">Laboratory Results</th>
+                                <th rowspan="1">Radiological Investigations</th>
                             </tr>
             ';
 
@@ -142,12 +142,13 @@ if ($ListByMonthAllTables) {
     $output .= '
                 <tr>
                     <td align="right" colspan="2"><b>Total</b></td>
-                    <td align="right"><b>' . $crf1_Total . '</b></td>
-                    <td align="right"><b>' . $enrolled_Total . '</b></td>
-                    <td align="right"><b>' . $crf3_Total . '</b></td>
-                    <td align="right"><b>' . $enrolled_Total . '</b></td>
-                    <td align="right"><b>' . $crf4_Total . '</b></td>
-                    <td align="right"><b>' . $enrolled_Total . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $screened1 . '</b></td>
                 </tr>              
 ';
 }
