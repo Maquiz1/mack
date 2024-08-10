@@ -32,10 +32,10 @@ if ($user->isLoggedIn()) {
         $ListByMonthAllTables = $override->ListByMonthAllTables('clients', 'hiv_history_and_medication', 'eligibility', 'enrollments', 'risk_factors', 'medications', 'chronic_illnesses', 'laboratory_results', 'radiological_investigations', 'create_on');
 
     
-        // $screened = $override->CountByMonth('eligibility', 'status', 1, 'create_on');
+        $screened = $override->getCount('eligibility', 'status', 1);
         // $enrolled = $override->CountByMonth('eligibility', 'status', 1, 'create_on');
         // $enrolled_Total = $override->getCount1('clients', 'status', 1, 'enrolled', 1);
-        // $enrolled = $override->getCount2('clients', 'status', 1, 'enrolled', 1);
+        $enrolled = $override->getCount2('clients', 'status', 1, 'enrolled', 1);
         // $name = $override->get('user', 'status', 1, 'screened', $user->data()->id);
         // $data_count = $override->getCount2('clients', 'status', 1, 'screened',1, 'site_id', $ussite_dataer->data()->site_id);
 
@@ -83,7 +83,7 @@ if ($ListByMonthAllTables) {
                 </tr>
                 <tr>
                     <td colspan="' . $span0 . '" align="center" style="font-size: 18px">
-                        <b>Total Screened ( ' . $screened1 . ' ):  Total Enrolled( ' . $enrolled . ' )</b>
+                        <b>Total Screened ( ' . $screened . ' ):  Total Enrolled( ' . $enrolled . ' )</b>
                     </td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@ if ($ListByMonthAllTables) {
                             <tr>
                                 <th rowspan="1">No</th>
                                 <th rowspan="1">PERIOD</th>
-                                <th rowspan="1">Screening - ( Eligibility )</th>
+                                <th rowspan="1">Eligibility </th>
                                 <th rowspan="1">HIV History And Medication</th>
                                 <th rowspan="1">Risk Factors</th>
                                 <th rowspan="1">Medications / Short-term illness</th>
@@ -107,8 +107,13 @@ if ($ListByMonthAllTables) {
     $x = 1;
     foreach ($ListByMonthAllTables as $row) {
         // $enrolled = $override->countData1('clients', 'status', 1, 'enrolled', 1, 'create_on', $row['create_on']);
-        // $crf1 = $override->countData('eligibility', 'status', 1, 'site_id', $row['id']);
-        // $crf1_Total = $override->getCount('eligibility', 'status', 1);
+        $crf2 = $override->getCount('eligibility', 'status', 1);
+        $crf4 = $override->getCount('hiv_history_and_medication', 'status',1);
+        $crf5 = $override->getCount('risk_factors', 'status', 1);
+        $crf6 = $override->getCount('medications', 'status', 1);
+        $crf7 = $override->getCount('chronic_illnesses', 'status', 1);
+        $crf8 = $override->getCount('laboratory_results', 'status', 1);
+        $crf9 = $override->getCount('radiological_investigations', 'status', 1);
         // $crf2 = $override->countData('hiv_history_and_medication', 'status', 1, 'site_id', $row['id']);
         // $crf2_Total = $override->getCount('hiv_history_and_medication', 'status', 1);
         // $crf3 = $override->countData('risk_factors', 'status', 1, 'site_id', $row['id']);
@@ -126,13 +131,13 @@ if ($ListByMonthAllTables) {
                 <tr>
                     <td>' . $x . '</td>
                     <td>' . $row['month']  . '</td>
-                    <td>' . $row['count1']  . '</td>
                     <td>' . $row['count2']  . '</td>
-                    <td>' . $row['count3']  . '</td>
                     <td>' . $row['count4']  . '</td>
                     <td>' . $row['count5']  . '</td>
                     <td>' . $row['count6']  . '</td>
                     <td>' . $row['count7']  . '</td>
+                    <td>' . $row['count8']  . '</td>
+                    <td>' . $row['count9']  . '</td>
                 </tr>
             ';
 
@@ -142,13 +147,13 @@ if ($ListByMonthAllTables) {
     $output .= '
                 <tr>
                     <td align="right" colspan="2"><b>Total</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
-                    <td align="right"><b>' . $screened1 . '</b></td>
+                    <td align="right"><b>' . $crf2 . '</b></td>
+                    <td align="right"><b>' . $crf4 . '</b></td>
+                    <td align="right"><b>' . $crf5 . '</b></td>
+                    <td align="right"><b>' . $crf6 . '</b></td>
+                    <td align="right"><b>' . $crf7 . '</b></td>
+                    <td align="right"><b>' . $crf8 . '</b></td>
+                    <td align="right"><b>' . $crf9 . '</b></td>
                 </tr>              
 ';
 }
