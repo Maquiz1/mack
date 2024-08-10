@@ -107,8 +107,8 @@ if ($ListByMonthAllTables) {
     $x = 1;
     foreach ($ListByMonthAllTables as $row) {
         // $enrolled = $override->countData1('clients', 'status', 1, 'enrolled', 1, 'create_on', $row['create_on']);
-        $crf2 = $override->getCount('eligibility', 'status', 1);
-        $crf4 = $override->getCount('hiv_history_and_medication', 'status',1);
+        $crf2 = $override->getCount('hiv_history_and_medication', 'status', 1);        
+        $crf4 = $override->getCount('eligibility', 'status',1);
         $crf5 = $override->getCount('risk_factors', 'status', 1);
         $crf6 = $override->getCount('medications', 'status', 1);
         $crf7 = $override->getCount('chronic_illnesses', 'status', 1);
