@@ -58,7 +58,7 @@ if ($_GET['group'] == 1) {
 }
 
 
-$span0 = 18;
+$span0 = 22;
 $span1 = 9;
 $span2 = 10;
 
@@ -98,8 +98,18 @@ if ($ListByMonthAllTables) {
                                 <th rowspan="2">Risk Factors</th>
                                 <th rowspan="2">Medications / Short-term illness</th>
                                 <th rowspan="2">Chronic Illnesses</th>
-                                <th colspan="2">Laboratory Results</th>
-                                <th rowspan="2">Radiological Investigations</th>
+                                <th colspan="3">Laboratory Results</th>
+                                <th colspan="5">Radiological Investigations</th>
+                            </tr>
+                            <tr>
+                                <th>HAEMA TOLOGY.</th>
+                                <th>BIO CHEMISTRY.</th>
+                                <th>Urine R/E.</th>
+                                <th>Electro cardiogram.</th>
+                                <th>Echo cardiogram.</th>
+                                <th>Renal Function.</th>
+                                <th>Chamber Dimesnions.</th>   
+                                <th>Kidney Sizes.</th>   
                             </tr>
             ';
 
@@ -126,13 +136,19 @@ if ($ListByMonthAllTables) {
                 <tr>
                     <td>' . $x . '</td>
                     <td>' . $row['month']  . '</td>
-                    <td>' . $row['count1']  . '</td>
                     <td>' . $row['count2']  . '</td>
                     <td>' . $row['count3']  . '</td>
                     <td>' . $row['count4']  . '</td>
                     <td>' . $row['count5']  . '</td>
                     <td>' . $row['count6']  . '</td>
                     <td>' . $row['count7']  . '</td>
+                    <td>' . $row['count8']  . '</td>
+                    <td>' . $row['count9']  . '</td>
+                    <td align="right">' . $enrolled . '</td>
+                    <td>' . $row['count9']  . '</td>
+                    <td align="right">' . $crf7 . '</td>
+                    <td align="right">' . $crf7 . '</td>
+                    <td align="right">' . $crf7 . '</td>
                 </tr>
             ';
 
@@ -148,6 +164,13 @@ if ($ListByMonthAllTables) {
                     <td align="right"><b>' . $enrolled_Total . '</b></td>
                     <td align="right"><b>' . $crf4_Total . '</b></td>
                     <td align="right"><b>' . $enrolled_Total . '</b></td>
+                    <td align="right"><b>' . $crf5_Total . '</b></td>
+                    <td align="right"><b>' . $enrolled_Total . '</b></td>
+                    <td align="right"><b>' . $crf6_Total . '</b></td>
+                    <td align="right"><b>' . $enrolled_Total . '</b></td>
+                    <td align="right"><b>' . $crf7_Total . '</b></td>
+                    <td align="right"><b>' . $crf7_Total . '</b></td>
+                    <td align="right"><b>' . $crf7_Total . '</b></td>
                 </tr>              
 ';
 }
@@ -157,7 +180,7 @@ $pdf->loadHtml($output);
 
 // SetPaper the HTML as PDF
 // $pdf->setPaper('A4', 'portrait');
-$pdf->setPaper('A4', 'landscape');
+$pdf->setPaper('A3', 'landscape');
 
 // Render the HTML as PDF
 $pdf->render();
