@@ -6730,7 +6730,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="medication_complete_date" class="form-label">Date Form Completed</label>
                                                         <input type="date" value="<?php if ($medications['medication_complete_date']) {
                                                                                         print_r($medications['medication_complete_date']);
-                                                                                    } ?>" id="medication_complete_date" name="medication_complete_date" class="form-control" />
+                                                                                    } ?>" id="medication_complete_date" name="medication_complete_date" class="form-control" required />
                                                     </div>
                                                 </div>
                                             </div>
