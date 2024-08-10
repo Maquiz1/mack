@@ -25,7 +25,8 @@ $span0 = 10;
 $span1 = 9;
 $span2 = 9;
 
-$title = 'MACK-STUDY SUMMARY REPORT_' . date('Y-m-d');
+$site = 'MACK-STUDY Mwananyamala Referral Hospital - TANZANIA';
+$title = 'SUMMARY REPORT AS OF ' . date('Y-m-d');
 
 $pdf = new Pdf();
 $file_name = $title . '.pdf';
@@ -34,6 +35,11 @@ $output = ' ';
 
 $output .= '
             <table width="100%" border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td colspan="' . $span0 . '" align="center" style="font-size: 18px">
+                        <b>' . $site . '</b>
+                    </td>
+                </tr>
                 <tr>
                     <td colspan="' . $span0 . '" align="center" style="font-size: 18px">
                         <b>' . $title . '</b>
