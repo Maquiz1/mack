@@ -6570,7 +6570,7 @@ if ($user->isLoggedIn()) {
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="radio" name="illness" id="illness<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($medications['illness'] == $value['id']) {
                                                                                                                                                                                                         echo 'checked';
-                                                                                                                                                                                                    } ?>>
+                                                                                                                                                                                                    } ?> required>
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
