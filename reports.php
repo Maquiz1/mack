@@ -8,53 +8,15 @@ $random = new Random();
 
 if ($user->isLoggedIn()) {
     try {
-        // switch (Input::get('report')) {
-        //     case 1:
-        //         $data = $override->searchBtnDate3('batch', 'create_on', $_GET['start'], 'create_on', $_GET['end'], 'use_group', $_GET['group']);
-        //         $data_count = $override->getCountReport('batch', 'create_on', $_GET['start'], 'create_on', $_GET['end'], 'use_group', $_GET['group']);
-        //         break;
-        //     case 2:
-        //         $data = $override->searchBtnDate3('check_records', 'create_on', $_GET['start'], 'create_on', $_GET['end'], 'use_group', $_GET['group']);
-        //         $data_count = $override->getCountReport('check_records', 'create_on', $_GET['start'], 'create_on', $_GET['end'], 'use_group', $_GET['group']);
-        //         break;
-        //     case 3:
-        //         $data = $override->searchBtnDate3('batch_records', 'create_on', $_GET['start'], 'create_on', $_GET['end'], 'use_group', $_GET['group']);
-        //         $data_count = $override->getCountReport('batch_records', 'create_on', $_GET['start'], 'create_on', $_GET['end'], 'use_group', $_GET['group']);
-        //         break;
-        // }
-
-        // $site_data = $override->get('eligibility','status',1);
-        $screened1 = $override->ListByMonth('eligibility','create_on');
-        $screened2 = $override->CountByMonth('eligibility', 'create_on');
-        // $hiv_history_and_medication1 = $override->ListByMonth('hiv_history_and_medication', 'create_on');
-        // $hiv_history_and_medication2 = $override->CountByMonth('hiv_history_and_medication', 'create_on');
-        // $ListByMonthAll = $override->ListByMonthAll('eligibility', 'hiv_history_and_medication', 'create_on');
-        $ListByMonthAllTables = $override->ListByMonthAllTables('clients', 'hiv_history_and_medication', 'eligibility', 'enrollments', 'risk_factors', 'medications', 'chronic_illnesses', 'laboratory_results', 'radiological_investigations', 'create_on');
-
-    
         $screened = $override->getCount('eligibility', 'status', 1);
-        // $enrolled = $override->CountByMonth('eligibility', 'status', 1, 'create_on');
-        // $enrolled_Total = $override->getCount1('clients', 'status', 1, 'enrolled', 1);
         $enrolled = $override->getCount2('clients', 'status', 1, 'enrolled', 1);
-        // $name = $override->get('user', 'status', 1, 'screened', $user->data()->id);
-        // $data_count = $override->getCount2('clients', 'status', 1, 'screened',1, 'site_id', $ussite_dataer->data()->site_id);
-
+        $ListByMonthAllTables = $override->ListByMonthAllTables('clients', 'hiv_history_and_medication', 'eligibility', 'enrollments', 'risk_factors', 'medications', 'chronic_illnesses', 'laboratory_results', 'radiological_investigations', 'create_on');  
         $successMessage = 'Report Successful Created';
     } catch (Exception $e) {
         die($e->getMessage());
     }
 } else {
     Redirect::to('index.php');
-}
-
-if ($_GET['group'] == 1) {
-    $title = 'Medicines';
-} elseif ($_GET['group'] == 2) {
-    $title = 'Medical Equipments';
-} elseif ($_GET['group'] == 3) {
-    $title = 'Accessories';
-} elseif ($_GET['group'] == 4) {
-    $title = 'Supplies';
 }
 
 
@@ -65,14 +27,9 @@ $span2 = 9;
 $title = 'MACK-STUDY SUMMARY REPORT_' . date('Y-m-d');
 
 $pdf = new Pdf();
-
-// $title = 'NIMREGENIN SUMMARY REPORT_'. date('Y-m-d');
 $file_name = $title . '.pdf';
 
 $output = ' ';
-
-// if ($_GET['group'] == 2) {
-if ($ListByMonthAllTables) {
 
     $output .= '
             <table width="100%" border="1" cellpadding="5" cellspacing="0">
@@ -156,7 +113,6 @@ if ($ListByMonthAllTables) {
                     <td align="right"><b>' . $crf9 . '</b></td>
                 </tr>              
 ';
-}
 
 // $output = '<html><body><h1>Hello, dompdf!' . $row . '</h1></body></html>';
 $pdf->loadHtml($output);
