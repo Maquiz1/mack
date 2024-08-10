@@ -988,7 +988,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
@@ -1041,7 +1040,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
@@ -1094,7 +1092,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
@@ -1147,7 +1144,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
@@ -1200,7 +1196,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
@@ -1253,7 +1248,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
@@ -1306,7 +1300,6 @@ class OverideData
                     DATE_FORMAT(t8.$where1, '%Y-%m'),
                     DATE_FORMAT(t9.$where1, '%Y-%m')
                 )
-
             UNION
             SELECT 
                 COALESCE(
