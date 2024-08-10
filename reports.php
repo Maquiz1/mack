@@ -25,8 +25,8 @@ $span0 = 10;
 $span1 = 9;
 $span2 = 9;
 
-$site = 'MACK-STUDY Mwananyamala Referral Hospital - TANZANIA';
-$title = 'SUMMARY REPORT AS OF ' . date('Y-m-d');
+$site = 'Mwananyamala Referral Hospital - TANZANIA';
+$title = 'MACK-STUDY SUMMARY REPORT AS OF ' . date('Y-m-d');
 
 $pdf = new Pdf();
 $file_name = $title . '.pdf';
