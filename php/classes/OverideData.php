@@ -1065,23 +1065,23 @@ class OverideData
                 COUNT(t8.$where1) as count8,
                 COUNT(t9.$where1) as count9
             FROM 
-                $table2 t2
+                $table4 t4
             LEFT JOIN 
-                $table1 t1 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
+                $table1 t1 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
             LEFT JOIN 
-                $table3 t3 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
+                $table2 t2 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t2.$where1, '%Y-%m')
             LEFT JOIN 
-                $table4 t4 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
+                $table3 t3 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
             LEFT JOIN 
-                $table5 t5 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
+                $table5 t5 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
             LEFT JOIN 
-                $table6 t6 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
+                $table6 t6 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
             LEFT JOIN 
-                $table7 t7 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
+                $table7 t7 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
             LEFT JOIN 
-                $table8 t8 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
+                $table8 t8 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
             LEFT JOIN 
-                $table9 t9 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
+                $table9 t9 ON DATE_FORMAT(t4.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
             GROUP BY 
                 COALESCE(
                     DATE_FORMAT(t1.$where1, '%Y-%m'),
@@ -1118,23 +1118,23 @@ class OverideData
                 COUNT(t8.$where1) as count8,
                 COUNT(t9.$where1) as count9
             FROM 
-                $table2 t2
+                $table5 t5
             LEFT JOIN 
-                $table1 t1 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
+                $table1 t1 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
             LEFT JOIN 
-                $table3 t3 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
+                $table2 t2 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t2.$where1, '%Y-%m')
             LEFT JOIN 
-                $table4 t4 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
+                $table3 t3 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
             LEFT JOIN 
-                $table5 t5 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
+                $table4 t4 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
             LEFT JOIN 
-                $table6 t6 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
+                $table6 t6 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
             LEFT JOIN 
-                $table7 t7 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
+                $table7 t7 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
             LEFT JOIN 
-                $table8 t8 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
+                $table8 t8 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
             LEFT JOIN 
-                $table9 t9 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
+                $table9 t9 ON DATE_FORMAT(t5.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
             GROUP BY 
                 COALESCE(
                     DATE_FORMAT(t1.$where1, '%Y-%m'),
@@ -1171,23 +1171,23 @@ class OverideData
                 COUNT(t8.$where1) as count8,
                 COUNT(t9.$where1) as count9
             FROM 
-                $table2 t2
+                $table6 t6
             LEFT JOIN 
-                $table1 t1 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
+                $table1 t1 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
             LEFT JOIN 
-                $table3 t3 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
+                $table2 t2 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t2.$where1, '%Y-%m')
             LEFT JOIN 
-                $table4 t4 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
+                $table3 t3 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
             LEFT JOIN 
-                $table5 t5 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
+                $table4 t4 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
             LEFT JOIN 
-                $table6 t6 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
+                $table5 t5 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
             LEFT JOIN 
-                $table7 t7 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
+                $table7 t7 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
             LEFT JOIN 
-                $table8 t8 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
+                $table8 t8 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
             LEFT JOIN 
-                $table9 t9 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
+                $table9 t9 ON DATE_FORMAT(t6.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
             GROUP BY 
                 COALESCE(
                     DATE_FORMAT(t1.$where1, '%Y-%m'),
@@ -1224,23 +1224,23 @@ class OverideData
                 COUNT(t8.$where1) as count8,
                 COUNT(t9.$where1) as count9
             FROM 
-                $table2 t2
+                $table7 t7
             LEFT JOIN 
-                $table1 t1 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
+                $table1 t1 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
             LEFT JOIN 
-                $table3 t3 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
+                $table2 t2 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t2.$where1, '%Y-%m')
             LEFT JOIN 
-                $table4 t4 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
+                $table3 t3 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
             LEFT JOIN 
-                $table5 t5 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
+                $table4 t4 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
             LEFT JOIN 
-                $table6 t6 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
+                $table5 t5 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
             LEFT JOIN 
-                $table7 t7 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
+                $table6 t6 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
             LEFT JOIN 
-                $table8 t8 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
+                $table8 t8 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
             LEFT JOIN 
-                $table9 t9 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
+                $table9 t9 ON DATE_FORMAT(t7.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
             GROUP BY 
                 COALESCE(
                     DATE_FORMAT(t1.$where1, '%Y-%m'),
@@ -1277,23 +1277,23 @@ class OverideData
                 COUNT(t8.$where1) as count8,
                 COUNT(t9.$where1) as count9
             FROM 
-                $table2 t2
+                $table8 t8
             LEFT JOIN 
-                $table1 t1 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
+                $table1 t1 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t1.$where1, '%Y-%m')
             LEFT JOIN 
-                $table3 t3 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
+                $table2 t2 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t2.$where1, '%Y-%m')
             LEFT JOIN 
-                $table4 t4 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
+                $table3 t3 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t3.$where1, '%Y-%m')
             LEFT JOIN 
-                $table5 t5 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
+                $table4 t4 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t4.$where1, '%Y-%m')
             LEFT JOIN 
-                $table6 t6 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
+                $table5 t5 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t5.$where1, '%Y-%m')
             LEFT JOIN 
-                $table7 t7 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
+                $table6 t6 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t6.$where1, '%Y-%m')
             LEFT JOIN 
-                $table8 t8 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t8.$where1, '%Y-%m')
+                $table7 t7 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t7.$where1, '%Y-%m')
             LEFT JOIN 
-                $table9 t9 ON DATE_FORMAT(t2.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
+                $table9 t9 ON DATE_FORMAT(t8.$where1, '%Y-%m') = DATE_FORMAT(t9.$where1, '%Y-%m')
             GROUP BY 
                 COALESCE(
                     DATE_FORMAT(t1.$where1, '%Y-%m'),
