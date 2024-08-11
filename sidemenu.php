@@ -323,7 +323,7 @@ if ($user->isLoggedIn()) {
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
@@ -345,7 +345,7 @@ if ($user->isLoggedIn()) {
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item"> -->
                     <!-- <a href="info.php?id=15" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
