@@ -177,7 +177,7 @@ if ($user->isLoggedIn()) {
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
@@ -192,7 +192,7 @@ if ($user->isLoggedIn()) {
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
@@ -207,7 +207,7 @@ if ($user->isLoggedIn()) {
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
@@ -222,9 +222,9 @@ if ($user->isLoggedIn()) {
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
+            <!-- <div class="col-lg-4 col-6"> -->
+            <!-- small box -->
+            <!-- <div class="small-box bg-danger">
                 <div class="inner">
                   <h3><?= $end ?></h3>
 
@@ -235,7 +235,7 @@ if ($user->isLoggedIn()) {
                 </div>
                 <a href="info.php?id=3&status=4" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
-            </div>
+            </div> -->
             <!-- ./col -->
           </div>
           <!-- /.row -->
@@ -243,160 +243,6 @@ if ($user->isLoggedIn()) {
           <?php
           //  if ($_GET['id'] == 100) {
           ?>
-
-          <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-6 connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-chart-pie mr-1"></i>
-                    Registration to <?= date('Y-m-d'); ?>
-                  </h3>
-                  <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#registration_bar" data-toggle="tab">Bar</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#registration_donat" data-toggle="tab">Donut</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content p-0">
-                    <!-- Morris chart - Sales -->
-                    <div class="chart tab-pane active" id="registration_bar" style="position: relative; height: 300px;">
-                      <canvas id="registration" height="300" style="height: 300px;"></canvas>
-                    </div>
-                    <div class="chart tab-pane" id="registration_donat" style="position: relative; height: 300px;">
-                      <canvas id="registration2" height="300" style="height: 300px;"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-
-            </section>
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-6 connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-chart-pie mr-1"></i>
-                    Screening to <?= date('Y-m-d'); ?>
-                  </h3>
-                  <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#screening1" data-toggle="tab">Bar</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#screening2" data-toggle="tab">Donut</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content p-0">
-                    <!-- Morris chart - Sales -->
-                    <div class="chart tab-pane active" id="screening1" style="position: relative; height: 300px;">
-                      <canvas id="screening" height="300" style="height: 300px;"></canvas>
-                    </div>
-                    <div class="chart tab-pane" id="screening2" style="position: relative; height: 300px;">
-                      <canvas id="screening2" height="300" style="height: 300px;"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </section>
-            <!-- right col -->
-            <!-- Left col -->
-            <section class="col-lg-6 connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-chart-pie mr-1"></i>
-                    Eligible to <?= date('Y-m-d'); ?>
-                  </h3>
-                  <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#eligible_bar" data-toggle="tab">Bar</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#eligible_pie" data-toggle="tab">Donut</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content p-0">
-                    <!-- Morris chart - Sales -->
-                    <div class="chart tab-pane active" id="eligible_bar" style="position: relative; height: 300px;">
-                      <canvas id="eligible" height="300" style="height: 300px;"></canvas>
-                    </div>
-                    <div class="chart tab-pane" id="eligible_pie" style="position: relative; height: 300px;">
-                      <canvas id="eligible2" height="300" style="height: 300px;"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-
-            </section>
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-6 connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-chart-pie mr-1"></i>
-                    Enrolled to <?= date('Y-m-d'); ?>
-                  </h3>
-                  <div class="card-tools">
-                    <ul class="nav nav-pills ml-auto">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#enrolled_bar" data-toggle="tab">Bar</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#enrolled_pie" data-toggle="tab">Donut</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content p-0">
-                    <!-- Morris chart - Sales -->
-                    <div class="chart tab-pane active" id="enrolled_bar" style="position: relative; height: 300px;">
-                      <canvas id="enrolled" height="300" style="height: 300px;"></canvas>
-                    </div>
-                    <div class="chart tab-pane" id="enrolled_pie" style="position: relative; height: 300px;">
-                      <canvas id="enrolled2" height="300" style="height: 300px;"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </section>
-            <!-- right col -->
-          </div>
-          <!-- /.row (main row) -->
 
           <?php
           //  }
@@ -551,7 +397,7 @@ if ($user->isLoggedIn()) {
 
   <!-- ChartJS -->
   <script src="plugins/chart.js/Chart.min.js"></script>
-  
+
 
   <!-- MY LINKS TO CHAARTS JS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

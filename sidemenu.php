@@ -209,6 +209,7 @@ if ($user->isLoggedIn()) {
                         </ul>
                     </li>
                 <?php } ?>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
@@ -218,15 +219,19 @@ if ($user->isLoggedIn()) {
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="add.php?id=4" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Register
-                                    <span class="right badge badge-danger">New Client</span>
-                                </p>
-                            </a>
-                        </li>
+                        <?php
+                        if ($user->data()->position != 5) {
+                        ?>
+                            <li class="nav-item">
+                                <a href="add.php?id=4" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Register
+                                        <span class="right badge badge-danger">New Client</span>
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a href="info.php?id=3&status=7" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -365,7 +370,7 @@ if ($user->isLoggedIn()) {
                     <!-- </li> -->
                 <?php } ?>
 
-                <?php if ($user->data()->accessLevel == 1) { ?>
+                <?php if ($user->data()->accessLevel == 1 || $user->data()->position == 5) { ?>
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -577,20 +582,20 @@ if ($user->isLoggedIn()) {
                             </li> -->
                         </ul>
                     </li>
+                    <?php
+                    if ($user->data()->power == 1) {
+                    ?>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Study ID <i class="fas fa-angle-left right"></i>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
-                            <p>
-                                Study ID <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
 
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
 
-                            <?php
-                            if ($user->data()->power == 1) {
-                            ?>
                                 <li class="nav-item">
                                     <a href="info.php?id=5" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -603,51 +608,56 @@ if ($user->isLoggedIn()) {
                                         <p>UnSet Study Id</p>
                                     </a>
                                 </li>
-                            <?php } ?>
-                            <?php if ($user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) { ?>
 
-                                <li class="nav-item">
-                                    <a href="info.php?id=5" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Update Study Id</p>
-                                    </a>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </li>
+                                <?php if ($user->data()->accessLevel == 1 || $user->data()->accessLevel == 2) { ?>
 
+                                    <li class="nav-item">
+                                        <a href="info.php?id=5" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Update Study Id</p>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    <?php } ?>
 
 
                 <?php } ?>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Extra <i class="fas fa-angle-left right"></i>
+                <?php
+                if ($user->data()->position != 5) {
+                ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Extra <i class="fas fa-angle-left right"></i>
 
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="add.php?id=24" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Regions</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add.php?id=25" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Disricts</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add.php?id=26" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Wards</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="add.php?id=24" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Regions</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="add.php?id=25" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Disricts</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="add.php?id=26" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Wards</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php } ?>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

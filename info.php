@@ -953,14 +953,25 @@ if ($user->isLoggedIn()) {
                                                         <?php } ?>
                                                         <td class="text-center">
                                                             <?php if ($_GET['status'] == 7) { ?>
-                                                                <a href="add.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-info"> <i class="ri-edit-box-line"></i>Update Client</a>&nbsp;&nbsp;<br>
+                                                                <a href="add.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-info"> <i class="ri-edit-box-line">
+                                                                    </i>
+                                                                    <?php
+                                                                    if ($user->data()->position != 5) {
+                                                                    ?>Update <?php } else { ?>View <?php } ?> Client
+                                                                </a>
+                                                                &nbsp;&nbsp;
+                                                                <br>
                                                             <?php } ?>
                                                             <br>
                                                             <?php if (($value['age'] >= 10 && $value['age'] <= 24) && ($value['informed_consent'] == 1)) { ?>
                                                                 <?php if ($hiv_history_and_medication && $eligibility && $risk_factors && $chronic_illnesses && $laboratory_results && $radiological_investigations) { ?>
-                                                                    <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i>Update CRF's</a>&nbsp;&nbsp;<br>
+                                                                    <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-success"> <i class="ri-edit-box-line"></i> <?php
+                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                            ?> Update<?php } else { ?>View <?php } ?> CRF's</a>&nbsp;&nbsp;<br>
                                                                 <?php   } else { ?>
-                                                                    <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i>Add CRF's</a>&nbsp;&nbsp;<br>
+                                                                    <a href="info.php?id=4&cid=<?= $value['id'] ?>&status=<?= $_GET['status'] ?>" class="btn btn-warning"> <i class="ri-edit-box-line"></i> <?php
+                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                            ?>Add <?php } else { ?>View <?php } ?> CRF's</a>&nbsp;&nbsp;<br>
                                                                 <?php   } ?>
                                                             <?php   } ?>
                                                             <br>
@@ -1112,19 +1123,27 @@ if ($user->isLoggedIn()) {
                                                             <?php if ($visit['visit_status'] == 1) { ?>
                                                                 <?php if ($visit['sequence'] == 0) { ?>
                                                                     <?php if ($hiv_history_and_medication) { ?>
-                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update HIV History And Medication Form</a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> <?php
+                                                                                                                                                                                                                                if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                ?> Update<?php } else { ?>View <?php } ?> HIV History And Medication Form</a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add HIV History And Medication Form</a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=5&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"><?php
+                                                                                                                                                                                                                                if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                ?> Add<?php } else { ?>View <?php } ?> HIV History And Medication Form</a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
                                                                     <?php if ($clients['age'] >= 10 && $clients['age'] <= 24) { ?>
                                                                         <?php if ($eligibility) { ?>
-                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Eligibility Form </a>&nbsp;&nbsp; <br><br>
+                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"><?php
+                                                                                                                                                                                                                                if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                ?> Update<?php } else { ?>View <?php } ?> Eligibility Form </a>&nbsp;&nbsp; <br><br>
 
                                                                         <?php } else { ?>
-                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Eligibility Form </a>&nbsp;&nbsp; <br><br>
+                                                                            <a href="add.php?id=6&cid=<?= $_GET['cid'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> <?php
+                                                                                                                                                                                                                                    if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                    ?> Add<?php } else { ?>View <?php } ?> Eligibility Form </a>&nbsp;&nbsp; <br><br>
 
                                                                         <?php } ?>
                                                                     <?php } ?>
@@ -1133,39 +1152,57 @@ if ($user->isLoggedIn()) {
 
                                                                 <?php if ($visit['sequence'] == 1) { ?>
                                                                     <?php if ($override->getNews('risk_factors', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                        <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Risk Factors </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> <?php
+                                                                                                                                                                                                                                                                                                        if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                        ?> Update<?php } else { ?>View <?php } ?> Risk Factors </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Risk Factors </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=7&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"><?php
+                                                                                                                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                            ?> Add<?php } else { ?>View <?php } ?> Risk Factors </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
                                                                     <?php if ($override->getNews('medications', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                        <a href="add.php?id=11&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Medications / Short-term illness </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=11&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> <?php
+                                                                                                                                                                                                                                                                                                        if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                        ?> Update<?php } else { ?>View <?php } ?> Medications / Short-term illness </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=11&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Medications / Short-term illness</a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=11&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> <?php
+                                                                                                                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                            ?> Add<?php } else { ?>View <?php } ?> Medications / Short-term illness</a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
                                                                     <?php if ($override->getNews('chronic_illnesses', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                        <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> <?php
+                                                                                                                                                                                                                                                                                                        if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                        ?> Update<?php } else { ?>View <?php } ?> Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=8&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"><?php
+                                                                                                                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                            ?> Add<?php } else { ?>View <?php } ?> Chronic Illnesses specify </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
                                                                     <?php if ($override->getNews('laboratory_results', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                        <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Laboratory Results </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> <?php
+                                                                                                                                                                                                                                                                                                        if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                        ?> Update<?php } else { ?>View <?php } ?> Laboratory Results </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Laboratory Results </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=9&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"><?php
+                                                                                                                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                            ?> Add<?php } else { ?>View <?php } ?> Laboratory Results </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
                                                                     <?php if ($override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)) { ?>
-                                                                        <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"> Update Radiological Investigations </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-info"><?php
+                                                                                                                                                                                                                                                                                                        if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                        ?> Update<?php } else { ?>View <?php } ?> Radiological Investigations </a>&nbsp;&nbsp; <br><br>
                                                                         <form id="uploadForm" enctype="multipart/form-data">
                                                                             <input type="hidden" name="id" id="id" value="<?= $override->getNews('radiological_investigations', 'patient_id', $_GET['cid'], 'sequence', 1)[0]['id'] ?>">
                                                                             <input type="hidden" name="cid" id="cid" value="<?= $_GET['cid'] ?>">
@@ -1180,7 +1217,9 @@ if ($user->isLoggedIn()) {
                                                                         <p id="message"></p>
                                                                         <div id="uploaded-file"></div>
                                                                     <?php } else { ?>
-                                                                        <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"> Add Radiological Investigations </a>&nbsp;&nbsp; <br><br>
+                                                                        <a href="add.php?id=10&cid=<?= $_GET['cid'] ?>&sequence=<?= $visit['sequence'] ?>&visit_code=<?= $visit['visit_code'] ?>&study_id=<?= $visit['study_id'] ?>&status=<?= $_GET['status'] ?>" role=" button" class="btn btn-warning"><?php
+                                                                                                                                                                                                                                                                                                            if ($user->data()->position != 5) {
+                                                                                                                                                                                                                                                                                                            ?> Add<?php } else { ?>View <?php } ?> Radiological Investigations </a>&nbsp;&nbsp; <br><br>
 
                                                                     <?php } ?>
 
