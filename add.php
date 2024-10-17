@@ -2289,7 +2289,6 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                         <br>
-                                                        <br>
                                                         <label id="other_religion0">Specify other religion</label>
                                                         <textarea class="form-control" id="other_religion" name="other_religion" rows="3" placeholder="Type other here...">
                                                                 <?php if ($clients['other_religion']) {
