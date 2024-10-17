@@ -1988,7 +1988,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3" id="date_informed_consent1">
+                                                <div class="col-sm-3" id="date_informed_consent0">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -2287,15 +2287,15 @@ if ($user->isLoggedIn()) {
                                                                                                                                                         } ?>>
                                                                 <label class="form-check-label">Other</label>
                                                             </div>
-                                                            <br>
-                                                            <br>
-                                                            <label id="other_religion1">Specify other religion</label>
-                                                            <textarea class="form-control" id="other_religion" name="other_religion" rows="3" placeholder="Type other here...">
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <label id="other_religion0">Specify other religion</label>
+                                                        <textarea class="form-control" id="other_religion" name="other_religion" rows="3" placeholder="Type other here...">
                                                                 <?php if ($clients['other_religion']) {
                                                                     print_r($clients['other_religion']);
                                                                 }  ?>
                                                             </textarea>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
