@@ -7755,9 +7755,9 @@ if ($user->isLoggedIn()) {
 
 
     <!-- clients Js -->
-    <script src="myjs/add/clients/occupation.js"></script>
-    <script src="myjs/add/clients/informed_consent.js"></script>
-    <script src="myjs/add/clients/religion.js"></script>
+    <script src="myjs/clients/occupation.js"></script>
+    <script src="myjs/clients/informed_consent.js"></script>
+    <script src="myjs/clients/religion.js"></script>
 
 
 
