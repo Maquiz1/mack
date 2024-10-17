@@ -2554,6 +2554,7 @@ if ($user->isLoggedIn()) {
                                                                                                                                                             } ?>>
                                                                 <label class="form-check-label">other</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('art_regimen')">Unset</button>
                                                         </div>
                                                     </div>
                                                     <textarea class="form-control" name="art_regimen_other" id="art_regimen_other" rows="2" placeholder="Type other here...">
