@@ -1988,7 +1988,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-3" id="date_informed_consent1">
                                                     <div class="row-form clearfix">
                                                         <!-- select -->
                                                         <div class="form-group">
@@ -2287,8 +2287,10 @@ if ($user->isLoggedIn()) {
                                                                                                                                                         } ?>>
                                                                 <label class="form-check-label">Other</label>
                                                             </div>
-                                                            <label>Specify other religion</label>
-                                                            <textarea class="form-control" name="other_religion" rows="3" placeholder="Type other here...">
+                                                            <br>
+                                                            <br>
+                                                            <label id="other_religion1">Specify other religion</label>
+                                                            <textarea class="form-control" id="other_religion" name="other_religion" rows="3" placeholder="Type other here...">
                                                                 <?php if ($clients['other_religion']) {
                                                                     print_r($clients['other_religion']);
                                                                 }  ?>
@@ -7754,11 +7756,8 @@ if ($user->isLoggedIn()) {
 
     <!-- clients Js -->
     <script src="myjs/add/clients/occupation.js"></script>
-    <!--  <script src="myjs/add/clients/insurance_name.js"></script>
-    <script src="myjs/add/clients/relation_patient.js"></script>
-    <script src="myjs/add/clients/validate_hidden_with_values.js"></script>
-    <script src="myjs/add/clients/validate_required_attribute.js"></script>
-    <script src="myjs/add/clients/validate_required_radio_checkboxes.js"></script> -->
+    <script src="myjs/add/clients/informed_consent.js"></script>
+    <script src="myjs/add/clients/religion.js"></script>
 
 
 
