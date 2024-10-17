@@ -7760,6 +7760,12 @@ if ($user->isLoggedIn()) {
     <script src="myjs/clients/religion.js"></script>
 
 
+        <!-- HISTORY Js -->
+    <!-- <script src="myjs/add/history/currently_smoking.js"></script> -->
+    <script src="myjs/add/history/art_regimen.js"></script>
+    <script src="myjs/add/history/enrolled_part.js"></script>
+
+
 
     <!-- KAP Js -->
     <!-- <script src="myjs/add/kap/dalili_saratani.js"></script>
@@ -7777,14 +7783,6 @@ if ($user->isLoggedIn()) {
     <script src="myjs/add/kap/wapi_matibabu.js"></script> -->
 
 
-
-
-
-
-    <!-- HISTORY Js -->
-    <!-- <script src="myjs/add/history/currently_smoking.js"></script> -->
-    <script src="myjs/add/history/art_regimen.js"></script>
-    <script src="myjs/add/history/enrolled_part.js"></script>
 
     <!-- economics Js -->
     <!-- <script src="myjs/add/economics/household.js"></script>
