@@ -2636,6 +2636,7 @@ if ($user->isLoggedIn()) {
                                                                 <label class="form-check-label">Other 1st line</label>
                                                             </div>
                                                         </div>
+                                                        <button type="button" onclick="unsetRadio('first_line')">Unset</button>
                                                     </div>
                                                     <textarea class="form-control" name="other_first_line" id="other_first_line" rows="2" placeholder="Type other here...">
                                                         <?php if ($hiv_history_and_medication['other_first_line']) {
@@ -7814,8 +7815,7 @@ if ($user->isLoggedIn()) {
     <script src="myjs/add/economics/format_thousands/transport.js"></script> -->
 
 
-
-
+    <script src="myjs/radio.js"></script>
 
     <script>
         $(function() {
