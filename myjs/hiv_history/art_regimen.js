@@ -25,11 +25,16 @@ function toggleElementVisibility() {
     second_line.style.display = "none";
     third_line.style.display = "block";
     art_regimen_other.style.display = "none";
-  } else if (art_regimen5.checked) {
+  } else if (art_regimen4.checked) {
     first_line.style.display = "none";
     second_line.style.display = "none";
     third_line.style.display = "none";
+    art_regimen_other.style.display = "none";
+  } else if (art_regimen5.checked) {
     art_regimen_other.style.display = "block";
+    first_line.style.display = "none";
+    second_line.style.display = "none";
+    third_line.style.display = "none";
   } else {
     first_line.style.display = "none";
     second_line.style.display = "none";
