@@ -2683,6 +2683,7 @@ if ($user->isLoggedIn()) {
                                                                 <label class="form-check-label">Other 2nd line</label>
                                                             </div>
                                                         </div>
+                                                        <button type="button" onclick="unsetRadio('second_line')">Unset</button>
                                                     </div>
                                                     <textarea class="form-control" name="other_second_line" id="other_second_line" rows="2" placeholder="Type other here...">
                                                         <?php if ($hiv_history_and_medication['other_second_line']) {
@@ -2727,6 +2728,7 @@ if ($user->isLoggedIn()) {
                                                                 <label class="form-check-label">Other 3rd line</label>
                                                             </div>
                                                         </div>
+                                                        <button type="button" onclick="unsetRadio('third_line')">Unset</button>
                                                     </div>
                                                     <textarea class="form-control" name="other_third_line" id="other_third_line" rows="2" placeholder="Type other here...">
                                                         <?php if ($hiv_history_and_medication['other_third_line']) {
@@ -2756,14 +2758,15 @@ if ($user->isLoggedIn()) {
                                                                                                                                                                 } ?>>
                                                                 <label class="form-check-label">No</label>
                                                             </div>
-                                                            <label class="form-check-label">3.5 If No,Please name the regimen:</label>
-                                                            <textarea class="form-control" name="name_regimen" id="name_regimen" rows="2" placeholder="Type here...">
+                                                        </div>
+                                                        <button type="button" onclick="unsetRadio('same_regimen')">Unset</button>
+                                                    </div>
+                                                    <label class="form-check-label" id="name_regimen0">3.5 If No,Please name the regimen:</label>
+                                                    <textarea class="form-control" name="name_regimen" id="name_regimen" rows="2" placeholder="Type here...">
                                                                 <?php if ($hiv_history_and_medication['name_regimen']) {
                                                                     print_r($hiv_history_and_medication['name_regimen']);
                                                                 }  ?>
                                                             </textarea>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <label>3.6 Has the participant been unwell since the last visit?</label>
@@ -2783,14 +2786,14 @@ if ($user->isLoggedIn()) {
                                                                                                                                                     } ?>>
                                                                 <label class="form-check-label">No</label>
                                                             </div>
-                                                            <label class="form-check-label">3.7 If yes, What was the health problem</label>
-                                                            <textarea class="form-control" name="what_health_problem" id="what_health_problem" rows="2" placeholder="Type here...">
+                                                        </div>
+                                                    </div>
+                                                    <label class="form-check-label" id="what_health_problem0">3.7 If yes, What was the health problem</label>
+                                                    <textarea class="form-control" name="what_health_problem" id="what_health_problem" rows="2" placeholder="Type here...">
                                                                 <?php if ($hiv_history_and_medication['what_health_problem']) {
                                                                     print_r($hiv_history_and_medication['what_health_problem']);
                                                                 }  ?>
                                                             </textarea>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
 
@@ -7761,7 +7764,7 @@ if ($user->isLoggedIn()) {
     <script src="myjs/clients/religion.js"></script>
 
 
-        <!-- HISTORY Js -->
+    <!-- HISTORY Js -->
     <!-- <script src="myjs/add/history/currently_smoking.js"></script> -->
     <script src="myjs/add/history/art_regimen.js"></script>
     <script src="myjs/add/history/enrolled_part.js"></script>
