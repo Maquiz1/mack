@@ -7765,57 +7765,8 @@ if ($user->isLoggedIn()) {
 
 
     <!-- HISTORY Js -->
-    <!-- <script src="myjs/add/history/currently_smoking.js"></script> -->
-    <script src="myjs/add/history/art_regimen.js"></script>
-    <script src="myjs/add/history/first_line.js"></script>
-    <script src="myjs/add/history/enrolled_part.js"></script>
-
-
-
-    <!-- KAP Js -->
-    <!-- <script src="myjs/add/kap/dalili_saratani.js"></script>
-    <script src="myjs/add/kap/kundi.js"></script>
-    <script src="myjs/add/kap/matibabu.js"></script>
-    <script src="myjs/add/kap/matibabu_saratani.js"></script>
-    <script src="myjs/add/kap/saratani_hatari.js"></script>
-    <script src="myjs/add/kap/saratani_inatibika.js"></script>
-    <script src="myjs/add/kap/saratani_vipimo.js"></script>
-    <script src="myjs/add/kap/uchunguzi_faida.js"></script>
-    <script src="myjs/add/kap/uchunguzi_hatari.js"></script>
-    <script src="myjs/add/kap/uchunguzi_maana.js"></script>
-    <script src="myjs/add/kap/ushawishi.js"></script>
-    <script src="myjs/add/kap/vitu_hatarishi.js"></script>
-    <script src="myjs/add/kap/wapi_matibabu.js"></script> -->
-
-
-
-    <!-- economics Js -->
-    <!-- <script src="myjs/add/economics/household.js"></script>
-    <script src="myjs/add/economics/patient.js"></script> -->
-
-    <!-- economics Js -->
-    <!-- <script src="myjs/add/outcome/outcome.js"></script> -->
-
-    <!-- economics radio requireds Js -->
-    <!-- <script src="myjs/add/economics/format_required.js/format_radio.js"></script> -->
-
-
-
-    <!-- economics format numbers Js -->
-    <!-- <script src="myjs/add/economics/format_thousands/consultation.js"></script>
-    <script src="myjs/add/economics/format_thousands/days.js"></script>
-    <script src="myjs/add/economics/format_thousands/diagnostic.js"></script>
-    <script src="myjs/add/economics/format_thousands/food_drinks.js"></script>
-    <script src="myjs/add/economics/format_thousands/hours.js"></script>
-    <script src="myjs/add/economics/format_thousands/medications.js"></script>
-    <script src="myjs/add/economics/format_thousands/member_earn.js"></script>
-    <script src="myjs/add/economics/format_thousands/monthly_earn.js"></script>
-    <script src="myjs/add/economics/format_thousands/other_cost.js"></script>
-    <script src="myjs/add/economics/format_thousands/other_medical_cost.js"></script>
-    <script src="myjs/add/economics/format_thousands/registration.js"></script>
-    <script src="myjs/add/economics/format_thousands/registration.js"></script>
-    <script src="myjs/add/economics/format_thousands/support_earn.js"></script>
-    <script src="myjs/add/economics/format_thousands/transport.js"></script> -->
+    <script src="myjs/history/art_regimen.js"></script>
+    <script src="myjs/history/first_line.js"></script>
 
 
     <script src="myjs/radio.js"></script>
