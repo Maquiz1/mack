@@ -2787,7 +2787,7 @@ if ($user->isLoggedIn()) {
                                                                 <label class="form-check-label">No</label>
                                                             </div>
                                                         </div>
-                                                        <button type="button" onclick="unsetRadio('same_regimen')">Unset</button>
+                                                        <button type="button" onclick="unsetRadio('unwell')">Unset</button>
                                                     </div>
                                                     <label class="form-check-label" id="what_health_problem0">3.7 If yes, What was the health problem</label>
                                                     <textarea class="form-control" name="what_health_problem" id="what_health_problem" rows="2" placeholder="Type here...">
@@ -3126,27 +3126,29 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    <label>Is the volunteer eligible to be enrolled?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part1" value="1" <?php if ($eligibility['enrolled_part'] == 1) {
-                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                } ?> disabled>
-                                                                <label class="form-check-label">Yes</label>
-                                                            </div>
+                                                <?php if ($eligibility['enrolled_part'] == 1 || $eligibility['enrolled_part'] == 2) { ?>
+                                                    <div class="col-sm-3">
+                                                        <label>Is the volunteer eligible to be enrolled?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part1" value="1" <?php if ($eligibility['enrolled_part'] == 1) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?> disabled>
+                                                                    <label class="form-check-label">Yes</label>
+                                                                </div>
 
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part2" value="2" <?php if ($eligibility['enrolled_part'] == 2) {
-                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                } ?> disabled>
-                                                                <label class="form-check-label">No</label>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="enrolled_part" id="enrolled_part2" value="2" <?php if ($eligibility['enrolled_part'] == 2) {
+                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                    } ?> disabled>
+                                                                    <label class="form-check-label">No</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <?php } ?>
                                             </div>
 
                                             <hr>
