@@ -2746,7 +2746,7 @@ if ($user->isLoggedIn()) {
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="same_regimen" id="same_regimen2" value="1" <?php if ($hiv_history_and_medication['same_regimen'] == 1) {
+                                                                <input class="form-check-input" type="radio" name="same_regimen" id="same_regimen1" value="1" <?php if ($hiv_history_and_medication['same_regimen'] == 1) {
                                                                                                                                                                     echo 'checked';
                                                                                                                                                                 } ?>>
                                                                 <label class="form-check-label">Yes</label>

@@ -8,11 +8,11 @@ const other_third_line = document.getElementById("other_third_line");
 
 function toggleElementVisibility() {
   if (third_line5.checked) {
-    // other_third_line.style.display = "block";
-    other_third_line.setAttribute("required", "required");
+    other_third_line.style.display = "block";
+    // other_third_line.setAttribute("required", "required");
   } else {
-    other_third_line.removeAttribute("required");
-    // other_third_line.style.display = "none";
+    // other_third_line.removeAttribute("required");
+    other_third_line.style.display = "none";
   }
 }
 
