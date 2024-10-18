@@ -7767,6 +7767,7 @@ if ($user->isLoggedIn()) {
     <!-- HISTORY Js -->
     <!-- <script src="myjs/add/history/currently_smoking.js"></script> -->
     <script src="myjs/add/history/art_regimen.js"></script>
+    <script src="myjs/add/history/first_line.js"></script>
     <script src="myjs/add/history/enrolled_part.js"></script>
 
 
