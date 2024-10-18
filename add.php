@@ -2636,8 +2636,8 @@ if ($user->isLoggedIn()) {
                                                                                                                                                             } ?>>
                                                                 <label class="form-check-label">Other 1st line</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('first_line')">Unset</button>
                                                         </div>
-                                                        <button type="button" onclick="unsetRadio('first_line')">Unset</button>
                                                     </div>
                                                     <textarea class="form-control" name="other_first_line" id="other_first_line" rows="2" placeholder="Type other here...">
                                                         <?php if ($hiv_history_and_medication['other_first_line']) {
@@ -2682,8 +2682,8 @@ if ($user->isLoggedIn()) {
                                                                                                                                                                 } ?>>
                                                                 <label class="form-check-label">Other 2nd line</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('second_line')">Unset</button>
                                                         </div>
-                                                        <button type="button" onclick="unsetRadio('second_line')">Unset</button>
                                                     </div>
                                                     <textarea class="form-control" name="other_second_line" id="other_second_line" rows="2" placeholder="Type other here...">
                                                         <?php if ($hiv_history_and_medication['other_second_line']) {
@@ -2727,8 +2727,8 @@ if ($user->isLoggedIn()) {
                                                                                                                                                             } ?>>
                                                                 <label class="form-check-label">Other 3rd line</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('third_line')">Unset</button>
                                                         </div>
-                                                        <button type="button" onclick="unsetRadio('third_line')">Unset</button>
                                                     </div>
                                                     <textarea class="form-control" name="other_third_line" id="other_third_line" rows="2" placeholder="Type other here...">
                                                         <?php if ($hiv_history_and_medication['other_third_line']) {

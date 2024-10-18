@@ -4,10 +4,11 @@ const art_regimen3 = document.getElementById("art_regimen3");
 const art_regimen4 = document.getElementById("art_regimen4");
 const art_regimen5 = document.getElementById("art_regimen5");
 
+const art_regimen_other = document.getElementById("art_regimen_other");
+
 const first_line = document.getElementById("first_line");
 const second_line = document.getElementById("second_line");
 const third_line = document.getElementById("third_line");
-const art_regimen_other = document.getElementById("art_regimen_other");
 
 function toggleElementVisibility() {
   if (art_regimen1.checked) {
