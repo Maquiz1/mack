@@ -13,7 +13,7 @@ const first_line11 = document.getElementById("first_line11");
 const other_first_line = document.getElementById("other_first_line");
 
 function toggleElementVisibility() {
-  if (art_regimen1.checked) {
+  if (first_line11.checked) {
     other_first_line.style.display = "block";
   } else {
     other_first_line.style.display = "none";
