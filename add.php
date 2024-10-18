@@ -7767,6 +7767,8 @@ if ($user->isLoggedIn()) {
     <!-- HISTORY Js -->
     <script src="myjs/hiv_history/art_regimen.js"></script>
     <script src="myjs/hiv_history/first_line.js"></script>
+    <script src="myjs/hiv_history/second_line.js"></script>
+    <script src="myjs/hiv_history/third_line.js"></script>
 
 
     <script src="myjs/radio.js"></script>
