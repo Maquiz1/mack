@@ -2677,9 +2677,9 @@ if ($user->isLoggedIn()) {
                                                                 <label class="form-check-label">ABC+3TC+ATV/r</label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="second_line" id="second_line11" value="5" <?php if ($hiv_history_and_medication['second_line'] == 5) {
-                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                } ?>>
+                                                                <input class="form-check-input" type="radio" name="second_line" id="second_line5" value="5" <?php if ($hiv_history_and_medication['second_line'] == 5) {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                                 <label class="form-check-label">Other 2nd line</label>
                                                             </div>
                                                             <button type="button" onclick="unsetRadio('second_line')">Unset</button>
