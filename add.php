@@ -3352,6 +3352,8 @@ if ($user->isLoggedIn()) {
                                                                                                                                                             } ?>>
                                                                 <label class="form-check-label">Former smoker (more than 12 months ago)</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('smoke_stat')">Unset</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3581,6 +3583,8 @@ if ($user->isLoggedIn()) {
                                                                                                                                                                         } ?>>
                                                                 <label class="form-check-label">No</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('physically_active')">Unset</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3618,6 +3622,7 @@ if ($user->isLoggedIn()) {
                                                                 <label class="form-check-label">Sedentary-moderate exercise less than 3 times
                                                                     per week with no regular vigorous exercise</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('activity_grade')">Unset</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3639,14 +3644,15 @@ if ($user->isLoggedIn()) {
                                                                                                                                                     } ?>>
                                                                 <label class="form-check-label">No</label>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('alcohol')">Unset</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr>
+                                            <hr id="drink_cont_alcoh0">
 
-                                            <div class="row">
+                                            <div class="row" id="drink_cont_alcoh">
                                                 <div class="col-sm-3">
                                                     <label>1.How often do you have a drink containing alcohol?
                                                         skip to question 9-10 if Never</label>
@@ -3756,8 +3762,8 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            <hr id="cant_stop_drink0">
+                                            <div class="row" id="cant_stop_drink">
                                                 <div class="col-sm-3">
                                                     <label>4. How often during the last year have you found that you
                                                         were not able to stop drinking once you had started?</label>
@@ -3829,8 +3835,8 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            <hr id="cant_remember0">
+                                            <div class="row" id="cant_remember">
                                                 <div class="col-sm-3">
                                                     <label>8. How often during the last year have you been unable to
                                                         remember what happened the night before because you
