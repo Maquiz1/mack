@@ -3942,7 +3942,7 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-6" id="vaccine_covid19">
                                                         <label>1.17 Were you vaccinated against COVID_19?</label>
                                                         <!-- radio -->
                                                         <div class="row-form clearfix">
@@ -3984,7 +3984,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-4" id="date_treated_tb0">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="mb-2">
