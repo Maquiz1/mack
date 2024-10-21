@@ -3341,7 +3341,7 @@ if ($user->isLoggedIn()) {
                                                             </div>
 
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="smoke_stat" id="smoke_stat2" value="2" <?php if ($risk_factors['smoke_stat'] == 0) {
+                                                                <input class="form-check-input" type="radio" name="smoke_stat" id="smoke_stat0" value="0" <?php if ($risk_factors['smoke_stat'] == 0) {
                                                                                                                                                                 echo 'checked';
                                                                                                                                                             } ?>>
                                                                 <label class="form-check-label">Never smoked</label>
@@ -3355,7 +3355,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-4" id="smoking_yes">
                                                     <label>If yes to smoking?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
