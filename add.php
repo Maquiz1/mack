@@ -7792,6 +7792,7 @@ if ($user->isLoggedIn()) {
     <script src="myjs/risk_factors/smoke_stat.js"></script>
     <script src="myjs/risk_factors/smoking_yes.js"></script>
     <script src="myjs/risk_factors/physically_active.js"></script>
+    <script src="myjs/risk_factors/alcohol.js"></script>
 
 
 
