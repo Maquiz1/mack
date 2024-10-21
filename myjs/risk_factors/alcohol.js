@@ -11,7 +11,7 @@ const cant_remember0 = document.getElementById("cant_remember0");
 const cant_remember = document.getElementById("cant_remember");
 
 function toggleElementVisibility() {
-  if (smoke_stat1.checked) {
+  if (alcohol1.checked) {
     drink_cont_alcoh0.style.display = "block";
     drink_cont_alcoh.style.display = "block";
     cant_stop_drink0.style.display = "block";
