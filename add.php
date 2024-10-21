@@ -3997,7 +3997,7 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-4" id="month_treated_tb0">
                                                     <div class="row-form clearfix">
                                                         <div class="form-group">
                                                             <div class="mb-2">

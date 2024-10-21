@@ -2,12 +2,15 @@ const treated_tb1 = document.getElementById("treated_tb1");
 const treated_tb2 = document.getElementById("treated_tb2");
 
 const date_treated_tb0 = document.getElementById("date_treated_tb0");
+const month_treated_tb0 = document.getElementById("month_treated_tb0");
 
 function toggleElementVisibility() {
   if (treated_tb1.checked) {
     date_treated_tb0.style.display = "block";
+    month_treated_tb0.style.display = "block";
   } else {
     date_treated_tb0.style.display = "none";
+    month_treated_tb0.style.display = "none";
   }
 }
 
