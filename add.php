@@ -3397,14 +3397,14 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="card card-warning" id="smokeless0">
+                                            <hr id="smokeless0">
+                                            <div class="card card-warning" id="smokeless1">
                                                 <div class="card-header">
                                                     <h3 class="card-title">Smokeless</h3>
                                                 </div>
                                             </div>
-                                            <hr id="smokeless1">
-                                            <div class="row" id="smokeless2">
+                                            <hr id="smokeless2">
+                                            <div class="row" id="smokeless3">
                                                 <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="duration_smokeless" class="form-label">Duration (smokeless)</label>
@@ -3432,6 +3432,8 @@ if ($user->isLoggedIn()) {
                                                     <span>number per day</span>
                                                 </div>
                                             </div>
+
+
                                             <hr id="smoking0">
                                             <div class="card card-warning" id="smoking1">
                                                 <div class="card-header">
@@ -3467,14 +3469,16 @@ if ($user->isLoggedIn()) {
                                                     <span>number per day</span>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="card card-warning">
+
+
+                                            <hr id="ecigarette0">
+                                            <div class="card card-warning" id="ecigarette1">
                                                 <div class="card-header">
                                                     <h3 class="card-title">E-cigarette</h3>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            <hr id="ecigarette2">
+                                            <div class="row" id="ecigarette3">
                                                 <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="duration_ecigarette" class="form-label">Duration (E-cigarette)</label>
@@ -3502,14 +3506,16 @@ if ($user->isLoggedIn()) {
                                                     <span>number per day</span>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="card card-warning">
+
+
+                                            <hr id="other_tobacco0">
+                                            <div class="card card-warning" id="other_tobacco1">
                                                 <div class="card-header">
                                                     <h3 class="card-title">Other Forms of Tobacco</h3>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            <hr id="other_tobacco2">
+                                            <div class="row" id="other_tobacco3">
                                                 <div class="col-3">
                                                     <div class="mb-2">
                                                         <label for="other_tobacco" class="form-label">Other forms of tobacco, specify</label>
@@ -3578,7 +3584,7 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6" id="activity_grade">
                                                     <label>If Yes, What is your grade?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
