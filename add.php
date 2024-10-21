@@ -3398,13 +3398,13 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="card card-warning">
+                                            <div class="card card-warning" id="smokeless0">
                                                 <div class="card-header">
                                                     <h3 class="card-title">Smokeless</h3>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            <hr id="smokeless1">
+                                            <div class="row" id="smokeless2">
                                                 <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="duration_smokeless" class="form-label">Duration (smokeless)</label>
@@ -3432,14 +3432,14 @@ if ($user->isLoggedIn()) {
                                                     <span>number per day</span>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="card card-warning">
+                                            <hr id="smoking0">
+                                            <div class="card card-warning" id="smoking1">
                                                 <div class="card-header">
                                                     <h3 class="card-title">Smoking</h3>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            <hr id="smoking2">
+                                            <div class="row" id="smoking3">
                                                 <div class="col-4">
                                                     <div class="mb-2">
                                                         <label for="duration_smoking" class="form-label">Duration (smoking)</label>
@@ -7776,7 +7776,7 @@ if ($user->isLoggedIn()) {
     <script src="myjs/hiv_history/unwell.js"></script>
     <script src="myjs/hiv_history/enrolled_part.js"></script>
 
-        <!-- RISK FACTORS Js -->
+    <!-- RISK FACTORS Js -->
     <script src="myjs/risk_factors/smoke_stat.js"></script>
 
     <script src="myjs/radio.js"></script>
