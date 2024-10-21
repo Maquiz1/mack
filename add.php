@@ -7778,6 +7778,8 @@ if ($user->isLoggedIn()) {
 
     <!-- RISK FACTORS Js -->
     <script src="myjs/risk_factors/smoke_stat.js"></script>
+    <script src="myjs/risk_factors/smoking_yes.js"></script>
+
 
     <script src="myjs/radio.js"></script>
 
