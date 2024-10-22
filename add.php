@@ -3652,269 +3652,272 @@ if ($user->isLoggedIn()) {
 
                                             <hr id="drink_cont_alcoh0">
 
-                                            <div class="row" id="drink_cont_alcoh">
-                                                <div class="col-sm-3">
-                                                    <label>1.How often do you have a drink containing alcohol?
-                                                        skip to question 9-10 if Never</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh1" value="1" <?php if ($risk_factors['drink_cont_alcoh'] == 1) {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?> required>
-                                                                <label class=" form-check-label">Never</label>
-                                                            </div>
+                                            <div id="drink_cont_alcoh">
 
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh2" value="2" <?php if ($risk_factors['drink_cont_alcoh'] == 2) {
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label>1.How often do you have a drink containing alcohol?
+                                                            skip to question 9-10 if Never</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh1" value="1" <?php if ($risk_factors['drink_cont_alcoh'] == 1) {
+                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                            } ?> required>
+                                                                    <label class=" form-check-label">Never</label>
+                                                                </div>
+
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh2" value="2" <?php if ($risk_factors['drink_cont_alcoh'] == 2) {
+                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                            } ?>>
+                                                                    <label class="form-check-label">Monthly or less</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh3" value="3" <?php if ($risk_factors['drink_cont_alcoh'] == 3) {
+                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                            } ?>>
+                                                                    <label class="form-check-label">2 to 4 times a month</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh4" value="4" <?php if ($risk_factors['drink_cont_alcoh'] == 4) {
+                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                            } ?>>
+                                                                    <label class="form-check-label">2 to 3 times a week</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh5" value="5" <?php if ($risk_factors['drink_cont_alcoh'] == 5) {
+                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                            } ?>>
+                                                                    <label class="form-check-label">4 or more times a week</label>
+                                                                </div>
+                                                                <button type="button" onclick="unsetRadio('drink_cont_alcoh')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3" id="total_1only0">
+                                                        <div class="mb-2">
+                                                            <label for="total_1only" class="form-label">Total for 1</label>
+                                                            <input type="number" value="<?php if ($risk_factors['total_1only']) {
+                                                                                            print_r($risk_factors['total_1only']);
+                                                                                        } ?>" id="total_1only" name="total_1only" min="0" class="form-control" placeholder="Enter Total" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3" id="howmany_drinks0">
+                                                        <label>2. How many drinks containing alcohol do you have on a
+                                                            typical day when you are drinking?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks1" value="1" <?php if ($risk_factors['howmany_drinks'] == 1) {
                                                                                                                                                                             echo 'checked';
                                                                                                                                                                         } ?>>
-                                                                <label class="form-check-label">Monthly or less</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh3" value="3" <?php if ($risk_factors['drink_cont_alcoh'] == 3) {
+                                                                    <label class=" form-check-label">1 or 2</label>
+                                                                </div>
+
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks2" value="2" <?php if ($risk_factors['howmany_drinks'] == 2) {
                                                                                                                                                                             echo 'checked';
                                                                                                                                                                         } ?>>
-                                                                <label class="form-check-label">2 to 4 times a month</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh4" value="4" <?php if ($risk_factors['drink_cont_alcoh'] == 4) {
+                                                                    <label class=" form-check-label">3 or 4</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks3" value="3" <?php if ($risk_factors['howmany_drinks'] == 3) {
                                                                                                                                                                             echo 'checked';
                                                                                                                                                                         } ?>>
-                                                                <label class="form-check-label">2 to 3 times a week</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="drink_cont_alcoh" id="drink_cont_alcoh5" value="5" <?php if ($risk_factors['drink_cont_alcoh'] == 5) {
+                                                                    <label class=" form-check-label">5 or 6</label>
+
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks4" value="4" <?php if ($risk_factors['howmany_drinks'] == 4) {
                                                                                                                                                                             echo 'checked';
                                                                                                                                                                         } ?>>
-                                                                <label class="form-check-label">4 or more times a week</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="total_1only" class="form-label">Total for 1</label>
-                                                        <input type="number" value="<?php if ($risk_factors['total_1only']) {
-                                                                                        print_r($risk_factors['total_1only']);
-                                                                                    } ?>" id="total_1only" name="total_1only" min="0" class="form-control" placeholder="Enter Total" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>2. How many drinks containing alcohol do you have on a
-                                                        typical day when you are drinking?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks1" value="1" <?php if ($risk_factors['howmany_drinks'] == 1) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class=" form-check-label">1 or 2</label>
-                                                            </div>
+                                                                    <label class=" form-check-label">7,8 or 9</label>
 
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks2" value="2" <?php if ($risk_factors['howmany_drinks'] == 2) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class=" form-check-label">3 or 4</label>
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks3" value="3" <?php if ($risk_factors['howmany_drinks'] == 3) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class=" form-check-label">5 or 6</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks5" value="5" <?php if ($risk_factors['howmany_drinks'] == 5) {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                                                    <label class=" form-check-label">10 or More</label>
 
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks4" value="4" <?php if ($risk_factors['howmany_drinks'] == 4) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class=" form-check-label">7,8 or 9</label>
-
-                                                            </div>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="howmany_drinks" id="howmany_drinks5" value="5" <?php if ($risk_factors['howmany_drinks'] == 5) {
-                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                    } ?>>
-                                                                <label class=" form-check-label">10 or More</label>
+                                                                </div>
+                                                                <button type="button" onclick="unsetRadio('howmany_drinks')">Unset</button>
 
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>3. How often do you have six or more drinks on one
-                                                        occassion?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="drink_often" id="drink_often<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['drink_often'] == $occassion['id']) {
-                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                } ?>>
-                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr id="cant_stop_drink0">
-                                            <div class="row" id="cant_stop_drink">
-                                                <div class="col-sm-3">
-                                                    <label>4. How often during the last year have you found that you
-                                                        were not able to stop drinking once you had started?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="cant_stop_drink" id="cant_stop_drink<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['cant_stop_drink'] == $occassion['id']) {
-                                                                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                                                                        } ?>>
-                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>5. How often during the last year have you failed to do
-                                                        what was normally expected from you because of
-                                                        drinking?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="failed_todo_normal" id="failed_todo_normal<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['failed_todo_normal'] == $occassion['id']) {
-                                                                                                                                                                                                                                echo 'checked';
-                                                                                                                                                                                                                            } ?>>
-                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>6. How often during the last year have you needed a first
-                                                        drink in the morning to get yourself going after a heavy
-                                                        drinking session?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="first_drink_morning" id="first_drink_morning<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['first_drink_morning'] == $occassion['id']) {
-                                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                                } ?>>
-                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>7. How often during the last year have you had a feeling of
-                                                        guilt or remorse after drinking?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="remorse_after_drink" id="remorse_after_drink<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['remorse_after_drink'] == $occassion['id']) {
-                                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                                } ?>>
-                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr id="cant_remember0">
-                                            <div class="row" id="cant_remember">
-                                                <div class="col-sm-3">
-                                                    <label>8. How often during the last year have you been unable to
-                                                        remember what happened the night before because you
-                                                        had been drinking?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="cant_remember" id="cant_remember<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['cant_remember'] == $occassion['id']) {
+                                                    <div class="col-sm-3" id="drink_often">
+                                                        <label>3. How often do you have six or more drinks on one
+                                                            occassion?</label>
+                                                        <!-- radio -->
+                                                        <div class=" row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="drink_often" id="drink_often<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['drink_often'] == $occassion['id']) {
                                                                                                                                                                                                                         echo 'checked';
                                                                                                                                                                                                                     } ?>>
-                                                                    <label class="form-check-label"><?= $occassion['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <label>9. Have you or someone else been injured as a result of
-                                                        your drinking?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('yes_no_but', 'status', 1) as $value) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="injure_someone" id="injure_someone<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['injure_someone'] == $value['id']) {
-                                                                                                                                                                                                                echo 'checked';
-                                                                                                                                                                                                            } ?>>
-                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>10. Has a relative or friend or a doctor or another health
-                                                        worker been concerned about your drinking or suggested
-                                                        you cut down</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <?php foreach ($override->get('yes_no_but', 'status', 1) as $value) { ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="concern_about_drink" id="concern_about_drink<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['concern_about_drink'] == $value['id']) {
-                                                                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                                                                        } ?>>
-                                                                    <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="mb-2">
-                                                                <label for="overall_total_never" class="form-label">Overall total 1</label>
-                                                                <input type="number" value="<?php if ($risk_factors['overall_total_never']) {
-                                                                                                print_r($risk_factors['overall_total_never']);
-                                                                                            } ?>" id="overall_total_never" name="overall_total_never" min="0" class="form-control" placeholder="Enter Total" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <div class="row-form clearfix">
-                                                        <div class="form-group">
-                                                            <div class="mb-2">
-                                                                <label for="overtotal" class="form-label">Overall total 2</label>
-                                                                <input type="number" value="<?php if ($risk_factors['overtotal']) {
-                                                                                                print_r($risk_factors['overtotal']);
-                                                                                            } ?>" id="overtotal" name="overtotal" min="0" class="form-control" placeholder="Enter Total" />
+                                                                        <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('drink_often')">Unset</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <hr id="cant_stop_drink0">
+                                            <div id="cant_stop_drink">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label>5. How often during the last year have you failed to do
+                                                            what was normally expected from you because of
+                                                            drinking?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="failed_todo_normal" id="failed_todo_normal<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['failed_todo_normal'] == $occassion['id']) {
+                                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('failed_todo_normal')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label>6. How often during the last year have you needed a first
+                                                            drink in the morning to get yourself going after a heavy
+                                                            drinking session?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="first_drink_morning" id="first_drink_morning<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['first_drink_morning'] == $occassion['id']) {
+                                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('first_drink_morning')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label>7. How often during the last year have you had a feeling of
+                                                            guilt or remorse after drinking?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="remorse_after_drink" id="remorse_after_drink<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['remorse_after_drink'] == $occassion['id']) {
+                                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                                    } ?>>
+                                                                        <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('remorse_after_drink')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr id="cant_remember0">
+                                            <div id="cant_remember">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label>8. How often during the last year have you been unable to
+                                                            remember what happened the night before because you
+                                                            had been drinking?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="cant_remember" id="cant_remember<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['cant_remember'] == $occassion['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                        <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('cant_remember')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label>9. Have you or someone else been injured as a result of
+                                                            your drinking?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no_but', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="injure_someone" id="injure_someone<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['injure_someone'] == $value['id']) {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('injure_someone')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label>10. Has a relative or friend or a doctor or another health
+                                                            worker been concerned about your drinking or suggested
+                                                            you cut down</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('yes_no_but', 'status', 1) as $value) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="concern_about_drink" id="concern_about_drink<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($risk_factors['concern_about_drink'] == $value['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('concern_about_drink')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <div class="mb-2">
+                                                                    <label for="overall_total_never" class="form-label">Overall total 1</label>
+                                                                    <input type="number" value="<?php if ($risk_factors['overall_total_never']) {
+                                                                                                    print_r($risk_factors['overall_total_never']);
+                                                                                                } ?>" id="overall_total_never" name="overall_total_never" min="0" class="form-control" placeholder="Enter Total" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <div class="mb-2">
+                                                                    <label for="overtotal" class="form-label">Overall total 2</label>
+                                                                    <input type="number" value="<?php if ($risk_factors['overtotal']) {
+                                                                                                    print_r($risk_factors['overtotal']);
+                                                                                                } ?>" id="overtotal" name="overtotal" min="0" class="form-control" placeholder="Enter Total" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <?php
                                             if ($user->data()->position != 5) {
                                             ?>
@@ -3939,6 +3942,7 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('covid19')">Unset</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -3955,6 +3959,7 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('vaccine_covid19')">Unset</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -3981,6 +3986,7 @@ if ($user->isLoggedIn()) {
                                                                     <label class="form-check-label"><?= $value['name']; ?></label>
                                                                 </div>
                                                             <?php } ?>
+                                                            <button type="button" onclick="unsetRadio('treated_tb')">Unset</button>
                                                         </div>
                                                     </div>
                                                 </div>
