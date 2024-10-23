@@ -4159,7 +4159,7 @@ if ($user->isLoggedIn()) {
                                 <!-- general form elements disabled -->
                                 <div class="card card-warning">
                                     <div class="card-header">
-                                        <h3 class="card-title">Chronic Illnesses</h3>
+                                        <h3 class="card-title">5.0 Chronic Illnesses</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <form id="validation" enctype="multipart/form-data" method="post" autocomplete="off">
@@ -4180,7 +4180,7 @@ if ($user->isLoggedIn()) {
                                                 <?php } ?>
 
                                                 <div class="col-sm-3">
-                                                    <label>4.1 Have you ever been screened for non-communicable
+                                                    <label>5.1 Have you ever been screened for non-communicable
                                                         diseases?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -4202,7 +4202,7 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                                 <div class="col-3" id="chronic_illness_type">
                                                     <div class="mb-2">
-                                                        <label for="chronic_illness_type" class="form-label">Name of chronic illness</label>
+                                                        <label for="chronic_illness_type" class="form-label">5.2 Name of chronic illness</label>
                                                         <input type="text" value="<?php if ($chronic_illnesses['chronic_illness_type']) {
                                                                                         print_r($chronic_illnesses['chronic_illness_type']);
                                                                                     } ?>" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
@@ -4210,7 +4210,7 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                                 <div class="col-3" id="start_date_chronic">
                                                     <div class="mb-2">
-                                                        <label for="start_date_chronic" class="form-label">Start date</label>
+                                                        <label for="start_date_chronic" class="form-label">5.2 Start date</label>
                                                         <input type="date" value="<?php if ($chronic_illnesses['start_date_chronic']) {
                                                                                         print_r($chronic_illnesses['start_date_chronic']);
                                                                                     } ?>" name="start_date_chronic" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
@@ -5172,20 +5172,21 @@ if ($user->isLoggedIn()) {
                                                                 <?php } ?>
                                                                 <span>Remarks</span>
                                                             </div>
+                                                            <button type="button" onclick="unsetRadio('ecg')">Unset</button>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
+                                                <div class="col-3" id="ecg_date">
                                                     <div class="mb-2">
                                                         <label for="ecg_date" class="form-label">Date of ECG</label>
                                                         <input type="date" value="<?php if ($radiological_investigations['ecg_date']) {
                                                                                         print_r($radiological_investigations['ecg_date']);
-                                                                                    } ?>" id="ecg_date" name="ecg_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
+                                                                                    } ?>" name="ecg_date" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-3" id="quality_ecg">
                                                     <label>What is the Quality of ECG?</label>
                                                     <!-- radio -->
                                                     <div class="row-form clearfix">
@@ -5199,6 +5200,7 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('quality_ecg')">Unset</button>
                                                             </div>
                                                             <span>NOTE:if ECG quality is assessed as poor quality/not acceptable, then dont report on it.</span>
                                                         </div>
@@ -5206,60 +5208,67 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                             </div>
 
-                                            <hr>
 
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="heart_rate_ecg" class="form-label">1. Heart Rate</label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['heart_rate_ecg']) {
-                                                                                        print_r($radiological_investigations['heart_rate_ecg']);
-                                                                                    } ?>" id="heart_rate_ecg" name="heart_rate_ecg" min="0" class="form-control" placeholder="Enter here" />
-                                                        <span>bpm (Quatitative)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>Qualitative</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('qualitative', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="qualitative_ecg" id="qualitative_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qualitative_ecg'] == $value['id']) {
-                                                                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                                                                    } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <span>Based on reference</span>
+                                            <div id="ecg_hide">
+
+                                                <hr>
+
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="mb-2">
+                                                            <label for="heart_rate_ecg" class="form-label">1. Heart Rate</label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['heart_rate_ecg']) {
+                                                                                            print_r($radiological_investigations['heart_rate_ecg']);
+                                                                                        } ?>" id="heart_rate_ecg" name="heart_rate_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                            <span>bpm (Quatitative)</span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="regularity_ecg" class="form-label">Regularity</label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['regularity_ecg']) {
-                                                                                        print_r($radiological_investigations['regularity_ecg']);
-                                                                                    } ?>" id="regularity_ecg" name="regularity_ecg" min="0" class="form-control" placeholder="Enter here" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <label>Heart Rhythm</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
+                                                    <div class="col-sm-3">
+                                                        <label>Qualitative</label>
+                                                        <!-- radio -->
                                                         <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('rhythm', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="heart_rythm_ecg" id="heart_rythm_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['heart_rythm_ecg'] == $value['id']) {
-                                                                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                                                                    } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
-                                                                <label for="other_heart_rhythm_ecg" class="form-label">Other heart Rhythm</label>
+                                                            <div class="row-form clearfix">
+                                                                <div class="form-group">
+                                                                    <?php foreach ($override->get('qualitative', 'status', 1) as $value) { ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="qualitative_ecg" id="qualitative_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qualitative_ecg'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                            <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                    <button type="button" onclick="unsetRadio('qualitative_ecg')">Unset</button>
+
+                                                                </div>
+                                                                <span>Based on reference</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <div class="mb-2">
+                                                            <label for="regularity_ecg" class="form-label">Regularity</label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['regularity_ecg']) {
+                                                                                            print_r($radiological_investigations['regularity_ecg']);
+                                                                                        } ?>" id="regularity_ecg" name="regularity_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label>Heart Rhythm</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="row-form clearfix">
+                                                                <div class="form-group">
+                                                                    <?php foreach ($override->get('rhythm', 'status', 1) as $value) { ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="heart_rythm_ecg" id="heart_rythm_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['heart_rythm_ecg'] == $value['id']) {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                            <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                    <button type="button" onclick="unsetRadio('heart_rythm_ecg')">Unset</button>
+                                                                </div>
+                                                                <label for="other_heart_rhythm_ecg" id="other_heart_rhythm_ecg_L" class="form-label">Other heart Rhythm</label>
                                                                 <input type="text" value="<?php if ($radiological_investigations['other_heart_rhythm_ecg']) {
                                                                                                 print_r($radiological_investigations['other_heart_rhythm_ecg']);
                                                                                             } ?>" id="other_heart_rhythm_ecg" name="other_heart_rhythm_ecg" min="0" class="form-control" placeholder="Enter here" />
@@ -5267,152 +5276,157 @@ if ($user->isLoggedIn()) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <hr>
+                                                <hr>
 
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <label>5. QRS Axis is;</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
-                                                        <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('axis', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="qrs_axis_state_ecg" id="qrs_axis_state_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qrs_axis_state_ecg'] == $value['id']) {
-                                                                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                                                                        } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            </div>
-                                                            <span>state whether QRS axis is normal or not</span>
+                                                <div class="row">
+
+                                                    <div class="col-6">
+                                                        <div class="mb-2">
+                                                            <label for="qrs_axis_no_ecg" class="form-label">5. Axis: QRS axis ( Specify number ) </label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['qrs_axis_no_ecg']) {
+                                                                                            print_r($radiological_investigations['qrs_axis_no_ecg']);
+                                                                                        } ?>" id="qrs_axis_no_ecg" name="qrs_axis_no_ecg" min="0" class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="mb-2">
-                                                        <label for="qrs_axis_no_ecg" class="form-label">5. Specify number </label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['qrs_axis_no_ecg']) {
-                                                                                        print_r($radiological_investigations['qrs_axis_no_ecg']);
-                                                                                    } ?>" id="qrs_axis_no_ecg" name="qrs_axis_no_ecg" min="0" class="form-control" placeholder="Enter here" />
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <hr>
-
-                                            <div class="row">
-
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="pr_interval_ecg" class="form-label">6. PR interval </label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['pr_interval_ecg']) {
-                                                                                        print_r($radiological_investigations['pr_interval_ecg']);
-                                                                                    } ?>" id="pr_interval_ecg" name="pr_interval_ecg" min="0" class="form-control" placeholder="Enter here" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3">
-                                                    <label>6. PR interval specify;</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
+                                                    <div class="col-sm-6">
+                                                        <label>5. And state whether QRS axis is normal or not;</label>
+                                                        <!-- radio -->
                                                         <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('intervals', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="pr_inter_specify_ecg" id="pr_inter_specify_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['pr_inter_specify_ecg'] == $value['id']) {
+                                                            <div class="row-form clearfix">
+                                                                <div class="form-group">
+                                                                    <?php foreach ($override->get('axis', 'status', 1) as $value) { ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="qrs_axis_state_ecg" id="qrs_axis_state_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qrs_axis_state_ecg'] == $value['id']) {
                                                                                                                                                                                                                                 echo 'checked';
                                                                                                                                                                                                                             } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
+                                                                            <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                    <button type="button" onclick="unsetRadio('qrs_axis_state_ecg')">Unset</button>
+
+                                                                </div>
                                                             </div>
-                                                            <span>state whether QRS axis is normal or not</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="qtc_interval_ecg" class="form-label">Qtc Interval </label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['qtc_interval_ecg']) {
-                                                                                        print_r($radiological_investigations['qtc_interval_ecg']);
-                                                                                    } ?>" id="qtc_interval_ecg" name="qtc_interval_ecg" min="0" class="form-control" placeholder="Enter here" />
-                                                    </div>
-                                                </div>
+                                                <hr>
 
-                                                <div class="col-sm-3">
-                                                    <label>Qtc Interval specify</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
+                                                <div class="row">
+
+                                                    <div class="col-3">
+                                                        <div class="mb-2">
+                                                            <label for="pr_interval_ecg" class="form-label">6. PR interval </label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['pr_interval_ecg']) {
+                                                                                            print_r($radiological_investigations['pr_interval_ecg']);
+                                                                                        } ?>" id="pr_interval_ecg" name="pr_interval_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-3">
+                                                        <label>6. PR interval specify;</label>
+                                                        <!-- radio -->
                                                         <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('intervals', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="qtc_inter_specify_ecg" id="qtc_inter_specify_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qtc_inter_specify_ecg'] == $value['id']) {
+                                                            <div class="row-form clearfix">
+                                                                <div class="form-group">
+                                                                    <?php foreach ($override->get('intervals', 'status', 1) as $value) { ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="pr_inter_specify_ecg" id="pr_inter_specify_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['pr_inter_specify_ecg'] == $value['id']) {
                                                                                                                                                                                                                                     echo 'checked';
                                                                                                                                                                                                                                 } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
+                                                                            <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                    <button type="button" onclick="unsetRadio('pr_inter_specify_ecg')">Unset</button>
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <hr>
-
-                                            <div class="row">
-
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="abnormal_waves_ecg" class="form-label">7. Abnomalities of waves noted:assess P, QRS, T-waves,
-                                                            Q-waves and report any abnormalities, if any, of the waves
-                                                            eg tall p-waves; wide QRS complex; RBBB/LBBB pattern </label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['abnormal_waves_ecg']) {
-                                                                                        print_r($radiological_investigations['abnormal_waves_ecg']);
-                                                                                    } ?>" id="abnormal_waves_ecg" name="abnormal_waves_ecg" min="0" class="form-control" placeholder="Enter Here" />
+                                                    <div class="col-3">
+                                                        <div class="mb-2">
+                                                            <label for="qtc_interval_ecg" class="form-label">Qtc Interval </label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['qtc_interval_ecg']) {
+                                                                                            print_r($radiological_investigations['qtc_interval_ecg']);
+                                                                                        } ?>" id="qtc_interval_ecg" name="qtc_interval_ecg" min="0" class="form-control" placeholder="Enter here" />
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="repolarizatn_abno_ecg" class="form-label">8.Repolarization abnormalities if any eg ST-segment depression, elevation, etc</label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['repolarizatn_abno_ecg']) {
-                                                                                        print_r($radiological_investigations['repolarizatn_abno_ecg']);
-                                                                                    } ?>" id="repolarizatn_abno_ecg" name="repolarizatn_abno_ecg" min="0" class="form-control" placeholder="Enter Here" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3">
-                                                    <label>Summary statement: In conclusion the ECG is?</label>
-                                                    <!-- radio -->
-                                                    <div class="row-form clearfix">
+                                                    <div class="col-sm-3">
+                                                        <label>Qtc Interval specify</label>
+                                                        <!-- radio -->
                                                         <div class="row-form clearfix">
-                                                            <div class="form-group">
-                                                                <?php foreach ($override->get('normality', 'status', 1) as $value) { ?>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="radio" name="conclusion_ecg" id="conclusion_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['conclusion_ecg'] == $value['id']) {
-                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                } ?>>
-                                                                        <label class="form-check-label"><?= $value['name']; ?></label>
-                                                                    </div>
-                                                                <?php } ?>
+                                                            <div class="row-form clearfix">
+                                                                <div class="form-group">
+                                                                    <?php foreach ($override->get('intervals', 'status', 1) as $value) { ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="qtc_inter_specify_ecg" id="qtc_inter_specify_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['qtc_inter_specify_ecg'] == $value['id']) {
+                                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                                    } ?>>
+                                                                            <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                    <button type="button" onclick="unsetRadio('qtc_inter_specify_ecg')">Unset</button>
+                                                                </div>
                                                             </div>
-                                                            <span>state whether QRS axis is normal or not</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
-                                                    <div class="mb-2">
-                                                        <label for="abno_o_borderl_specify" class="form-label">if abnormal or borderline specify </label>
-                                                        <input type="text" value="<?php if ($radiological_investigations['abno_o_borderl_specify']) {
-                                                                                        print_r($radiological_investigations['abno_o_borderl_specify']);
-                                                                                    } ?>" id="abno_o_borderl_specify" name="abno_o_borderl_specify" min="0" class="form-control" placeholder="Enter here" />
+                                                <hr>
+
+                                                <div class="row">
+
+                                                    <div class="col-3">
+                                                        <div class="mb-2">
+                                                            <label for="abnormal_waves_ecg" class="form-label">7. Abnomalities of waves noted:assess P, QRS, T-waves,
+                                                                Q-waves and report any abnormalities, if any, of the waves
+                                                                eg tall p-waves; wide QRS complex; RBBB/LBBB pattern </label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['abnormal_waves_ecg']) {
+                                                                                            print_r($radiological_investigations['abnormal_waves_ecg']);
+                                                                                        } ?>" id="abnormal_waves_ecg" name="abnormal_waves_ecg" min="0" class="form-control" placeholder="Enter Here" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-3">
+                                                        <div class="mb-2">
+                                                            <label for="repolarizatn_abno_ecg" class="form-label">8.Repolarization abnormalities if any eg ST-segment depression, elevation, etc</label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['repolarizatn_abno_ecg']) {
+                                                                                            print_r($radiological_investigations['repolarizatn_abno_ecg']);
+                                                                                        } ?>" id="repolarizatn_abno_ecg" name="repolarizatn_abno_ecg" min="0" class="form-control" placeholder="Enter Here" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-3">
+                                                        <label>Summary statement: In conclusion the ECG is?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="row-form clearfix">
+                                                                <div class="form-group">
+                                                                    <?php foreach ($override->get('normality', 'status', 1) as $value) { ?>
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="conclusion_ecg" id="conclusion_ecg<?= $value['id']; ?>" value="<?= $value['id']; ?>" <?php if ($radiological_investigations['conclusion_ecg'] == $value['id']) {
+                                                                                                                                                                                                                        echo 'checked';
+                                                                                                                                                                                                                    } ?>>
+                                                                            <label class="form-check-label"><?= $value['name']; ?></label>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                    <button type="button" onclick="unsetRadio('conclusion_ecg')">Unset</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-3" id="abno_o_borderl_specify">
+                                                        <div class="mb-2">
+                                                            <label for="abno_o_borderl_specify" class="form-label">if abnormal or borderline specify </label>
+                                                            <input type="text" value="<?php if ($radiological_investigations['abno_o_borderl_specify']) {
+                                                                                            print_r($radiological_investigations['abno_o_borderl_specify']);
+                                                                                        } ?>" name="abno_o_borderl_specify" min="0" class="form-control" placeholder="Enter here" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
