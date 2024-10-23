@@ -4194,24 +4194,26 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('ncd_screening')">Unset</button>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="chronic_illness_type">
                                                     <div class="mb-2">
                                                         <label for="chronic_illness_type" class="form-label">Name of chronic illness</label>
                                                         <input type="text" value="<?php if ($chronic_illnesses['chronic_illness_type']) {
                                                                                         print_r($chronic_illnesses['chronic_illness_type']);
-                                                                                    } ?>" id="chronic_illness_type" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
+                                                                                    } ?>" name="chronic_illness_type" min="0" class="form-control" placeholder="Enter name" />
                                                     </div>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="start_date_chronic">
                                                     <div class="mb-2">
                                                         <label for="start_date_chronic" class="form-label">Start date</label>
                                                         <input type="date" value="<?php if ($chronic_illnesses['start_date_chronic']) {
                                                                                         print_r($chronic_illnesses['start_date_chronic']);
-                                                                                    } ?>" id="start_date_chronic" name="start_date_chronic" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
+                                                                                    } ?>" name="start_date_chronic" max="<?= date('Y-m-d') ?>" class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
                                             </div>
