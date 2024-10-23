@@ -7833,6 +7833,11 @@ if ($user->isLoggedIn()) {
     <script src="myjs/risk_factors/treated_tb.js"></script>
 
 
+    <!-- medications_short_term_illness Js -->
+    <script src="myjs/medications_short_term_illness/illness.js"></script>
+    <script src="myjs/medications_short_term_illness/medicines.js"></script>
+    <script src="myjs/medications_short_term_illness/sick.js"></script>
+
 
 
     <script src="myjs/radio.js"></script>
