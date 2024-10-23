@@ -7840,6 +7840,9 @@ if ($user->isLoggedIn()) {
     <script src="myjs/medications_short_term_illness/medicines.js"></script>
     <script src="myjs/medications_short_term_illness/sick.js"></script>
 
+    <!-- medications_short_term_illness Js -->
+    <script src="myjs/chronic_illness/ncd_screening.js"></script>
+
 
 
     <script src="myjs/radio.js"></script>
