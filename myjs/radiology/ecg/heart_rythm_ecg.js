@@ -5,7 +5,7 @@ const other_heart_rhythm_ecg_L = document.getElementById("other_heart_rhythm_ecg
 const other_heart_rhythm_ecg = document.getElementById("other_heart_rhythm_ecg");
 
 function toggleElementVisibility() {
-  if (rhythm1.checked) {
+  if (rhythm2.checked) {
     other_heart_rhythm_ecg_L.style.display = "block";
     other_heart_rhythm_ecg.style.display = "block";
   } else {

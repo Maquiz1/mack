@@ -7,7 +7,7 @@ const abno_o_borderl_specify = document.getElementById(
 );
 
 function toggleElementVisibility() {
-  if (conclusion_ecg1.checked) {
+  if (conclusion_ecg2.checked) {
     abno_o_borderl_specify.style.display = "block";
   } else {
     abno_o_borderl_specify.style.display = "none";
