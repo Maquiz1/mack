@@ -6716,26 +6716,28 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('illness')">Unset</button>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-4" id="illness_specify">
                                                     <div class="mb-2">
                                                         <label for="illness_specify" class="form-label">If Yes, mention</label>
                                                         <input type="text" value="<?php if ($medications['illness_specify']) {
                                                                                         print_r($medications['illness_specify']);
-                                                                                    } ?>" id="illness_specify" name="illness_specify" class="form-control" placeholder="Enter name" />
+                                                                                    } ?>" name="illness_specify" class="form-control" placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <hr>
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6" id="sick">
                                                     <label>4.2 Can you name what you were sick during that period ?</label>
                                                     <!-- radio -->
-                                                    <div class="row-form clearfix">
+                                                    <div class=" row-form clearfix">
                                                         <div class="row-form clearfix">
                                                             <div class="form-group">
                                                                 <?php foreach ($override->get('yes_no', 'status', 1) as $value) { ?>
@@ -6746,16 +6748,18 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('sick')">Unset</button>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-6" id="sick_specify">
                                                     <div class="mb-2">
                                                         <label for="sick_specify" class="form-label">If Yes, mention</label>
                                                         <input type="text" value="<?php if ($medications['sick_specify']) {
                                                                                         print_r($medications['sick_specify']);
-                                                                                    } ?>" id="sick_specify" name="sick_specify" class="form-control" placeholder="Enter name" />
+                                                                                    } ?>" name="sick_specify" class="form-control" placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -6777,55 +6781,60 @@ if ($user->isLoggedIn()) {
                                                                         <label class="form-check-label"><?= $value['name']; ?></label>
                                                                     </div>
                                                                 <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('medicines')">Unset</button>
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-6" id="medicines_specify">
                                                     <div class="mb-2">
                                                         <label for="medicines_specify" class="form-label">If Yes, mention</label>
                                                         <input type="text" value="<?php if ($medications['medicines_specify']) {
                                                                                         print_r($medications['medicines_specify']);
-                                                                                    } ?>" id="medicines_specify" name="medicines_specify" class="form-control" placeholder="Enter name" />
+                                                                                    } ?>" name="medicines_specify" class="form-control" placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <hr>
+                                            <div id="long_used">
 
-                                            <label>4.4 How long have you used those medicine?</label>
-                                            <hr>
+                                                <hr>
+
+                                                <label>4.4 How long have you used those medicine?</label>
+                                                <hr>
 
 
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <label for="medicines_years" class="form-label">Years</label>
-                                                        <input type="text" value="<?php if ($medications['medicines_years']) {
-                                                                                        print_r($medications['medicines_years']);
-                                                                                    } ?>" id="medicines_years" name="medicines_years" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <label for="medicines_years" class="form-label">Years</label>
+                                                            <input type="text" value="<?php if ($medications['medicines_years']) {
+                                                                                            print_r($medications['medicines_years']);
+                                                                                        } ?>" id="medicines_years" name="medicines_years" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                        </div>
+                                                        <span>If Only Months And Days Put '0'</span>
                                                     </div>
-                                                    <span>If Only Months And Days Put '0'</span>
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <label for="medicines_months" class="form-label">Months</label>
-                                                        <input type="text" value="<?php if ($medications['medicines_months']) {
-                                                                                        print_r($medications['medicines_months']);
-                                                                                    } ?>" id="medicines_months" name="medicines_months" class="form-control" min="0" max="100" placeholder="Enter here" />
-                                                    </div>
-                                                    <span>If Only Years And Days Put '0'</span>
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <label for="medicines_months" class="form-label">Months</label>
+                                                            <input type="text" value="<?php if ($medications['medicines_months']) {
+                                                                                            print_r($medications['medicines_months']);
+                                                                                        } ?>" id="medicines_months" name="medicines_months" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                        </div>
+                                                        <span>If Only Years And Days Put '0'</span>
 
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="mb-2">
-                                                        <label for="medicines_days" class="form-label">Days</label>
-                                                        <input type="text" value="<?php if ($medications['medicines_days']) {
-                                                                                        print_r($medications['medicines_days']);
-                                                                                    } ?>" id="medicines_days" name="medicines_days" class="form-control" min="0" max="100" placeholder="Enter here" />
                                                     </div>
-                                                    <span>If Only Years and Months Put '0'</span>
+                                                    <div class="col-4">
+                                                        <div class="mb-2">
+                                                            <label for="medicines_days" class="form-label">Days</label>
+                                                            <input type="text" value="<?php if ($medications['medicines_days']) {
+                                                                                            print_r($medications['medicines_days']);
+                                                                                        } ?>" id="medicines_days" name="medicines_days" class="form-control" min="0" max="100" placeholder="Enter here" />
+                                                        </div>
+                                                        <span>If Only Years and Months Put '0'</span>
 
+                                                    </div>
                                                 </div>
                                             </div>
 
