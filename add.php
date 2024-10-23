@@ -3650,7 +3650,7 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                             </div>
 
-                                            <hr id="drink_cont_alcoh0">
+                                            <hr id="drink_cont_alcoh_H">
 
                                             <div id="drink_cont_alcoh">
 
@@ -3696,15 +3696,15 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-3" id="total_1only0">
+                                                    <div class="col-3" id="total_1only">
                                                         <div class="mb-2">
                                                             <label for="total_1only" class="form-label">Total for 1</label>
                                                             <input type="number" value="<?php if ($risk_factors['total_1only']) {
                                                                                             print_r($risk_factors['total_1only']);
-                                                                                        } ?>" id="total_1only" name="total_1only" min="0" class="form-control" placeholder="Enter Total" />
+                                                                                        } ?>" name="total_1only" min="0" class="form-control" placeholder="Enter Total" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3" id="howmany_drinks0">
+                                                    <div class="col-sm-3" id="howmany_drinks">
                                                         <label>2. How many drinks containing alcohol do you have on a
                                                             typical day when you are drinking?</label>
                                                         <!-- radio -->
@@ -3770,10 +3770,29 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                             </div>
 
-                                            <hr id="cant_stop_drink0">
+                                            <hr id="cant_stop_drink_H">
                                             <div id="cant_stop_drink">
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-2">
+                                                        <label>4. How often during the last year have you found that you
+                                                            were not able to stop drinking once you had started?</label>
+                                                        <!-- radio -->
+                                                        <div class="row-form clearfix">
+                                                            <div class="form-group">
+                                                                <?php foreach ($override->get('occassions', 'status', 1) as $occassion) { ?>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="cant_stop_drink" id="cant_stop_drink<?= $occassion['id']; ?>" value="<?= $occassion['id']; ?>" <?php if ($risk_factors['cant_stop_drink'] == $occassion['id']) {
+                                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                                            } ?>>
+                                                                        <label class="form-check-label"><?= $occassion['name']; ?></label>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <button type="button" onclick="unsetRadio('cant_stop_drink')">Unset</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-2">
                                                         <label>5. How often during the last year have you failed to do
                                                             what was normally expected from you because of
                                                             drinking?</label>
@@ -3811,7 +3830,7 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-2">
                                                         <label>7. How often during the last year have you had a feeling of
                                                             guilt or remorse after drinking?</label>
                                                         <!-- radio -->
@@ -3829,13 +3848,8 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <hr id="cant_remember0">
-                                            <div id="cant_remember">
-                                                <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-3" id="cant_remember_R1">
                                                         <label>8. How often during the last year have you been unable to
                                                             remember what happened the night before because you
                                                             had been drinking?</label>
@@ -3854,7 +3868,14 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
+                                                </div>
+                                            </div>
+
+                                            <hr id="cant_remember_H">
+                                            <div id="cant_remember">
+                                                <div class="row">
+
+                                                    <div class="col-sm-3">
                                                         <label>9. Have you or someone else been injured as a result of
                                                             your drinking?</label>
                                                         <!-- radio -->
@@ -3891,7 +3912,7 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
+                                                    <div class="col-sm-3">
                                                         <div class="row-form clearfix">
                                                             <div class="form-group">
                                                                 <div class="mb-2">
@@ -3903,7 +3924,7 @@ if ($user->isLoggedIn()) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
+                                                    <div class="col-sm-3">
                                                         <div class="row-form clearfix">
                                                             <div class="form-group">
                                                                 <div class="mb-2">
