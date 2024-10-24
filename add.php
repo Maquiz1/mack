@@ -7868,11 +7868,13 @@ if ($user->isLoggedIn()) {
     <!-- medications_short_term_illness Js -->
     <script src="myjs/chronic_illness/ncd_screening.js"></script>
 
-    <!-- medications_short_term_illness Js -->
+    <!-- ECG Js -->
     <script src="myjs/radiology/ecg/conclusion_ecg.js"></script>
     <script src="myjs/radiology/ecg/ecg.js"></script>
     <script src="myjs/radiology/ecg/heart_rythm_ecg.js"></script>
 
+    <!-- ECHO Js -->
+    <script src="myjs/radiology/echo/echo.js"></script>
 
 
     <script src="myjs/radio.js"></script>
