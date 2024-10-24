@@ -7883,6 +7883,13 @@ if ($user->isLoggedIn()) {
     <!-- medications_short_term_illness Js -->
     <script src="myjs/radiology/valve/pericardial_effusion.js"></script>
 
+    <!-- medications_short_term_illness Js -->
+    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
+
 
     <script src="myjs/radio.js"></script>
 
