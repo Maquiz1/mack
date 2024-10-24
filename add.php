@@ -7880,6 +7880,9 @@ if ($user->isLoggedIn()) {
     <script src="myjs/radiology/echo/structural_lesions.js"></script>
     <script src="myjs/radiology/echo/syst_vein_connect_echo.js"></script>
 
+    <!-- medications_short_term_illness Js -->
+    <script src="myjs/radiology/valve/pericardial_effusion.js"></script>
+
 
     <script src="myjs/radio.js"></script>
 
