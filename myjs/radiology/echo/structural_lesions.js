@@ -12,7 +12,7 @@ function toggleElementVisibility() {
     structural_lesions_hides.style.display = "block";
   } else {
     state_struc_lession.style.display = "none";
-    structural_lesions_hides.style.display = "block";
+    structural_lesions_hides.style.display = "none";
   }
 }
 

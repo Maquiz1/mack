@@ -5699,8 +5699,8 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
                                                 <hr>
-
-                                                <div class="row" id="structural_lesions_hides">
+                                                <div id="structural_lesions_hides">
+                                                <div class="row">
                                                     <div class="col-4">
                                                         <div class="mb-2">
                                                             <label for="size" class="form-label">Size of structural lesion</label>
@@ -5726,6 +5726,7 @@ if ($user->isLoggedIn()) {
                                                                                         } ?>" id="hemodynamics_stru_lesio" name="hemodynamics_stru_lesio" min="0" class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
+                                                </div>
                                                 </div>
                                             </div>
 
