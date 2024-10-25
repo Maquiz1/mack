@@ -6568,37 +6568,37 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
+                                                <div class="col-3" id="lf_atriu_parasternal">
                                                     <div class="mb-2">
                                                         <label for="lf_atriu_parasternal" class="form-label">2D LA
                                                             parasternal long axis anteroposterior dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atriu_parasternal']) {
                                                             print_r($radiological_investigations['lf_atriu_parasternal']);
-                                                        } ?>" id="lf_atriu_parasternal"
+                                                        } ?>" 
                                                             name="lf_atriu_parasternal" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="lf_atrium_4chamb_long">
                                                     <div class="mb-2">
                                                         <label for="lf_atrium_4chamb_long" class="form-label">2D LA apical
                                                             4-chamber long axis dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_long']) {
                                                             print_r($radiological_investigations['lf_atrium_4chamb_long']);
-                                                        } ?>" id="lf_atrium_4chamb_long"
+                                                        } ?>" 
                                                             name="lf_atrium_4chamb_long" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="lf_atrium_4chamb_minor">
                                                     <div class="mb-2">
                                                         <label for="lf_atrium_4chamb_minor" class="form-label">2D LA apical
                                                             4-chamber minor axis (transverse) dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_minor']) {
                                                             print_r($radiological_investigations['lf_atrium_4chamb_minor']);
-                                                        } ?>" id="lf_atrium_4chamb_minor"
+                                                        } ?>" 
                                                             name="lf_atrium_4chamb_minor" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
@@ -6632,37 +6632,37 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
+                                                <div class="col-3" id="rt_4chamb_long">
                                                     <div class="mb-2">
                                                         <label for="rt_4chamb_long" class="form-label">2D RA apical
                                                             4-chamber long axis dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_4chamb_long']) {
                                                             print_r($radiological_investigations['rt_4chamb_long']);
-                                                        } ?>" id="rt_4chamb_long"
+                                                        } ?>" 
                                                             name="rt_4chamb_long" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="rt_4chamb_transverse">
                                                     <div class="mb-2">
                                                         <label for="rt_4chamb_transverse" class="form-label">2D RA apical
                                                             4-chamber transverse dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_4chamb_transverse']) {
                                                             print_r($radiological_investigations['rt_4chamb_transverse']);
-                                                        } ?>" id="rt_4chamb_transverse"
+                                                        } ?>" 
                                                             name="rt_4chamb_transverse" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="lf_atrium_4chamb_minor">
                                                     <div class="mb-2">
                                                         <label for="lf_atrium_4chamb_minor" class="form-label">2D LA apical
                                                             4-chamber minor axis (transverse) dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_minor']) {
                                                             print_r($radiological_investigations['lf_atrium_4chamb_minor']);
-                                                        } ?>" id="lf_atrium_4chamb_minor"
+                                                        } ?>" 
                                                             name="lf_atrium_4chamb_minor" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
@@ -6697,37 +6697,37 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
+                                                <div class="col-3" id="free_wall_thickness">
                                                     <div class="mb-2">
                                                         <label for="free_wall_thickness" class="form-label">MM LV
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['free_wall_thickness']) {
                                                             print_r($radiological_investigations['free_wall_thickness']);
-                                                        } ?>" id="free_wall_thickness"
+                                                        } ?>" 
                                                             name="free_wall_thickness" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="septal_thickness">
                                                     <div class="mb-2">
                                                         <label for="septal_thickness" class="form-label">MM LV end-diastolic
                                                             septal thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['septal_thickness']) {
                                                             print_r($radiological_investigations['septal_thickness']);
-                                                        } ?>" id="septal_thickness"
+                                                        } ?>" 
                                                             name="septal_thickness" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="free_wall_thickness_2">
                                                     <div class="mb-2">
                                                         <label for="free_wall_thickness_2" class="form-label">MM LV
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['free_wall_thickness_2']) {
                                                             print_r($radiological_investigations['free_wall_thickness_2']);
-                                                        } ?>" id="free_wall_thickness_2"
+                                                        } ?>" 
                                                             name="free_wall_thickness_2" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
@@ -6761,37 +6761,37 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-3">
+                                                <div class="col-3" id="d_freewall_thick_plax">
                                                     <div class="mb-2">
                                                         <label for="d_freewall_thick_plax" class="form-label">2D LV
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['d_freewall_thick_plax']) {
                                                             print_r($radiological_investigations['d_freewall_thick_plax']);
-                                                        } ?>" id="d_freewall_thick_plax"
+                                                        } ?>" 
                                                             name="d_freewall_thick_plax" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="d_septal_thick_plax">
                                                     <div class="mb-2">
                                                         <label for="d_septal_thick_plax" class="form-label">2D LV
                                                             end-diastolic septal thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['d_septal_thick_plax']) {
                                                             print_r($radiological_investigations['d_septal_thick_plax']);
-                                                        } ?>" id="d_septal_thick_plax"
+                                                        } ?>" 
                                                             name="d_septal_thick_plax" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3" id="d_freewall_thick_plax2">
                                                     <div class="mb-2">
                                                         <label for="d_freewall_thick_plax2" class="form-label">2D LV
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['d_freewall_thick_plax2']) {
                                                             print_r($radiological_investigations['d_freewall_thick_plax2']);
-                                                        } ?>" id="d_freewall_thick_plax2"
+                                                        } ?>" 
                                                             name="d_freewall_thick_plax2" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
@@ -6826,49 +6826,49 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                 </div>
 
-                                                <div class="col-2">
+                                                <div class="col-2" id="rvot_plax_dia">
                                                     <div class="mb-2">
                                                         <label for="rvot_plax_dia" class="form-label">RVOT PLAX
                                                             diameter</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rvot_plax_dia']) {
                                                             print_r($radiological_investigations['rvot_plax_dia']);
-                                                        } ?>" id="rvot_plax_dia"
+                                                        } ?>" 
                                                             name="rvot_plax_dia" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-2" id="rvot_prox_dia">
                                                     <div class="mb-2">
                                                         <label for="rvot_prox_dia" class="form-label">RVOT proximal
                                                             diameter</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rvot_prox_dia']) {
                                                             print_r($radiological_investigations['rvot_prox_dia']);
-                                                        } ?>" id="rvot_prox_dia"
+                                                        } ?>" 
                                                             name="rvot_prox_dia" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-2" id="rvot_distal_dia">
                                                     <div class="mb-2">
                                                         <label for="rvot_distal_dia" class="form-label">RVOT distal
                                                             diameter</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rvot_distal_dia']) {
                                                             print_r($radiological_investigations['rvot_distal_dia']);
-                                                        } ?>" id="rvot_distal_dia"
+                                                        } ?>" 
                                                             name="rvot_distal_dia" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-2" id="rv_wall_thickness">
                                                     <div class="mb-2">
                                                         <label for="rv_wall_thickness" class="form-label">RV wall
                                                             thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rv_wall_thickness']) {
                                                             print_r($radiological_investigations['rv_wall_thickness']);
-                                                        } ?>" id="rv_wall_thickness"
+                                                        } ?>" 
                                                             name="rv_wall_thickness" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
