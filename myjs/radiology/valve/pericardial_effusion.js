@@ -2,12 +2,16 @@ const pericardial_effusion1 = document.getElementById("pericardial_effusion1");
 const pericardial_effusion2 = document.getElementById("pericardial_effusion2");
 
 const measure_deep_pool = document.getElementById("measure_deep_pool");
+// const measure_deep_pool = document.getElementById("measure_deep_pool");
+
 
 function toggleElementVisibility() {
   if (pericardial_effusion2.checked) {
     measure_deep_pool.style.display = "block";
+    // measure_deep_pool.style.display = "block";
   } else {
     measure_deep_pool.style.display = "none";
+    // measure_deep_pool.style.display = "none";
   }
 }
 
