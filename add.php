@@ -5700,7 +5700,7 @@ if ($user->isLoggedIn()) {
                                                 </div>
                                                 <hr>
 
-                                                <div class="row">
+                                                <div class="row" id="structural_lesions_hides">
                                                     <div class="col-4">
                                                         <div class="mb-2">
                                                             <label for="size" class="form-label">Size of structural lesion</label>
