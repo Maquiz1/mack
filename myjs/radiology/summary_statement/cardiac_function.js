@@ -5,7 +5,7 @@ const abnorm_cardia_func = document.getElementById("abnorm_cardia_func");
 
 
 function toggleElementVisibility() {
-    if (cardiac_function1.checked) {
+    if (cardiac_function2.checked) {
         abnorm_cardia_func.style.display = "block";
     } else {
         abnorm_cardia_func.style.display = "none";

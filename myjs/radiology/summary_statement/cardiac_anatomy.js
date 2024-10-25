@@ -5,7 +5,7 @@ const abnorm_cardiac_anatom = document.getElementById("abnorm_cardiac_anatom");
 
 
 function toggleElementVisibility() {
-    if (cardiac_anatomy1.checked) {
+    if (cardiac_anatomy2.checked) {
         abnorm_cardiac_anatom.style.display = "block";
     } else {
         abnorm_cardiac_anatom.style.display = "none";
