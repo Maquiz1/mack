@@ -8905,10 +8905,10 @@ if ($user->isLoggedIn()) {
 
     <!-- medications_short_term_illness Js -->
     <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
-    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
-    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
-    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
-    <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/left_ventrical_mmode.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/lt_2d_plax_view.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/right_atrium.js"></script>
+    <script src="myjs/radiology/chamber_dimensions/right_ven_chamber.js"></script>
 
     <!-- VALVE Js -->
     <script src="myjs/valve/pericardial_effusion.js"></script>
