@@ -4,7 +4,7 @@ const pericardial_effusion2 = document.getElementById("pericardial_effusion2");
 const measure_deep_pool = document.getElementById("measure_deep_pool");
 
 function toggleElementVisibility() {
-  if (pericardial_effusion1.checked) {
+  if (pericardial_effusion2.checked) {
     measure_deep_pool.style.display = "block";
   } else {
     measure_deep_pool.style.display = "none";
