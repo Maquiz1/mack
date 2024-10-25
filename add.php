@@ -8785,7 +8785,7 @@ if ($user->isLoggedIn()) {
 
     <!-- summary_statement Js -->
     <script src="myjs/radiology/summary_statement/cardiac_anatomy.js"></script>
-    <script src="myjs/radiology/summary_statement/cardiac_anatomy.js"></script>
+    <script src="myjs/radiology/summary_statement/cardiac_function.js"></script>
 
 
     <!-- renal_function Js -->
