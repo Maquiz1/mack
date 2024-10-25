@@ -8779,6 +8779,25 @@ if ($user->isLoggedIn()) {
     <!-- systolic_function Js -->
     <script src="myjs/radiology/systolic_function/lv_sys_func.js"></script>
 
+    <!-- other_measurements Js -->
+    <script src="myjs/radiology/other_measurements/esti_rv_sbp.js"></script>
+
+
+    <!-- summary_statement Js -->
+    <script src="myjs/radiology/summary_statement/cardiac_anatomy.js"></script>
+    <script src="myjs/radiology/summary_statement/cardiac_anatomy.js"></script>
+
+
+    <!-- renal_function Js -->
+    <script src="myjs/radiology/renal_function/renal_function.js"></script>
+
+
+    <!-- kidney_sizes Js -->
+    <script src="myjs/radiology/kidney_sizes/conclusion_renal.js"></script>
+    <script src="myjs/radiology/kidney_sizes/hydronephrosis.js"></script>
+    <script src="myjs/radiology/kidney_sizes/kidney_stones.js"></script>
+    <script src="myjs/radiology/kidney_sizes/structural_anomalies.js"></script>
+
 
     <script src="myjs/radio.js"></script>
 
