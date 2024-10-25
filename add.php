@@ -1577,11 +1577,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>First Name</label>
                                                             <input class="form-control" type="text" name="firstname"
-                                                                id="firstname"
-                                                                value="<?php if ($staff['firstname']) {
+                                                                id="firstname" value="<?php if ($staff['firstname']) {
                                                                     print_r($staff['firstname']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1590,11 +1588,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Middle Name</label>
                                                             <input class="form-control" type="text" name="middlename"
-                                                                id="middlename"
-                                                                value="<?php if ($staff['middlename']) {
+                                                                id="middlename" value="<?php if ($staff['middlename']) {
                                                                     print_r($staff['middlename']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1603,11 +1599,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Last Name</label>
                                                             <input class="form-control" type="text" name="lastname"
-                                                                id="lastname"
-                                                                value="<?php if ($staff['lastname']) {
+                                                                id="lastname" value="<?php if ($staff['lastname']) {
                                                                     print_r($staff['lastname']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1616,11 +1610,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>User Name</label>
                                                             <input class="form-control" type="text" name="username"
-                                                                id="username"
-                                                                value="<?php if ($staff['username']) {
+                                                                id="username" value="<?php if ($staff['username']) {
                                                                     print_r($staff['username']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1640,11 +1632,9 @@ if ($user->isLoggedIn()) {
                                                             <label>Phone Number</label>
                                                             <input class="form-control" type="tel" pattern=[0]{1}[0-9]{9}
                                                                 minlength="10" maxlength="10" name="phone_number"
-                                                                id="phone_number"
-                                                                value="<?php if ($staff['phone_number']) {
+                                                                id="phone_number" value="<?php if ($staff['phone_number']) {
                                                                     print_r($staff['phone_number']);
-                                                                } ?>"
-                                                                required /> <span>Example: 0700 000 111</span>
+                                                                } ?>" required /> <span>Example: 0700 000 111</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1656,8 +1646,7 @@ if ($user->isLoggedIn()) {
                                                             <label>Phone Number 2</label>
                                                             <input class="form-control" type="tel" pattern=[0]{1}[0-9]{9}
                                                                 minlength="10" maxlength="10" name="phone_number2"
-                                                                id="phone_number2"
-                                                                value="<?php if ($staff['phone_number2']) {
+                                                                id="phone_number2" value="<?php if ($staff['phone_number2']) {
                                                                     print_r($staff['phone_number2']);
                                                                 } ?>" />
                                                             <span>Example: 0700 000 111</span>
@@ -1671,11 +1660,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>E-mail Address</label>
                                                             <input class="form-control" type="email" name="email_address"
-                                                                id="email_address"
-                                                                value="<?php if ($staff['email_address']) {
+                                                                id="email_address" value="<?php if ($staff['email_address']) {
                                                                     print_r($staff['email_address']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1745,7 +1732,8 @@ if ($user->isLoggedIn()) {
                                                                 </option>
                                                                 <?php foreach ($override->get('position', 'status', 1) as $position) { ?>
                                                                     <option value="<?= $position['id'] ?>">
-                                                                        <?= $position['name'] ?></option>
+                                                                        <?= $position['name'] ?>
+                                                                    </option>
                                                                 <?php } ?>
                                                             </select>
                                                         </div>
@@ -1756,8 +1744,7 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Access Level</label>
                                                             <input class="form-control" type="number" min="0" max="3"
-                                                                name="accessLevel" id="accessLevel"
-                                                                value="<?php if ($staff['accessLevel']) {
+                                                                name="accessLevel" id="accessLevel" value="<?php if ($staff['accessLevel']) {
                                                                     print_r($staff['accessLevel']);
                                                                 } ?>" />
                                                         </div>
@@ -1866,11 +1853,9 @@ if ($user->isLoggedIn()) {
                                                             <label>Date of visit:</label>
                                                             <input class="form-control" type="date"
                                                                 max="<?= date('Y-m-d'); ?>" name="date_of_visit"
-                                                                id="date_of_visit"
-                                                                value="<?php if ($clients['date_of_visit']) {
+                                                                id="date_of_visit" value="<?php if ($clients['date_of_visit']) {
                                                                     print_r($clients['date_of_visit']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1883,11 +1868,9 @@ if ($user->isLoggedIn()) {
                                                                 <label>First Name</label>
                                                                 <input class="form-control" type="text" name="firstname"
                                                                     id="firstname" placeholder="Type firstname..."
-                                                                    onkeyup="fetchData()"
-                                                                    value="<?php if ($clients['firstname']) {
+                                                                    onkeyup="fetchData()" value="<?php if ($clients['firstname']) {
                                                                         print_r($clients['firstname']);
-                                                                    } ?>"
-                                                                    required />
+                                                                    } ?>" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1897,11 +1880,9 @@ if ($user->isLoggedIn()) {
                                                                 <label>Middle Name</label>
                                                                 <input class="form-control" type="text" name="middlename"
                                                                     id="middlename" placeholder="Type middlename..."
-                                                                    onkeyup="fetchData()"
-                                                                    value="<?php if ($clients['middlename']) {
+                                                                    onkeyup="fetchData()" value="<?php if ($clients['middlename']) {
                                                                         print_r($clients['middlename']);
-                                                                    } ?>"
-                                                                    required />
+                                                                    } ?>" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1911,11 +1892,9 @@ if ($user->isLoggedIn()) {
                                                                 <label>Last Name</label>
                                                                 <input class="form-control" type="text" name="lastname"
                                                                     id="lastname" placeholder="Type lastname..."
-                                                                    onkeyup="fetchData()"
-                                                                    value="<?php if ($clients['lastname']) {
+                                                                    onkeyup="fetchData()" value="<?php if ($clients['lastname']) {
                                                                         print_r($clients['lastname']);
-                                                                    } ?>"
-                                                                    required />
+                                                                    } ?>" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1932,11 +1911,9 @@ if ($user->isLoggedIn()) {
                                                             <label>Date of birth:</label>
                                                             <input class="form-control" max="<?= date('Y-m-d'); ?>"
                                                                 type="date" name="date_of_birth" id="date_of_birth"
-                                                                style="width: 100%;"
-                                                                value="<?php if ($clients['date_of_birth']) {
+                                                                style="width: 100%;" value="<?php if ($clients['date_of_birth']) {
                                                                     print_r($clients['date_of_birth']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1957,11 +1934,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Age</label>
                                                             <input class="form-control" type="number" name="age" id="age"
-                                                                min="0"
-                                                                value="<?php if ($clients['age']) {
+                                                                min="0" value="<?php if ($clients['age']) {
                                                                     print_r($clients['age']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1975,8 +1950,7 @@ if ($user->isLoggedIn()) {
                                                                 name="art_no" id="art_no" placeholder="Type art_ no..."
                                                                 value="<?php if ($clients['art_no']) {
                                                                     print_r($clients['art_no']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2012,11 +1986,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>1.2 Phone number</label>
                                                             <input class="form-control" type="tel" pattern=[0]{1}[0-9]{9}
-                                                                minlength="10" maxlength="10" name="phone" id="phone"
-                                                                value="<?php if ($clients['phone']) {
+                                                                minlength="10" maxlength="10" name="phone" id="phone" value="<?php if ($clients['phone']) {
                                                                     print_r($clients['phone']);
-                                                                } ?>"
-                                                                required /> <span>Example: 0700 000 111</span>
+                                                                } ?>" required /> <span>Example: 0700 000 111</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2027,8 +1999,7 @@ if ($user->isLoggedIn()) {
                                                             <label>Alternative No</label>
                                                             <input class="form-control" type="tel" pattern=[0]{1}[0-9]{9}
                                                                 minlength="10" maxlength="10" name="alternative_no"
-                                                                id="alternative_no"
-                                                                value="<?php if ($clients['alternative_no']) {
+                                                                id="alternative_no" value="<?php if ($clients['alternative_no']) {
                                                                     print_r($clients['alternative_no']);
                                                                 } ?>" />
                                                             <span>Example: 0700 000 111</span>
@@ -2067,8 +2038,7 @@ if ($user->isLoggedIn()) {
                                                             <label>Date of informed consent:</label>
                                                             <input class="form-control" max="<?= date('Y-m-d'); ?>"
                                                                 type="date" name="date_informed_consent"
-                                                                id="date_informed_consent" style="width: 100%;"
-                                                                value="<?php if ($clients['date_informed_consent']) {
+                                                                id="date_informed_consent" style="width: 100%;" value="<?php if ($clients['date_informed_consent']) {
                                                                     print_r($clients['date_informed_consent']);
                                                                 } ?>" />
                                                         </div>
@@ -2161,11 +2131,9 @@ if ($user->isLoggedIn()) {
                                                             <div class="form-group">
                                                                 <label>Residence street ( Village )</label>
                                                                 <input class="form-control" type="text" name="village"
-                                                                    id="village"
-                                                                    value="<?php if ($clients['village']) {
+                                                                    id="village" value="<?php if ($clients['village']) {
                                                                         print_r($clients['village']);
-                                                                    } ?>"
-                                                                    required />
+                                                                    } ?>" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2176,8 +2144,7 @@ if ($user->isLoggedIn()) {
                                                             <div class="form-group">
                                                                 <label>House number, if any</label>
                                                                 <input class="form-control" type="text" name="house_number"
-                                                                    id="house_number"
-                                                                    value="<?php if ($clients['house_number']) {
+                                                                    id="house_number" value="<?php if ($clients['house_number']) {
                                                                         print_r($clients['house_number']);
                                                                     } ?>" />
                                                             </div>
@@ -2191,10 +2158,10 @@ if ($user->isLoggedIn()) {
                                                                 <label>Location:</label>
                                                                 <textarea class="form-control" name="location" rows="3"
                                                                     placeholder="Type location here..." required>
-                                                                        <?php if ($clients['location']) {
-                                                                            print_r($clients['location']);
-                                                                        } ?>
-                                                                    </textarea>
+                                                                                <?php if ($clients['location']) {
+                                                                                    print_r($clients['location']);
+                                                                                } ?>
+                                                                            </textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2216,11 +2183,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>1.4 Weight</label>
                                                             <input class="form-control" type="number" min="0" max="200"
-                                                                name="weight" id="weight"
-                                                                value="<?php if ($clients['weight']) {
+                                                                name="weight" id="weight" value="<?php if ($clients['weight']) {
                                                                     print_r($clients['weight']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                             <spnan>kgs</spnan>
                                                         </div>
                                                     </div>
@@ -2231,11 +2196,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>1.5 Height</label>
                                                             <input class="form-control" type="number" min="0" max="300"
-                                                                name="height" id="height"
-                                                                value="<?php if ($clients['height']) {
+                                                                name="height" id="height" value="<?php if ($clients['height']) {
                                                                     print_r($clients['height']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                             <spnan>cm</spnan>
                                                         </div>
                                                     </div>
@@ -2246,8 +2209,7 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>1.6 Systolic blood Pressure</label>
                                                             <input class="form-control" type="number" min="0" max="900"
-                                                                name="sys_bp" id="sys_bp"
-                                                                value="<?php if ($clients['sys_bp']) {
+                                                                name="sys_bp" id="sys_bp" value="<?php if ($clients['sys_bp']) {
                                                                     print_r($clients['sys_bp']);
                                                                 } ?>" />
                                                             <spnan>mm/Hg</spnan>
@@ -2260,8 +2222,7 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>1.7 Diastolic Blood Pressure</label>
                                                             <input class="form-control" type="number" min="0" max="900"
-                                                                name="dias_bp" id="dias_bp"
-                                                                value="<?php if ($clients['dias_bp']) {
+                                                                name="dias_bp" id="dias_bp" value="<?php if ($clients['dias_bp']) {
                                                                     print_r($clients['dias_bp']);
                                                                 } ?>" />
                                                             <spnan>mm/Hg</spnan>
@@ -2353,27 +2314,27 @@ if ($user->isLoggedIn()) {
                                                             <label id="unskilled1">specify why unskilled:</label>
                                                             <textarea class="form-control" name="unskilled" id="unskilled"
                                                                 rows="3" placeholder="Type reasons here...">
-                                                                    <?php if ($clients['unskilled']) {
-                                                                        print_r($clients['unskilled']);
-                                                                    } ?>
-                                                                </textarea>
+                                                                        <?php if ($clients['unskilled']) {
+                                                                            print_r($clients['unskilled']);
+                                                                        } ?>
+                                                                    </textarea>
                                                             <label id="profesional_worker1">specify professional
                                                                 worker:</label>
                                                             <textarea class="form-control" name="profesional_worker"
                                                                 id="profesional_worker" rows="3"
                                                                 placeholder="Type other professional worker here...">
-                                                                    <?php if ($clients['profesional_worker']) {
-                                                                        print_r($clients['profesional_worker']);
-                                                                    } ?>
-                                                                </textarea>
+                                                                        <?php if ($clients['profesional_worker']) {
+                                                                            print_r($clients['profesional_worker']);
+                                                                        } ?>
+                                                                    </textarea>
                                                             <label id="other_occupation1">specify other occupation</label>
                                                             <textarea class="form-control" name="other_occupation"
                                                                 id="other_occupation" rows="3"
                                                                 placeholder="Type other here...">
-                                                                    <?php if ($clients['other_occupation']) {
-                                                                        print_r($clients['other_occupation']);
-                                                                    } ?>
-                                                                </textarea>
+                                                                        <?php if ($clients['other_occupation']) {
+                                                                            print_r($clients['other_occupation']);
+                                                                        } ?>
+                                                                    </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2410,10 +2371,10 @@ if ($user->isLoggedIn()) {
                                                         <label id="other_religion0">Specify other religion</label>
                                                         <textarea class="form-control" id="other_religion"
                                                             name="other_religion" rows="3" placeholder="Type other here...">
-                                                                    <?php if ($clients['other_religion']) {
-                                                                        print_r($clients['other_religion']);
-                                                                    } ?>
-                                                                </textarea>
+                                                                        <?php if ($clients['other_religion']) {
+                                                                            print_r($clients['other_religion']);
+                                                                        } ?>
+                                                                    </textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2439,10 +2400,10 @@ if ($user->isLoggedIn()) {
                                                                 <label>Remarks / Comments:</label>
                                                                 <textarea class="form-control" name="comments" rows="3"
                                                                     placeholder="Type comments here...">
-                                                                        <?php if ($clients['comments']) {
-                                                                            print_r($clients['comments']);
-                                                                        } ?>
-                                                                    </textarea>
+                                                                                <?php if ($clients['comments']) {
+                                                                                    print_r($clients['comments']);
+                                                                                } ?>
+                                                                            </textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2574,9 +2535,9 @@ if ($user->isLoggedIn()) {
                                                             first diagnosed with HIV?</label>
                                                         <input type="date" value="<?php if ($hiv_history_and_medication['date_diagnosis_hiv']) {
                                                             print_r($hiv_history_and_medication['date_diagnosis_hiv']);
-                                                        } ?>" id="date_diagnosis_hiv"
-                                                            name="date_diagnosis_hiv" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date" required />
+                                                        } ?>" id="date_diagnosis_hiv" name="date_diagnosis_hiv"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date" required />
                                                     </div>
                                                 </div>
 
@@ -2616,9 +2577,9 @@ if ($user->isLoggedIn()) {
                                                             recent Viral load?</label>
                                                         <input type="number" value="<?php if ($hiv_history_and_medication['viral_load']) {
                                                             print_r($hiv_history_and_medication['viral_load']);
-                                                        } ?>" id="viral_load"
-                                                            name="viral_load" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter viral load" required />
+                                                        } ?>" id="viral_load" name="viral_load"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter viral load" required />
                                                         <span>copies/ul</span>
                                                     </div>
                                                 </div>
@@ -2629,9 +2590,9 @@ if ($user->isLoggedIn()) {
                                                             samples were taken of:</label>
                                                         <input type="date" value="<?php if ($hiv_history_and_medication['viral_load_sampledate']) {
                                                             print_r($hiv_history_and_medication['viral_load_sampledate']);
-                                                        } ?>" id="viral_load_sampledate"
-                                                            name="viral_load_sampledate" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter viral date" required />
+                                                        } ?>" id="viral_load_sampledate" name="viral_load_sampledate"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter viral date" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -2653,10 +2614,9 @@ if ($user->isLoggedIn()) {
                                                             begin taking ART-Treatment?</label>
                                                         <input type="date" value="<?php if ($hiv_history_and_medication['date_art_treatment']) {
                                                             print_r($hiv_history_and_medication['date_art_treatment']);
-                                                        } ?>" id="date_art_treatment"
-                                                            name="date_art_treatment" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date art treatment"
-                                                            required />
+                                                        } ?>" id="date_art_treatment" name="date_art_treatment"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date art treatment" required />
                                                     </div>
                                                 </div>
 
@@ -2707,10 +2667,10 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <textarea class="form-control" name="art_regimen_other"
                                                         id="art_regimen_other" rows="2" placeholder="Type other here...">
-                                                                <?php if ($hiv_history_and_medication['art_regimen_other']) {
-                                                                    print_r($hiv_history_and_medication['art_regimen_other']);
-                                                                } ?>
-                                                            </textarea>
+                                                                    <?php if ($hiv_history_and_medication['art_regimen_other']) {
+                                                                        print_r($hiv_history_and_medication['art_regimen_other']);
+                                                                    } ?>
+                                                                </textarea>
                                                 </div>
 
                                                 <div class="col-4" id="first_line">
@@ -2803,10 +2763,10 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <textarea class="form-control" name="other_first_line"
                                                         id="other_first_line" rows="2" placeholder="Type other here...">
-                                                            <?php if ($hiv_history_and_medication['other_first_line']) {
-                                                                print_r($hiv_history_and_medication['other_first_line']);
-                                                            } ?>
-                                                        </textarea>
+                                                                <?php if ($hiv_history_and_medication['other_first_line']) {
+                                                                    print_r($hiv_history_and_medication['other_first_line']);
+                                                                } ?>
+                                                            </textarea>
                                                 </div>
 
                                                 <div class="col-4" id="second_line">
@@ -2856,10 +2816,10 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <textarea class="form-control" name="other_second_line"
                                                         id="other_second_line" rows="2" placeholder="Type other here...">
-                                                            <?php if ($hiv_history_and_medication['other_second_line']) {
-                                                                print_r($hiv_history_and_medication['other_second_line']);
-                                                            } ?>
-                                                        </textarea>
+                                                                <?php if ($hiv_history_and_medication['other_second_line']) {
+                                                                    print_r($hiv_history_and_medication['other_second_line']);
+                                                                } ?>
+                                                            </textarea>
                                                 </div>
                                                 <div class="col-4" id="third_line">
                                                     <label>Third line</label>
@@ -2908,10 +2868,10 @@ if ($user->isLoggedIn()) {
                                                     </div>
                                                     <textarea class="form-control" name="other_third_line"
                                                         id="other_third_line" rows="2" placeholder="Type other here...">
-                                                            <?php if ($hiv_history_and_medication['other_third_line']) {
-                                                                print_r($hiv_history_and_medication['other_third_line']);
-                                                            } ?>
-                                                        </textarea>
+                                                                <?php if ($hiv_history_and_medication['other_third_line']) {
+                                                                    print_r($hiv_history_and_medication['other_third_line']);
+                                                                } ?>
+                                                            </textarea>
                                                 </div>
                                             </div>
                                             <hr>
@@ -2945,10 +2905,10 @@ if ($user->isLoggedIn()) {
                                                         the regimen:</label>
                                                     <textarea class="form-control" name="name_regimen" id="name_regimen"
                                                         rows="2" placeholder="Type here...">
-                                                            <?php if ($hiv_history_and_medication['name_regimen']) {
-                                                                print_r($hiv_history_and_medication['name_regimen']);
-                                                            } ?>
-                                                        </textarea>
+                                                                <?php if ($hiv_history_and_medication['name_regimen']) {
+                                                                    print_r($hiv_history_and_medication['name_regimen']);
+                                                                } ?>
+                                                            </textarea>
                                                 </div>
                                                 <div class="col-6">
                                                     <label>3.6 Has the participant been unwell since the last visit?</label>
@@ -2977,10 +2937,10 @@ if ($user->isLoggedIn()) {
                                                         What was the health problem</label>
                                                     <textarea class="form-control" name="what_health_problem"
                                                         id="what_health_problem" rows="2" placeholder="Type here...">
-                                                            <?php if ($hiv_history_and_medication['what_health_problem']) {
-                                                                print_r($hiv_history_and_medication['what_health_problem']);
-                                                            } ?>
-                                                        </textarea>
+                                                                <?php if ($hiv_history_and_medication['what_health_problem']) {
+                                                                    print_r($hiv_history_and_medication['what_health_problem']);
+                                                                } ?>
+                                                            </textarea>
                                                 </div>
                                             </div>
 
@@ -3004,7 +2964,7 @@ if ($user->isLoggedIn()) {
                                                                     placeholder="Type comments here..."><?php if ($hiv_history_and_medication['comments']) {
                                                                         print_r($hiv_history_and_medication['comments']);
                                                                     } ?>
-                                                                        </textarea>
+                                                                                </textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -3057,8 +3017,7 @@ if ($user->isLoggedIn()) {
                                                                 class="form-label">Date Form Completed</label>
                                                             <input type="date" value="<?php if ($hiv_history_and_medication['hiv_history_and_medication_complete_date']) {
                                                                 print_r($hiv_history_and_medication['hiv_history_and_medication_complete_date']);
-                                                            } ?>"
-                                                                id="hiv_history_and_medication_complete_date"
+                                                            } ?>" id="hiv_history_and_medication_complete_date"
                                                                 name="hiv_history_and_medication_complete_date"
                                                                 class="form-control" required />
                                                         </div>
@@ -3153,9 +3112,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="visit_date" class="form-label">Visit date</label>
                                                             <input type="date" value="<?php if ($eligibility['visit_date']) {
                                                                 print_r($eligibility['visit_date']);
-                                                            } ?>" id="visit_date"
-                                                                name="visit_date" max="<?= date('Y-m-d') ?>"
-                                                                class="form-control" placeholder="Enter date" required />
+                                                            } ?>" id="visit_date" name="visit_date"
+                                                                max="<?= date('Y-m-d') ?>" class="form-control"
+                                                                placeholder="Enter date" required />
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -3385,10 +3344,10 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <textarea class="form-control" name="participant_id" rows="2"
                                                                 placeholder="Type other here...">
-                                                                    <?php if ($eligibility['participant_id']) {
-                                                                        print_r($eligibility['participant_id']);
-                                                                    } ?>
-                                                                </textarea>
+                                                                        <?php if ($eligibility['participant_id']) {
+                                                                            print_r($eligibility['participant_id']);
+                                                                        } ?>
+                                                                    </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3399,10 +3358,10 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <textarea class="form-control" name="screen_failure" rows="2"
                                                                 placeholder="Type other here...">
-                                                                    <?php if ($eligibility['screen_failure']) {
-                                                                        print_r($eligibility['screen_failure']);
-                                                                    } ?>
-                                                                </textarea>
+                                                                        <?php if ($eligibility['screen_failure']) {
+                                                                            print_r($eligibility['screen_failure']);
+                                                                        } ?>
+                                                                    </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3451,9 +3410,9 @@ if ($user->isLoggedIn()) {
                                                             by:</label>
                                                         <input type="text" value="<?php if ($eligibility['form_completd_by']) {
                                                             print_r($eligibility['form_completd_by']);
-                                                        } ?>" id="form_completd_by"
-                                                            name="form_completd_by" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date" required />
+                                                        } ?>" id="form_completd_by" name="form_completd_by"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date" required />
                                                     </div>
                                                     <span>initials</span>
                                                 </div>
@@ -3463,9 +3422,9 @@ if ($user->isLoggedIn()) {
                                                             completion</label>
                                                         <input type="date" value="<?php if ($eligibility['date_form_comptn']) {
                                                             print_r($eligibility['date_form_comptn']);
-                                                        } ?>" id="date_form_comptn"
-                                                            name="date_form_comptn" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date" required />
+                                                        } ?>" id="date_form_comptn" name="date_form_comptn"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date" required />
                                                     </div>
                                                     <span>dd /mmm/ yyyy</span>
                                                 </div>
@@ -3561,9 +3520,8 @@ if ($user->isLoggedIn()) {
                                                             <label for="test_date" class="form-label">Date of Visit</label>
                                                             <input type="date" value="<?php if ($risk_factors) {
                                                                 print_r($risk_factors['visit_date']);
-                                                            } ?>" id="visit_date"
-                                                                name="visit_date" class="form-control" placeholder="Enter date"
-                                                                required />
+                                                            } ?>" id="visit_date" name="visit_date"
+                                                                class="form-control" placeholder="Enter date" required />
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -3663,9 +3621,8 @@ if ($user->isLoggedIn()) {
                                                             (smokeless)</label>
                                                         <input type="number" value="<?php if ($risk_factors['duration_smokeless']) {
                                                             print_r($risk_factors['duration_smokeless']);
-                                                        } ?>" id="duration_smokeless"
-                                                            name="duration_smokeless" min="0" class="form-control"
-                                                            placeholder="Enter Duration" />
+                                                        } ?>" id="duration_smokeless" name="duration_smokeless" min="0"
+                                                            class="form-control" placeholder="Enter Duration" />
                                                     </div>
                                                     <span>months</span>
                                                 </div>
@@ -3675,9 +3632,8 @@ if ($user->isLoggedIn()) {
                                                             (smokeless)</label>
                                                         <input type="number" value="<?php if ($risk_factors['frequence_smokeless']) {
                                                             print_r($risk_factors['frequence_smokeless']);
-                                                        } ?>" id="frequence_smokeless"
-                                                            name="frequence_smokeless" min="0" class="form-control"
-                                                            placeholder="Enter Frequence" />
+                                                        } ?>" id="frequence_smokeless" name="frequence_smokeless"
+                                                            min="0" class="form-control" placeholder="Enter Frequence" />
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -3686,9 +3642,8 @@ if ($user->isLoggedIn()) {
                                                             (smokeless)</label>
                                                         <input type="number" value="<?php if ($risk_factors['quantity_smokeless']) {
                                                             print_r($risk_factors['quantity_smokeless']);
-                                                        } ?>" id="quantity_smokeless"
-                                                            name="quantity_smokeless" min="0" class="form-control"
-                                                            placeholder="Enter Quantity" />
+                                                        } ?>" id="quantity_smokeless" name="quantity_smokeless" min="0"
+                                                            class="form-control" placeholder="Enter Quantity" />
                                                     </div>
                                                     <span>number per day</span>
                                                 </div>
@@ -3709,9 +3664,8 @@ if ($user->isLoggedIn()) {
                                                             (smoking)</label>
                                                         <input type="number" value="<?php if ($risk_factors['duration_smoking']) {
                                                             print_r($risk_factors['duration_smoking']);
-                                                        } ?>" id="duration_smoking"
-                                                            name="duration_smoking" min="0" class="form-control"
-                                                            placeholder="Enter Duration" />
+                                                        } ?>" id="duration_smoking" name="duration_smoking" min="0"
+                                                            class="form-control" placeholder="Enter Duration" />
                                                     </div>
                                                     <span>months</span>
                                                 </div>
@@ -3721,9 +3675,8 @@ if ($user->isLoggedIn()) {
                                                             (smoking)</label>
                                                         <input type="number" value="<?php if ($risk_factors['frequence_smoking']) {
                                                             print_r($risk_factors['frequence_smoking']);
-                                                        } ?>" id="frequence_smoking"
-                                                            name="frequence_smoking" min="0" class="form-control"
-                                                            placeholder="Enter Frequence" />
+                                                        } ?>" id="frequence_smoking" name="frequence_smoking" min="0"
+                                                            class="form-control" placeholder="Enter Frequence" />
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -3732,9 +3685,8 @@ if ($user->isLoggedIn()) {
                                                             (smoking)</label>
                                                         <input type="number" value="<?php if ($risk_factors['quantity_smoking']) {
                                                             print_r($risk_factors['quantity_smoking']);
-                                                        } ?>" id="quantity_smoking"
-                                                            name="quantity_smoking" min="0" class="form-control"
-                                                            placeholder="Enter Quantity" />
+                                                        } ?>" id="quantity_smoking" name="quantity_smoking" min="0"
+                                                            class="form-control" placeholder="Enter Quantity" />
                                                     </div>
                                                     <span>number per day</span>
                                                 </div>
@@ -3755,9 +3707,8 @@ if ($user->isLoggedIn()) {
                                                             (E-cigarette)</label>
                                                         <input type="number" value="<?php if ($risk_factors['duration_ecigarette']) {
                                                             print_r($risk_factors['duration_ecigarette']);
-                                                        } ?>" id="duration_ecigarette"
-                                                            name="duration_ecigarette" min="0" class="form-control"
-                                                            placeholder="Enter Duration" />
+                                                        } ?>" id="duration_ecigarette" name="duration_ecigarette"
+                                                            min="0" class="form-control" placeholder="Enter Duration" />
                                                     </div>
                                                     <span>months</span>
                                                 </div>
@@ -3767,9 +3718,8 @@ if ($user->isLoggedIn()) {
                                                             (E-cigarette)</label>
                                                         <input type="number" value="<?php if ($risk_factors['frequence_ecigarette']) {
                                                             print_r($risk_factors['frequence_ecigarette']);
-                                                        } ?>" id="frequence_ecigarette"
-                                                            name="frequence_ecigarette" min="0" class="form-control"
-                                                            placeholder="Enter Frequence" />
+                                                        } ?>" id="frequence_ecigarette" name="frequence_ecigarette"
+                                                            min="0" class="form-control" placeholder="Enter Frequence" />
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -3778,9 +3728,8 @@ if ($user->isLoggedIn()) {
                                                             (E-cigarette)</label>
                                                         <input type="number" value="<?php if ($risk_factors['quantity_ecigarette']) {
                                                             print_r($risk_factors['quantity_ecigarette']);
-                                                        } ?>" id="quantity_ecigarette"
-                                                            name="quantity_ecigarette" min="0" class="form-control"
-                                                            placeholder="Enter Quantity" />
+                                                        } ?>" id="quantity_ecigarette" name="quantity_ecigarette"
+                                                            min="0" class="form-control" placeholder="Enter Quantity" />
                                                     </div>
                                                     <span>number per day</span>
                                                 </div>
@@ -3801,9 +3750,8 @@ if ($user->isLoggedIn()) {
                                                             tobacco, specify</label>
                                                         <input type="text" value="<?php if ($risk_factors['other_tobacco']) {
                                                             print_r($risk_factors['other_tobacco']);
-                                                        } ?>" id="other_tobacco"
-                                                            name="other_tobacco" min="0" class="form-control"
-                                                            placeholder="Enter Duration" />
+                                                        } ?>" id="other_tobacco" name="other_tobacco" min="0"
+                                                            class="form-control" placeholder="Enter Duration" />
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
@@ -3812,9 +3760,8 @@ if ($user->isLoggedIn()) {
                                                             of tobacco)</label>
                                                         <input type="number" value="<?php if ($risk_factors['duration_other']) {
                                                             print_r($risk_factors['duration_other']);
-                                                        } ?>" id="duration_other"
-                                                            name="duration_other" min="0" class="form-control"
-                                                            placeholder="Enter Duration" />
+                                                        } ?>" id="duration_other" name="duration_other" min="0"
+                                                            class="form-control" placeholder="Enter Duration" />
                                                     </div>
                                                     <span>months</span>
                                                 </div>
@@ -3824,9 +3771,8 @@ if ($user->isLoggedIn()) {
                                                             forms of tobacco)</label>
                                                         <input type="number" value="<?php if ($risk_factors['frequence_other']) {
                                                             print_r($risk_factors['frequence_other']);
-                                                        } ?>" id="frequence_other"
-                                                            name="frequence_other" min="0" class="form-control"
-                                                            placeholder="Enter Frequence" />
+                                                        } ?>" id="frequence_other" name="frequence_other" min="0"
+                                                            class="form-control" placeholder="Enter Frequence" />
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
@@ -3835,9 +3781,8 @@ if ($user->isLoggedIn()) {
                                                             of tobacco)</label>
                                                         <input type="number" value="<?php if ($risk_factors['quantity_other']) {
                                                             print_r($risk_factors['quantity_other']);
-                                                        } ?>" id="quantity_other"
-                                                            name="quantity_other" min="0" class="form-control"
-                                                            placeholder="Enter Quantity" />
+                                                        } ?>" id="quantity_other" name="quantity_other" min="0"
+                                                            class="form-control" placeholder="Enter Quantity" />
                                                     </div>
                                                     <span>number per day</span>
                                                 </div>
@@ -4026,8 +3971,8 @@ if ($user->isLoggedIn()) {
                                                             <label for="total_1only" class="form-label">Total for 1</label>
                                                             <input type="number" value="<?php if ($risk_factors['total_1only']) {
                                                                 print_r($risk_factors['total_1only']);
-                                                            } ?>" name="total_1only"
-                                                                min="0" class="form-control" placeholder="Enter Total" />
+                                                            } ?>" name="total_1only" min="0" class="form-control"
+                                                                placeholder="Enter Total" />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3" id="howmany_drinks">
@@ -4297,10 +4242,9 @@ if ($user->isLoggedIn()) {
                                                                         class="form-label">Overall total 1</label>
                                                                     <input type="number" value="<?php if ($risk_factors['overall_total_never']) {
                                                                         print_r($risk_factors['overall_total_never']);
-                                                                    } ?>"
-                                                                        id="overall_total_never" name="overall_total_never"
-                                                                        min="0" class="form-control"
-                                                                        placeholder="Enter Total" />
+                                                                    } ?>" id="overall_total_never"
+                                                                        name="overall_total_never" min="0"
+                                                                        class="form-control" placeholder="Enter Total" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -4313,9 +4257,8 @@ if ($user->isLoggedIn()) {
                                                                         2</label>
                                                                     <input type="number" value="<?php if ($risk_factors['overtotal']) {
                                                                         print_r($risk_factors['overtotal']);
-                                                                    } ?>" id="overtotal"
-                                                                        name="overtotal" min="0" class="form-control"
-                                                                        placeholder="Enter Total" />
+                                                                    } ?>" id="overtotal" name="overtotal" min="0"
+                                                                        class="form-control" placeholder="Enter Total" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -4416,9 +4359,9 @@ if ($user->isLoggedIn()) {
                                                                     when was it ( Year )?</label>
                                                                 <input type="number" value="<?php if ($risk_factors['date_treated_tb']) {
                                                                     print_r($risk_factors['date_treated_tb']);
-                                                                } ?>" id="date_treated_tb"
-                                                                    name="date_treated_tb" min="1900" max="2024"
-                                                                    class="form-control" placeholder="Enter Year" />
+                                                                } ?>" id="date_treated_tb" name="date_treated_tb"
+                                                                    min="1900" max="2024" class="form-control"
+                                                                    placeholder="Enter Year" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -4432,9 +4375,9 @@ if ($user->isLoggedIn()) {
                                                                     when was it ( Month ) ?</label>
                                                                 <input type="number" value="<?php if ($risk_factors['month_treated_tb']) {
                                                                     print_r($risk_factors['month_treated_tb']);
-                                                                } ?>" id="month_treated_tb"
-                                                                    name="month_treated_tb" min="0" max="99"
-                                                                    class="form-control" placeholder="Enter Month" />
+                                                                } ?>" id="month_treated_tb" name="month_treated_tb"
+                                                                    min="0" max="99" class="form-control"
+                                                                    placeholder="Enter Month" />
                                                             </div>
                                                             <span>(If Don’t remember month put ‘99’)</span>
                                                         </div>
@@ -4490,8 +4433,7 @@ if ($user->isLoggedIn()) {
                                                                 Completed</label>
                                                             <input type="date" value="<?php if ($risk_factors['risk_factors_complete_date']) {
                                                                 print_r($risk_factors['risk_factors_complete_date']);
-                                                            } ?>"
-                                                                id="risk_factors_complete_date"
+                                                            } ?>" id="risk_factors_complete_date"
                                                                 name="risk_factors_complete_date" class="form-control"
                                                                 required />
                                                         </div>
@@ -4586,9 +4528,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="visit_date" class="form-label">Visit Date</label>
                                                             <input type="date" value="<?php if ($chronic_illnesses['visit_date']) {
                                                                 print_r($chronic_illnesses['visit_date']);
-                                                            } ?>" id="visit_date"
-                                                                name="visit_date" max="<?= date('Y-m-d') ?>"
-                                                                class="form-control" placeholder="Enter date" required />
+                                                            } ?>" id="visit_date" name="visit_date"
+                                                                max="<?= date('Y-m-d') ?>" class="form-control"
+                                                                placeholder="Enter date" required />
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -4625,8 +4567,8 @@ if ($user->isLoggedIn()) {
                                                             chronic illness</label>
                                                         <input type="text" value="<?php if ($chronic_illnesses['chronic_illness_type']) {
                                                             print_r($chronic_illnesses['chronic_illness_type']);
-                                                        } ?>" name="chronic_illness_type"
-                                                            min="0" class="form-control" placeholder="Enter name" />
+                                                        } ?>" name="chronic_illness_type" min="0" class="form-control"
+                                                            placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                                 <div class="col-3" id="start_date_chronic">
@@ -4635,9 +4577,8 @@ if ($user->isLoggedIn()) {
                                                             date</label>
                                                         <input type="date" value="<?php if ($chronic_illnesses['start_date_chronic']) {
                                                             print_r($chronic_illnesses['start_date_chronic']);
-                                                        } ?>" name="start_date_chronic"
-                                                            max="<?= date('Y-m-d') ?>" class="form-control"
-                                                            placeholder="Enter date" />
+                                                        } ?>" name="start_date_chronic" max="<?= date('Y-m-d') ?>"
+                                                            class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4691,8 +4632,7 @@ if ($user->isLoggedIn()) {
                                                                 class="form-label">Date Form Completed</label>
                                                             <input type="date" value="<?php if ($chronic_illnesses['chronic_illnesses_specify_complete_date']) {
                                                                 print_r($chronic_illnesses['chronic_illnesses_specify_complete_date']);
-                                                            } ?>"
-                                                                id="chronic_illnesses_specify_complete_date"
+                                                            } ?>" id="chronic_illnesses_specify_complete_date"
                                                                 name="chronic_illnesses_specify_complete_date"
                                                                 class="form-control" required />
                                                         </div>
@@ -4788,9 +4728,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="visit_date" class="form-label">Visit Date</label>
                                                             <input type="date" value="<?php if ($laboratory_results['visit_date']) {
                                                                 print_r($laboratory_results['visit_date']);
-                                                            } ?>" id="visit_date"
-                                                                name="visit_date" max="<?= date('Y-m-d') ?>"
-                                                                class="form-control" placeholder="Enter date" required />
+                                                            } ?>" id="visit_date" name="visit_date"
+                                                                max="<?= date('Y-m-d') ?>" class="form-control"
+                                                                placeholder="Enter date" required />
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -4822,9 +4762,9 @@ if ($user->isLoggedIn()) {
                                                             sampling</label>
                                                         <input type="date" value="<?php if ($laboratory_results['lab_date_hema']) {
                                                             print_r($laboratory_results['lab_date_hema']);
-                                                        } ?>" id="lab_date_hema"
-                                                            name="lab_date_hema" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date" />
+                                                        } ?>" id="lab_date_hema" name="lab_date_hema"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date" />
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
@@ -4833,9 +4773,8 @@ if ($user->isLoggedIn()) {
                                                             sampling</label>
                                                         <input type="text" value="<?php if ($laboratory_results['lab_time_hema']) {
                                                             print_r($laboratory_results['lab_time_hema']);
-                                                        } ?>" id="lab_time_hema"
-                                                            name="lab_time_hema" min="0" class="form-control"
-                                                            placeholder="Enter Time" />
+                                                        } ?>" id="lab_time_hema" name="lab_time_hema" min="0"
+                                                            class="form-control" placeholder="Enter Time" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -4848,8 +4787,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="hemo" class="form-label">Haemoglobin</label>
                                                         <input type="number" min="0" value="<?php if ($laboratory_results['hemo']) {
                                                             print_r($laboratory_results['hemo']);
-                                                        } ?>" id="hemo" name="hemo"
-                                                            class="form-control" placeholder="Enter here" />
+                                                        } ?>" id="hemo" name="hemo" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -4878,8 +4817,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="wbc" class="form-label">WBC count</label>
                                                         <input type="number" min="0" value="<?php if ($laboratory_results['wbc']) {
                                                             print_r($laboratory_results['wbc']);
-                                                        } ?>" id="wbc" name="wbc"
-                                                            class="form-control" placeholder="Enter here" />
+                                                        } ?>" id="wbc" name="wbc" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -4913,8 +4852,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="lymph" class="form-label">Lymphocyte count</label>
                                                         <input type="number" min="0" value="<?php if ($laboratory_results['lymph']) {
                                                             print_r($laboratory_results['lymph']);
-                                                        } ?>" id="lymph"
-                                                            name="lymph" class="form-control" placeholder="Enter here" />
+                                                        } ?>" id="lymph" name="lymph" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                     <span>cells/uL</span>
                                                 </div>
@@ -4924,9 +4863,8 @@ if ($user->isLoggedIn()) {
                                                             count</label>
                                                         <input type="number" min="0" value="<?php if ($laboratory_results['neutro_count']) {
                                                             print_r($laboratory_results['neutro_count']);
-                                                        } ?>" id="neutro_count"
-                                                            name="neutro_count" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="neutro_count" name="neutro_count"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>cells/uL</span>
                                                 </div>
@@ -4935,8 +4873,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="hematocrit" class="form-label">Hematocrit</label>
                                                         <input type="number" min="0" value="<?php if ($laboratory_results['hematocrit']) {
                                                             print_r($laboratory_results['hematocrit']);
-                                                        } ?>" id="hematocrit"
-                                                            name="hematocrit" class="form-control"
+                                                        } ?>" id="hematocrit" name="hematocrit" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>%</span>
@@ -4946,8 +4883,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="platelettes" class="form-label">Platelets</label>
                                                         <input type="number" min="0" value="<?php if ($laboratory_results['platelettes']) {
                                                             print_r($laboratory_results['platelettes']);
-                                                        } ?>" id="platelettes"
-                                                            name="platelettes" class="form-control"
+                                                        } ?>" id="platelettes" name="platelettes" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                 </div>
@@ -5015,9 +4951,9 @@ if ($user->isLoggedIn()) {
                                                             sampling</label>
                                                         <input type="date" value="<?php if ($laboratory_results['lab_date_bio']) {
                                                             print_r($laboratory_results['lab_date_bio']);
-                                                        } ?>" id="lab_date_bio"
-                                                            name="lab_date_bio" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date" />
+                                                        } ?>" id="lab_date_bio" name="lab_date_bio"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date" />
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -5026,9 +4962,8 @@ if ($user->isLoggedIn()) {
                                                             sampling</label>
                                                         <input type="text" value="<?php if ($laboratory_results['lab_time_bio']) {
                                                             print_r($laboratory_results['lab_time_bio']);
-                                                        } ?>" id="lab_time_bio"
-                                                            name="lab_time_bio" min="0" class="form-control"
-                                                            placeholder="Enter Time" />
+                                                        } ?>" id="lab_time_bio" name="lab_time_bio" min="0"
+                                                            class="form-control" placeholder="Enter Time" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -5042,8 +4977,8 @@ if ($user->isLoggedIn()) {
                                                             (urea)</label>
                                                         <input type="text" value="<?php if ($laboratory_results['bun']) {
                                                             print_r($laboratory_results['bun']);
-                                                        } ?>" id="bun" name="bun" min="0"
-                                                            class="form-control" placeholder="Enter here" />
+                                                        } ?>" id="bun" name="bun" min="0" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -5073,8 +5008,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="creat" class="form-label">Creatinine</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['creat']) {
                                                             print_r($laboratory_results['creat']);
-                                                        } ?>" id="creat"
-                                                            name="creat" min="0" class="form-control"
+                                                        } ?>" id="creat" name="creat" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                 </div>
@@ -5111,8 +5045,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="sodium" class="form-label">Sodium</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['sodium']) {
                                                             print_r($laboratory_results['sodium']);
-                                                        } ?>" id="sodium"
-                                                            name="sodium" min="0" class="form-control"
+                                                        } ?>" id="sodium" name="sodium" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                 </div>
@@ -5143,8 +5076,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="potass" class="form-label">Potassium</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['potass']) {
                                                             print_r($laboratory_results['potass']);
-                                                        } ?>" id="potass"
-                                                            name="potass" min="0" class="form-control"
+                                                        } ?>" id="potass" name="potass" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                 </div>
@@ -5181,9 +5113,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="tot_choles" class="form-label">Total Cholesterol</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['tot_choles']) {
                                                             print_r($laboratory_results['tot_choles']);
-                                                        } ?>" id="tot_choles"
-                                                            name="tot_choles" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="tot_choles" name="tot_choles" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mmol/L</span>
                                                 </div>
@@ -5192,8 +5123,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="trigly" class="form-label">Triglycerides</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['trigly']) {
                                                             print_r($laboratory_results['trigly']);
-                                                        } ?>" id="trigly"
-                                                            name="trigly" min="0" class="form-control"
+                                                        } ?>" id="trigly" name="trigly" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mmol/L</span>
@@ -5203,8 +5133,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="hdl" class="form-label">HDL</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['hdl']) {
                                                             print_r($laboratory_results['hdl']);
-                                                        } ?>" id="hdl"
-                                                            name="hdl" min="0" class="form-control"
+                                                        } ?>" id="hdl" name="hdl" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mmol/L</span>
@@ -5219,8 +5148,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="ldl" class="form-label">LDL</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['ldl']) {
                                                             print_r($laboratory_results['ldl']);
-                                                        } ?>" id="ldl"
-                                                            name="ldl" min="0" class="form-control"
+                                                        } ?>" id="ldl" name="ldl" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mmol/L</span>
@@ -5230,8 +5158,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="vldl" class="form-label">VLDL</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['vldl']) {
                                                             print_r($laboratory_results['vldl']);
-                                                        } ?>" id="vldl"
-                                                            name="vldl" min="0" class="form-control"
+                                                        } ?>" id="vldl" name="vldl" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mmol/L</span>
@@ -5243,8 +5170,7 @@ if ($user->isLoggedIn()) {
                                                         <label for="coronary_risk" class="form-label">Coronary Risk</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['coronary_risk']) {
                                                             print_r($laboratory_results['coronary_risk']);
-                                                        } ?>"
-                                                            id="coronary_risk" name="coronary_risk" min="0"
+                                                        } ?>" id="coronary_risk" name="coronary_risk" min="0"
                                                             class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>number</span>
@@ -5292,9 +5218,9 @@ if ($user->isLoggedIn()) {
                                                             sampling</label>
                                                         <input type="date" value="<?php if ($laboratory_results['lab_date_bio_2']) {
                                                             print_r($laboratory_results['lab_date_bio_2']);
-                                                        } ?>" id="lab_date_bio_2"
-                                                            name="lab_date_bio_2" max="<?= date('Y-m-d') ?>"
-                                                            class="form-control" placeholder="Enter date" />
+                                                        } ?>" id="lab_date_bio_2" name="lab_date_bio_2"
+                                                            max="<?= date('Y-m-d') ?>" class="form-control"
+                                                            placeholder="Enter date" />
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -5303,9 +5229,8 @@ if ($user->isLoggedIn()) {
                                                             sampling</label>
                                                         <input type="text" value="<?php if ($laboratory_results['lab_time_bio_2']) {
                                                             print_r($laboratory_results['lab_time_bio_2']);
-                                                        } ?>" id="lab_time_bio_2"
-                                                            name="lab_time_bio_2" min="0" class="form-control"
-                                                            placeholder="Enter Time" />
+                                                        } ?>" id="lab_time_bio_2" name="lab_time_bio_2" min="0"
+                                                            class="form-control" placeholder="Enter Time" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -5434,9 +5359,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="spec_grav" class="form-label">Specific Gravity</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['spec_grav']) {
                                                             print_r($laboratory_results['spec_grav']);
-                                                        } ?>" id="spec_grav"
-                                                            name="spec_grav" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="spec_grav" name="spec_grav" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>number</span>
                                                 </div>
@@ -5469,9 +5393,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="urine_ph" class="form-label">pH</label>
                                                         <input type="number" step="any" value="<?php if ($laboratory_results['urine_ph']) {
                                                             print_r($laboratory_results['urine_ph']);
-                                                        } ?>" id="urine_ph"
-                                                            name="urine_ph" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="urine_ph" name="urine_ph" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -5622,8 +5545,7 @@ if ($user->isLoggedIn()) {
                                                                 class="form-label">Date Form Completed</label>
                                                             <input type="date" value="<?php if ($laboratory_results['laboratory_results_complete_date']) {
                                                                 print_r($laboratory_results['laboratory_results_complete_date']);
-                                                            } ?>"
-                                                                id="laboratory_results_complete_date"
+                                                            } ?>" id="laboratory_results_complete_date"
                                                                 name="laboratory_results_complete_date" class="form-control"
                                                                 required />
                                                         </div>
@@ -5720,9 +5642,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="visit_date" class="form-label">Visit Date</label>
                                                             <input type="date" value="<?php if ($radiological_investigations['visit_date']) {
                                                                 print_r($radiological_investigations['visit_date']);
-                                                            } ?>" id="visit_date"
-                                                                name="visit_date" max="<?= date('Y-m-d') ?>"
-                                                                class="form-control" placeholder="Enter date" required />
+                                                            } ?>" id="visit_date" name="visit_date"
+                                                                max="<?= date('Y-m-d') ?>" class="form-control"
+                                                                placeholder="Enter date" required />
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -5755,9 +5677,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="ecg_date" class="form-label">Date of ECG</label>
                                                         <input type="date" value="<?php if ($radiological_investigations['ecg_date']) {
                                                             print_r($radiological_investigations['ecg_date']);
-                                                        } ?>" name="ecg_date"
-                                                            max="<?= date('Y-m-d') ?>" class="form-control"
-                                                            placeholder="Enter date" />
+                                                        } ?>" name="ecg_date" max="<?= date('Y-m-d') ?>"
+                                                            class="form-control" placeholder="Enter date" />
                                                     </div>
                                                 </div>
 
@@ -5801,9 +5722,8 @@ if ($user->isLoggedIn()) {
                                                                 Rate</label>
                                                             <input type="text" value="<?php if ($radiological_investigations['heart_rate_ecg']) {
                                                                 print_r($radiological_investigations['heart_rate_ecg']);
-                                                            } ?>" id="heart_rate_ecg"
-                                                                name="heart_rate_ecg" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" id="heart_rate_ecg" name="heart_rate_ecg" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                             <span>bpm (Quatitative)</span>
                                                         </div>
                                                     </div>
@@ -5839,9 +5759,8 @@ if ($user->isLoggedIn()) {
                                                                 class="form-label">Regularity</label>
                                                             <input type="text" value="<?php if ($radiological_investigations['regularity_ecg']) {
                                                                 print_r($radiological_investigations['regularity_ecg']);
-                                                            } ?>" id="regularity_ecg"
-                                                                name="regularity_ecg" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" id="regularity_ecg" name="regularity_ecg" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -5870,8 +5789,7 @@ if ($user->isLoggedIn()) {
                                                                     heart Rhythm</label>
                                                                 <input type="text" value="<?php if ($radiological_investigations['other_heart_rhythm_ecg']) {
                                                                     print_r($radiological_investigations['other_heart_rhythm_ecg']);
-                                                                } ?>"
-                                                                    id="other_heart_rhythm_ecg"
+                                                                } ?>" id="other_heart_rhythm_ecg"
                                                                     name="other_heart_rhythm_ecg" min="0"
                                                                     class="form-control" placeholder="Enter here" />
                                                             </div>
@@ -5889,9 +5807,8 @@ if ($user->isLoggedIn()) {
                                                                 axis ( Specify number ) </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['qrs_axis_no_ecg']) {
                                                                 print_r($radiological_investigations['qrs_axis_no_ecg']);
-                                                            } ?>" id="qrs_axis_no_ecg"
-                                                                name="qrs_axis_no_ecg" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" id="qrs_axis_no_ecg" name="qrs_axis_no_ecg" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
 
@@ -5932,9 +5849,8 @@ if ($user->isLoggedIn()) {
                                                             </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['pr_interval_ecg']) {
                                                                 print_r($radiological_investigations['pr_interval_ecg']);
-                                                            } ?>" id="pr_interval_ecg"
-                                                                name="pr_interval_ecg" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" id="pr_interval_ecg" name="pr_interval_ecg" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
 
@@ -5970,9 +5886,8 @@ if ($user->isLoggedIn()) {
                                                             </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['qtc_interval_ecg']) {
                                                                 print_r($radiological_investigations['qtc_interval_ecg']);
-                                                            } ?>" id="qtc_interval_ecg"
-                                                                name="qtc_interval_ecg" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" id="qtc_interval_ecg" name="qtc_interval_ecg" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
 
@@ -6015,9 +5930,8 @@ if ($user->isLoggedIn()) {
                                                             </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['abnormal_waves_ecg']) {
                                                                 print_r($radiological_investigations['abnormal_waves_ecg']);
-                                                            } ?>" id="abnormal_waves_ecg"
-                                                                name="abnormal_waves_ecg" min="0" class="form-control"
-                                                                placeholder="Enter Here" />
+                                                            } ?>" id="abnormal_waves_ecg" name="abnormal_waves_ecg"
+                                                                min="0" class="form-control" placeholder="Enter Here" />
                                                         </div>
                                                     </div>
 
@@ -6028,9 +5942,9 @@ if ($user->isLoggedIn()) {
                                                                 ST-segment depression, elevation, etc</label>
                                                             <input type="text" value="<?php if ($radiological_investigations['repolarizatn_abno_ecg']) {
                                                                 print_r($radiological_investigations['repolarizatn_abno_ecg']);
-                                                            } ?>"
-                                                                id="repolarizatn_abno_ecg" name="repolarizatn_abno_ecg"
-                                                                min="0" class="form-control" placeholder="Enter Here" />
+                                                            } ?>" id="repolarizatn_abno_ecg"
+                                                                name="repolarizatn_abno_ecg" min="0" class="form-control"
+                                                                placeholder="Enter Here" />
                                                         </div>
                                                     </div>
 
@@ -6065,9 +5979,8 @@ if ($user->isLoggedIn()) {
                                                                 abnormal or borderline specify </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['abno_o_borderl_specify']) {
                                                                 print_r($radiological_investigations['abno_o_borderl_specify']);
-                                                            } ?>"
-                                                                name="abno_o_borderl_specify" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" name="abno_o_borderl_specify" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -6138,8 +6051,8 @@ if ($user->isLoggedIn()) {
                                                             explanation why suboptimal </label>
                                                         <input type="text" value="<?php if ($radiological_investigations['brief_exp_subopt_echo']) {
                                                             print_r($radiological_investigations['brief_exp_subopt_echo']);
-                                                        } ?>" name="brief_exp_subopt_echo"
-                                                            min="0" class="form-control" placeholder="Enter Time" />
+                                                        } ?>" name="brief_exp_subopt_echo" min="0" class="form-control"
+                                                            placeholder="Enter Time" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -6225,9 +6138,8 @@ if ($user->isLoggedIn()) {
                                                                 abnormal Systemic veinous connections </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['specify_ab_sysvein_con']) {
                                                                 print_r($radiological_investigations['specify_ab_sysvein_con']);
-                                                            } ?>"
-                                                                name="specify_ab_sysvein_con" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" name="specify_ab_sysvein_con" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -6265,9 +6177,8 @@ if ($user->isLoggedIn()) {
                                                                 abnormal Pulmonary venous connections </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['specfy_ab_pulven_con']) {
                                                                 print_r($radiological_investigations['specfy_ab_pulven_con']);
-                                                            } ?>"
-                                                                name="specfy_ab_pulven_con" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" name="specfy_ab_pulven_con" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -6401,9 +6312,8 @@ if ($user->isLoggedIn()) {
                                                                 structural lesion </label>
                                                             <input type="text" value="<?php if ($radiological_investigations['state_struc_lession']) {
                                                                 print_r($radiological_investigations['state_struc_lession']);
-                                                            } ?>"
-                                                                name="state_struc_lession" min="0" class="form-control"
-                                                                placeholder="Enter here" />
+                                                            } ?>" name="state_struc_lession" min="0"
+                                                                class="form-control" placeholder="Enter here" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -6416,8 +6326,8 @@ if ($user->isLoggedIn()) {
                                                                     lesion</label>
                                                                 <input type="text" value="<?php if ($radiological_investigations['size']) {
                                                                     print_r($radiological_investigations['size']);
-                                                                } ?>" id="size" name="size"
-                                                                    min="0" class="form-control" placeholder="Enter here" />
+                                                                } ?>" id="size" name="size" min="0"
+                                                                    class="form-control" placeholder="Enter here" />
                                                             </div>
                                                             <span>mm</span>
                                                         </div>
@@ -6427,9 +6337,8 @@ if ($user->isLoggedIn()) {
                                                                     structural lesion</label>
                                                                 <input type="text" value="<?php if ($radiological_investigations['site_struc_lesion']) {
                                                                     print_r($radiological_investigations['site_struc_lesion']);
-                                                                } ?>" id="site_struc_lesion"
-                                                                    name="site_struc_lesion" min="0" class="form-control"
-                                                                    placeholder="Enter here" />
+                                                                } ?>" id="site_struc_lesion" name="site_struc_lesion"
+                                                                    min="0" class="form-control" placeholder="Enter here" />
                                                             </div>
                                                         </div>
                                                         <div class="col-4">
@@ -6439,8 +6348,7 @@ if ($user->isLoggedIn()) {
                                                                     lesions</label>
                                                                 <input type="text" value="<?php if ($radiological_investigations['hemodynamics_stru_lesio']) {
                                                                     print_r($radiological_investigations['hemodynamics_stru_lesio']);
-                                                                } ?>"
-                                                                    id="hemodynamics_stru_lesio"
+                                                                } ?>" id="hemodynamics_stru_lesio"
                                                                     name="hemodynamics_stru_lesio" min="0"
                                                                     class="form-control" placeholder="Enter here" />
                                                             </div>
@@ -6465,9 +6373,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="aortic_valve" class="form-label">Aortic valve</label>
                                                         <input type="number" step="any" value="<?php if ($radiological_investigations['aortic_valve']) {
                                                             print_r($radiological_investigations['aortic_valve']);
-                                                        } ?>" id="aortic_valve"
-                                                            name="aortic_valve" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="aortic_valve" name="aortic_valve" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6476,9 +6383,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="mitral_vavlve" class="form-label">Mitral Valve</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['mitral_vavlve']) {
                                                             print_r($radiological_investigations['mitral_vavlve']);
-                                                        } ?>" id="mitral_vavlve"
-                                                            name="mitral_vavlve" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="mitral_vavlve" name="mitral_vavlve" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
@@ -6487,9 +6393,8 @@ if ($user->isLoggedIn()) {
                                                             Valve</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['tricuspid_valve']) {
                                                             print_r($radiological_investigations['tricuspid_valve']);
-                                                        } ?>" id="tricuspid_valve"
-                                                            name="tricuspid_valve" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="tricuspid_valve" name="tricuspid_valve" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -6527,8 +6432,8 @@ if ($user->isLoggedIn()) {
                                                             pool)</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['measure_deep_pool']) {
                                                             print_r($radiological_investigations['measure_deep_pool']);
-                                                        } ?>" name="measure_deep_pool"
-                                                            min="0" class="form-control" placeholder="Enter here" />
+                                                        } ?>" name="measure_deep_pool" min="0" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6574,8 +6479,7 @@ if ($user->isLoggedIn()) {
                                                             parasternal long axis anteroposterior dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atriu_parasternal']) {
                                                             print_r($radiological_investigations['lf_atriu_parasternal']);
-                                                        } ?>" 
-                                                            name="lf_atriu_parasternal" min="0" class="form-control"
+                                                        } ?>" name="lf_atriu_parasternal" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6586,8 +6490,7 @@ if ($user->isLoggedIn()) {
                                                             4-chamber long axis dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_long']) {
                                                             print_r($radiological_investigations['lf_atrium_4chamb_long']);
-                                                        } ?>" 
-                                                            name="lf_atrium_4chamb_long" min="0" class="form-control"
+                                                        } ?>" name="lf_atrium_4chamb_long" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6598,9 +6501,8 @@ if ($user->isLoggedIn()) {
                                                             4-chamber minor axis (transverse) dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_minor']) {
                                                             print_r($radiological_investigations['lf_atrium_4chamb_minor']);
-                                                        } ?>" 
-                                                            name="lf_atrium_4chamb_minor" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" name="lf_atrium_4chamb_minor" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6638,8 +6540,7 @@ if ($user->isLoggedIn()) {
                                                             4-chamber long axis dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_4chamb_long']) {
                                                             print_r($radiological_investigations['rt_4chamb_long']);
-                                                        } ?>" 
-                                                            name="rt_4chamb_long" min="0" class="form-control"
+                                                        } ?>" name="rt_4chamb_long" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6650,21 +6551,19 @@ if ($user->isLoggedIn()) {
                                                             4-chamber transverse dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_4chamb_transverse']) {
                                                             print_r($radiological_investigations['rt_4chamb_transverse']);
-                                                        } ?>" 
-                                                            name="rt_4chamb_transverse" min="0" class="form-control"
+                                                        } ?>" name="rt_4chamb_transverse" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
-                                                <div class="col-3" id="lf_atrium_4chamb_minor">
+                                                <div class="col-3" id="lf_atrium_4chamb_minor2">
                                                     <div class="mb-2">
                                                         <label for="lf_atrium_4chamb_minor" class="form-label">2D LA apical
                                                             4-chamber minor axis (transverse) dimension</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lf_atrium_4chamb_minor']) {
                                                             print_r($radiological_investigations['lf_atrium_4chamb_minor']);
-                                                        } ?>" 
-                                                            name="lf_atrium_4chamb_minor" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" name="lf_atrium_4chamb_minor" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6703,8 +6602,7 @@ if ($user->isLoggedIn()) {
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['free_wall_thickness']) {
                                                             print_r($radiological_investigations['free_wall_thickness']);
-                                                        } ?>" 
-                                                            name="free_wall_thickness" min="0" class="form-control"
+                                                        } ?>" name="free_wall_thickness" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6715,8 +6613,7 @@ if ($user->isLoggedIn()) {
                                                             septal thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['septal_thickness']) {
                                                             print_r($radiological_investigations['septal_thickness']);
-                                                        } ?>" 
-                                                            name="septal_thickness" min="0" class="form-control"
+                                                        } ?>" name="septal_thickness" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6727,8 +6624,7 @@ if ($user->isLoggedIn()) {
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['free_wall_thickness_2']) {
                                                             print_r($radiological_investigations['free_wall_thickness_2']);
-                                                        } ?>" 
-                                                            name="free_wall_thickness_2" min="0" class="form-control"
+                                                        } ?>" name="free_wall_thickness_2" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6767,8 +6663,7 @@ if ($user->isLoggedIn()) {
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['d_freewall_thick_plax']) {
                                                             print_r($radiological_investigations['d_freewall_thick_plax']);
-                                                        } ?>" 
-                                                            name="d_freewall_thick_plax" min="0" class="form-control"
+                                                        } ?>" name="d_freewall_thick_plax" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6779,8 +6674,7 @@ if ($user->isLoggedIn()) {
                                                             end-diastolic septal thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['d_septal_thick_plax']) {
                                                             print_r($radiological_investigations['d_septal_thick_plax']);
-                                                        } ?>" 
-                                                            name="d_septal_thick_plax" min="0" class="form-control"
+                                                        } ?>" name="d_septal_thick_plax" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6791,9 +6685,8 @@ if ($user->isLoggedIn()) {
                                                             end-diastolic free wall thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['d_freewall_thick_plax2']) {
                                                             print_r($radiological_investigations['d_freewall_thick_plax2']);
-                                                        } ?>" 
-                                                            name="d_freewall_thick_plax2" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" name="d_freewall_thick_plax2" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6832,8 +6725,7 @@ if ($user->isLoggedIn()) {
                                                             diameter</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rvot_plax_dia']) {
                                                             print_r($radiological_investigations['rvot_plax_dia']);
-                                                        } ?>" 
-                                                            name="rvot_plax_dia" min="0" class="form-control"
+                                                        } ?>" name="rvot_plax_dia" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6844,8 +6736,7 @@ if ($user->isLoggedIn()) {
                                                             diameter</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rvot_prox_dia']) {
                                                             print_r($radiological_investigations['rvot_prox_dia']);
-                                                        } ?>" 
-                                                            name="rvot_prox_dia" min="0" class="form-control"
+                                                        } ?>" name="rvot_prox_dia" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6856,8 +6747,7 @@ if ($user->isLoggedIn()) {
                                                             diameter</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rvot_distal_dia']) {
                                                             print_r($radiological_investigations['rvot_distal_dia']);
-                                                        } ?>" 
-                                                            name="rvot_distal_dia" min="0" class="form-control"
+                                                        } ?>" name="rvot_distal_dia" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6868,8 +6758,7 @@ if ($user->isLoggedIn()) {
                                                             thickness</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rv_wall_thickness']) {
                                                             print_r($radiological_investigations['rv_wall_thickness']);
-                                                        } ?>" 
-                                                            name="rv_wall_thickness" min="0" class="form-control"
+                                                        } ?>" name="rv_wall_thickness" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
@@ -6917,8 +6806,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="ef_echo" class="form-label">EF</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['ef_echo']) {
                                                             print_r($radiological_investigations['ef_echo']);
-                                                        } ?>" id="ef_echo" name="ef_echo"
-                                                            min="0" class="form-control" placeholder="Enter here" />
+                                                        } ?>" id="ef_echo" name="ef_echo" min="0" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                     <span>%</span>
                                                 </div>
@@ -6927,8 +6816,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="fs_echo" class="form-label">FS</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['fs_echo']) {
                                                             print_r($radiological_investigations['fs_echo']);
-                                                        } ?>" id="fs_echo" name="fs_echo"
-                                                            min="0" class="form-control" placeholder="Enter here" />
+                                                        } ?>" id="fs_echo" name="fs_echo" min="0" class="form-control"
+                                                            placeholder="Enter here" />
                                                     </div>
                                                     <span>%</span>
                                                 </div>
@@ -6939,9 +6828,8 @@ if ($user->isLoggedIn()) {
                                                             (tricuspid annular plane systolic excursion)</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rv_sys_func']) {
                                                             print_r($radiological_investigations['rv_sys_func']);
-                                                        } ?>" id="rv_sys_func"
-                                                            name="rv_sys_func" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="rv_sys_func" name="rv_sys_func" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6950,9 +6838,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="tapse_echo" class="form-label">Tapse</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['tapse_echo']) {
                                                             print_r($radiological_investigations['tapse_echo']);
-                                                        } ?>" id="tapse_echo"
-                                                            name="tapse_echo" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="tapse_echo" name="tapse_echo" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -6999,9 +6886,8 @@ if ($user->isLoggedIn()) {
                                                             systolic pressure</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['estimate_rv_sbp']) {
                                                             print_r($radiological_investigations['estimate_rv_sbp']);
-                                                        } ?>" id="estimate_rv_sbp"
-                                                            name="estimate_rv_sbp" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="estimate_rv_sbp" name="estimate_rv_sbp" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mmHg</span>
                                                 </div>
@@ -7035,9 +6921,8 @@ if ($user->isLoggedIn()) {
                                                             (IVC)</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['inferior_venacava']) {
                                                             print_r($radiological_investigations['inferior_venacava']);
-                                                        } ?>" id="inferior_venacava"
-                                                            name="inferior_venacava" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="inferior_venacava" name="inferior_venacava" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm/Hg</span>
                                                 </div>
@@ -7107,9 +6992,8 @@ if ($user->isLoggedIn()) {
                                                             cardiac anatomy is abnormal</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['abnorm_cardiac_anatom']) {
                                                             print_r($radiological_investigations['abnorm_cardiac_anatom']);
-                                                        } ?>" id="abnorm_cardiac_anatom"
-                                                            name="abnorm_cardiac_anatom" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="abnorm_cardiac_anatom" name="abnorm_cardiac_anatom"
+                                                            min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -7140,9 +7024,8 @@ if ($user->isLoggedIn()) {
                                                             cardiac function is abnormal</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['abnorm_cardia_func']) {
                                                             print_r($radiological_investigations['abnorm_cardia_func']);
-                                                        } ?>" id="abnorm_cardia_func"
-                                                            name="abnorm_cardia_func" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="abnorm_cardia_func" name="abnorm_cardia_func" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -7226,9 +7109,8 @@ if ($user->isLoggedIn()) {
                                                             length</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_kidney_length']) {
                                                             print_r($radiological_investigations['rt_kidney_length']);
-                                                        } ?>" id="rt_kidney_length"
-                                                            name="rt_kidney_length" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="rt_kidney_length" name="rt_kidney_length" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -7238,9 +7120,8 @@ if ($user->isLoggedIn()) {
                                                             width</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['rt_kidney_width']) {
                                                             print_r($radiological_investigations['rt_kidney_width']);
-                                                        } ?>" id="rt_kidney_width"
-                                                            name="rt_kidney_width" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="rt_kidney_width" name="rt_kidney_width" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -7274,9 +7155,8 @@ if ($user->isLoggedIn()) {
                                                             length</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lt_kidney_length']) {
                                                             print_r($radiological_investigations['lt_kidney_length']);
-                                                        } ?>" id="lt_kidney_length"
-                                                            name="lt_kidney_length" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="lt_kidney_length" name="lt_kidney_length" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -7291,9 +7171,8 @@ if ($user->isLoggedIn()) {
                                                             width</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['lt_kidney_width']) {
                                                             print_r($radiological_investigations['lt_kidney_width']);
-                                                        } ?>" id="lt_kidney_width"
-                                                            name="lt_kidney_width" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="lt_kidney_width" name="lt_kidney_width" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -7349,9 +7228,8 @@ if ($user->isLoggedIn()) {
                                                             details and measurements.</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['yes_hydronephrosis']) {
                                                             print_r($radiological_investigations['yes_hydronephrosis']);
-                                                        } ?>" id="yes_hydronephrosis"
-                                                            name="yes_hydronephrosis" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="yes_hydronephrosis" name="yes_hydronephrosis" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                     <span>mm</span>
                                                 </div>
@@ -7390,9 +7268,8 @@ if ($user->isLoggedIn()) {
                                                             details:</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['detail_kidneystones']) {
                                                             print_r($radiological_investigations['detail_kidneystones']);
-                                                        } ?>" id="detail_kidneystones"
-                                                            name="detail_kidneystones" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="detail_kidneystones" name="detail_kidneystones"
+                                                            min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
 
@@ -7425,8 +7302,7 @@ if ($user->isLoggedIn()) {
                                                             provide details:</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['details_structural_anomali']) {
                                                             print_r($radiological_investigations['details_structural_anomali']);
-                                                        } ?>"
-                                                            id="details_structural_anomali"
+                                                        } ?>" id="details_structural_anomali"
                                                             name="details_structural_anomali" min="0" class="form-control"
                                                             placeholder="Enter here" />
                                                     </div>
@@ -7442,9 +7318,8 @@ if ($user->isLoggedIn()) {
                                                             bladder</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['comment_bladders']) {
                                                             print_r($radiological_investigations['comment_bladders']);
-                                                        } ?>" id="comment_bladders"
-                                                            name="comment_bladders" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="comment_bladders" name="comment_bladders" min="0"
+                                                            class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
 
@@ -7454,9 +7329,8 @@ if ($user->isLoggedIn()) {
                                                             findings</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['incidental_findings']) {
                                                             print_r($radiological_investigations['incidental_findings']);
-                                                        } ?>" id="incidental_findings"
-                                                            name="incidental_findings" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="incidental_findings" name="incidental_findings"
+                                                            min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
 
@@ -7489,9 +7363,8 @@ if ($user->isLoggedIn()) {
                                                             borderline specify</label>
                                                         <input type="text" value="<?php if ($radiological_investigations['abnor_o_border_renal']) {
                                                             print_r($radiological_investigations['abnor_o_border_renal']);
-                                                        } ?>" id="abnor_o_border_renal"
-                                                            name="abnor_o_border_renal" min="0" class="form-control"
-                                                            placeholder="Enter here" />
+                                                        } ?>" id="abnor_o_border_renal" name="abnor_o_border_renal"
+                                                            min="0" class="form-control" placeholder="Enter here" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -7545,8 +7418,7 @@ if ($user->isLoggedIn()) {
                                                                 class="form-label">Date Form Completed</label>
                                                             <input type="date" value="<?php if ($radiological_investigations['radiological_investigations_complete_date']) {
                                                                 print_r($radiological_investigations['radiological_investigations_complete_date']);
-                                                            } ?>"
-                                                                id="radiological_investigations_complete_date"
+                                                            } ?>" id="radiological_investigations_complete_date"
                                                                 name="radiological_investigations_complete_date"
                                                                 class="form-control" required />
                                                         </div>
@@ -7643,9 +7515,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="visit_date" class="form-label">Visit Date</label>
                                                             <input type="date" value="<?php if ($medications['visit_date']) {
                                                                 print_r($medications['visit_date']);
-                                                            } ?>" id="visit_date"
-                                                                name="visit_date" max="<?= date('Y-m-d') ?>"
-                                                                class="form-control" placeholder="Enter date" required />
+                                                            } ?>" id="visit_date" name="visit_date"
+                                                                max="<?= date('Y-m-d') ?>" class="form-control"
+                                                                placeholder="Enter date" required />
                                                         </div>
                                                     </div>
 
@@ -7681,8 +7553,8 @@ if ($user->isLoggedIn()) {
                                                             mention</label>
                                                         <input type="text" value="<?php if ($medications['illness_specify']) {
                                                             print_r($medications['illness_specify']);
-                                                        } ?>" name="illness_specify"
-                                                            class="form-control" placeholder="Enter name" />
+                                                        } ?>" name="illness_specify" class="form-control"
+                                                            placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -7718,8 +7590,8 @@ if ($user->isLoggedIn()) {
                                                         <label for="sick_specify" class="form-label">If Yes, mention</label>
                                                         <input type="text" value="<?php if ($medications['sick_specify']) {
                                                             print_r($medications['sick_specify']);
-                                                        } ?>" name="sick_specify"
-                                                            class="form-control" placeholder="Enter name" />
+                                                        } ?>" name="sick_specify" class="form-control"
+                                                            placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -7758,8 +7630,8 @@ if ($user->isLoggedIn()) {
                                                             mention</label>
                                                         <input type="text" value="<?php if ($medications['medicines_specify']) {
                                                             print_r($medications['medicines_specify']);
-                                                        } ?>" name="medicines_specify"
-                                                            class="form-control" placeholder="Enter name" />
+                                                        } ?>" name="medicines_specify" class="form-control"
+                                                            placeholder="Enter name" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -7778,9 +7650,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="medicines_years" class="form-label">Years</label>
                                                             <input type="text" value="<?php if ($medications['medicines_years']) {
                                                                 print_r($medications['medicines_years']);
-                                                            } ?>" id="medicines_years"
-                                                                name="medicines_years" class="form-control" min="0"
-                                                                max="100" placeholder="Enter here" />
+                                                            } ?>" id="medicines_years" name="medicines_years"
+                                                                class="form-control" min="0" max="100"
+                                                                placeholder="Enter here" />
                                                         </div>
                                                         <span>If Only Months And Days Put '0'</span>
                                                     </div>
@@ -7789,9 +7661,9 @@ if ($user->isLoggedIn()) {
                                                             <label for="medicines_months" class="form-label">Months</label>
                                                             <input type="text" value="<?php if ($medications['medicines_months']) {
                                                                 print_r($medications['medicines_months']);
-                                                            } ?>" id="medicines_months"
-                                                                name="medicines_months" class="form-control" min="0"
-                                                                max="100" placeholder="Enter here" />
+                                                            } ?>" id="medicines_months" name="medicines_months"
+                                                                class="form-control" min="0" max="100"
+                                                                placeholder="Enter here" />
                                                         </div>
                                                         <span>If Only Years And Days Put '0'</span>
 
@@ -7801,8 +7673,8 @@ if ($user->isLoggedIn()) {
                                                             <label for="medicines_days" class="form-label">Days</label>
                                                             <input type="text" value="<?php if ($medications['medicines_days']) {
                                                                 print_r($medications['medicines_days']);
-                                                            } ?>" id="medicines_days"
-                                                                name="medicines_days" class="form-control" min="0" max="100"
+                                                            } ?>" id="medicines_days" name="medicines_days"
+                                                                class="form-control" min="0" max="100"
                                                                 placeholder="Enter here" />
                                                         </div>
                                                         <span>If Only Years and Months Put '0'</span>
@@ -7858,9 +7730,8 @@ if ($user->isLoggedIn()) {
                                                                 Completed</label>
                                                             <input type="date" value="<?php if ($medications['medication_complete_date']) {
                                                                 print_r($medications['medication_complete_date']);
-                                                            } ?>"
-                                                                id="medication_complete_date" name="medication_complete_date"
-                                                                class="form-control" required />
+                                                            } ?>" id="medication_complete_date"
+                                                                name="medication_complete_date" class="form-control" required />
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -7959,11 +7830,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Region</label>
                                                             <input class="form-control" type="text" name="name" id="name"
-                                                                placeholder="Type region..." onkeyup="fetchData()"
-                                                                value="<?php if ($regions['0']['name']) {
+                                                                placeholder="Type region..." onkeyup="fetchData()" value="<?php if ($regions['0']['name']) {
                                                                     print_r($regions['0']['name']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -8158,8 +8027,7 @@ if ($user->isLoggedIn()) {
                                                 <li class="page-item">
                                                     <a class="page-link <?php if ($i == $_GET['page']) {
                                                         echo 'active';
-                                                    } ?>"
-                                                        href="add.php?id=24&page=<?= $i ?>"><?= $i ?>
+                                                    } ?>" href="add.php?id=24&page=<?= $i ?>"><?= $i ?>
                                                     </a>
                                                 </li>
                                             <?php } ?>
@@ -8254,11 +8122,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>District Name</label>
                                                             <input class="form-control" type="text" name="name" id="name"
-                                                                placeholder="Type district..." onkeyup="fetchData()"
-                                                                value="<?php if ($districts['0']['name']) {
+                                                                placeholder="Type district..." onkeyup="fetchData()" value="<?php if ($districts['0']['name']) {
                                                                     print_r($districts['0']['name']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -8458,8 +8324,7 @@ if ($user->isLoggedIn()) {
                                                 <li class="page-item">
                                                     <a class="page-link <?php if ($i == $_GET['page']) {
                                                         echo 'active';
-                                                    } ?>"
-                                                        href="add.php?id=25&page=<?= $i ?>"><?= $i ?>
+                                                    } ?>" href="add.php?id=25&page=<?= $i ?>"><?= $i ?>
                                                     </a>
                                                 </li>
                                             <?php } ?>
@@ -8572,11 +8437,9 @@ if ($user->isLoggedIn()) {
                                                         <div class="form-group">
                                                             <label>Ward Name</label>
                                                             <input class="form-control" type="text" name="name" id="name"
-                                                                placeholder="Type ward..." onkeyup="fetchData()"
-                                                                value="<?php if ($wards['0']['name']) {
+                                                                placeholder="Type ward..." onkeyup="fetchData()" value="<?php if ($wards['0']['name']) {
                                                                     print_r($wards['0']['name']);
-                                                                } ?>"
-                                                                required />
+                                                                } ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -8782,8 +8645,7 @@ if ($user->isLoggedIn()) {
                                                 <li class="page-item">
                                                     <a class="page-link <?php if ($i == $_GET['page']) {
                                                         echo 'active';
-                                                    } ?>"
-                                                        href="add.php?id=26&page=<?= $i ?>"><?= $i ?>
+                                                    } ?>" href="add.php?id=26&page=<?= $i ?>"><?= $i ?>
                                                     </a>
                                                 </li>
                                             <?php } ?>
