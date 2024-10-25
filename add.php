@@ -8775,6 +8775,9 @@ if ($user->isLoggedIn()) {
     <!-- VALVE Js -->
     <script src="myjs/valve/pericardial_effusion.js"></script>
 
+        <!-- systolic_function Js -->
+        <script src="myjs/systolic_function/lv_sys_func.js"></script>
+
 
     <script src="myjs/radio.js"></script>
 
