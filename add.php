@@ -7891,6 +7891,9 @@ if ($user->isLoggedIn()) {
     <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
     <script src="myjs/radiology/chamber_dimensions/left_atrium.js"></script>
 
+        <!-- VALVE Js -->
+    <script src="myjs/valve/pericardial_effusion.js"></script>
+
 
     <script src="myjs/radio.js"></script>
 
