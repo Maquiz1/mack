@@ -8789,7 +8789,7 @@ if ($user->isLoggedIn()) {
 
 
     <!-- renal_function Js -->
-    <script src="myjs/radiology/renal_function/renal_function.js"></script>
+    <script src="myjs/radiology/renal_function/renal_ultrasound.js"></script>
 
 
     <!-- kidney_sizes Js -->
