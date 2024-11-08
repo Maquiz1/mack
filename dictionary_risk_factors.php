@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'field_label' => 'If yes to smoking?',
             'field_type' => 'checkbox',
             'required' => 'No',
-            'values' => "1=Smokeless\n2=Smoking\n3=E-Cigarette\n4=Other forms of tobacco\n5=Smoking",
+            'values' => "1=Smokeless\n2=Smoking\n3=E-Cigarette\n4=Other forms of tobacco",
             'units' => '',
             'range' => '',
             'format' => '',
