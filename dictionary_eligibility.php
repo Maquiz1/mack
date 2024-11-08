@@ -51,7 +51,73 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'hiv_history_and_medication_complete',
+            'field_name' => 'another_study',
+            'field_label' => 'Is the participant already enrolled in another study that may interfere with the study outcome',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'newly_diagnosed',
+            'field_label' => 'Newly diagnosed with HIV?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medical_condtn',
+            'field_label' => 'Any medical or other condition in the potential participant or their guardian that preludes the provision of informed consent/ assent?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'enrolled_part',
+            'field_label' => 'Is the volunteer eligible to be enrolled?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'participant_id',
+            'field_label' => 'If YES, indicate the Participant ID',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'screen_failure',
+            'field_label' => 'If NO, give reason for screening failure?',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'eligibility_form_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'No',
