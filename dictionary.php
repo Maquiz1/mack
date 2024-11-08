@@ -274,7 +274,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     ];
 
 
-    
     // Generate PDF in landscape mode
     $pdf = new TCPDF('L', 'mm', 'A4');
     $pdf->AddPage();
@@ -299,31 +298,26 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Fill table with data dictionary values
     $pdf->SetFont('helvetica', '', 10);
     foreach ($dataDictionary as $field) {
-        $rowHeight = 10;
-        $valuesHeight = 10;
+        $rowHeight = 10;  // Default row height
 
-        // Adjust height for 'values' field if it contains multiple lines
-        if (in_array($field['field_type'], ['select', 'radio', 'checkbox']) && !empty($field['values'])) {
-            $valuesHeight = max(10, substr_count($field['values'], "\n") * 5 + 10); // Dynamic height based on line count
-        }
+        // Determine the maximum height needed for wrapped cells
+        $valuesHeight = $pdf->getStringHeight(40, $field['values']);  // Adjust width as needed
+        $labelHeight = $pdf->getStringHeight(50, $field['field_label']);
+        $rowHeight = max($rowHeight, $valuesHeight, $labelHeight);  // Use the maximum height
 
-        $pdf->Cell(30, $valuesHeight, $field['field_name'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(50, $valuesHeight, $field['field_label'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $valuesHeight, $field['field_type'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(20, $valuesHeight, $field['required'] ?: ' ', 1, 0, 'C');
-
-        // Display values vertically for select, radio, and checkbox fields
-        if (in_array($field['field_type'], ['select', 'radio', 'checkbox']) && !empty($field['values'])) {
-            $pdf->MultiCell(40, $valuesHeight, $field['values'], 1, 'C', false, 0);
-        } else {
-            $pdf->Cell(40, $valuesHeight, $field['values'] ?: ' ', 1, 0, 'C');
-        }
-
-        $pdf->Cell(20, $valuesHeight, $field['units'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $valuesHeight, $field['range'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $valuesHeight, $field['format'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $valuesHeight, $field['decimal_points'] ?: ' ', 1, 1, 'C');
+        $pdf->Cell(30, $rowHeight, $field['field_name'], 1, 0, 'C');
+        $pdf->MultiCell(50, $rowHeight, $field['field_label'], 1, 'L', 0, 0);
+        $pdf->Cell(30, $rowHeight, $field['field_type'], 1, 0, 'C');
+        $pdf->Cell(20, $rowHeight, $field['required'], 1, 0, 'C');
+        $pdf->MultiCell(40, $rowHeight, $field['values'], 1, 'L', 0, 0);  // Wrap 'values' cell
+        $pdf->Cell(20, $rowHeight, $field['units'], 1, 0, 'C');
+        $pdf->Cell(30, $rowHeight, $field['range'], 1, 0, 'C');
+        $pdf->Cell(30, $rowHeight, $field['format'], 1, 0, 'C');
+        $pdf->Cell(30, $rowHeight, $field['decimal_points'], 1, 1, 'C');
     }
+
+    // $pdf->Output('data_dictionary.pdf', 'I');
+
 
     // Save the PDF and display it in the browser
     $pdf->Output('Recruitments Data Dictionary.pdf', 'I');
