@@ -347,8 +347,41 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'format' => '',
             'decimal_points' => ''
         ],
+                [
+            'field_name' => 'treated_tb',
+            'field_label' => '1.15 Have you ever been treated for TB??',
+            'field_type' => 'checkbox',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+                ],
         [
-            'field_name' => 'eligibility_form_complete',
+            'field_name' => 'date_treated_tb',
+            'field_label' => '1.15 If yes when was it ( Year )?',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'month_treated_tb',
+            'field_label' => '1.15 If yes when was it ( Month ) ?',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => '',
+            'units' => '(If Don’t remember month put ‘99’)',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'risk_factors_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'Yes',
