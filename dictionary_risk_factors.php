@@ -62,6 +62,72 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'duration_smoking',
+            'field_label' => 'Duration (smoking)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'months',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'frequence_smoking',
+            'field_label' => 'Frequency (smoking)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'quantity_smoking',
+            'field_label' => 'Quantity (smoking)',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'number per day',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'duration_ecigarette',
+            'field_label' => 'Duration (E-cigarette)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'months',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'frequence_ecigarette',
+            'field_label' => 'Frequency (E-cigarette)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'quantity_ecigarette',
+            'field_label' => 'Quantity (E-cigarette)',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'number per day',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'newly_diagnosed',
             'field_label' => 'Newly diagnosed with HIV?',
             'field_type' => 'select',
