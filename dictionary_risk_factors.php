@@ -29,34 +29,34 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'participant_age',
-            'field_label' => 'Is the Participant aged between 10 - 24?',
-            'field_type' => 'checkbox',
+            'field_name' => 'duration_smokeless',
+            'field_label' => 'Duration (smokeless)',
+            'field_type' => 'number',
             'required' => 'No',
-            'values' => "1=Yes\n2=No",
+            'values' => "",
+            'units' => 'months',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'frequence_smokeless',
+            'field_label' => 'Frequency (smokeless)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
             'units' => '',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'understand_icf',
-            'field_label' => 'Is the Participant able to understand and willing to sign the informed consent document?',
+            'field_name' => 'quantity_smokeless',
+            'field_label' => 'Quantity (smokeless)',
             'field_type' => 'select',
             'required' => 'No',
-            'values' => "1=Yes\n2=No",
-            'units' => '',
-            'range' => '',
-            'format' => '',
-            'decimal_points' => ''
-        ],
-        [
-            'field_name' => 'another_study',
-            'field_label' => 'Is the participant already enrolled in another study that may interfere with the study outcome',
-            'field_type' => 'select',
-            'required' => 'No',
-            'values' => "1=Yes\n2=No",
-            'units' => '',
+            'values' => "",
+            'units' => 'number per day',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
