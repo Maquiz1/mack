@@ -250,9 +250,7 @@ if ($user->isLoggedIn()) {
                                                                     <button type="submit" name="download_xls">Download xls</button>&nbsp;&nbsp;&nbsp;
                                                                     <button type="submit" name="download_xlsx">Download xlsx</button>&nbsp;&nbsp;&nbsp;
                                                                     <button type="submit" name="download_csv">Download csv</button>&nbsp;&nbsp;&nbsp;
-                                                                    <?php
-                                                                    if ($user->data()->position != 5) {
-                                                                    ?>
+                                                                    <?php if ($user->data()->position != 5) { ?>
                                                                         <!-- <button type="submit" name="download_stata">Download stata Data</button>&nbsp;&nbsp;&nbsp; -->
                                                                         <hr>
                                                                         <!-- <a href="dictionary.php?table=<?= $tables['Tables_in_mack'] ?>" role=" button" class="btn btn-info"> Download Data Dictionary</a> -->
@@ -260,15 +258,15 @@ if ($user->isLoggedIn()) {
                                                                         <!-- <button type="submit" name="download_dictionary">Download Data Dictionary</button>&nbsp;&nbsp;&nbsp; -->
                                                                         <a href="data.php?id=2&table=<?= $tables['Tables_in_mack'] ?>" role=" button" class="btn btn-info"> View Recoreds </a>
                                                                     <?php } ?>
-
                                                                 </form>
                                                                 <hr>
                                                                 <?php
                                                                 // if ($user->data()->position != 5) {
                                                                 ?>
-                                                                    <form action="dictionary.php" method="GET">
+                                                                    <a href="dictionary_<?= $tables['Tables_in_mack'] ?>.php?table=<?= $tables['Tables_in_mack'] ?>" role=" button" class="btn btn-info"> Download <?= $tables['Tables_in_mack'] ?> Dictionary </a>
+                                                                    <!-- <form action="dictionary_<?= $tables['Tables_in_mack'] ?>.php?table=<?= $tables['Tables_in_mack'] ?>" method="GET">
                                                                         <button type="submit">Download Data Dictionary</button>
-                                                                    </form>
+                                                                    </form> -->
                                                                 <?php
                                                             //  } 
                                                              ?>
