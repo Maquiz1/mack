@@ -7,77 +7,55 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Updated data dictionary array with 'units', 'range', 'format', and 'decimal_points' fields
     $dataDictionary = [
         [
-            'field_name' => 'name',
-            'field_label' => 'Date of visit',
-            'field_type' => 'date',
-            'required' => 'Yes',
-            'values' => '',
-            'units' => '',
-            'range' => '',
-            'format' => 'Alphabetical only',
-            'decimal_points' => ''
-        ],
-        [
-            'field_name' => 'email',
-            'field_label' => 'Email',
-            'field_type' => 'email',
-            'required' => 'Yes',
-            'values' => '',
-            'units' => '',
-            'range' => '',
-            'format' => 'example@domain.com',
-            'decimal_points' => ''
-        ],
-        [
-            'field_name' => 'age',
-            'field_label' => 'Age',
-            'field_type' => 'number',
-            'required' => 'Yes',
-            'values' => '',
-            'units' => 'years',
-            'range' => '18-99', // Range for age
-            'format' => '',
-            'decimal_points' => '0' // No decimal points for age
-        ],
-        [
-            'field_name' => 'gender',
-            'field_label' => 'Gender',
-            'field_type' => 'radio',
-            'required' => 'Yes',
-            'values' => '1=Male, 2=Female',
-            'units' => '',
-            'range' => '',
-            'format' => '',
-            'decimal_points' => ''
-        ],
-        [
-            'field_name' => 'height',
-            'field_label' => 'Height',
-            'field_type' => 'number',
-            'required' => 'Yes',
-            'values' => '',
-            'units' => 'cm',
-            'range' => '100-250', // Range for height in cm
-            'format' => '',
-            'decimal_points' => '1' // Allow 1 decimal point for height
-        ],
-        [
-            'field_name' => 'subscribe',
-            'field_label' => 'Subscribe to newsletter?',
+            'field_name' => 'hiv_infection',
+            'field_label' => 'Confirmed and Documented HIV Infection?',
             'field_type' => 'select',
             'required' => 'No',
-            'values' => '1=Yes, 2=No',
+            'values' => "1=Yes\n2=No",
             'units' => '',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'hobbies',
-            'field_label' => 'Hobbies',
+            'field_name' => 'art_treatment',
+            'field_label' => 'Has the Participant been on ART treatment for HIV for more than 6months?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'participant_age',
+            'field_label' => 'Is the Participant aged between 10 - 24?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'understand_icf',
+            'field_label' => 'Is the Participant able to understand and willing to sign the informed consent document?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'hiv_history_and_medication_complete',
+            'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'No',
-            'values' => '1=Reading, 2=Sports, 3=Music',
+            'values' => "0=Incomplete\n1=Unverified\n2=Complete",
             'units' => '',
             'range' => '',
             'format' => '',
@@ -85,16 +63,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         ]
     ];
 
+
     // Generate PDF in landscape mode
-    $pdf = new TCPDF('L', 'mm', 'A4'); // 'L' for Landscape orientation
+    $pdf = new TCPDF('L', 'mm', 'A4');
     $pdf->AddPage();
 
     // Set document title and headings
     $pdf->SetFont('helvetica', 'B', 16);
-    $pdf->Cell(0, 10, 'Data Dictionary', 0, 1, 'C');
+    $pdf->Cell(0, 10, $_GET['table'] . ' Data Dictionary ( EAPOC-VL STUDY - TANZANIA)', 0, 1, 'C');
 
     // Create table headings for all field types
-    $pdf->Ln(10); // New line
+    $pdf->Ln(10);
     $pdf->SetFont('helvetica', 'B', 10);
     $pdf->Cell(30, 10, 'Field Name', 1, 0, 'C');
     $pdf->Cell(50, 10, 'Field Label', 1, 0, 'C');
@@ -107,41 +86,34 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pdf->Cell(30, 10, 'Decimals', 1, 1, 'C');
 
     // Fill table with data dictionary values
-    $pdf->SetFont('helvetica', '', 10); // Set font to normal for data rows
+    $pdf->SetFont('helvetica', '', 10);
     foreach ($dataDictionary as $field) {
-        $rowHeight = 10;
+        $rowHeight = 10;  // Default row height
 
-        // Field name
-        $pdf->Cell(30, $rowHeight, $field['field_name'] ?: ' ', 1, 0, 'C');
-        // Field label
-        $pdf->Cell(50, $rowHeight, $field['field_label'] ?: ' ', 1, 0, 'C');
-        // Field type
-        $pdf->Cell(30, $rowHeight, $field['field_type'] ?: ' ', 1, 0, 'C');
-        // Required
-        $pdf->Cell(20, $rowHeight, $field['required'] ?: ' ', 1, 0, 'C');
+        // Determine the maximum height needed for wrapped cells
+        $valuesHeight = $pdf->getStringHeight(40, $field['values']);  // Adjust width as needed
+        $labelHeight = $pdf->getStringHeight(50, $field['field_label']);
+        $rowHeight = max($rowHeight, $valuesHeight, $labelHeight);  // Use the maximum height
 
-        // Handle values for select, radio, and checkbox fields
-        if (in_array($field['field_type'], ['select', 'radio', 'checkbox']) && !empty($field['values'])) {
-            $pdf->MultiCell(40, $rowHeight, $field['values'], 1, 'C', false, 0);
-        } else {
-            $pdf->Cell(40, $rowHeight, $field['values'] ?: ' ', 1, 0, 'C');
-        }
-
-        // Add units column
-        $pdf->Cell(20, $rowHeight, $field['units'] ?: ' ', 1, 0, 'C');
-
-        // Add range, format, and decimal points columns
-        $pdf->Cell(30, $rowHeight, $field['range'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $rowHeight, $field['format'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $rowHeight, $field['decimal_points'] ?: ' ', 1, 1, 'C');
+        $pdf->Cell(30, $rowHeight, $field['field_name'], 1, 0, 'C');
+        $pdf->MultiCell(50, $rowHeight, $field['field_label'], 1, 'L', 0, 0);
+        $pdf->Cell(30, $rowHeight, $field['field_type'], 1, 0, 'C');
+        $pdf->Cell(20, $rowHeight, $field['required'], 1, 0, 'C');
+        $pdf->MultiCell(40, $rowHeight, $field['values'], 1, 'L', 0, 0);  // Wrap 'values' cell
+        $pdf->Cell(20, $rowHeight, $field['units'], 1, 0, 'C');
+        $pdf->Cell(30, $rowHeight, $field['range'], 1, 0, 'C');
+        $pdf->Cell(30, $rowHeight, $field['format'], 1, 0, 'C');
+        $pdf->Cell(30, $rowHeight, $field['decimal_points'], 1, 1, 'C');
     }
 
+    // $pdf->Output('data_dictionary.pdf', 'I');
+
+
     // Save the PDF and display it in the browser
-    $pdf->Output('data_dictionary.pdf', 'I'); // Display in browser
+    $pdf->Output($_GET['table'] . ' Data Dictionary.pdf', 'I');
 
     exit;
 } else {
     echo "Please access this page via a GET request.";
 }
-
 ?>
