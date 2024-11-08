@@ -183,8 +183,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'medical_condtn',
-            'field_label' => 'Any medical or other condition in the potential participant or their guardian that preludes the provision of informed consent/ assent?',
+            'field_name' => 'activity_grade',
+            'field_label' => 'If Yes, What is your grade?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=High activity: Vigorous activity 3 times a week or more\n2=Medium activity:vigorous 1-2 times per week\n3=Low activity: moderate exercise 3 or more times per week with no regular weekly vigorous exercise\n4=Sedentary-moderate exercise less than 3 times per week with no regular vigorous exercise",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'alcohol',
+            'field_label' => 'Do you Take Alcohol?',
             'field_type' => 'select',
             'required' => 'No',
             'values' => "1=Yes\n2=No",
@@ -194,31 +205,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'enrolled_part',
-            'field_label' => 'Is the volunteer eligible to be enrolled?',
+            'field_name' => 'drink_cont_alcoh',
+            'field_label' => '1.How often do you have a drink containing alcohol? skip to question 9-10 if Never',
             'field_type' => 'select',
             'required' => 'No',
-            'values' => "1=Yes\n2=No",
+            'values' => "1=Never\n2=Monthly or less\n3=2 to 4 times a month\n4=2 to 3 times a week\n5=4 or more times a week",
             'units' => '',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'participant_id',
-            'field_label' => 'If YES, indicate the Participant ID',
-            'field_type' => 'text',
-            'required' => 'No',
-            'values' => '',
-            'units' => '',
-            'range' => '',
-            'format' => '',
-            'decimal_points' => ''
-        ],
-        [
-            'field_name' => 'screen_failure',
-            'field_label' => 'If NO, give reason for screening failure?',
-            'field_type' => 'text',
+            'field_name' => 'total_1only',
+            'field_label' => 'Total for 1',
+            'field_type' => 'number',
             'required' => 'No',
             'values' => '',
             'units' => '',
