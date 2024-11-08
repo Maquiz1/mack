@@ -3,31 +3,29 @@ require 'vendor/autoload.php';
 
 use TCPDF;
 
-// if ($_GET["table"]) {
-
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Updated data dictionary array with 'units', 'range', 'format', and 'decimal_points' fields
     $dataDictionary = [
         [
-            'field_name' => 'name',
-            'field_label' => 'Name',
-            'field_type' => 'text',
+            'field_name' => 'date_of_visit',
+            'field_label' => 'Date of visit',
+            'field_type' => 'date',
             'required' => 'Yes',
             'values' => '',
             'units' => '',
             'range' => '',
-            'format' => 'Alphabetical only',
+            'format' => 'YYYY-MM-DD',
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'email',
-            'field_label' => 'Email',
-            'field_type' => 'email',
+            'field_name' => 'date_of_birth',
+            'field_label' => 'Date of birth',
+            'field_type' => 'date',
             'required' => 'Yes',
             'values' => '',
             'units' => '',
             'range' => '',
-            'format' => 'example@domain.com',
+            'format' => 'YYYY-MM-DD',
             'decimal_points' => ''
         ],
         [
@@ -37,49 +35,237 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'required' => 'Yes',
             'values' => '',
             'units' => 'years',
-            'range' => '18-99', // Range for age
+            'range' => '18-99',
             'format' => '',
-            'decimal_points' => '0' // No decimal points for age
+            'decimal_points' => '0'
+        ],
+        [
+            'field_name' => 'art_no',
+            'field_label' => 'ART No ( CTC ID )',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '0XXXXXXXXXXXXX',
+            'decimal_points' => ''
         ],
         [
             'field_name' => 'gender',
             'field_label' => 'Gender',
             'field_type' => 'radio',
             'required' => 'Yes',
-            'values' => '1=Male, 2=Female',
+            'values' => "1=Male\n2=Female",
             'units' => '',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'phone',
+            'field_label' => '1.2 Phone number',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '0XXXXXXXXX',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'alternative_no',
+            'field_label' => 'Alternative No',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '0XXXXXXXXX',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'informed_consent',
+            'field_label' => '1.1 Did the Participant give informed consent ?',
+            'field_type' => 'radio',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'date_informed_consent',
+            'field_label' => 'Date of informed consent',
+            'field_type' => 'date',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => 'YYYY-MM-DD',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'district',
+            'field_label' => 'District',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "7=Ilala\n8=Kigamboni\n9=Kinondoni\n10=Temeke\n11=Ubungo\n44=ILALA\n45=Ubungo",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'sub_county',
+            'field_label' => 'Ward ( Sub-county )',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "22=Bunju\n23=Hananasif\n24=Kawe\n25=Kigogo\n26=Kijitonyama\n27=Kinondoni\n28=Kunduchi\n29=Mabwepande\n30=Magomeni\n31=Makongo\n32=Kijitonyama\n36=Msasani\n37=Mwananyamala\n38=Mwananyamala\n41=Tandale\n42=Wazo\n43=Kivule\n44=Mbezi Luis\n45=Manzese\n46=Mbezi mwisho\n47=Mbezi mwisho\n48=Kijitonyama\n49=Yombo\n50=YOMBO\n51=Kijitonyama\n52=Tabata\n53=Tabata\n54=Mbezi Beach\n55=Bunju\n56=Chanika\n59=Sinza",
+            // 'values' => "22=Bunju\n23=Hananasif\n24=Kawe\n25=Kigogo\n26=Kijitonyama\n27=Kinondoni\n28=Kunduchi\n29=Mabwepande\n30=Magomeni\n31=Makongo\n32=Kijitonyama\n36=Msasani\n37=Kijitonyama\n38=Kijitonyama\n41=Tandale\n42=Kijitonyama\n43=Kijitonyama\n44=Kijitonyama\n45=Kijitonyama\n46=Kijitonyama\n47=Kijitonyama\n48=Kijitonyama\n49=Kijitonyama\n50=Kijitonyama\n51=Kijitonyama\n52=Kijitonyama\n53=Kijitonyama\n54=Kijitonyama\n55=Kijitonyama\n56=Kijitonyama\n58=Kijitonyama\n59=Kijitonyama",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'weight',
+            'field_label' => '1.4 Weight',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => 'kgs',
+            'range' => '0-200',
+            'format' => '',
+            'decimal_points' => '0'
+        ],
+        [
             'field_name' => 'height',
-            'field_label' => 'Height',
+            'field_label' => '1.5 Height',
             'field_type' => 'number',
             'required' => 'Yes',
             'values' => '',
             'units' => 'cm',
-            'range' => '100-250', // Range for height in cm
+            'range' => '0-300',
             'format' => '',
-            'decimal_points' => '1' // Allow 1 decimal point for height
+            'decimal_points' => '0'
         ],
         [
-            'field_name' => 'subscribe',
-            'field_label' => 'Subscribe to newsletter?',
+            'field_name' => 'sys_bp',
+            'field_label' => '1.6 Systolic blood Pressure',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => 'mm/Hg',
+            'range' => '0-900',
+            'format' => '',
+            'decimal_points' => '0'
+        ],
+        [
+            'field_name' => 'dias_bp',
+            'field_label' => '1.7 Diastolic Blood Pressure',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => '',
+            'units' => 'mm/Hg',
+            'range' => '0-900',
+            'format' => '',
+            'decimal_points' => '0'
+        ],
+        [
+            'field_name' => 'education',
+            'field_label' => '1.8 What is the highest Education received?',
             'field_type' => 'select',
             'required' => 'No',
-            'values' => '1=Yes, 2=No',
+            'values' => "1=Primary\n2=Secondary\n3=Tertiary\n4=University\n5=None at all",
             'units' => '',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'hobbies',
-            'field_label' => 'Hobbies',
+            'field_name' => 'marital_status',
+            'field_label' => '1.9 What is your Marital Status?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Single\n2=Married\n3=Separated",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'occupation',
+            'field_label' => '1.10 Occupation',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Student\n2=Unemployed\n3=Unskilled worker\n4=Professianl worker\n5=Other",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'unskilled',
+            'field_label' => 'specify why unskilled',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'profesional_worker',
+            'field_label' => 'specify professional worker',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'other_religion',
+            'field_label' => 'specify other occupation',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'religion',
+            'field_label' => '1.11 Participant\'s religion',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Christian\n2=Muslim\n2=No\n3=Other",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'other_religion',
+            'field_label' => 'Specify other religion',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'sociodemographics_complete',
+            'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'No',
-            'values' => '1=Reading, 2=Sports, 3=Music',
+            'values' => "0=Incomplete\n1=Unverified\n2=Complete",
             'units' => '',
             'range' => '',
             'format' => '',
@@ -87,16 +273,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         ]
     ];
 
+
+    
     // Generate PDF in landscape mode
-    $pdf = new TCPDF('L', 'mm', 'A4'); // 'L' for Landscape orientation
+    $pdf = new TCPDF('L', 'mm', 'A4');
     $pdf->AddPage();
 
     // Set document title and headings
     $pdf->SetFont('helvetica', 'B', 16);
-    $pdf->Cell(0, 10, 'Data Dictionary', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Recruitments Data Dictionary ( EAPOC-VL STUDY - TANZANIA)', 0, 1, 'C');
 
     // Create table headings for all field types
-    $pdf->Ln(10); // New line
+    $pdf->Ln(10);
     $pdf->SetFont('helvetica', 'B', 10);
     $pdf->Cell(30, 10, 'Field Name', 1, 0, 'C');
     $pdf->Cell(50, 10, 'Field Label', 1, 0, 'C');
@@ -104,47 +292,44 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $pdf->Cell(20, 10, 'Required', 1, 0, 'C');
     $pdf->Cell(40, 10, 'Values', 1, 0, 'C');
     $pdf->Cell(20, 10, 'Units', 1, 0, 'C');
-    $pdf->Cell(30, 10, 'Range', 1, 0, 'C'); // Column for range
-    $pdf->Cell(30, 10, 'Format', 1, 0, 'C'); // Column for format
-    $pdf->Cell(30, 10, 'Decimals', 1, 1, 'C'); // Column for decimal points
+    $pdf->Cell(30, 10, 'Range', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Format', 1, 0, 'C');
+    $pdf->Cell(30, 10, 'Decimals', 1, 1, 'C');
 
     // Fill table with data dictionary values
-    $pdf->SetFont('helvetica', '', 10); // Set font to normal for data rows
+    $pdf->SetFont('helvetica', '', 10);
     foreach ($dataDictionary as $field) {
-        // Set cell heights based on content
-        $rowHeight = 10; // Default height
+        $rowHeight = 10;
+        $valuesHeight = 10;
 
-        // Field name
-        $pdf->Cell(30, $rowHeight, $field['field_name'] ?: ' ', 1, 0, 'C');
-        // Field label
-        $pdf->Cell(50, $rowHeight, $field['field_label'] ?: ' ', 1, 0, 'C');
-        // Field type
-        $pdf->Cell(30, $rowHeight, $field['field_type'] ?: ' ', 1, 0, 'C');
-        // Required
-        $pdf->Cell(20, $rowHeight, $field['required'] ?: ' ', 1, 0, 'C');
-
-        // Handle values for select, radio, and checkbox fields
+        // Adjust height for 'values' field if it contains multiple lines
         if (in_array($field['field_type'], ['select', 'radio', 'checkbox']) && !empty($field['values'])) {
-            $values = explode(', ', $field['values']);
-            $valueText = implode("\n", $values); // Separate values by new lines
-            $pdf->MultiCell(40, 10, $valueText ?: ' ', 1, 'C'); // Multicell for vertical display of values
-            $pdf->Ln(-10); // Move back up to keep row height consistent
-        } else {
-            $pdf->Cell(40, $rowHeight, $field['values'] ?: ' ', 1, 0, 'C'); // Empty or predefined values for other field types
+            $valuesHeight = max(10, substr_count($field['values'], "\n") * 5 + 10); // Dynamic height based on line count
         }
 
-        // Add units column
-        $pdf->Cell(20, $rowHeight, $field['units'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(30, $valuesHeight, $field['field_name'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(50, $valuesHeight, $field['field_label'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(30, $valuesHeight, $field['field_type'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(20, $valuesHeight, $field['required'] ?: ' ', 1, 0, 'C');
 
-        // Add range, format, and decimal points columns
-        $pdf->Cell(30, $rowHeight, $field['range'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $rowHeight, $field['format'] ?: ' ', 1, 0, 'C');
-        $pdf->Cell(30, $rowHeight, $field['decimal_points'] ?: ' ', 1, 1, 'C');
+        // Display values vertically for select, radio, and checkbox fields
+        if (in_array($field['field_type'], ['select', 'radio', 'checkbox']) && !empty($field['values'])) {
+            $pdf->MultiCell(40, $valuesHeight, $field['values'], 1, 'C', false, 0);
+        } else {
+            $pdf->Cell(40, $valuesHeight, $field['values'] ?: ' ', 1, 0, 'C');
+        }
+
+        $pdf->Cell(20, $valuesHeight, $field['units'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(30, $valuesHeight, $field['range'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(30, $valuesHeight, $field['format'] ?: ' ', 1, 0, 'C');
+        $pdf->Cell(30, $valuesHeight, $field['decimal_points'] ?: ' ', 1, 1, 'C');
     }
 
-    // Save the PDF and send it to the browser
-    $pdf->Output('data_dictionary.pdf', 'D'); // Force download
+    // Save the PDF and display it in the browser
+    $pdf->Output('Recruitments Data Dictionary.pdf', 'I');
 
     exit;
+} else {
+    echo "Please access this page via a GET request.";
 }
-// }
+?>

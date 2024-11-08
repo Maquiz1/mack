@@ -262,13 +262,16 @@ if ($user->isLoggedIn()) {
                                                                     <?php } ?>
 
                                                                 </form>
+                                                                <hr>
                                                                 <?php
-                                                                if ($user->data()->position != 5) {
+                                                                // if ($user->data()->position != 5) {
                                                                 ?>
                                                                     <form action="dictionary.php" method="GET">
                                                                         <button type="submit">Download Data Dictionary</button>
                                                                     </form>
-                                                                <?php } ?>
+                                                                <?php
+                                                            //  } 
+                                                             ?>
                                                             </td>
                                                         </tr>
                                                 <?php $x++;
