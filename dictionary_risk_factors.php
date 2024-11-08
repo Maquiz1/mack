@@ -227,6 +227,127 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'howmany_drinks',
+            'field_label' => '2. How many drinks containing alcohol do you have on a typical day when you are drinking?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=1 or 2\n2=3 or 4\n3=5 or 6\n4=7,8 or 9\n5=10 or More",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'drink_often',
+            'field_label' => '3. How often do you have six or more drinks on one occassion?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Never\n2=Less than a monthly\n3=Monthly\n4=Weekly\n5=Daily or almost daily",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'drink_often',
+            'field_label' => '4. How often during the last year have you found that you were not able to stop drinking once you had started?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Never\n2=Less than a monthly\n3=Monthly\n4=Weekly\n5=Daily or almost daily",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'failed_todo_normal',
+            'field_label' => '5. How often during the last year have you failed to do what was normally expected from you because of drinking?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Never\n2=Less than a monthly\n3=Monthly\n4=Weekly\n5=Daily or almost daily",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'first_drink_morning',
+            'field_label' => '6. How often during the last year have you needed a first drink in the morning to get yourself going after a heavy drinking session?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Never\n2=Less than a monthly\n3=Monthly\n4=Weekly\n5=Daily or almost daily",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'remorse_after_drink',
+            'field_label' => '7. How often during the last year have you had a feeling of guilt or remorse after drinking?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Never\n2=Less than a monthly\n3=Monthly\n4=Weekly\n5=Daily or almost daily",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'cant_remember',
+            'field_label' => '8. How often during the last year have you been unable to remember what happened the night before because you had been drinking?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Never\n2=Less than a monthly\n3=Monthly\n4=Weekly\n5=Daily or almost daily",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'injure_someone',
+            'field_label' => '9. Have you or someone else been injured as a result of your drinking?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=No\n2=Yes, but not in last year\n3=Yes, but during last year",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'concern_about_drink',
+            'field_label' => '10. Has a relative or friend or a doctor or another health worker been concerned about your drinking or suggested you cut down',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=No\n2=Yes, but not in last year\n3=Yes, but during last year",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'overall_total_never',
+            'field_label' => 'Overall total 1',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'overtotal',
+            'field_label' => 'Overall total 2',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'eligibility_form_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
