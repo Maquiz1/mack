@@ -3599,8 +3599,7 @@ if ($user->isLoggedIn()) {
                                                                             echo 'checked';
                                                                         }
                                                                     } ?>>
-                                                                <label class="form-check-label">Other forms of
-                                                                    tobacco</label>
+                                                                <label class="form-check-label">Other forms of tobacco</label>
                                                             </div>
                                                         </div>
                                                     </div>
