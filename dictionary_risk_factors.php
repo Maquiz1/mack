@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         [
             'field_name' => 'quantity_smoking',
             'field_label' => 'Quantity (smoking)',
-            'field_type' => 'select',
+            'field_type' => 'number',
             'required' => 'No',
             'values' => "",
             'units' => 'number per day',
@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         [
             'field_name' => 'quantity_ecigarette',
             'field_label' => 'Quantity (E-cigarette)',
-            'field_type' => 'select',
+            'field_type' => 'number',
             'required' => 'No',
             'values' => "",
             'units' => 'number per day',
@@ -128,8 +128,52 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'newly_diagnosed',
-            'field_label' => 'Newly diagnosed with HIV?',
+            'field_name' => 'other_tobacco',
+            'field_label' => 'Other forms of tobacco, specify',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'duration_other',
+            'field_label' => 'Duration (other forms of tobacco)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'months',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'frequence_other',
+            'field_label' => 'Frequency (other forms of tobacco)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'quantity_other',
+            'field_label' => 'Quantity (other forms of tobacco)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'number per day',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'physically_active',
+            'field_label' => '1.14 Are you Physically active?',
             'field_type' => 'select',
             'required' => 'No',
             'values' => "1=Yes\n2=No",
