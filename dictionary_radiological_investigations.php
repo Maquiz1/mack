@@ -205,6 +205,39 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'echocardiogram',
+            'field_label' => 'Echocardiogram',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'quality_of_image_echo',
+            'field_label' => 'What is quality of the Image?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Abnormal",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'brief_exp_subopt_echo',
+            'field_label' => 'Brief explanation why suboptimal',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
