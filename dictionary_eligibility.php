@@ -159,9 +159,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         // Determine the maximum height needed for wrapped cells
         $valuesHeight = $pdf->getStringHeight(40, $field['values']);  // Adjust width as needed
         $labelHeight = $pdf->getStringHeight(50, $field['field_label']);
-        $rowHeight = max($rowHeight, $valuesHeight, $labelHeight);  // Use the maximum height
+        $fieldNameHeight = $pdf->getStringHeight(30, $field['field_name']);  // Adjust width as needed
+        $rowHeight = max($rowHeight, $valuesHeight, $labelHeight, $fieldNameHeight);  // Use the maximum height
 
-        $pdf->Cell(30, $rowHeight, $field['field_name'], 1, 0, 'C');
+        $pdf->MultiCell(30, $rowHeight, $field['field_name'], 1, 'C', 0, 0);  // Wrap 'field_name' cell
         $pdf->MultiCell(50, $rowHeight, $field['field_label'], 1, 'L', 0, 0);
         $pdf->Cell(30, $rowHeight, $field['field_type'], 1, 0, 'C');
         $pdf->Cell(20, $rowHeight, $field['required'], 1, 0, 'C');
@@ -171,9 +172,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $pdf->Cell(30, $rowHeight, $field['format'], 1, 0, 'C');
         $pdf->Cell(30, $rowHeight, $field['decimal_points'], 1, 1, 'C');
     }
-
-    // $pdf->Output('data_dictionary.pdf', 'I');
-
 
     // Save the PDF and display it in the browser
     $pdf->Output($_GET['table'] . ' Data Dictionary.pdf', 'I');
