@@ -238,6 +238,50 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'situs_echo',
+            'field_label' => 'Situs',
+            'field_type' => 'checkbox',
+            'required' => 'Yes',
+            'values' => "1=Solitus\n2=Inversus\n3=Ambiguous",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'cardiac_axis_echo',
+            'field_label' => 'Cardiac axis',
+            'field_type' => 'checkbox',
+            'required' => 'Yes',
+            'values' => "1=Levocardia\n2=Mesocardia\n3=Dextrocardia",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'syst_vein_connect_echo',
+            'field_label' => 'Systemic veinous connections',
+            'field_type' => 'checkbox',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Abnormal",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'specify_ab_sysvein_con',
+            'field_label' => 'Specify abnormal Systemic veinous connections',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
