@@ -38,9 +38,75 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'range' => '',
             'format' => '',
             'decimal_points' => ''
-        ],    
+        ],
         [
-            'field_name' => 'risk_factors_complete',
+            'field_name' => 'sick_specify',
+            'field_label' => 'If Yes,mention',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medicines',
+            'field_label' => '4.3 Are there any other medicines you used apart form ART ?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medicines_specify',
+            'field_label' => 'If Yes,mention',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => '',
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medicines_years',
+            'field_label' => '4.4 How long have you used those medicine? ( Years )',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'If Only Months And Days Put 0',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medicines_months',
+            'field_label' => '4.4 How long have you used those medicine? ( Months )',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'If Only Years And Days Put 0',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medicines_days',
+            'field_label' => '4.4 How long have you used those medicine? ( Days )',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'If Only Years And Months Put 0',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'medications_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'Yes',
