@@ -370,6 +370,138 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'size',
+            'field_label' => 'Size of structural lesion',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'site_struc_lesion',
+            'field_label' => 'Site of structural lesion',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'hemodynamics_stru_lesio',
+            'field_label' => 'Hemodynamics of structural lesion',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'aortic_valve',
+            'field_label' => 'Aortic valve',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'mitral_vavlve',
+            'field_label' => 'Mitral valve',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'tricuspid_valve',
+            'field_label' => 'Tricuspid valve',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'pericardial_effusion',
+            'field_label' => 'Pericardial effusion',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=None\n2=Present",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'measure_deep_pool',
+            'field_label' => 'measurement of Pericardial effusion (measure deepest pool)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'left_atrium',
+            'field_label' => 'Left Atrium',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Done\n2=Not Done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'lf_atriu_parasternal',
+            'field_label' => '2D LA parasternal long axis anteroposterior dimension',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'lf_atrium_4chamb_long',
+            'field_label' => '2D LA apical 4-chamber long axis dimension',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'lf_atrium_4chamb_minor',
+            'field_label' => '2D LA apical 4-chamber minor axis (transverse) dimension',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
