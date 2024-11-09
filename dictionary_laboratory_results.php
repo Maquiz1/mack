@@ -326,6 +326,94 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'urine_done',
+            'field_label' => 'Has urine R/E been done today?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'lab_date_bio_2',
+            'field_label' => 'Date of sampling',
+            'field_type' => 'date',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => 'YYYY-MM-DD',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'lab_time_bio_2',
+            'field_label' => 'Time of sampling',
+            'field_type' => 'time',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => 'HH:MM',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_done',
+            'field_label' => 'Has urine R/E been done today?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Clear\n2=Light Yellow\n3=Yellow\n4=Dark Yellow\n5=Brown\n6=Red",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_done',
+            'field_label' => 'Has urine R/E been done today?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_done',
+            'field_label' => 'Has urine R/E been done today?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_done',
+            'field_label' => 'Has urine R/E been done today?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_done',
+            'field_label' => 'Has urine R/E been done today?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'risk_factors_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
