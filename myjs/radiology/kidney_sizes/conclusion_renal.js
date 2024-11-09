@@ -5,7 +5,7 @@ const abnor_o_border_renal = document.getElementById("abnor_o_border_renal");
 
 
 function toggleElementVisibility() {
-    if (conclusion_renal1.checked) {
+    if (conclusion_renal2.checked) {
         abnor_o_border_renal.style.display = "block";
     } else {
         abnor_o_border_renal.style.display = "none";
