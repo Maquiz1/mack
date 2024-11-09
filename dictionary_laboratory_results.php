@@ -260,6 +260,72 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'tot_choles',
+            'field_label' => 'Total Cholesterol',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mmol/L',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'trigly',
+            'field_label' => 'Triglycerides',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mmol/L',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'hdl',
+            'field_label' => 'HDL',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mmol/L',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'ldl',
+            'field_label' => 'LDL',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mmol/L',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'vldl',
+            'field_label' => 'VLDL',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mmol/L',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'coronary_risk',
+            'field_label' => 'Coronary Risk',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'risk_factors_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
