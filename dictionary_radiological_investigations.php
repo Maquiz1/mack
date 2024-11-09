@@ -689,6 +689,61 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'lv_sys_func',
+            'field_label' => 'LV systolic function as assessed using ejection fraction (EF) and shortening fraction (SF) obtained from M-mode measurement',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Done\n2=Not Done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'ef_echo',
+            'field_label' => 'EF',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '%',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'fs_echo',
+            'field_label' => 'FS',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '%',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'rv_sys_func',
+            'field_label' => 'RV systolic function as assessed by measuring RV fractional area change (FAC) and TAPSE (tricuspid annular plane systolic excursion)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'tapse_echo',
+            'field_label' => 'Tapse',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
