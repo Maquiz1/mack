@@ -27,7 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'range' => '',
             'format' => '',
             'decimal_points' => ''
-        ],       
+        ],
+        [
+            'field_name' => 'sick',
+            'field_label' => '4.2 Can you name what you were sick during that period ?',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],    
         [
             'field_name' => 'risk_factors_complete',
             'field_label' => 'Complete?',
