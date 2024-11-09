@@ -865,7 +865,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'rt_kidney_length',
             'field_label' => 'Right Kidney length',
             'field_type' => 'text',
             'required' => 'No',
@@ -876,7 +876,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'rt_kidney_width',
             'field_label' => 'Right Kidney width',
             'field_type' => 'text',
             'required' => 'No',
@@ -887,7 +887,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'rt_kidney_echoge',
             'field_label' => 'Right kidney echogenicity',
             'field_type' => 'select',
             'required' => 'Yes',
@@ -898,7 +898,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'lt_kidney_length',
             'field_label' => 'Left Kidney length',
             'field_type' => 'text',
             'required' => 'No',
@@ -909,7 +909,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'lt_kidney_width',
             'field_label' => 'Left kidney width',
             'field_type' => 'text',
             'required' => 'No',
@@ -920,7 +920,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'lt_kidney_echoge',
             'field_label' => 'Left kidney echogenicity',
             'field_type' => 'select',
             'required' => 'Yes',
@@ -931,7 +931,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'hydronephrosis',
             'field_label' => 'Is hydronephrosis present?',
             'field_type' => 'select',
             'required' => 'Yes',
@@ -942,7 +942,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'yes_hydronephrosis',
             'field_label' => 'If yes, provide details and measurements',
             'field_type' => 'text',
             'required' => 'No',
@@ -953,7 +953,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'kidney_stones',
             'field_label' => 'Presence of Kidney stones?',
             'field_type' => 'select',
             'required' => 'Yes',
@@ -964,7 +964,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'detail_kidneystones',
             'field_label' => 'If yes, provide details',
             'field_type' => 'text',
             'required' => 'No',
@@ -975,7 +975,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'structural_anomalies',
             'field_label' => 'Presence of other structural anomalies?',
             'field_type' => 'select',
             'required' => 'Yes',
@@ -986,7 +986,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'details_structural_anomali',
             'field_label' => 'If yes, provide details',
             'field_type' => 'text',
             'required' => 'No',
@@ -997,7 +997,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'comment_bladders',
             'field_label' => 'Comment on the bladder',
             'field_type' => 'text',
             'required' => 'No',
@@ -1008,7 +1008,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'incidental_findings',
             'field_label' => 'Other incidental findings',
             'field_type' => 'text',
             'required' => 'No',
@@ -1019,7 +1019,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'conclusion_renal',
             'field_label' => 'Summary statement: In conclusion the scan is?',
             'field_type' => 'select',
             'required' => 'Yes',
@@ -1030,7 +1030,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'quality_renal',
+            'field_name' => 'abnor_o_border_renal',
             'field_label' => 'If abnormal or borderline specify',
             'field_type' => 'text',
             'required' => 'No',
@@ -1041,7 +1041,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'laboratory_results_complete',
+            'field_name' => 'radiological_investigations_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'Yes',
