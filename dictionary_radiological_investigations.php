@@ -744,6 +744,61 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'esti_rv_sbp',
+            'field_label' => 'Estimated RV systolic pressure should be reported when a complete TR jet is present',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Done\n2=Not Done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'estimate_rv_sbp',
+            'field_label' => 'Estimated RV systolic pressure',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mmHg',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'ivc_dimen_n_collapsi',
+            'field_label' => 'Inferior vena cava (IVC) dimension and collapsibility to estimate right atrial pressure in adults for whom RV pressure is measured',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=Done\n2=Not Done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'inferior_venacava',
+            'field_label' => 'Inferior vena cava (IVC)',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => 'mm/Hg',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'quali_asses_valvar_regurgi',
+            'field_label' => 'Qualitative assessment of valvar regurgitation',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=None\n2=Trivial\n3=Mild\n4=Moderate\n5=Severe",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
