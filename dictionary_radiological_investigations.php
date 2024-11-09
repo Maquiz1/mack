@@ -40,6 +40,72 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'qualitative_ecg',
+            'field_label' => 'Qualitative',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Slow\n3=Fast",
+            'units' => 'Based on reference',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'regularity_ecg',
+            'field_label' => 'Regularity',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'heart_rythm_ecg',
+            'field_label' => 'Heart Rhythm',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Sinus ryhthm\n2=Other specify",
+            'units' => 'Based on reference',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'other_heart_rhythm_ecg',
+            'field_label' => 'Other heart Rhythm',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'qrs_axis_no_ecg',
+            'field_label' => '5. Axis: QRS axis ( Specify number )',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'qrs_axis_state_ecg',
+            'field_label' => '5. And state whether QRS axis is normal or not',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Right Axis deviation\n3=Left Axis Deviation\n4=Indeterminate",
+            'units' => 'Based on reference',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
