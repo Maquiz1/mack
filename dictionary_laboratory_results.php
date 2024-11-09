@@ -414,7 +414,84 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'risk_factors_complete',
+            'field_name' => 'spec_grav',
+            'field_label' => 'Specific Gravity',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_blood',
+            'field_label' => 'Blood',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Positive\n2=Negative",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_ph',
+            'field_label' => 'pH',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urine_protein',
+            'field_label' => 'Protein',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Positive\n2=Negative",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'urobilonogen',
+            'field_label' => 'Urobilinogen',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Positive\n2=Negative",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'nitrite',
+            'field_label' => 'Nitrite',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Positive\n2=Negative",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'leukocytes',
+            'field_label' => 'Leukocytes',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Positive\n2=Negative",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
             'required' => 'Yes',
