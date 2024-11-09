@@ -194,8 +194,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'platelettes',
-            'field_label' => 'Platelets',
+            'field_name' => 'creat',
+            'field_label' => 'Creatinine',
             'field_type' => 'number',
             'required' => 'No',
             'values' => "",
@@ -205,19 +205,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'platelets_type',
-            'field_label' => 'Platelets Type',
+            'field_name' => 'creat_type',
+            'field_label' => 'Creatinine Type',
             'field_type' => 'select',
             'required' => 'No',
-            'values' => "1=x109/L\n2=x103/L",
+            'values' => "1=mmol/L\n2=mg/dL",
             'units' => '',
             'range' => '',
             'format' => '',
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'platelettes',
-            'field_label' => 'Platelets',
+            'field_name' => 'sodium',
+            'field_label' => 'Sodium',
             'field_type' => 'number',
             'required' => 'No',
             'values' => "",
@@ -227,11 +227,33 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
-            'field_name' => 'platelets_type',
-            'field_label' => 'Platelets Type',
+            'field_name' => 'sod_type',
+            'field_label' => 'Sodium Type',
             'field_type' => 'select',
             'required' => 'No',
-            'values' => "1=x109/L\n2=x103/L",
+            'values' => "1=mmol/L\n2=mEq/L",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'potass',
+            'field_label' => 'Potassium',
+            'field_type' => 'number',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'potas_type',
+            'field_label' => 'Potassium Type',
+            'field_type' => 'select',
+            'required' => 'No',
+            'values' => "1=mmol/L\n2=mEq/L",
             'units' => '',
             'range' => '',
             'format' => '',
