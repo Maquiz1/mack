@@ -799,6 +799,72 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'cardiac_anatomy',
+            'field_label' => 'Cardiac Anatomy',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Abnormal",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'abnorm_cardiac_anatom',
+            'field_label' => 'Specify why cardiac anatomy is abnormal',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'cardiac_function',
+            'field_label' => 'Cardiac Function',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Abnormal",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'abnorm_cardia_func',
+            'field_label' => 'Specify why cardiac abnormal is abnormal',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'renal_ultrasound',
+            'field_label' => 'Renal Ultrasound',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Yes\n2=No",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'quality_renal',
+            'field_label' => 'What is the quality of Renal u/s?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Good\n2=Sub-optimal\n3=Poor quality",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
