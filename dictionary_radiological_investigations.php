@@ -150,6 +150,39 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'abnormal_waves_ecg',
+            'field_label' => '7. Abnomalities of waves noted:assess P, QRS, T-waves, Q-waves and report any abnormalities, if any, of the waves eg tall p-waves; wide QRS complex; RBBB/LBBB pattern',
+            'field_type' => 'text',
+            'required' => 'Yes',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'repolarizatn_abno_ecg',
+            'field_label' => '8.Repolarization abnormalities if any eg ST-segment depression, elevation, etc',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'conclusion_ecg',
+            'field_label' => 'Summary statement: In conclusion the ECG is?',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Abnormal\n3=Borderline",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
