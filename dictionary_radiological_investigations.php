@@ -282,6 +282,94 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'pulmo_ven_conn_echo',
+            'field_label' => 'Pulmonary venous connections',
+            'field_type' => 'checkbox',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Abnormal",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'specfy_ab_pulven_con',
+            'field_label' => 'Specify abnormal Pulmonary venous connections',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'atrioven_connec',
+            'field_label' => 'Atrioventricular connections',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Concordant\n2=Discordant\n3=Not done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'ventricular_loop',
+            'field_label' => 'Ventricular looping',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Suboptimal\n3=Not done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'ventriculoart_conn',
+            'field_label' => 'Ventriculoarterial connections',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Concordant\n2=Discordant\n3=Not done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'arrange_grt_arteries',
+            'field_label' => 'Arrangement of great arteries',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normally-related\n2=D- transposition\n3=L-transposition\n4=Not done",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'structural_lesions',
+            'field_label' => 'Structural lesions [ASD, VSD, PDA]',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Seen\n2=Not seen",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'state_struc_lession',
+            'field_label' => 'state structural lesion',
+            'field_type' => 'text',
+            'required' => 'No',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
