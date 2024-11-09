@@ -106,6 +106,50 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'decimal_points' => ''
         ],
         [
+            'field_name' => 'pr_interval_ecg',
+            'field_label' => '6. PR interval',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'pr_inter_specify_ecg',
+            'field_label' => '6. PR interval specify;',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Slow\n3=Fast",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'qtc_interval_ecg',
+            'field_label' => 'Qtc Interval',
+            'field_type' => 'number',
+            'required' => 'Yes',
+            'values' => "",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
+            'field_name' => 'qtc_inter_specify_ecg',
+            'field_label' => 'Qtc Interval specify',
+            'field_type' => 'select',
+            'required' => 'Yes',
+            'values' => "1=Normal\n2=Slow\n3=Fast",
+            'units' => '',
+            'range' => '',
+            'format' => '',
+            'decimal_points' => ''
+        ],
+        [
             'field_name' => 'laboratory_results_complete',
             'field_label' => 'Complete?',
             'field_type' => 'checkbox',
